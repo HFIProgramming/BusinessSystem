@@ -23,11 +23,12 @@ class incomeTransaction
 	public $sellerAmount;
 	public $buyerAmount;
 
-	/**
-	 * Create a new event instance.
-	 *
-	 * @return void
-	 */
+    /**
+     * Create a new event instance.
+     *
+     * @param User $buyer
+     * @param Transaction $trans
+     */
 	public function __construct(User $buyer, Transaction $trans)
 	{
 		//

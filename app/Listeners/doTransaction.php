@@ -29,10 +29,10 @@ class doTransaction
 	{
 
 		// 找齐
-		$sellerOutRes = $event->seller->resources()->where('resource_id', $event->sellerItem->id)->first();
-		$sellerInRes = $event->seller->resources()->where('resource_id', $event->buyerItem->id)->first();
-		$buyerOutRes = $event->buyer->resources()->where('resource_id', $event->sellerItem->id)->first();
-		$buyerInRes = $event->buyer->resources()->where('resource_id', $event->buyerItem->id)->first();
+		$sellerOutRes = $event->seller->resources()->id($event->sellerItem->id);
+		$sellerInRes = $event->seller->resources()->id($event->buyerItem->id);
+		$buyerOutRes = $event->buyer->resources()->id($event->sellerItem->id);
+		$buyerInRes = $event->buyer->resources()->id($event->buyerItem->id);
 
 		DB::beginTransaction();
 		// 操作
