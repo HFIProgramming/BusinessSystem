@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\Resources;
 use App\User;
+use App\UserResource;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -28,7 +29,7 @@ class NewTransaction
      *
      * @return void
      */
-    public function __construct(User $seller, User $buyer, Resources $sellerItem, Resources $buyerItem, $sellerAmount, $buyerAmount, $type)
+    public function __construct(User $seller, User $buyer, UserResource $sellerItem, UserResource $buyerItem, $sellerAmount, $buyerAmount, $type)
     {
         //
 	    $this->seller = $seller;

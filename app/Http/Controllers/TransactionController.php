@@ -31,7 +31,7 @@ class TransactionController extends Controller
 			if ($sellerItem->amount < $request->seller_amount) {
 				return '数量不够交易';
 			}
-			if (empty($buyer = User::where('id', $request->buyer_id)->first())) {
+			if (empty($buyer = User::query()->where('id', $request->buyer_id)->first())) {
 				return '交易对方ID不存在';
 			}
 //            if (empty($buyerItem = Resources::where('id', $request->buyer_item_id)->first())) {
@@ -39,10 +39,10 @@ class TransactionController extends Controller
 //            }
 
 		} else if ($type == 'buy') {
-			$seller = User::where('id', $request->seller_id)->first();
+			$seller = User::query()->where('id', $request->seller_id)->first();
 			$buyer = $user;
 			$buyerItem = $user->resources()->where('id', $request->resource_id)->first();
-			$sellerItem = Resources::where('id', $request->seller_id)->first();
+			$sellerItem = Resources::query()->where('id', $request->seller_id)->first();
 			if (empty($buyerItem)) {
 				return '你方：交易物品不存在';
 			}
@@ -52,8 +52,9 @@ class TransactionController extends Controller
 			if (empty($seller)) {
 				return '交易对方ID不存在';
 			}
+
 		}
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $request->seller_amount, $request->buyer_amount));
+		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $request->seller_amount, $request->buyer_amount, $type));
 
 		return '成功';
 	}
@@ -87,14 +88,14 @@ class TransactionController extends Controller
 	{
 		$user = $request->user();
 		// 买家还是卖家？
-		if (empty($trans = Transaction::query()->where('id', $request->transactionId)->first())) {
+		if (empty($trans = Transaction::where('id', $request->transactionId)->first())) {
 			return '订单不存在';
 		}
-		if (!($trans->buyer_id == $user->id || $trans->seller_id == $user->id || $user->id == 1)) {
+		if (($trans->type == 'buy' && $trans->seller_id != $user->id) || ($trans->type == 'sell' && $trans->buyer_id != $user_id)) {
 			return '无权访问订单';
 		}
 
-		$trans->buyer_id == $user->id ? $checked = -1 : $checked = -2; // -1 买家 -2 卖家
+		$trans->type == 'sell' ? $checked = -1 : $checked = -2; // -1 买家 -2 卖家
 
 		// Declined
 		if ($request->comfirm == false) {
@@ -104,14 +105,25 @@ class TransactionController extends Controller
 			return '取消成功';
 		}
 
-		// 买家确认
-		if ($checked == -1) {
-			if ($user->resources()->where('resource_id', $trans->buyer_resource_id)->first()->amount < $trans->buyer_amount) {
+		// 接受交易
+		if ($trans->type == 'sell') {
+			if ($user->resources()->id($trans->buyer_resource_id)->amount < $trans->buyer_amount) {
 				return '无法确认订单，物品数量不足';
 			}
-			event(new incomeTransaction($user, $trans));
-
-			return '成功';
+			if (User::id($trans->seller_id)->resources()->id($trans->seller_resource_id)->amount < $trans->seller_amount) {
+				return "卖方物品数量不足，交易失败";
+			}
 		}
+		if ($trans->type == 'buy') {
+			if ($user->resources()->id($trans->seller_resource_id)->amount < $trans->seller_amount) {
+				return '无法确认订单，物品数量不足';
+			}
+			if (User::id($trans->buyer_id)->resources()->id($trans->buyer_resource_id)->amount < $trans->buyer_amount) {
+				return "买方金钱数量不足，交易失败";
+			}
+		}
+		event(new incomeTransaction($user, $trans));
+
+		return '成功';
 	}
 }
