@@ -17,12 +17,16 @@ class PurchaseController extends Controller
 	{
 		$item = Resources::query()->where('id',$request->id)->first();
 		$user = $request->user();
+		$message = "";
 
 		foreach ($item->requirement as $key => $value){
 			if ($user->resources()->where('name',$key)->amount < $amount = $value * $request->amount){
-				return "材料 {$key} 不足，需要 {$amount} ";
+				$message .= "材料 {$key} 不足，需要 {$amount} \n";
 		    }
 		}
+
+		if($message != "")
+		    return $message;
 
 		event(new BuyStuff($user,$item,$request->amount));
 
