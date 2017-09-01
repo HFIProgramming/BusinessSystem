@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<body lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,18 @@
             padding-top: 30px;
             padding-bottom: 150px;
         }
-        .footer{
+
+        .mdui-card {
+            margin: 1% 2%;
+        }
+
+        .mdui-card-header {
+
+            text-align: center !important;
+            /*margin-left: -52px !important;*/
+        }
+
+        .footer {
             margin-top: 25px;
         }
     </style>
@@ -28,7 +39,6 @@
 </head>
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-red mdui-drawer-body-left mdui-appbar-with-toolbar">
-
 
 <div class="mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar mdui-color-theme">
@@ -41,32 +51,26 @@
     <ul class="mdui-list">
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
-            <a href="{{route('dashboard')}}" class="mdui-list-item-content">DashBoard</a>
+            <div class="mdui-list-item-content">公告</div>
         </li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">view_list</i>
-            <a href="{{route('TransactionList')}}" class="mdui-list-item-content">List Transaction</a>
+            <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
+            <div class="mdui-list-item-content">用户信息</div>
         </li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
-            <a href="{{route('resource')}}" class="mdui-list-item-content">List Resource</a>
+            <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+            <div class="mdui-list-item-content">资源信息</div>
         </li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <div class="mdui-list-item-content">Purchase</div>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
-            <a href="{{route('TransLanding')}}" class="mdui-list-item-content">New Transaction</a>
+            <i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>
+            <div class="mdui-list-item-content">日志</div>
         </li>
         <li class="mdui-divider"></li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
-            <div class="mdui-list-item-content">Admin Config</div>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>
-            <a href="{{route('logout')}}" class="mdui-list-item-content">Log Out</a>
+            &nbsp&nbsp&nbsp&nbsp
+            <button class="mdui-btn mdui-ripple">返回选手界面</button>
+
         </li>
     </ul>
 </div>

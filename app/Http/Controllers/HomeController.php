@@ -24,11 +24,16 @@ class HomeController extends Controller
 	 */
 	public function showResource()
 	{
-		return view('resources.list')->with('resources',Resources::all());
+		return view('resources.list')->with('resources', Resources::all());
 	}
 
 	public function showAnnouncement()
 	{
-    	return view('announcements.index')->with('announcements', Announcement::all());
+		return view('announcements.index')->with('announcements', Announcement::all());
+	}
+
+	public function showIndivicualResource(Request $request)
+	{
+		return view('resources.individual')->with('resource', Resources::query()->where('id',$request->id)->firstOrFail());
 	}
 }

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    An Error Occur
+    404 No Found
 @endsection
 
 @section('script')
@@ -36,18 +36,18 @@
 
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                        啊哈！
+                        喵呜？
                     </div>
                 </div>
 
-                <div class="mdui-card-header-subtitle adjust_card_subtitle">
+                <div class="adjust_card_subtitle mdui-card-header-subtitle">
                     <div class="mdui-text-center">
-                        您的操作产生了一个错误，请检查
+                        出错了
                     </div>
                 </div>
-                <div class="mdui-card-content mdui-typo">
-                    {{$message}}
-                    <button class="mdui-btn mdui-color-theme mdui-ripple">返回上一层</button>
+                <div class="mdui-card-content mdui-typo mdui-center">
+                    走错路了吧骚年？这里什么都没有
+                    <button class="mdui-btn mdui-color-theme mdui-ripple" onclick="window.history.back()">返回上一层</button>
                 </div>
             </div>
             <!--row-->
