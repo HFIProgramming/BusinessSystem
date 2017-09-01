@@ -29,6 +29,19 @@ class User extends Authenticatable
 
 	public function resources()
 	{
-    	return $this->hasMany(UserResource::class);
+		return $this->hasMany(UserResource::class);
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function outcomeTransaction()
+	{
+		return $this->hasMany(Transaction::class, 'seller_id');
+	}
+
+	public function incomeTransaction()
+	{
+		return $this->hasMany(Transaction::class, 'buyer_id');
 	}
 }

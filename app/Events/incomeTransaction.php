@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Transaction;
 use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -11,24 +12,31 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Logger
+class incomeTransaction
 {
 	use Dispatchable, InteractsWithSockets, SerializesModels;
 
-	public $user;
-	public $function;
-	public $message;
+	public $seller;
+	public $buyer;
+	public $sellerItem;
+	public $buyerItem;
+	public $sellerAmount;
+	public $buyerAmount;
 
 	/**
 	 * Create a new event instance.
 	 *
 	 * @return void
 	 */
-	public function __construct($userId, $function, $message)
+	public function __construct(User $buyer, Transaction $trans)
 	{
-		$this->user = $user;
-		$this->function = $function;
-		$this->message = $message;
+		//
+		$this->seller = $trans->seller();
+		$this->buyer = $trans->buyer();
+		$this->sellerItem = $trans->seller_resource_id;
+		$this->buyerItem = $trans->buyer_resource_id;
+		$this->sellerAmount = $trans->seller_amount;
+		$this->buyerAmount = $trans->buyer_amount;
 	}
 
 	/**
