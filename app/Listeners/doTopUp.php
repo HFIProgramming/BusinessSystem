@@ -41,7 +41,7 @@ class doTopUp
 			$currentItem->save();
 		}
 		$newItem = UserResource::query()->where('resource_id', $event->item->id)->firstOrCreate([
-			'user_id'     => $event->user,
+			'user_id'     => $event->user->id,
 			'resource_id' => $event->item->id,
 		]);
 
