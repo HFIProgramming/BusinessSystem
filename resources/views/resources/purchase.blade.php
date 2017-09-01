@@ -44,17 +44,17 @@
                     </div>
                 </div>
                 <div class="mdui-card-content mdui-typo">
-                    <form>
+                    <form method="post" action="{{ route('doPurchase') }}">
                         <div class="mdui-textfield mdui-textfield-floating-label">
                             <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
                             <label class="mdui-textfield-label">目标商品</label>
-                            <input class="mdui-textfield-input" type="text" required/>
+                            <input class="mdui-textfield-input" id="item_id" type="text" required/>
                             <div class="mdui-textfield-error">目标商品不能为空</div>
                         </div>
                         <div class="mdui-textfield mdui-textfield-floating-label ">
                             <i class="mdui-icon material-icons adjust_mdui_icon">add</i>
                             <label class="mdui-textfield-label">购买数量</label>
-                            <input class="mdui-textfield-input" type="number" required/>
+                            <input class="mdui-textfield-input" id="amount" type="number" required/>
                             <div class="mdui-textfield-error">购买数量不能为空</div>
                         </div>
                         <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交</button>

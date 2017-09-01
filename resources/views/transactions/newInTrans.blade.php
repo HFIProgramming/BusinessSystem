@@ -76,6 +76,7 @@
                                 <input class="mdui-textfield-input" id="seller_item" type="text" required/>
                                 <div class="mdui-textfield-error">商品名不能为空</div>
                             </div>
+                            <input hidden id="transaction_type" value="buy">
                             <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交
                             </button>
                         </form>

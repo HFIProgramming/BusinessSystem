@@ -15,7 +15,7 @@ class PurchaseController extends Controller
 
 	public function TopUp(Request $request)
 	{
-		$item = Resources::query()->where('id',$request->id)->first();
+		$item = Resources::query()->where('id',$request->item_id)->first();
 		$user = $request->user();
 		$message = "";
 

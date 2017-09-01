@@ -38,14 +38,20 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/', 'TransactionController@showTransLanding')->name('TransLanding');
 		Route::get('/list', 'TransactionController@showTransactionList')->name('TransactionList');
 		Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');
+		Route::post('/income', 'TransactionController@showIncomeCreateForm')->name('doTransIn');
 		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');
 	});
 
 	Route::group(['prefix' => 'resource'], function(){
 		Route::get('/list', 'HomeController@showResource')->name('resource');
 		Route::get('/{id}', 'HomeController@showIndividualResource');
+		Route::get('/purchase', 'PurchaseController@showPurchaseForm')->name('purchaseForm');
+		Route::post('/purchase', 'PurchaseController@TopUp')->name('doPurchase');
 	});
 
+	Route::group(['prefix' => 'announcement'], function(){
+		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
+	});
 
 });
 
