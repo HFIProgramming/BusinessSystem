@@ -52,30 +52,23 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th>id</th>
+                                <th>ID</th>
                                 <th>Name</th>
+                                <th>Type</th>
                                 <th>Descrption</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($resources as $resource)
                             <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>{{$resource->id}}</td>
+                                <td>{{$resource->name}}</td>
+                                <td>{{$resource->getResourceType}}</td>
+                                <td>
+                                    <button class="mdui-btn mdui-color-theme mdui-ripple" onclick="window.location.href='/resource/{{$resource->id}}'">查看要求</button>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry the Bird</td>
-                                <td></td>
-                                <td>@twitter</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

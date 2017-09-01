@@ -10,4 +10,23 @@ class Resources extends Model
 	protected $casts = [
 		'requirement' => 'array',
 	];
+
+	public function getResourceType()
+	{
+		switch ($this->type) {
+			case 0:
+				return '中间货币';
+				break;
+			case 1:
+				return '原材料';
+				break;
+			case 2:
+				return '半成品';
+				break;
+			case 3:
+				return '完成品';
+			default:
+				return '这尼玛是什么玩意';
+		}
+	}
 }
