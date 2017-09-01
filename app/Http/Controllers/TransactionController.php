@@ -23,17 +23,17 @@ class TransactionController extends Controller
 		$type = $request->transaction_type; // 'sell' or 'buy'
         $buyer_amount = $request->buyer_amount;
         $seller_amount = $request->seller_amount;
+        $buyerItem = $buyer->resources()->id(1);//money
 		// seller_amount: sell how many; buyer_amount: price
 		if ($type == 'sell') {
 			$seller = $user;
-			$sellerItem = $user->resources()->where('id', $request->resource_id)->first();
-			if (empty($sellerItem)) {
-				return view('errors.custom')->with('message', '你方：交易物品不存在');
+			if (empty($sellerItem = $user->resources()->id($request->resource_id))) {
+				return view('errors.custom')->with('message', '交易物品不存在');
 			}
 			if ($sellerItem->amount < $request->seller_amount) {
                 return view('errors.custom')->with('message', '数量不够交易');
 			}
-			if (empty($buyer = User::query()->where('id', $request->buyer_id)->first())) {
+            if (empty($buyer = User::id($request->buyer_id))) {
                 return view('errors.custom')->with('message', '交易对方ID不存在');
 			}
 			if($buyer->type==0)//transaction with gov.
@@ -47,22 +47,24 @@ class TransactionController extends Controller
 //            if (empty($buyerItem = Resources::where('id', $request->buyer_item_id)->first())) {
 //                return '对方：交易物品不存在';
 //            }
+            // Everyone has money
 		}
 		else if ($type == 'buy') {
-			$seller = User::query()->where('id', $request->seller_id)->first();
 			$buyer = $user;
 			$buyerItem = $user->resources()->where('id', $request->resource_id)->first();
-			$sellerItem = Resources::query()->where('id', $request->seller_id)->first();
-			if (empty($buyerItem)) {
-                return view('errors.custom')->with('message', '你方：交易物品不存在');
-			}
+//			if (empty($buyerItem)) {
+//                return view('errors.custom')->with('message', '你方：交易物品不存在');
+//			}
+            // Everyone has money
 			if ($buyerItem->amount < $request->buyer_amount) {
                 return view('errors.custom')->with('message', '数量不够交易');
 			}
-			if (empty($seller)) {
+            if(empty($seller = User::id($request->seller_id))) {
                 return view('errors.custom')->with('message', '交易对方ID不存在');
 			}
-
+            if (empty($sellerItem = $sellerItem = $seller->resources()->id(resource_id))) {
+                return view('errors.custom')->with('message', '对方交易物品不存在');
+            }
 		}
 		if(!(($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1) || ($buyer->type == 0 && $seller->type == 2 && Resource::id($sellerItem->resource_id)->type) == 3))
         {
