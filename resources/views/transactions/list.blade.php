@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    New Transaction
+    Transaction List
 @endsection
 
 @section('script')
@@ -62,6 +62,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach()
                             <tr>
                                 <td>1</td>
                                 <td>入商品名</td>
@@ -79,11 +80,7 @@
                     </div>
                 </div>
             </div>
-
-
             <!--row-->
         </div>
-
-
     </div>
 @endsection

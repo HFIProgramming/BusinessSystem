@@ -11,9 +11,9 @@ class UserController extends Controller
 	{
 	}
 
-	public function index()
+	public function index(Request $request)
 	{
-		return view('dashboard');
+		return view('dashboard')->with('user', $request->user());
 	}
 
 }

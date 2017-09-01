@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return Redirect('login');
+	return Redirect('login');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -29,5 +29,21 @@ Route::post('register', 'Auth\RegisterController@register');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('/dashboard', 'UserController@index')->name('dashboard');
+
+	Route::group(['prefix' => 'transaction'], function(){
+		Route::get('/', 'TransactionController@showTransLanding')->name('TransLanding');
+		Route::get('/list', 'TransactionController@showTransactionList')->name('TransactionList');
+		Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');
+		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');
+	});
+
+	Route::group(['prefix' => 'resource'], function(){
+		Route::get('/list', 'HomeController@showResource')->name('resource');
+		Route::get('/{id}', 'HomeController@showIndividualResource');
+	});
+});
 
