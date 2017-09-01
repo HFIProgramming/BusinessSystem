@@ -17,6 +17,7 @@ class CreateConfigsTable extends Migration
             $table->increments('id');
             $table->string('key');
             $table->string('value');
+            //key=startup_fund value=fund
             $table->timestamps();
         });
     }

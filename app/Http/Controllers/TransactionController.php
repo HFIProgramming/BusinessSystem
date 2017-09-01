@@ -14,6 +14,7 @@ class TransactionController extends Controller
 	//
 	public function __construct()
 	{
+
 	}
 
 	public function createTransaction(Request $request)
