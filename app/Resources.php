@@ -29,4 +29,9 @@ class Resources extends Model
 				return '这尼玛是什么玩意';
 		}
 	}
+
+	public function scopeId($query, $id)
+    {
+        return $query->where('id', $id)->first();
+    }
 }

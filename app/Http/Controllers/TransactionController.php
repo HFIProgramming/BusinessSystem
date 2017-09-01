@@ -17,10 +17,12 @@ class TransactionController extends Controller
 
 	}
 
-	public function createTransaction(Request $request)
+	public function createTransaction(Request $request)//Pass in quantity as seller_amount if selling to gov.
 	{
 		$user = $request->user();
 		$type = $request->transaction_type; // 'sell' or 'buy'
+        $buyer_amount = $request->buyer_amount;
+        $seller_amount = $request->seller_amount;
 		// seller_amount: sell how many; buyer_amount: price
 		if ($type == 'sell') {
 			$seller = $user;
@@ -34,6 +36,14 @@ class TransactionController extends Controller
 			if (empty($buyer = User::query()->where('id', $request->buyer_id)->first())) {
                 return view('errors.custom')->with('message', '交易对方ID不存在');
 			}
+			if($buyer->type==0)//transaction with gov.
+            {
+                $resource_price = Resources::id($sellerItem->resource_id)->acquisition_price;
+                if($resource_price == 0){
+                    return view('errors.custom')->with('message', '政府不收购此物品');
+                }
+                $buyer_amount *= $resource_price;
+            }
 //            if (empty($buyerItem = Resources::where('id', $request->buyer_item_id)->first())) {
 //                return '对方：交易物品不存在';
 //            }
@@ -54,11 +64,11 @@ class TransactionController extends Controller
 			}
 
 		}
-		if($buyer->type - $seller->type != 1 && !($buyer-type == 0 && $seller->type == 2))
+		if(!(($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1) || ($buyer->type == 0 && $seller->type == 2 && Resource::id($sellerItem->resource_id)->type) == 3))
         {
-            return view('errors.custom')->with('message', '你们之间不能交易');
+            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
         }
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $request->seller_amount, $request->buyer_amount, $type));
+		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
 	}
