@@ -37,8 +37,8 @@ class TransactionController extends Controller
 //            if (empty($buyerItem = Resources::where('id', $request->buyer_item_id)->first())) {
 //                return '对方：交易物品不存在';
 //            }
-
-		} else if ($type == 'buy') {
+		}
+		else if ($type == 'buy') {
 			$seller = User::query()->where('id', $request->seller_id)->first();
 			$buyer = $user;
 			$buyerItem = $user->resources()->where('id', $request->resource_id)->first();
@@ -54,6 +54,10 @@ class TransactionController extends Controller
 			}
 
 		}
+		if($buyer->type - $seller->type != 1 && !($buyer-type == 0 && $seller->type == 2))
+        {
+            return view('errors.custom')->with('message', '你们之间不能交易');
+        }
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $request->seller_amount, $request->buyer_amount, $type));
 
 		return '成功';

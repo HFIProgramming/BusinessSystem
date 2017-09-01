@@ -64,6 +64,7 @@ class RegisterController extends Controller
 	 */
 	protected function create(array $data)
 	{
+	    // @TODO Registration procedure not finished yet
 		$user = User::create([
 			'name'     => $data['name'],
 			'email'    => $data['email'],
