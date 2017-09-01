@@ -7,26 +7,39 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class EventServiceProvider extends ServiceProvider
 {
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
-    protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
-    ];
+	/**
+	 * The event listener mappings for the application.
+	 *
+	 * @var array
+	 */
+	protected $listen = [
+		'App\Events\Transaction' => [
+			'App\Listeners\doTransaction',
+		],
 
-    /**
-     * Register any events for your application.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        parent::boot();
+		'App\Events\NewTransaction' => [
+			'App\Listeners\CreateTransaction',
+		],
 
-        //
-    }
+		'App\Events\BuyStuff' => [
+			'App\Listeners\doTopUp',
+		],
+
+		'App\Events\Logger' => [
+			'App\Listeners\makeLog',
+		],
+
+	];
+
+	/**
+	 * Register any events for your application.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		parent::boot();
+
+		//
+	}
 }
