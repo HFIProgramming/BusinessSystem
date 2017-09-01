@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\AutoTransaction;
 use App\Events\Logger;
 use App\Events\NewTransaction;
 use App\Logs;
@@ -40,5 +41,8 @@ class CreateTransaction
 		$trans->type = $event->type;
 		$trans->save();
 		event(new Logger($event->seller->id, 'Create.Trans', $event->buyer->id));
+		if ($trans->buyer()->type == 0 || $trans->seller()->type == 0) {
+		    event(new AutoTransaction($trans));
+        }
 	}
 }
