@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use phpDocumentor\Reflection\Types\Parent_;
 
 class RegisterController extends Controller
 {
@@ -69,7 +70,7 @@ class RegisterController extends Controller
 			'email'    => $data['email'],
 			'password' => bcrypt($data['password']),
 			'type'     => $data['type'],
-        ]);
+		]);
 		$user->resources()->create([
 			'resource_id' => 1, //money
 			'user_id'     => $user->id,
@@ -78,4 +79,5 @@ class RegisterController extends Controller
 
 		return $user;
 	}
+
 }

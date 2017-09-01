@@ -63,18 +63,58 @@
                             </thead>
                             <tbody>
                             @foreach($incomeTransactions as $transaction)
-                            <tr>
-                                <td>{{$transaction->id}}</td>
-                                <td>{{$transaction->}}</td>
-                                <td>入商品数量</td>
-                                <td>出商品名</td>
-                                <td>出商品数量</td>
-                                <td>交易方名</td>
-                                <td>18:00</td>
-                                <td>
-                                    <button class="mdui-btn mdui-color-theme mdui-ripple">确认</button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{$transaction->id}}</td>
+                                    <td>{{$transaction->sellerResource()->first()->name}}</td>
+                                    <td>{{$transaction->seller_amount}}</td>
+                                    <td>{{$transaction->buyerResource()->first()->name}}</td>
+                                    <td>{{$transaction->buyer_amount}}</td>
+                                    <td>{{$transaction->seller()->first()->name}}</td>
+                                    <td>{{$transaction->timestamp}}</td>
+                                    @if($transaction->checked == 0)
+                                        <td>
+                                            <button class="mdui-btn mdui-color-theme mdui-ripple"
+                                                    onclick="window.location.href='/transaction/{{$transaction->id}}'">
+                                                前往
+                                            </button>
+                                        </td>
+                                    @elseif($transaction->checked == -1 || $transaction->checked == -2)
+                                        <td>
+                                            被取消
+                                        </td>
+                                    @elseif($transaction->checked == 1)
+                                        <td>
+                                            完成
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+                            @foreach($outcomeTransactions as $transaction)
+                                <tr>
+                                    <td>{{$transaction->id}}</td>
+                                    <td>{{$transaction->buyerResource()->first()->name}}</td>
+                                    <td>{{$transaction->buyer_amount}}</td>
+                                    <td>{{$transaction->sellerResource()->first()->name}}</td>
+                                    <td>{{$transaction->seller_amount}}</td>
+                                    <td>{{$transaction->buyer()->first()->name}}</td>
+                                    <td>{{$transaction->timestamp}}</td>
+                                    @if($transaction->checked == 0)
+                                        <td>
+                                            <button class="mdui-btn mdui-color-theme mdui-ripple"
+                                                    onclick="window.location.href='/transaction/{{$transaction->id}}'">
+                                                前往
+                                            </button>
+                                        </td>
+                                    @elseif($transaction->checked == -1 || $transaction->checked == -2)
+                                        <td>
+                                            被取消
+                                        </td>
+                                    @elseif($transaction->checked == 1)
+                                        <td>
+                                            完成
+                                        </td>
+                                    @endif
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\Resource;
 
 class Transaction extends Model
 {
@@ -14,6 +15,16 @@ class Transaction extends Model
 
 	public function buyer()
 	{
-		return $this->belongsTo(User::class,'buyer_id');
+		return $this->belongsTo(User::class, 'buyer_id');
+	}
+
+	public function buyerResource()
+	{
+		return $this->belongsTo(Resources::class, 'buyer_resource_id');
+	}
+
+	public function sellerResource()
+	{
+		return $this->belongsTo(Resource::class,'seller_resource_id');
 	}
 }
