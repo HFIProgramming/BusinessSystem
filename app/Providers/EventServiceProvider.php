@@ -29,6 +29,10 @@ class EventServiceProvider extends ServiceProvider
 			'App\Listeners\makeLog',
 		],
 
+        'App\Events\AutoTransaction' => [
+            'App\Listeners\doAutoTransaction'
+        ]
+
 	];
 
 	/**

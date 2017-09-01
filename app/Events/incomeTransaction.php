@@ -29,7 +29,7 @@ class incomeTransaction
      * @param User $buyer
      * @param Transaction $trans
      */
-	public function __construct(User $buyer, Transaction $trans)
+	public function __construct(Transaction $trans)
 	{
 		//
 		$this->seller = $trans->seller();

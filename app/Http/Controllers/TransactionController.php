@@ -69,7 +69,6 @@ class TransactionController extends Controller
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
-
 		return '成功';
 	}
 
@@ -139,7 +138,7 @@ class TransactionController extends Controller
 				return view('errors.custom')->with('message', "买方金钱数量不足，交易失败");
 			}
 		}
-		event(new incomeTransaction($user, $trans));
+		event(new incomeTransaction($trans));
 
 		return '成功';
 	}
