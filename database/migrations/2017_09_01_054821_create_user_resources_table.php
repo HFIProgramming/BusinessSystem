@@ -11,6 +11,9 @@ class CreateUserResourcesTable extends Migration
 	 *
 	 * @return void
 	 */
+
+	protected $fillable = ['resource_id', 'user_id', 'amount'];
+
 	public function up()
 	{
 		Schema::create('user_resources', function (Blueprint $table) {
