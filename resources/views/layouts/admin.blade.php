@@ -68,9 +68,7 @@
         <li class="mdui-divider"></li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>
-            &nbsp&nbsp&nbsp&nbsp
-            <button class="mdui-btn mdui-ripple">返回选手界面</button>
-
+            <a href="{{route('dashboard')}}" class="mdui-list-item-content">返回选手页面</a>
         </li>
     </ul>
 </div>

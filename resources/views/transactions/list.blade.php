@@ -10,10 +10,10 @@
 
 @section('stylesheet')
     <style>
-        /*.adjust_card {*/
-        /*padding-top: 100px;*/
-        /*padding-bottom: 200px;*/
-        /*}*/
+        .adjust_card {
+            padding-top: 30px;
+            padding-bottom: 130px;
+        }
 
         .adjust_card_subtitle {
             margin-left: 0;
@@ -32,11 +32,11 @@
 @section('body')
     <div class="mdui-container doc-container">
         <div class="mdui-row">
-            <div class="mdui-col-xs-12">
+            <div class="adjust_card mdui-col-xs-12">
 
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                        Resource List
+                        Transation List
                     </div>
                 </div>
 

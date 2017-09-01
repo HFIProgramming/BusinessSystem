@@ -19,8 +19,13 @@
             padding-top: 30px;
             padding-bottom: 150px;
         }
-        .footer{
+
+        .footer {
             margin-top: 25px;
+        }
+
+        .footer_bar {
+            margin-top: 100px;
         }
     </style>
     @yield('stylesheet')
@@ -53,17 +58,19 @@
         </li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <div class="mdui-list-item-content">Purchase</div>
+            <a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
             <a href="{{route('TransLanding')}}" class="mdui-list-item-content">New Transaction</a>
         </li>
         <li class="mdui-divider"></li>
+        @if(auth()->user()->id == 1)
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
-            <div class="mdui-list-item-content">Admin Config</div>
+            <a href="{{route('adminDashboard')}}" class="mdui-list-item-content">Admin Config</a>
         </li>
+        @endif
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>
             <a href="{{route('logout')}}" class="mdui-list-item-content">Log Out</a>
@@ -72,7 +79,7 @@
 </div>
 
 @yield('body')
-<div class="footer mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-indigo">
+<div class="footer_bar mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-indigo">
     <div class="mdui-container">
         <div class="mdui-row">
             <div class="mdui-row-lg-6">

@@ -21,9 +21,9 @@ class TransactionController extends Controller
 	{
 		$user = $request->user();
 		$type = $request->transaction_type; // 'sell' or 'buy'
-        $buyer_amount = $request->buyer_amount;
-        $seller_amount = $request->seller_amount;
-        $buyerItem = $buyer->resources()->id(1);//money
+		$buyer_amount = $request->buyer_amount;
+		$seller_amount = $request->seller_amount;
+		$buyerItem = $buyer->resources()->id(1);//money
 		// seller_amount: sell how many; buyer_amount: price
 		if ($type == 'sell') {
 			$seller = $user;
@@ -31,45 +31,43 @@ class TransactionController extends Controller
 				return view('errors.custom')->with('message', '我方：交易物品不存在');
 			}
 			if ($sellerItem->amount < $request->seller_amount) {
-                return view('errors.custom')->with('message', '数量不够交易');
+				return view('errors.custom')->with('message', '数量不够交易');
 			}
-            if (empty($buyer = User::id($request->buyer_id))) {
-                return view('errors.custom')->with('message', '交易对方ID不存在');
+			if (empty($buyer = User::id($request->buyer_id))) {
+				return view('errors.custom')->with('message', '交易对方ID不存在');
 			}
-			if($buyer->type==0)//transaction with gov.
-            {
-                $resource_price = Resources::id($sellerItem->resource_id)->acquisition_price;
-                if($resource_price == 0){
-                    return view('errors.custom')->with('message', '政府不收购此物品');
-                }
-                $buyer_amount *= $resource_price;
-            }
+			if ($buyer->type == 0)//transaction with gov.
+			{
+				$resource_price = Resources::id($sellerItem->resource_id)->acquisition_price;
+				if ($resource_price == 0) {
+					return view('errors.custom')->with('message', '政府不收购此物品');
+				}
+				$buyer_amount *= $resource_price;
+			}
 //            if (empty($buyerItem = Resources::where('id', $request->buyer_item_id)->first())) {
 //                return '对方：交易物品不存在';
 //            }
-            // Everyone has money
-		}
-		else if ($type == 'buy') {
+			// Everyone has money
+		} else if ($type == 'buy') {
 			$buyer = $user;
 			$buyerItem = $user->resources()->where('id', $request->resource_id)->first();
 //			if (empty($buyerItem)) {
 //                return view('errors.custom')->with('message', '我方：交易物品不存在');
 //			}
-            // Everyone has money
+			// Everyone has money
 			if ($buyerItem->amount < $request->buyer_amount) {
-                return view('errors.custom')->with('message', '数量不够交易');
+				return view('errors.custom')->with('message', '数量不够交易');
 			}
-            if(empty($seller = User::id($request->seller_id))) {
-                return view('errors.custom')->with('message', '交易对方ID不存在');
+			if (empty($seller = User::id($request->seller_id))) {
+				return view('errors.custom')->with('message', '交易对方ID不存在');
 			}
-            if (empty($sellerItem = $sellerItem = $seller->resources()->id(resource_id))) {
-                return view('errors.custom')->with('message', '对方：交易物品不存在');
-            }
+			if (empty($sellerItem = $sellerItem = $seller->resources()->id(resource_id))) {
+				return view('errors.custom')->with('message', '对方：交易物品不存在');
+			}
 		}
-		if(!(($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1) || ($buyer->type == 0 && $seller->type == 2 && Resource::id($sellerItem->resource_id)->type) == 3))
-        {
-            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-        }
+		if (!(($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1) || ($buyer->type == 0 && $seller->type == 2 && Resource::id($sellerItem->resource_id)->type) == 3)) {
+			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
+		}
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
@@ -97,7 +95,11 @@ class TransactionController extends Controller
 
 	public function showTransactionList(Request $request)
 	{
-		return view('transactions.list')->with('incomeTransactions', $request->user()->incomeTransaction()->get())->with('outComeTransactions', $request->user->outcomeTransaction()->get());
+		return view('transactions.list')
+			->with('incomeTransactions',
+				empty($income = $request->user()->incomeTransaction()->get()) ? [] : $income)
+			->with('outcomeTransactions',
+				empty($outcome = $request->user()->outcomeTransaction()->get()) ? [] : $outcome);
 	}
 
 	public function handleTransaction(Request $request)

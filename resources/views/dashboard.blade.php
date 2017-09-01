@@ -1,33 +1,41 @@
 @extends('layouts.base')
 
+@section('style')
+    <style>
+    .adjust_card {
+    padding-top: 30px;
+    padding-bottom: 130px;
+    }
+    </style>
+@endsection
+
 @section('body')
+
     <div class="mdui-container doc-container">
         <div class="mdui-row">
             <div class="mdui-col-xs-6">
                 <div class="mdui-card">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar" src="img/avg.jpg"/>
-                        <div class="mdui-card-header-title">name</div>
-                        <div class="mdui-card-header-subtitle">Published At: 1970-01-01</div>
+                        <div class="mdui-card-header-title">Author: Admin</div>
+                        <div class="mdui-card-header-subtitle">Published At: {{$announcement->timestamp}}</div>
                     </div>
                     <div class="mdui-card-primary">
-                        <div class="mdui-card-primary-title">Announcement</div>
-                        <div class="mdui-card-primary-subtitle">Recent Nodes Adjustment</div>
+                        <div class="mdui-card-primary-title">{{$announcement->title}}</div>
+                        <div class="mdui-card-primary-subtitle">Recent Adjustment</div>
                     </div>
                     <div class="mdui-card-content">
-                        <div class="mdui-typo-subheading">The following Node will be removed due to low usage</div>
-                        <ul class="mdui-list">
-                            <li class="mdui-list-item mdui-ripple">Venus</li>
-                            <li class="mdui-list-item mdui-ripple">Pluto</li>
-                            <li class="mdui-list-item mdui-ripple">Ceres</li>
-                        </ul>
+                        <div class="mdui-typo-subheading">Please Always keep notifying</div>
+                        {{$announcement->content}}
                         <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple">Read More</button>
+                            <button class="mdui-btn mdui-ripple"
+                                    onclick="window.location.href='{{route('announcement')}}'">Read More
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mdui-col-lg-6">
+            <div class="mdui-col-xs-6">
                 <div class="mdui-card">
                     <div class="mdui-card-media">
                         <img src="img/card.jpg"/>
@@ -35,16 +43,16 @@
                             <div class="mdui-card-primary">
                                 <div class="mdui-card-primary">
                                     <div class="mdui-card-primary-title">Summary</div>
-                                    <div class="mdui-card-primary-subtitle">Updated at 10 minutes ago</div>
+                                    <div class="mdui-card-primary-subtitle">Updated at 1 minutes ago</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mdui-card-content">
                         <ul class="mdui-list">
-                            <li class="mdui-list-item mdui-ripple">Total Traffic: 10G</li>
-                            <li class="mdui-list-item mdui-ripple">Used Traffic: 5G</li>
-                            <li class="mdui-list-item mdui-ripple">Left: 5G (50%)</li>
+                            @foreach($user->resources()->get() as $resource)
+                                <li class="mdui-list-item mdui-ripple">{{ucfirst($resource->resource()->value('name'))}}: {{$resource->amount}}</li>
+                            @endforeach
                             <br/>
                             <div class="mdui-progress">
                                 <div class="mdui-progress-determinate" style="width: 50%;"></div>
@@ -52,8 +60,9 @@
                         </ul>
                     </div>
                     <div class="mdui-card-actions">
-                        <button class="mdui-btn mdui-ripple">Detailed Infomation</button>
-                        <button class="mdui-btn mdui-ripple">Top Up</button>
+                        <button class="mdui-btn mdui-ripple"
+                                onclick="window.location.href='{{route('purchaseForm')}}'">Top Up
+                        </button>
                     </div>
                     <br/>
                 </div>
@@ -88,7 +97,8 @@
                                     <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                                 </div>
                                 <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                                    <li class="mdui-list-item mdui-ripple">Username: <code> Your Email Address</code></li>
+                                    <li class="mdui-list-item mdui-ripple">Username: <code> Your Email Address</code>
+                                    </li>
                                     <li class="mdui-list-item mdui-ripple">Password: <code> Secret</code></li>
                                 </ul>
                             </li>

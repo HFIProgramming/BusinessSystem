@@ -10,10 +10,10 @@
 
 @section('stylesheet')
     <style>
-        /*.adjust_card {*/
-        /*padding-top: 100px;*/
-        /*padding-bottom: 200px;*/
-        /*}*/
+        .adjust_card {
+        padding-top: 30px;
+        padding-bottom: 180px;
+        }
 
         .adjust_card_subtitle {
             margin-left: 0;
@@ -31,7 +31,7 @@
 
 @section('body')
     <div class="mdui-row">
-        <div class="mdui-col-xs-12">
+        <div class="adjust_card mdui-col-xs-12">
             <div class="mdui-card">
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
@@ -48,8 +48,8 @@
                         {{ csrf_field() }}
                         <div class="mdui-textfield mdui-textfield-floating-label">
                             <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
-                            <label class="mdui-textfield-label">目标商品</label>
-                            <input class="mdui-textfield-input" id="item_id" type="text" required/>
+                            <label class="mdui-textfield-label">目标商品ID</label>
+                            <input class="mdui-textfield-input" id="item_id" type="number" required/>
                             <div class="mdui-textfield-error">目标商品不能为空</div>
                         </div>
                         <div class="mdui-textfield mdui-textfield-floating-label ">

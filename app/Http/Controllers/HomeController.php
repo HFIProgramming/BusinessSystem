@@ -32,7 +32,7 @@ class HomeController extends Controller
 		return view('announcements.index')->with('announcements', Announcement::all());
 	}
 
-	public function showIndivicualResource(Request $request)
+	public function showIndividualResource(Request $request)
 	{
 		return view('resources.individual')->with('resource', Resources::query()->where('id',$request->id)->firstOrFail());
 	}
