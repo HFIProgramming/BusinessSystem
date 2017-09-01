@@ -16,7 +16,7 @@ class VerifyAdmin
 	public function handle($request, Closure $next)
 	{
 		if ($request->user()->id !== 1) {
-			return view('errors.custom')->withMessage('Admin Only!');
+			return view('errors.custom')->with('Message', 'Admin Only!');
 		}
 
 		return $next($request);
