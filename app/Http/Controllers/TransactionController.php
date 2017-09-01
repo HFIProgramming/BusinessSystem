@@ -28,7 +28,7 @@ class TransactionController extends Controller
 		if ($type == 'sell') {
 			$seller = $user;
 			if (empty($sellerItem = $user->resources()->id($request->resource_id))) {
-				return view('errors.custom')->with('message', '交易物品不存在');
+				return view('errors.custom')->with('message', '我方：交易物品不存在');
 			}
 			if ($sellerItem->amount < $request->seller_amount) {
                 return view('errors.custom')->with('message', '数量不够交易');
@@ -53,7 +53,7 @@ class TransactionController extends Controller
 			$buyer = $user;
 			$buyerItem = $user->resources()->where('id', $request->resource_id)->first();
 //			if (empty($buyerItem)) {
-//                return view('errors.custom')->with('message', '你方：交易物品不存在');
+//                return view('errors.custom')->with('message', '我方：交易物品不存在');
 //			}
             // Everyone has money
 			if ($buyerItem->amount < $request->buyer_amount) {
@@ -63,7 +63,7 @@ class TransactionController extends Controller
                 return view('errors.custom')->with('message', '交易对方ID不存在');
 			}
             if (empty($sellerItem = $sellerItem = $seller->resources()->id(resource_id))) {
-                return view('errors.custom')->with('message', '对方交易物品不存在');
+                return view('errors.custom')->with('message', '对方：交易物品不存在');
             }
 		}
 		if(!(($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1) || ($buyer->type == 0 && $seller->type == 2 && Resource::id($sellerItem->resource_id)->type) == 3))
