@@ -51,7 +51,7 @@
                         <table class="mdui-table">
                             <thead>
                             <tr>
-                                <th></th>
+                                <th>ID</th>
                                 <th>入商品</th>
                                 <th>入数量</th>
                                 <th>出商品</th>
@@ -62,19 +62,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach()
+                            @foreach($incomeTransactions as $transaction)
                             <tr>
-                                <td>1</td>
-                                <td>入商品名</td>
-                                <td>商品数量</td>
+                                <td>{{$transaction->id}}</td>
+                                <td>{{$transaction->}}</td>
+                                <td>入商品数量</td>
                                 <td>出商品名</td>
-                                <td>商品数量</td>
+                                <td>出商品数量</td>
                                 <td>交易方名</td>
                                 <td>18:00</td>
                                 <td>
                                     <button class="mdui-btn mdui-color-theme mdui-ripple">确认</button>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
