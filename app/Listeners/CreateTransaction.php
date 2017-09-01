@@ -37,6 +37,7 @@ class CreateTransaction
 		$trans->buyer_resource_id = $event->buyerItem->id;
 		$trans->seller_amount = $event->sellerAmount;
 		$trans->buyer_amount = $event->buyerAmount;
+		$trans->type = $event->type;
 		$trans->save();
 		event(new Logger($event->seller->id, 'Create.Trans', $event->buyer->id));
 	}

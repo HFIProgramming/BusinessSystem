@@ -45,5 +45,8 @@ class User extends Authenticatable
 		return $this->hasMany(Transaction::class, 'buyer_id');
 	}
 
-
+    public function scopeId($query, $id)
+    {
+        return $query->where('id',$id)->first();
+    }
 }
