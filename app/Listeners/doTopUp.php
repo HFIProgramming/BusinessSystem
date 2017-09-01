@@ -45,7 +45,7 @@ class doTopUp
 			'resource_id' => $event->item->id,
 		]);
 
-		$newItem->amount += $event->amount;
+		$newItem->amount += $event->amount * $event->item->pack;
 		$newItem->save();
 		DB::commit();
 		event(new Logger($event->user->id, 'User.TopUp', "Item :{$event->item->id}; Amount: {$event->amount}"));
