@@ -19,6 +19,8 @@ class CreateResourcesTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('description');
+            $table->string('type');
+            //1=原材料 2=半成品 3=成品
             $table->text('requirement')->nullable();
             $table->timestamps();
         });

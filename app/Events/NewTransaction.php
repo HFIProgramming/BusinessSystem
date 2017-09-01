@@ -22,12 +22,13 @@ class NewTransaction
     public $buyerItem;
     public $sellerAmount;
     public $buyerAmount;
+    public $type;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $seller, User $buyer, Resources $sellerItem, Resources $buyerItem, $sellerAmount, $buyerAmount)
+    public function __construct(User $seller, User $buyer, Resources $sellerItem, Resources $buyerItem, $sellerAmount, $buyerAmount, $type)
     {
         //
 	    $this->seller = $seller;
@@ -36,6 +37,7 @@ class NewTransaction
 	    $this->buyerItem = $buyerItem;
 	    $this->sellerAmount = $sellerAmount;
 	    $this->buyerAmount = $buyerAmount;
+	    $this->type = $type;
     }
 
     /**

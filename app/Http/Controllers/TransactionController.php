@@ -20,20 +20,46 @@ class TransactionController extends Controller
 	public function createTransaction(Request $request)
 	{
 		$user = $request->user();
-		$sellerItem = $user->resources()->where('id', $request->buyer_resource_id)->first();
-		if (empty($sellerItem)) {
-			return '你方：交易物品不存在';
-		}
-		if ($sellerItem->amount < $request->buyer_amount) {
-			return '数量不够交易';
-		}
-		if (empty($buyer = User::query()->where('id', $request->seller_id)->first())) {
-			return '交易对方ID不存在';
-		}
-		if (empty($buyerItem = Resources::query()->where('id', $request->buyer_id)->first())) {
-			return '对方：交易物品不存在';
-		}
-		event(new NewTransaction($user, $buyer, $sellerItem, $buyerItem, $request->seller_amount, $request->buyer_amount));
+		$type = $request->transaction_type; // 'sell' or 'buy'
+        // seller_amount: sell how many; buyer_amount: price
+        if($type == 'sell') {
+            $seller = $user;
+            $sellerItem = $user->resources()->where('id', $request->resource_id)->first();
+            if (empty($sellerItem)) {
+                return '你方：交易物品不存在';
+            }
+            if ($sellerItem->amount < $request->seller_amount) {
+                return '数量不够交易';
+            }
+            if (empty($buyer = User::where('id', $request->buyer_id)->first())) {
+                return '交易对方ID不存在';
+            }
+//            if (empty($buyerItem = Resources::where('id', $request->buyer_item_id)->first())) {
+//                return '对方：交易物品不存在';
+//            }
+
+        }
+        else if($type == 'buy')
+        {
+            $seller = User::where('id', $request->seller_id)->first();
+            $buyer = $user;
+            $buyerItem = $user->resources()->where('id', $request->resource_id)->first();
+            $sellerItem = Resources::where('id', $request->seller_id)->first();
+            if(empty($buyerItem))
+            {
+                return '你方：交易物品不存在';
+            }
+            if($buyerItem->amount < $request->buyer_amount)
+            {
+                return '数量不够交易';
+            }
+            if(empty($seller))
+            {
+                return '交易对方ID不存在';
+            }
+            if(empty())
+        }
+		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $request->seller_amount, $request->buyer_amount));
 
 		return '成功';
 	}
