@@ -104,6 +104,7 @@
 </div>
 
 <script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js"></script>
+<script data-no-instant src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
 <script data-no-instant>
     InstantClick.on('wait', function () {
         $$.showOverlay(5000);
@@ -112,6 +113,5 @@
         $$.hideOverlay(true);
     });
     InstantClick.init();</script>
-<script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
 </body>
 </html>
