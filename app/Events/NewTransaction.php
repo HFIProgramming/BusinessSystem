@@ -24,10 +24,17 @@ class NewTransaction
     public $sellerAmount;
     public $buyerAmount;
     public $type;
+
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param User $seller
+     * @param User $buyer
+     * @param UserResource $sellerItem
+     * @param UserResource $buyerItem
+     * @param $sellerAmount
+     * @param $buyerAmount
+     * @param $type
      */
     public function __construct(User $seller, User $buyer, UserResource $sellerItem, UserResource $buyerItem, $sellerAmount, $buyerAmount, $type)
     {

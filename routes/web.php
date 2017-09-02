@@ -38,10 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix' => 'transaction'], function () {
 		Route::get('/', 'TransactionController@showTransLanding')->name('TransLanding');
 		Route::get('/list', 'TransactionController@showTransactionList')->name('TransactionList');
-		Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');
-		Route::post('/income', 'TransactionController@doTransIn')->name('doTransIn');
-		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');
-		Route::post('/outcome', 'TransactionController@doTransOut')->name('doTransOut');
+		Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');//买
+		Route::post('/income', 'TransactionController@buyFromUser')->name('doTransIn');
+		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');//卖
+		Route::post('/outcome', 'TransactionController@sellToUser')->name('doTransOut');
 	});
 
 	Route::group(['prefix' => 'resource'], function () {

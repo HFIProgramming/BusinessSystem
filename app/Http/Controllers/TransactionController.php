@@ -132,7 +132,8 @@ class TransactionController extends Controller
 
     public function showTransactionList(Request $request)
     {
-        return view('transactions.list')->with('incomeTransactions', $request->user()->incomeTransaction()->get())->with('outComeTransactions', $request->user->outcomeTransaction()->get());
+        $user = $request->user();
+        return view('transactions.list')->with('incomeTransactions', $user->incomeTransaction()->get())->with('outComeTransactions', $user->outcomeTransaction()->get());
     }
 
     public function handleTransaction(Request $request)
