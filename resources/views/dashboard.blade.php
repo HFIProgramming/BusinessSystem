@@ -7,28 +7,53 @@
 
     <div class="mdui-container doc-container">
         <div class="mdui-row">
-            <div class="mdui-col-xs-6">
-                <div class="mdui-card">
-                    <div class="mdui-card-header">
-                        <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
-                        <div class="mdui-card-header-title">Author: Admin</div>
-                        <div class="mdui-card-header-subtitle">Published At: {{$announcement->timestamp}}</div>
-                    </div>
-                    <div class="mdui-card-primary">
-                        <div class="mdui-card-primary-title">{{$announcement->title}}</div>
-                        <div class="mdui-card-primary-subtitle">Recent Adjustment</div>
-                    </div>
-                    <div class="mdui-card-content">
-                        <div class="mdui-typo-subheading">Please Always keep notifying</div>
-                        {{$announcement->content}}
-                        <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple"
-                                    onclick="window.location.href='{{route('announcement')}}'">Read More
-                            </button>
+            @if (!empty($announcement))
+                <div class="mdui-col-xs-6">
+                    <div class="mdui-card">
+                        <div class="mdui-card-header">
+                            <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
+                            <div class="mdui-card-header-title">Author: Admin</div>
+                            <div class="mdui-card-header-subtitle">Published At: {{$announcement->timestamp}}</div>
+                        </div>
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">{{$announcement->title}}</div>
+                            <div class="mdui-card-primary-subtitle">Recent Adjustment</div>
+                        </div>
+                        <div class="mdui-card-content">
+                            <div class="mdui-typo-subheading">Please Always keep notifying</div>
+                            {{$announcement->content}}
+                            <div class="mdui-card-actions">
+                                <button class="mdui-btn mdui-ripple"
+                                        onclick="window.location.href='{{route('announcement')}}'">Read More
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="mdui-col-xs-6">
+                    <div class="mdui-card">
+                        <div class="mdui-card-header">
+                            <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
+                            <div class="mdui-card-header-title">Author: Admin</div>
+                            <div class="mdui-card-header-subtitle">Oops!</div>
+                        </div>
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">No Announcement !</div>
+                            <div class="mdui-card-primary-subtitle">QvQ</div>
+                        </div>
+                        <div class="mdui-card-content">
+                            <div class="mdui-typo-subheading">Please Always keep notifying</div>
+                            现在还没有公告呢……一定是他们太懒了
+                            <div class="mdui-card-actions">
+                                <button class="mdui-btn mdui-ripple"
+                                        onclick="window.location.href='{{route('announcement')}}'">Read More
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="mdui-col-xs-6">
                 <div class="mdui-card">
                     <div class="mdui-card-media">
