@@ -40,9 +40,9 @@ class TransactionController extends Controller
 //            }
         // Everyone has money
         $buyerItem = $buyer->resources()->id(1);
-        if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
-            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-        }
+//        if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
+//            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
+//        }
         event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
         return '成功';
     }
