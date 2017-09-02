@@ -35,6 +35,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if (!empty($resource->requirement))
                             @foreach($resource->requirement as $key => $value)
                                 <tr>
                                     <td>{{$key}}</td>
@@ -42,6 +43,12 @@
                                 </tr>
                             @endforeach
                             </tbody>
+                            @else
+                                <tr>
+                                    <td>没有需求</td>
+                                    <td>空</td>
+                                </tr>
+                            @endif
                         </table>
                     </div>
                 </div>
