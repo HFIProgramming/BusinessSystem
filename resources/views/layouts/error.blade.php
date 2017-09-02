@@ -44,7 +44,7 @@
     @yield('script')
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-red mdui-drawer-body-left mdui-appbar-with-toolbar">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-red mdui-appbar-with-toolbar">
 
 
 <div class="mdui-appbar mdui-appbar-fixed">
