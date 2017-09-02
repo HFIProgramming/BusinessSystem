@@ -78,7 +78,7 @@
             <a href="{{route('TransLanding')}}" class="mdui-list-item-content">New Transaction</a>
         </li>
         <li class="mdui-divider"></li>
-        @if(auth()->user()->id == 1)
+        @if(auth()->id() == 1)
             <li class="mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
                 <a href="{{route('adminDashboard')}}" data-no-instant class="mdui-list-item-content">Admin Config</a>
