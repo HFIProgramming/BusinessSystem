@@ -74,7 +74,7 @@
 </div>
 
 @yield('body')
-<div class="footer mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-indigo">
+<div class="footer mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-theme">
     <div class="mdui-container">
         <div class="mdui-row">
             <div class="mdui-row-lg-6">
