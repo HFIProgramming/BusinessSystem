@@ -49,12 +49,15 @@
             @guest
                 <button onclick="window.location.href='/login'" class="mdui-btn mdui-ripple">Log In</button>
                 @if(\App\Config::KeyValue('is_able_to_register')->value == true)
+                    <div class=" mdui-col-xs-1">
                     <button onclick="window.location.href='/register'" class="mdui-btn mdui-ripple">Register</button>
+                    </div>
                 @endif
             @endguest
             @auth
-                {{auth()->user()->name}}, <button onclick="window.location.href='/dashboard'" class="mdui-btn ">Welcome
-                    Back!</button>
+                <div class=" mdui-col-xs-3">
+                    <button onclick="window.location.href='/dashboard'" class="mdui-btn "> {{auth()->user()->name}}, Welcome Back!</button>
+                </div>
             @endauth
         </div>
     </div>
