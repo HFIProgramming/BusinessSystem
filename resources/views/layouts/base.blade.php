@@ -107,8 +107,12 @@
 <script data-no-instant src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js"></script>
 <script data-no-instant>
     var $$ = mdui.JQ;
-    InstantClick.on('wait', $$.showOverlay(5000));
-    InstantClick.on('change', $$.hideOverlay(true));
+    InstantClick.on('wait', function () {
+        $$.showOverlay(5000)
+    });
+    InstantClick.on('change', function () {
+        $$.hideOverlay(true)
+    });
     InstantClick.init();</script>
 </body>
 </html>
