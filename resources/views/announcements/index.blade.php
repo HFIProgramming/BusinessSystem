@@ -18,7 +18,7 @@
                 <div class="mdui-col-xs-12">
                     <div class="mdui-card">
                         <div class="mdui-card-header">
-                            <img class="mdui-card-header-avatar" src="img/avg.jpg"/>
+                            <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
                             <div class="mdui-card-header-title">Root</div>
                             <div class="mdui-card-header-subtitle">Published At: {{$announcement->timestamp}}</div>
                         </div>

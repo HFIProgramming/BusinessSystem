@@ -30,6 +30,7 @@ Route::group(['middleware' => 'register'], function () {
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
+
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/dashboard', 'UserController@index')->name('dashboard');

@@ -15,7 +15,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'email', 'password', 'type'
+		'name', 'email', 'password', 'type',
 	];
 
 	/**
@@ -45,8 +45,13 @@ class User extends Authenticatable
 		return $this->hasMany(Transaction::class, 'buyer_id');
 	}
 
-    public function scopeId($query, $id)
-    {
-        return $query->where('id',$id)->first();
-    }
+	public function getAllTransAttribute()
+	{
+		return $this->incomeTransaction()->get()->merge($this->outcomeTransaction()->get());
+	}
+
+	public function scopeId($query, $id)
+	{
+		return $query->where('id', $id)->first();
+	}
 }

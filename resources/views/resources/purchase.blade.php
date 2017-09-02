@@ -41,7 +41,7 @@
                             <input class="mdui-textfield-input" id="amount" type="number" required/>
                             <div class="mdui-textfield-error">购买数量不能为空</div>
                         </div>
-                        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交</button>
+                        <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交</button>
                     </form>
                 </div>
             </div>

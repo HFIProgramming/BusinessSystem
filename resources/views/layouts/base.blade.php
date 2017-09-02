@@ -13,7 +13,7 @@
 
     <!-- Basic Styles and JS-->
     <link href="//cdn.bootcss.com/mdui/0.2.1/css/mdui.min.css" rel="stylesheet">
-    <!--<script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>-->
+    <script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
     <style>
         .doc-container {
             padding-top: 30px;

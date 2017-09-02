@@ -15,16 +15,14 @@
 
         #whole {
             background-image: url('https://i.loli.net/2017/09/02/59aa49ced6701.jpg');
-            background-size: 100%;
+            background-size: auto;
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
 
         #title {
-            margin-top: -10px;
-            height: 75%;
+            height: 100%;
             width: 100%;
-            margin-bottom: 0px;
             background-color: rgba(0, 0, 0, 0.53);
             color: #fefefe;
             text-align: center;
@@ -32,8 +30,9 @@
 
         #GFC {
             font-weight: 300;
-            text-align: center !important;
-            margin-top: 300px;
+            display: inline-block;
+            margin: 22% auto 0;
+            position: relative;
             font-size: 80px;
             font-family: 'Cinzelbe7a86c1619abb';
         }
@@ -50,13 +49,16 @@
                 <button onclick="window.location.href='/login'" class="mdui-btn mdui-ripple">Log In</button>
                 @if(\App\Config::KeyValue('is_able_to_register')->value == true)
                     <div class=" mdui-col-xs-1">
-                    <button onclick="window.location.href='/register'" class="mdui-btn mdui-ripple">Register</button>
+                        <button onclick="window.location.href='/register'" class="mdui-btn mdui-ripple">Register
+                        </button>
                     </div>
                 @endif
             @endguest
             @auth
                 <div class=" mdui-col-xs-3">
-                    <button onclick="window.location.href='/dashboard'" class="mdui-btn "> {{auth()->user()->name}}, Welcome Back!</button>
+                    <button onclick="window.location.href='/dashboard'" class="mdui-btn "> {{auth()->user()->name}},
+                        Welcome Back!
+                    </button>
                 </div>
             @endauth
         </div>
@@ -65,7 +67,8 @@
 
 <div id="title" class="">
     <h1 id="GFC">Gamble For Crisis</h1>
-    <h2>The world is not what it Seems...</h2>
+    <h2>The world is NOT what it Seems...</h2>
+    <h3>2017</h3>
     <p>HFI Finance Club x HFI Programming Club</p>
 </div>
 

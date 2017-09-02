@@ -60,7 +60,7 @@
                                 <div class="mdui-textfield-error">商品名不能为空</div>
                             </div>
                             <input hidden id="transaction_type" value="sell">
-                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交
+                            <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交
                             </button>
                         </form>
                     </div>
