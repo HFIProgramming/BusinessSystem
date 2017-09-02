@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-	return Redirect('login');
-});
+Route::get('/', 'HomeController@index')->name('index');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -40,8 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/', 'TransactionController@showTransLanding')->name('TransLanding');
 		Route::get('/list', 'TransactionController@showTransactionList')->name('TransactionList');
 		Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');
-		Route::post('/income', 'TransactionController@showIncomeCreateForm')->name('doTransIn');
+		Route::post('/income', 'TransactionController@doTransIn')->name('doTransIn');
 		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');
+		Route::post('/outcome', 'TransactionController@doTransOut')->name('doTransOut');
 	});
 
 	Route::group(['prefix' => 'resource'], function () {

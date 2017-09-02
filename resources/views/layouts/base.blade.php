@@ -9,11 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta')
 
-    <title>@yield('title'){{ config('app.name', ' NoticeBoard') }}</title>
+    <title>@yield('title'){{ config('app.name', ' HFIProgramming') }}</title>
 
     <!-- Basic Styles and JS-->
     <link href="//cdn.bootcss.com/mdui/0.2.1/css/mdui.min.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
+    <!--<script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>-->
     <style>
         .doc-container {
             padding-top: 30px;
@@ -26,6 +26,19 @@
 
         .footer_bar {
             margin-top: 100px;
+        }
+
+        .adjust_card_subtitle {
+            margin-left: 0;
+        }
+
+        .adjust_card {
+            padding-top: 30px;
+            padding-bottom: 130px;
+        }
+
+        .adjust_mdui_icon {
+            bottom: 33px !important;
         }
     </style>
     @yield('stylesheet')
@@ -66,14 +79,14 @@
         </li>
         <li class="mdui-divider"></li>
         @if(auth()->user()->id == 1)
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
-            <a href="{{route('adminDashboard')}}" class="mdui-list-item-content">Admin Config</a>
-        </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
+                <a href="{{route('adminDashboard')}}" data-no-instant class="mdui-list-item-content">Admin Config</a>
+            </li>
         @endif
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>
-            <a href="{{route('logout')}}" class="mdui-list-item-content">Log Out</a>
+            <a href="{{route('logout')}}" data-no-instant class="mdui-list-item-content">Log Out</a>
         </li>
     </ul>
 </div>
@@ -90,5 +103,8 @@
         </div>
     </div>
 </div>
+
+<script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js"></script>
+<script data-no-instant>InstantClick.init();</script>
 </body>
 </html>

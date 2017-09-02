@@ -9,24 +9,7 @@
 @endsection
 
 @section('stylesheet')
-    <style>
-        .adjust_card {
-        padding-top: 30px;
-        padding-bottom: 180px;
-        }
 
-        .adjust_card_subtitle {
-            margin-left: 0;
-        }
-
-        /*.adjust_remember {*/
-        /*margin-left: 9px;*/
-        /*}*/
-
-        .adjust_mdui_icon {
-            bottom: 33px !important;
-        }
-    </style>
 @endsection
 
 @section('body')

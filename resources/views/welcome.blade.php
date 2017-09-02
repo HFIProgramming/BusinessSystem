@@ -1,95 +1,70 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="//cdn.bootcss.com/mdui/0.2.1/css/mdui.min.css" rel="stylesheet">
+    <!--<script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>-->
+    <style>
+        @import url(https://fonts.lug.ustc.edu.cn/css?family=Cabin:400);
 
-        <title>Laravel</title>
+        #navigation {
+            background-color: rgba(0, 0, 0, 0.53);
+            color: #fefefe;
+        }
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        #whole {
+            background-image: url('https://i.loli.net/2017/09/02/59aa49ced6701.jpg');
+            background-size: 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+        #title {
+            margin-top: -10px;
+            height: 75%;
+            width: 100%;
+            margin-bottom: 0px;
+            background-color: rgba(0, 0, 0, 0.53);
+            color: #fefefe;
+            text-align: center;
+        }
 
-            .full-height {
-                height: 100vh;
-            }
+        #GFC {
+            font-weight: 300;
+            text-align: center !important;
+            margin-top: 300px;
+            font-size: 80px;
+            font-family: 'Cinzelbe7a86c1619abb';
+        }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+    </style>
+</head>
+<body id="whole" class="mdui-img-fluid mdui-theme-primary-blue mdui-theme-accent-red mdui-appbar-with-toolbar"
+      style="height: 100%">
+<div id="navigation">
+    <div class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar ">
+            <a href="javascript:;" class="mdui-typo-title mdui-col-md-11">Finance Club</a>
+            @guest
+                <button onclick="window.location.href='/login'" class="mdui-btn mdui-ripple">Log In</button>
+                @if(\App\Config::KeyValue('is_able_to_register')->value == true)
+                    <button onclick="window.location.href='/register'" class="mdui-btn mdui-ripple">Register</button>
+                @endif
+            @endguest
+            @auth
+                {{auth()->user()->name}}, <button onclick="window.location.href='/dashboard'" class="mdui-btn ">Welcome
+                    Back!</button>
+            @endauth
         </div>
-    </body>
+    </div>
+</div>
+
+<div id="title" class="">
+    <h1 id="GFC">Gamble For Crisis</h1>
+    <h2>The world is not what it Seems...</h2>
+    <p>HFI Finance Club x HFI Programming Club</p>
+</div>
+
+</body>
 </html>

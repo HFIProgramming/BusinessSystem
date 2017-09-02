@@ -1,12 +1,6 @@
 @extends('layouts.base')
 
 @section('style')
-    <style>
-    .adjust_card {
-    padding-top: 30px;
-    padding-bottom: 130px;
-    }
-    </style>
 @endsection
 
 @section('body')
@@ -16,7 +10,7 @@
             <div class="mdui-col-xs-6">
                 <div class="mdui-card">
                     <div class="mdui-card-header">
-                        <img class="mdui-card-header-avatar" src="img/avg.jpg"/>
+                        <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
                         <div class="mdui-card-header-title">Author: Admin</div>
                         <div class="mdui-card-header-subtitle">Published At: {{$announcement->timestamp}}</div>
                     </div>
@@ -38,7 +32,7 @@
             <div class="mdui-col-xs-6">
                 <div class="mdui-card">
                     <div class="mdui-card-media">
-                        <img src="img/card.jpg"/>
+                        <img src="/img/card.jpg"/>
                         <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
                             <div class="mdui-card-primary">
                                 <div class="mdui-card-primary">
