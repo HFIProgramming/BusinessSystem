@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.error')
 
 @section('title')
     404 No Found
