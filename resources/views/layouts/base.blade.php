@@ -113,6 +113,8 @@
     InstantClick.on('change', function () {
         $$.hideOverlay(true)
     });
-    InstantClick.init();</script>
+    InstantClick.init();
+    $$(document);
+</script>
 </body>
 </html>
