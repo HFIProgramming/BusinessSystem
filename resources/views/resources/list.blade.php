@@ -34,11 +34,11 @@
                         <table class="mdui-table">
                             <thead>
                             <tr>
-                                <th></th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Type</th>
-                                <th>Descrption</th>
+                                <th>Requirement</th>
+                                <th>Description</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,6 +52,7 @@
                                                 onclick="window.location.href='/resource/{{$resource->id}}'">查看要求
                                         </button>
                                     </td>
+                                    <td>{{$resource->description}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
