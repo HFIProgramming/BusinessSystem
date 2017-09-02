@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.error')
 
 @section('title')
     An Error Occur

@@ -9,25 +9,42 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta')
 
-    <title>@yield('title'){{ config('app.name', ' NoticeBoard') }}</title>
+    <title>@yield('title'){{ config('app.name', ' HFIProgramming') }}</title>
 
     <!-- Basic Styles and JS-->
-    <link href="//cdn.bootcss.com/mdui/0.2.1/css/mdui.min.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
+    <link href="https://cdn.bootcss.com/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
     <style>
         .doc-container {
             padding-top: 30px;
             padding-bottom: 150px;
         }
-        .footer{
+
+        .footer {
             margin-top: 25px;
+        }
+
+        .footer_bar {
+            margin-top: 100px;
+        }
+
+        .adjust_card_subtitle {
+            margin-left: 0;
+        }
+
+        .adjust_card {
+            padding-top: 30px;
+            padding-bottom: 130px;
+        }
+
+        .adjust_mdui_icon {
+            bottom: 33px !important;
         }
     </style>
     @yield('stylesheet')
     @yield('script')
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-red mdui-drawer-body-left mdui-appbar-with-toolbar">
+<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-drawer-body-left mdui-appbar-with-toolbar">
 
 
 <div class="mdui-appbar mdui-appbar-fixed">
@@ -53,26 +70,28 @@
         </li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <div class="mdui-list-item-content">Purchase</div>
+            <a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
             <a href="{{route('TransLanding')}}" class="mdui-list-item-content">New Transaction</a>
         </li>
         <li class="mdui-divider"></li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
-            <div class="mdui-list-item-content">Admin Config</div>
-        </li>
+        @if(auth()->id() == 1)
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
+                <a href="{{route('adminDashboard')}}" data-no-instant class="mdui-list-item-content">Admin Config</a>
+            </li>
+        @endif
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>
-            <a href="{{route('logout')}}" class="mdui-list-item-content">Log Out</a>
+            <a href="{{route('logout')}}" data-no-instant class="mdui-list-item-content">Log Out</a>
         </li>
     </ul>
 </div>
 
 @yield('body')
-<div class="footer mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-indigo">
+<div class="footer_bar mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-theme">
     <div class="mdui-container">
         <div class="mdui-row">
             <div class="mdui-row-lg-6">
@@ -83,5 +102,17 @@
         </div>
     </div>
 </div>
+
+<script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+<script src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js" data-no-instant></script>
+<script data-no-instant>
+    var $$ = mdui.JQ;
+    InstantClick.on('wait', function () {
+        $$.showOverlay(5000)
+    });
+    InstantClick.on('change', function () {
+        $$.hideOverlay(true)
+    });
+    InstantClick.init();</script>
 </body>
 </html>

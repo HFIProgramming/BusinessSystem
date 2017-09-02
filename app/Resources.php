@@ -12,7 +12,7 @@ class Resources extends Model
         'equivalent_to' => 'array'
 	];
 
-	public function getResourceType()
+	public function getResourceTypeAttribute()
 	{
 		switch ($this->type) {
 			case 0:
@@ -32,7 +32,7 @@ class Resources extends Model
 	}
 
 	public function scopeId($query, $id)
-    {
-        return $query->where('id', $id)->first();
-    }
+	{
+		return $query->where('id', $id)->first();
+	}
 }

@@ -17,6 +17,11 @@ class HomeController extends Controller
 	{
 	}
 
+	public function index()
+	{
+		return view('welcome');
+	}
+
 	/**
 	 * Show the application dashboard.
 	 *
@@ -32,8 +37,8 @@ class HomeController extends Controller
 		return view('announcements.index')->with('announcements', Announcement::all());
 	}
 
-	public function showIndivicualResource(Request $request)
+	public function showIndividualResource(Request $request)
 	{
-		return view('resources.individual')->with('resource', Resources::query()->where('id',$request->id)->firstOrFail());
+		return view('resources.individual')->with('resource', Resources::query()->where('id', $request->id)->firstOrFail());
 	}
 }

@@ -9,30 +9,13 @@
 @endsection
 
 @section('stylesheet')
-    <style>
-        /*.adjust_card {*/
-        /*padding-top: 100px;*/
-        /*padding-bottom: 200px;*/
-        /*}*/
 
-        .adjust_card_subtitle {
-            margin-left: 0;
-        }
-
-        /*.adjust_remember {*/
-        /*margin-left: 9px;*/
-        /*}*/
-
-        .adjust_mdui_icon {
-            bottom: 33px !important;
-        }
-    </style>
 @endsection
 
 @section('body')
     <div class="mdui-container doc-container">
         <div class="mdui-row">
-            <div class="mdui-col-xs-12">
+            <div class="adjust_card mdui-col-xs-12">
 
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
@@ -51,23 +34,26 @@
                         <table class="mdui-table">
                             <thead>
                             <tr>
-                                <th></th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Type</th>
-                                <th>Descrption</th>
+                                <th>Requirement</th>
+                                <th>Description</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($resources as $resource)
-                            <tr>
-                                <td>{{$resource->id}}</td>
-                                <td>{{$resource->name}}</td>
-                                <td>{{$resource->getResourceType}}</td>
-                                <td>
-                                    <button class="mdui-btn mdui-color-theme mdui-ripple" onclick="window.location.href='/resource/{{$resource->id}}'">查看要求</button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{$resource->id}}</td>
+                                    <td>{{$resource->name}}</td>
+                                    <td>{{$resource->ResourceType}}</td>
+                                    <td>
+                                        <button class="mdui-btn mdui-color-theme mdui-ripple"
+                                                onclick="window.location.href='/resource/{{$resource->id}}'">查看要求
+                                        </button>
+                                    </td>
+                                    <td>{{$resource->description}}</td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

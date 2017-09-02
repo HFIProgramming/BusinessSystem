@@ -15,21 +15,26 @@ class PurchaseController extends Controller
 
 	public function TopUp(Request $request)
 	{
-		$item = Resources::query()->where('id',$request->item_id)->first();
+		$item = Resources::query()->where('id', $request->item_id)->first();
 		$user = $request->user();
 		$message = "";
 
-		foreach ($item->requirement as $key => $value){
-			if ($user->resources()->where('name',$key)->amount < $amount = $value * $request->amount){
+		foreach ($item->requirement as $key => $value) {
+			if ($user->resources()->where('name', $key)->amount < $amount = $value * $request->amount) {
 				$message .= "材料 {$key} 不足，需要 {$amount} \n";
-		    }
+			}
 		}
 
-		if($message != "")
-		    return $message;
+		if ($message != "")
+			return $message;
 
-		event(new BuyStuff($user,$item,$request->amount));
+		event(new BuyStuff($user, $item, $request->amount));
 
 		return '成功';
+	}
+
+	public function showPurchaseForm()
+	{
+		return view('resources.purchase');
 	}
 }

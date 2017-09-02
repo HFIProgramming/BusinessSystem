@@ -9,24 +9,7 @@
 @endsection
 
 @section('stylesheet')
-    <style>
-        /*.adjust_card {*/
-        /*padding-top: 100px;*/
-        /*padding-bottom: 200px;*/
-        /*}*/
 
-        .adjust_card_subtitle {
-            margin-left: 0;
-        }
-
-        /*.adjust_remember {*/
-        /*margin-left: 9px;*/
-        /*}*/
-
-        .adjust_mdui_icon {
-            bottom: 33px !important;
-        }
-    </style>
 @endsection
 
 @section('body')
@@ -52,6 +35,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if (!empty($resource->requirement))
                             @foreach($resource->requirement as $key => $value)
                                 <tr>
                                     <td>{{$key}}</td>
@@ -59,6 +43,12 @@
                                 </tr>
                             @endforeach
                             </tbody>
+                            @else
+                                <tr>
+                                    <td>没有需求</td>
+                                    <td>空</td>
+                                </tr>
+                            @endif
                         </table>
                     </div>
                 </div>

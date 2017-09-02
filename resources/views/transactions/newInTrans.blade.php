@@ -9,24 +9,6 @@
 @endsection
 
 @section('stylesheet')
-    <style>
-        /*.adjust_card {*/
-        /*padding-top: 100px;*/
-        /*padding-bottom: 200px;*/
-        /*}*/
-
-        .adjust_card_subtitle {
-            margin-left: 0;
-        }
-
-        /*.adjust_remember {*/
-        /*margin-left: 9px;*/
-        /*}*/
-
-        .adjust_mdui_icon {
-            bottom: 33px !important;
-        }
-    </style>
 @endsection
 
 @section('body')
@@ -78,7 +60,7 @@
                                 <div class="mdui-textfield-error">商品名不能为空</div>
                             </div>
                             <input hidden id="transaction_type" value="buy">
-                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交
+                            <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交
                             </button>
                         </form>
                     </div>

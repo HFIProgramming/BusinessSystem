@@ -17,6 +17,7 @@ class TransactionController extends Controller
 
     }
 
+
     public function sellToUser(Request $request)//Pass in quantity as seller_amount if selling to gov.
     {
         $user = $request->user();
@@ -175,4 +176,5 @@ class TransactionController extends Controller
 
         return '成功';
     }
+
 }
