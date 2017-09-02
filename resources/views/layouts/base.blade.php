@@ -13,7 +13,6 @@
 
     <!-- Basic Styles and JS-->
     <link href="//cdn.bootcss.com/mdui/0.2.1/css/mdui.min.css" rel="stylesheet">
-    <script data-no-instant src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
     <style>
         .doc-container {
             padding-top: 30px;
@@ -106,5 +105,6 @@
 
 <script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js"></script>
 <script data-no-instant>InstantClick.init();</script>
+<script src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
 </body>
 </html>
