@@ -12,7 +12,7 @@
     <title>@yield('title'){{ config('app.name', ' HFIProgramming') }}</title>
 
     <!-- Basic Styles and JS-->
-    <link href="//cdn.bootcss.com/mdui/0.2.1/css/mdui.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
     <style>
         .doc-container {
             padding-top: 30px;
@@ -104,7 +104,7 @@
 </div>
 
 <script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js"></script>
-<script data-no-instant src="//cdn.bootcss.com/mdui/0.2.1/js/mdui.min.js"></script>
+<script data-no-instant src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js"></script>
 <script data-no-instant>
     InstantClick.on('wait', function () {
         $$.showOverlay(5000);
