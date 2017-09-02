@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $query->where('id',$id)->first();
     }
+
+    public function scopeType($query, $type)
+    {
+        return $query->where('type', $type)->first();
+    }
 }
