@@ -118,6 +118,7 @@
         var s = document.createElement('script');
         s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
         document.body.appendChild(s);
+        var $$ = mdui.JQ;
         $$.hideOverlay(true);
         if(document.body.scrollWidth < 600){
             var inst = new mdui.Drawer('#left-drawer');
