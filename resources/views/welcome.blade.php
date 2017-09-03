@@ -57,9 +57,13 @@
                 @endif
             @endguest
             @auth
-                <div class=" mdui-col-xs-3">
+                <div class=" mdui-col-xs-3 mdui-hidden-sm-down">
                     <button onclick="window.location.href='/dashboard'" class="mdui-btn "> {{auth()->user()->name}},
                         Welcome Back!
+                    </button>
+                </div>
+                <div class="mdui-col-xs-3 mdui-hidden-sm-up">
+                    <button onclick="window.location.href='/dashboard'" class="mdui-btn ">DashBoard
                     </button>
                 </div>
             @endauth
