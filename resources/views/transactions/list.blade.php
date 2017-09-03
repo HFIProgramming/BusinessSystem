@@ -72,7 +72,7 @@
                                     @endif
                                 </tr>
                             @endforeach
-                            @foreach($outcomeTransactions as $transaction)
+                            @foreach($outComeTransactions as $transaction)
                                 <tr>
                                     <td>{{$transaction->id}}</td>
                                     <td>{{$transaction->buyerResource()->first()->name}}</td>

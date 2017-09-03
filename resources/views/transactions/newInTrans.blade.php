@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="mdui-card-content mdui-typo">
-                        <form method="post" action="{{route('doPurchase')}}">
+                        <form method="post" action="{{route('doTransIn')}}">
                             {{ csrf_field() }}
                             <div class="mdui-textfield mdui-textfield-floating-label">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>

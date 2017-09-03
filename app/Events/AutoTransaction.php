@@ -20,7 +20,7 @@ class AutoTransaction
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Transaction $trans
      */
     public function __construct(Transaction $trans)
     {
