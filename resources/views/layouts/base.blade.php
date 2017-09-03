@@ -113,11 +113,10 @@
     InstantClick.on('change', function () {
         $$.hideOverlay(true);
     });
-    InstantClick.on('receive', function(url, body, title) {
-        var script= document.createElement('script');
-        script.type= 'text/javascript';
-        script.src= 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
-        body.appendChild(script);
+    InstantClick.on('receive', function (url, body, title) {
+        var s = document.createElement('script');
+        s.src = 'script.src = \'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js\';';
+        body.appendChild(s);
         return {
             body: body
         };
