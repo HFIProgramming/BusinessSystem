@@ -46,23 +46,25 @@
 <div id="navigation">
     <div class="mdui-appbar mdui-appbar-fixed">
         <div class="mdui-toolbar ">
-            <a href="javascript:;" class="mdui-typo-title mdui-col-md-11">Finance Club</a>
+            <a href="javascript:;" class="mdui-typo-title mdui-col-xs-10 mdui-col-lg-8">Finance Club</a>
             @guest
+                <div class="mdui-col-xs-2">
                 <button onclick="window.location.href='/login'" class="mdui-btn mdui-ripple">Log In</button>
+                </div>
                 @if(\App\Config::KeyValue('is_able_to_register')->value == true)
-                    <div class=" mdui-col-xs-1">
+                    <div class="mdui-col-xs-2">
                         <button onclick="window.location.href='/register'" class="mdui-btn mdui-ripple">Register
                         </button>
                     </div>
                 @endif
             @endguest
             @auth
-                <div class=" mdui-col-xs-3 mdui-hidden-xs-down">
+                <div class=" mdui-col-xs-4 mdui-hidden-xs-down">
                     <button onclick="window.location.href='/dashboard'" class="mdui-btn "> {{auth()->user()->name}},
                         Welcome Back!
                     </button>
                 </div>
-                <div class="mdui-col-xs-1 mdui-hidden-sm-up">
+                <div class="mdui-col-xs-2 mdui-hidden-sm-up">
                     <button onclick="window.location.href='/dashboard'" class="mdui-btn ">DashBoard
                     </button>
                 </div>
