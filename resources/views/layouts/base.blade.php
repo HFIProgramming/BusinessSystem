@@ -119,6 +119,10 @@
         s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
         document.body.appendChild(s);
         $$.hideOverlay(true);
+        if(document.body.scrollWidth < 600){
+            var inst = new mdui.Drawer('#left-drawer');
+            inst.close();
+        }
     });
     InstantClick.init();
 </script>
