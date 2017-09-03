@@ -90,7 +90,7 @@
             <!--row-->
         </div>
         <div class="mdui-row">
-            <div class="mdui-col-xs-6">
+            <div class="mdui-col-xs-12  mdui-col-md-6">
                 <div class="mdui-card">
                     <div class="mdui-card-primary">
                         <div class="mdui-card-primary-title">Latest Transaction</div>
