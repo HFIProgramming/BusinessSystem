@@ -8,7 +8,7 @@
     <div class="mdui-container doc-container">
         <div class="mdui-row">
             @if (!empty($announcement))
-                <div class="mdui-col-xs-6 mdui-col-md-12">
+                <div class="mdui-col-xs-12 mdui-col-md-6">
                     <div class="mdui-card">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             @else
-                <div class="mdui-col-xs-6 mdui-col-md-12">
+                <div class="mdui-col-xs-12 mdui-col-md-6">
                     <div class="mdui-card">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             @endif
-            <div class="mdui-col-xs-6 mdui-col-md-12">
+            <div class="mdui-col-xs-12 mdui-col-md-6">
                 <div class="mdui-card">
                     <div class="mdui-card-media">
                         <img src="/img/card.jpg"/>
