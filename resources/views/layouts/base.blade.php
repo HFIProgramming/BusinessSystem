@@ -13,6 +13,8 @@
 
     <!-- Basic Styles and JS-->
     <link href="https://cdn.bootcss.com/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js" data-no-instant></script>
+
     <style>
         .doc-container {
             padding-top: 30px;
@@ -104,7 +106,6 @@
 </div>
 
 <script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
-<script src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js" data-no-instant></script>
 <script data-no-instant>
     var $$ = mdui.JQ;
     InstantClick.on('wait', function () {
