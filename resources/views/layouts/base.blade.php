@@ -114,7 +114,10 @@
         $$.hideOverlay(true)
     });
     InstantClick.init();
-    $$(document);
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js";
+    document.getElementsByTagName("head")[0].appendChild(script);
 </script>
 </body>
 </html>
