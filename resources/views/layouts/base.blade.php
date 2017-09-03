@@ -110,7 +110,11 @@
     InstantClick.on('wait', function () {
         $$.showOverlay(5000);
     });
+    InstantClick.on('fetch', function () {
+        console.log('Page Pre-loading!');
+    });
     InstantClick.on('change', function () {
+        console.log('Page Loaded!' + location.pathname + location.search);
         var s = document.createElement('script');
         s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
         document.body.appendChild(s);
