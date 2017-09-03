@@ -14,7 +14,6 @@
     <!-- Basic Styles and JS-->
     <link href="https://cdn.bootcss.com/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js" data-no-instant></script>
-
     <style>
         .doc-container {
             padding-top: 30px;
@@ -48,11 +47,10 @@
 
 <body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-drawer-body-left mdui-appbar-with-toolbar">
 
-
 <div class="mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar mdui-color-theme">
-        <a class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}"><i class="mdui-icon material-icons">menu</i></a>
-        <a href="javascript:;" class="mdui-typo-title">Finance Club</a>
+        <a class="mdui-btn mdui-btn-icon" onclick="inst.toggle()"><i class="mdui-icon material-icons">menu</i></a>
+        <a href="{{route('dashboard')}}" class="mdui-typo-title">Gamble For Crisis</a>
     </div>
 </div>
 
@@ -92,6 +90,8 @@
     </ul>
 </div>
 
+<script>var inst = new mdui.Drawer('#left-drawer');</script>
+
 @yield('body')
 <div class="footer_bar mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-theme">
     <div class="mdui-container">
@@ -121,12 +121,13 @@
         document.body.appendChild(s);
         var $$ = mdui.JQ;
         $$.hideOverlay(true);
-        if(document.body.scrollWidth < 600){
+        if (document.body.scrollWidth < 600) {
             var inst = new mdui.Drawer('#left-drawer');
             inst.close();
         }
     });
     InstantClick.init();
+    <!--I know it is dirty :> But please-->
 </script>
 </body>
 </html>
