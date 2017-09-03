@@ -104,6 +104,7 @@
 </div>
 
 <script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+<script src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js" data-no-instant></script>
 <script data-no-instant>
     var $$ = mdui.JQ;
     InstantClick.on('wait', function () {
@@ -111,9 +112,15 @@
     });
     InstantClick.on('change', function () {
         $$.hideOverlay(true);
-        var s = document.createElement('script');
-        s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
-        document.body.appendChild(s);
+    });
+    InstantClick.on('receive', function(url, body, title) {
+        var script= document.createElement('script');
+        script.type= 'text/javascript';
+        script.src= 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
+        body.appendChild(script);
+        return {
+            body: body
+        };
     });
     InstantClick.init();
 </script>
