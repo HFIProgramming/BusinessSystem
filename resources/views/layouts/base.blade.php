@@ -80,10 +80,10 @@
             </div>
             <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
                 <li class="mdui-list-item mdui-ripple">
-                    <a href="{{ route('TransOut') }}">As a Seller</a>
+                    <a class="mdui-list-item-content" href="{{ route('TransOut') }}">As a Seller</a>
                 </li>
                 <li class="mdui-list-item mdui-ripple">
-                    <a href="{{ route('TransIn') }}">As a Buyer</a>
+                    <a class="mdui-list-item-content" href="{{ route('TransIn') }}">As a Buyer</a>
                 </li>
             </ul>
         </li>
