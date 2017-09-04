@@ -69,7 +69,7 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->id($this))) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-		if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
+		if (!($buyer->type - $seller->type == 1 && Resources::id($sellerItem->resource_id)->type - $seller->type == 1)) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
@@ -114,7 +114,7 @@ class TransactionController extends Controller
 
 	public function showTransaction(Request $request, $id)
 	{
-		$trans = Transaction::find($id);
+		$trans = Transaction::query()->find($id);
 		if (empty($trans)) {
 			return redirect('errors.custom')->with('message', '此交易不存在');
 		}
