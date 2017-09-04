@@ -82,7 +82,7 @@ class TransactionController extends Controller
 		$user = $request->user();
 		$seller_amount = $request->seller_amount;
 		$seller = $user;
-		$buyer = User::type(0);
+		$buyer = User::type(0)->first();
 		$buyerItem = $buyer->resources()->id(1);//money
 		if (empty($sellerItem = $user->resources()->id($request->resource_id))) {
 			return view('errors.custom')->with('message', '我方：交易物品不存在');
