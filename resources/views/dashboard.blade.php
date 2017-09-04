@@ -61,14 +61,15 @@
                         <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
                             <div class="mdui-card-primary">
                                 <div class="mdui-card-primary">
-                                    <div class="mdui-card-primary-title">Summary</div>
-                                    <div class="mdui-card-primary-subtitle">Updated at 1 minutes ago</div>
+                                    <div class="mdui-card-primary-title">实时情况</div>
+                                    <div class="mdui-card-primary-subtitle">点击更新数据</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mdui-card-content">
                         <ul class="mdui-list">
+                            <li class="mdui-list-item mdui-ripple">当前财年：{{\App\Config::KeyValue('current_round')->value}}</li>
                             @foreach($user->resources()->get() as $resource)
                                 <li class="mdui-list-item mdui-ripple">{{ucfirst($resource->resource()->value('name'))}}
                                     : {{$resource->amount}}</li>

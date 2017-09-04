@@ -79,8 +79,12 @@
                 <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
             </div>
             <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                <li class="mdui-list-item mdui-ripple" href="{{ route('TransOut') }}">我要卖</li>
-                <li class="mdui-list-item mdui-ripple" href="{{ route('TransIn') }}">我要买</li>
+                <li class="mdui-list-item mdui-ripple">
+                    <a href="{{ route('TransOut') }}">As a Seller</a>
+                </li>
+                <li class="mdui-list-item mdui-ripple">
+                    <a href="{{ route('TransIn') }}">As a Buyer</a>
+                </li>
             </ul>
         </li>
         <li class="mdui-divider"></li>
