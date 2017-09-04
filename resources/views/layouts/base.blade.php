@@ -55,7 +55,7 @@
 </div>
 
 <div class="mdui-drawer mdui-drawer-open" id="left-drawer">
-    <ul class="mdui-list">
+    <ul class="mdui-list" mdui-collapse="{accordion: true}">
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
             <a href="{{route('dashboard')}}" class="mdui-list-item-content">DashBoard</a>
@@ -72,9 +72,16 @@
             <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
             <a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>
         </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
-            <a href="{{route('TransLanding')}}" class="mdui-list-item-content">New Transaction</a>
+        <li class="mdui-collapse-item">
+            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
+                <div class="mdui-list-item-content">New Transaction</div>
+                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                <li class="mdui-list-item mdui-ripple" href="{{ route('TransOut') }}">我要卖</li>
+                <li class="mdui-list-item mdui-ripple" href="{{ route('TransIn') }}">我要买</li>
+            </ul>
         </li>
         <li class="mdui-divider"></li>
         @if(auth()->id() == 1)

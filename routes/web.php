@@ -36,7 +36,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/dashboard', 'UserController@index')->name('dashboard');
 
 	Route::group(['prefix' => 'transaction'], function () {
-		Route::get('/', 'TransactionController@showTransLanding')->name('TransLanding');
 		Route::get('/list', 'TransactionController@showTransactionList')->name('TransactionList');
 		Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');//买
 		Route::post('/income', 'TransactionController@buyFromUser')->name('doTransIn');

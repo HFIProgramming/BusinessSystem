@@ -132,7 +132,7 @@
                             <button onclick="window.location.href='{{route('TransactionList')}}'"
                                     class="mdui-btn mdui-ripple">Transaction List
                             </button>
-                            <button onclick="window.location.href='{{route('TransLanding')}}'"
+                            <button onclick="window.location.href='#'"
                                     class="mdui-btn mdui-ripple">New Transaction
                             </button>
                         </div>
