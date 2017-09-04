@@ -79,7 +79,9 @@
                                 <div class="mdui-progress-determinate"
                                      style="width: {{($current/$total)*100}}%;"></div>
                             </div>
+                            <br>
                             <li class="mdui-divider"></li>
+                            <br>
                             @foreach($user->resources()->get() as $resource)
                                 <li class="mdui-list-item mdui-ripple">{{ucfirst($resource->resource()->value('name'))}}
                                     : {{$resource->amount}}</li>
