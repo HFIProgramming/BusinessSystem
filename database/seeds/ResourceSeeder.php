@@ -26,7 +26,7 @@ class ResourceSeeder extends Seeder
 		for ($i = 1; $i <= 3; $i++) {
 			\App\Resources::query()->create([
 				'code'        => str_random(5),
-				'name'        => $faker->name,
+				'name'        => $faker->name(),
 				'description' => $faker->words,
 				'type'        => $faker->numberBetween(0,3),
 			]);
