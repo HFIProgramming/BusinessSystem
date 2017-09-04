@@ -29,7 +29,7 @@ class ResourceSeeder extends Seeder
 			\App\Resources::query()->create([
 				'code'        => str_random(5),
 				'name'        => $faker->name(),
-				'description' => $faker->words,
+				'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
 				'type'        => $faker->numberBetween(0,3),
 			]);
 		}
