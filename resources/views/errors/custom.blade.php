@@ -46,7 +46,11 @@
                     </div>
                 </div>
                 <div class="mdui-card-content mdui-typo">
-                    {{$message}}
+                    @if(!empty($message))
+                        {{$message}}
+                    @else
+                        操作将不能继续进行，如有疑问请联系管理员
+                    @endif
                     <button class="mdui-btn mdui-color-theme mdui-ripple">返回上一层</button>
                 </div>
             </div>

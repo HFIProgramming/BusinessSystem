@@ -41,4 +41,9 @@ class HomeController extends Controller
 	{
 		return view('resources.individual')->with('resource', Resources::query()->where('id', $request->id)->firstOrFail());
 	}
+
+	public function showErrorPage()
+	{
+		return view('errors.custom');
+	}
 }
