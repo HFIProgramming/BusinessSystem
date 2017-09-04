@@ -153,7 +153,7 @@ class TransactionController extends Controller
     public function handleTransaction(Request $request)
     {
         $user = $request->user();
-        if (empty($trans = Transaction::query()->where('id', $request->transactionId->first()))) {
+        if (empty($trans = Transaction::query()->where('id', $request->transactionId)->first())) {
             return view('errors.custom')->with('message', '订单不存在');
         }
         if (($trans->type == 'buy' && $trans->seller_id != $user->id) || ($trans->type == 'sell' && $trans->buyer_id != $user->id)) {
