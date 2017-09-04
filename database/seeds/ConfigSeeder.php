@@ -18,6 +18,7 @@ class ConfigSeeder extends Seeder
 			'primary_color'       => 'yellow',
 			'accent_color'        => 'red',
 			'current_round'       => 0,
+			'total_round'         => 20,
 		];
 		foreach ($config as $key => $value) {
 			\App\Config::query()->create([

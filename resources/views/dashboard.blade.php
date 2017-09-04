@@ -62,22 +62,28 @@
                             <div class="mdui-card-primary">
                                 <div class="mdui-card-primary">
                                     <div class="mdui-card-primary-title">实时情况</div>
-                                    <div class="mdui-card-primary-subtitle">点击更新数据</div>
+                                    <div class="mdui-card-primary-subtitle">
+                                        <a class="mdui-list-item-content" href="{{ route('dashboard') }}">点击更新数据</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mdui-card-content">
                         <ul class="mdui-list">
-                            <li class="mdui-list-item mdui-ripple">当前财年：{{\App\Config::KeyValue('current_round')->value}}</li>
+                            <li class="mdui-list-item mdui-ripple">
+                                当前财年：{{$current = \App\Config::KeyValue('current_round')->value}}</li>
+                            <li class="mdui-list-item mdui-ripple">
+                                总财年：{{$total = \App\Config::KeyValue('total_round')->value}}</li>
+                            <div class="mdui-progress">
+                                <div class="mdui-progress-determinate"
+                                     style="width: {{round($current/$total)}}%;"></div>
+                            </div>
                             @foreach($user->resources()->get() as $resource)
                                 <li class="mdui-list-item mdui-ripple">{{ucfirst($resource->resource()->value('name'))}}
                                     : {{$resource->amount}}</li>
                             @endforeach
                             <br/>
-                            <div class="mdui-progress">
-                                <div class="mdui-progress-determinate" style="width: 50%;"></div>
-                            </div>
                         </ul>
                     </div>
                     <div class="mdui-card-actions">
