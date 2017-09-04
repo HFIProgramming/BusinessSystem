@@ -72,13 +72,14 @@
                     <div class="mdui-card-content">
                         <ul class="mdui-list">
                             <li class="mdui-list-item mdui-ripple">
-                                当前财年：{{$current = \App\Config::KeyValue('current_round')->value}}</li>
+                                当前财年：{{\App\Config::KeyValue('current_round')->value}}</li>
                             <li class="mdui-list-item mdui-ripple">
-                                总财年：{{$total = \App\Config::KeyValue('total_round')->value}}</li>
+                                总财年：{{\App\Config::KeyValue('total_round')->value}}</li>
                             <div class="mdui-progress">
                                 <div class="mdui-progress-determinate"
-                                     style="width: {{round($current/$total)}}%;"></div>
+                                     style="width: {{round(\App\Config::KeyValue('current_round')->value/\App\Config::KeyValue('total_round')->value)}}%;"></div>
                             </div>
+                            <li class="mdui-divider"></li>
                             @foreach($user->resources()->get() as $resource)
                                 <li class="mdui-list-item mdui-ripple">{{ucfirst($resource->resource()->value('name'))}}
                                     : {{$resource->amount}}</li>
