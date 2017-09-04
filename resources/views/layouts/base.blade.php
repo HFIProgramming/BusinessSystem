@@ -132,7 +132,7 @@
         document.body.appendChild(s);
         var $$ = mdui.JQ;
         $$.hideOverlay(true);
-        if (document.body.scrollWidth < 600) {
+        if (document.body.scrollWidth < 1025) {
             var inst = new mdui.Drawer('#left-drawer');
             inst.close();
         }
