@@ -72,6 +72,7 @@ class TransactionController extends Controller
 		if (!($buyer->type - $seller->type == 1 && Resources::id($sellerItem->resource_id)->type - $seller->type == 1)) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
+		dd('here');
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
