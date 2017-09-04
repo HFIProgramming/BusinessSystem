@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/income', 'TransactionController@buyFromUser')->name('doTransIn');
 		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');//卖
 		Route::post('/outcome', 'TransactionController@sellToUser')->name('doTransOut');
+		Route::post('/confirm', 'TransactionController@handleTransaction')->name('confirmTrans');
 		Route::get('/{id}', 'TransactionController@showTransaction');
 	});
 

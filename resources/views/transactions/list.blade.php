@@ -83,10 +83,16 @@
                                     <td>{{$transaction->timestamp}}</td>
                                     @if($transaction->checked == 0)
                                         <td>
-                                            <button class="mdui-btn mdui-color-theme mdui-ripple"
-                                                    onclick="window.location.href='/transaction/{{$transaction->id}}'">
-                                                前往
-                                            </button>
+                                            <form action="{{ route('confirmTrans') }}" method="post">
+                                                <input type="hidden" name="transactionId" value={{$transaction->id}}>
+                                                <button type="submit" name="confirm" value="true" class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
+                                                    <i class="mdui-icon material-icons">check</i>
+                                                </button>
+                                                &nbsp&nbsp
+                                                <button type='submit' name="confirm" value="false" class="mdui-btn mdui-btn-icon mdui-color-red mdui-ripple">
+                                                    <i class="mdui-icon material-icons">close</i>
+                                                </button>
+                                            </form>
                                         </td>
                                     @elseif($transaction->checked == -1 || $transaction->checked == -2)
                                         <td>

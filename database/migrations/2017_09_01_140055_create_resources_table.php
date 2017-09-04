@@ -20,7 +20,7 @@ class CreateResourcesTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('type');
-            //0=中间货币 1=原材料 2=半成品 3=成品
+            //0=中间货币 1=原材料 2=半成品 3=成品 4=兑换券
             $table->text('requirement')->nullable();
             $table->integer('pack')->default(1);
             $table->integer('acquisition_price')->default(0);//政府收购价
