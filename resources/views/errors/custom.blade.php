@@ -51,7 +51,7 @@
                     @else
                         操作将不能继续进行，如有疑问请联系管理员
                     @endif
-                    <button class="mdui-btn mdui-color-theme mdui-ripple">返回上一层</button>
+                    <button class="mdui-btn mdui-color-theme mdui-ripple" onclick="window.history.back()">返回上一层</button>
                 </div>
             </div>
             <!--row-->
