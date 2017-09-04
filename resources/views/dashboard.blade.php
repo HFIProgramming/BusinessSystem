@@ -77,10 +77,22 @@
                                 总财年：{{$total = \App\Config::KeyValue('total_round')->value}}</li>
                             <div class="mdui-progress">
                                 <div class="mdui-progress-determinate"
-                                     style="width: {{($current/$total)*100}}%;"></div>
+                                     style="width: {{$percent = ($current/$total)*100}}%;"></div>
                             </div>
+                            <li class="mdui-list-item mdui-ripple">
+                                当前比赛：{{\App\Config::KeyValue('is_continued') == true ? '正在进行' : '暂停中'}}</li>
+                            @if(\App\Config::KeyValue('is_continued') == true)
+                                <div class="mdui-progress">
+                                    <div class="mdui-progress-indeterminate"></div>
+                                </div>
+                            @else
+                                <div class="mdui-progress">
+                                    <div class="mdui-progress-determinate" style="width: {{$percent}}%;"></div>
+                                </div>
+                            @endif
                             <br>
                             <li class="mdui-divider"></li>
+                            <li class="mdui-list-item mdui-ripple">物品清单</li>
                             <br>
                             @foreach($user->resources()->get() as $resource)
                                 <li class="mdui-list-item mdui-ripple">{{ucfirst($resource->resource()->value('name'))}}
