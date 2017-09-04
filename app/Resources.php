@@ -12,6 +12,10 @@ class Resources extends Model
         'equivalent_to' => 'array'
 	];
 
+	protected $fillable = [
+		'code', 'name', 'description', 'type',
+	];
+
 	public function getResourceTypeAttribute()
 	{
 		switch ($this->type) {

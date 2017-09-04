@@ -20,11 +20,11 @@ class ResourceSeeder extends Seeder
 			'type'        => 0,
 		];
 
-		\App\Config::query()->create($default);
+		\App\Resources::query()->create($default);
 
 		$faker = new Faker();
 		for ($i = 1; $i <= 3; $i++) {
-			\App\Config::query()->create([
+			\App\Resources::query()->create([
 				'code'        => str_random(5),
 				'name'        => $faker->name,
 				'description' => $faker->words,
