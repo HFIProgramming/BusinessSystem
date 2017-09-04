@@ -48,11 +48,11 @@
                             @foreach($incomeTransactions as $transaction)
                                 <tr>
                                     <td>{{$transaction->id}}</td>
-                                    <td>{{$transaction->sellerResource()->first()->name}}</td>
+                                    <td>{{$transaction->sellerResource->resource->name}}</td>
                                     <td>{{$transaction->seller_amount}}</td>
-                                    <td>{{$transaction->buyerResource()->first()->name}}</td>
+                                    <td>{{$transaction->buyerResource->resource->name}}</td>
                                     <td>{{$transaction->buyer_amount}}</td>
-                                    <td>{{$transaction->seller()->first()->name}}</td>
+                                    <td>{{$transaction->seller->name}}</td>
                                     <td>{{$transaction->timestamp}}</td>
                                     @if($transaction->checked == 0)
                                         <td>
@@ -75,11 +75,11 @@
                             @foreach($outComeTransactions as $transaction)
                                 <tr>
                                     <td>{{$transaction->id}}</td>
-                                    <td>{{$transaction->buyerResource()->first()->name}}</td>
+                                    <td>{{$transaction->buyerResource->resource->name}}</td>
                                     <td>{{$transaction->buyer_amount}}</td>
-                                    <td>{{$transaction->sellerResource()->first()->name}}</td>
+                                    <td>{{$transaction->sellerResource->resource->name}}</td>
                                     <td>{{$transaction->seller_amount}}</td>
-                                    <td>{{$transaction->buyer()->first()->name}}</td>
+                                    <td>{{$transaction->buyer->name}}</td>
                                     <td>{{$transaction->timestamp}}</td>
                                     @if($transaction->checked == 0)
                                         <td>

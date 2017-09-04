@@ -20,11 +20,11 @@ class Transaction extends Model
 
 	public function buyerResource()
 	{
-		return $this->belongsTo(Resources::class, 'buyer_resource_id');
+		return $this->belongsTo(UserResource::class, 'buyer_resource_id');
 	}
 
 	public function sellerResource()
 	{
-		return $this->belongsTo(Resource::class,'seller_resource_id');
+		return $this->belongsTo(UserResource::class,'seller_resource_id');
 	}
 }
