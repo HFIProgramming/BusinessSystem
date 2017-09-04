@@ -56,7 +56,7 @@
                             <div class="mdui-textfield mdui-textfield-floating-label ">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
                                 <label class="mdui-textfield-label">卖方的商品</label>
-                                <input class="mdui-textfield-input" id="seller_item" name="seller_item" type="text" required/>
+                                <input class="mdui-textfield-input" id="seller_item" name="resource_id" type="text" required/>
                                 <div class="mdui-textfield-error">商品名不能为空</div>
                             </div>
                             <input hidden id="transaction_type" value="buy">

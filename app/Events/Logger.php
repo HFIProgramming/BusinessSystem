@@ -24,7 +24,7 @@ class Logger
 	 *
 	 * @return void
 	 */
-	public function __construct($userId, $function, $message)
+	public function __construct($user, $function, $message)
 	{
 		$this->user = $user;
 		$this->function = $function;
