@@ -66,7 +66,7 @@ class TransactionController extends Controller
 		if (empty($seller = User::id($request->seller_id))) {
 			return view('errors.custom')->with('message', '交易对方ID不存在');
 		}
-		if (empty($sellerItem = $seller->resources()->id(resource_id))) {
+		if (empty($sellerItem = $seller->resources()->id($this))) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
 		if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
