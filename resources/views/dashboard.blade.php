@@ -77,7 +77,7 @@
                                 总财年：{{$total = \App\Config::KeyValue('total_round')->value}}</li>
                             <div class="mdui-progress">
                                 <div class="mdui-progress-determinate"
-                                     style="width: {{$current/$total}}%;"></div>
+                                     style="width: {{($current/$total)*100}}%;"></div>
                             </div>
                             <li class="mdui-divider"></li>
                             @foreach($user->resources()->get() as $resource)
