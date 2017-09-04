@@ -20,6 +20,7 @@ class TransactionController extends Controller
 
     public function sellToUser(Request $request)//Pass in quantity as seller_amount if selling to gov.
     {
+        return $request->all();
         $user = $request->user();
         $type = 'sell';
         $buyer_amount = $request->buyer_amount;

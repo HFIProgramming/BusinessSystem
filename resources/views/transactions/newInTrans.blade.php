@@ -32,31 +32,31 @@
                             <div class="mdui-textfield mdui-textfield-floating-label">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
                                 <label class="mdui-textfield-label">我的商品</label>
-                                <input class="mdui-textfield-input" id="buyer_item" type="text" required/>
+                                <input class="mdui-textfield-input" id="buyer_item" name="buyer_item" type="text" required/>
                                 <div class="mdui-textfield-error">我的商品不能为空</div>
                             </div>
                             <div class="mdui-textfield mdui-textfield-floating-label ">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">add</i>
                                 <label class="mdui-textfield-label">我的数量</label>
-                                <input class="mdui-textfield-input" id="buyer_amount" type="number" required/>
+                                <input class="mdui-textfield-input" id="buyer_amount" name="buyer_amount" type="number" required/>
                                 <div class="mdui-textfield-error">我的数量不能为空</div>
                             </div>
                             <div class="mdui-textfield mdui-textfield-floating-label ">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">account_circle</i>
                                 <label class="mdui-textfield-label">卖方的ID</label>
-                                <input class="mdui-textfield-input" id="seller_id" type="number" required/>
+                                <input class="mdui-textfield-input" id="seller_id" name="seller_id" type="number" required/>
                                 <div class="mdui-textfield-error">买方的ID不能为空</div>
                             </div>
                             <div class="mdui-textfield mdui-textfield-floating-label ">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">add</i>
                                 <label class="mdui-textfield-label">卖方的数量</label>
-                                <input class="mdui-textfield-input" id="seller_amount" type="number" required/>
+                                <input class="mdui-textfield-input" id="seller_amount" name="seller_amount" type="number" required/>
                                 <div class="mdui-textfield-error">买方的数量不能为空</div>
                             </div>
                             <div class="mdui-textfield mdui-textfield-floating-label ">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
                                 <label class="mdui-textfield-label">卖方的商品</label>
-                                <input class="mdui-textfield-input" id="seller_item" type="text" required/>
+                                <input class="mdui-textfield-input" id="seller_item" name="seller_item" type="text" required/>
                                 <div class="mdui-textfield-error">商品名不能为空</div>
                             </div>
                             <input hidden id="transaction_type" value="buy">

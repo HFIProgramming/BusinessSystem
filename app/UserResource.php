@@ -14,11 +14,16 @@ class UserResource extends Model
 	//
 	public function scopeId($query, $id)
 	{
-		return $query->where('id', $id)->first();
+		return $query->where('resource_id', $id)->first();
 	}
 
 	public function resource()
 	{
 		return $this->belongsTo(Resources::class,'resource_id');
 	}
+
+	public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
