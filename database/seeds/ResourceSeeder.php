@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
+use Faker\Factory as FakerFactory;
+use Faker\Generator as FakerGenerator;
 
 class ResourceSeeder extends Seeder
 {
@@ -22,7 +23,8 @@ class ResourceSeeder extends Seeder
 
 		\App\Resources::query()->create($default);
 
-		$faker = new Faker();
+		$faker = Faker\Factory::create();
+
 		for ($i = 1; $i <= 3; $i++) {
 			\App\Resources::query()->create([
 				'code'        => str_random(5),
