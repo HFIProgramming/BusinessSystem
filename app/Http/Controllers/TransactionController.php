@@ -29,7 +29,6 @@ class TransactionController extends Controller
         if (empty($sellerItem = $user->resources()->id($request->resource_id))) {
             return view('errors.custom')->with('message', '我方：交易物品不存在');
         }
-//        return $sellerItem;
         if ($sellerItem->amount < $seller_amount) {
             return view('errors.custom')->with('message', '数量不够交易');
         }

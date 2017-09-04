@@ -30,8 +30,8 @@ class makeLog
     {
         //
 	    $log = new Logs();
-	    $log->user = $event->user;
-	    $log->function = $event->modelName;
+	    $log->user_id = $event->user;
+	    $log->function = $event->function;
 	    $log->message = $event->message;
 	    $log->save();
     }
