@@ -33,6 +33,6 @@ class Resources extends Model
 
 	public function scopeId($query, $id)
 	{
-		return $query->where('id', $id)->first();
+		return $query->where('id', $id);
 	}
 }
