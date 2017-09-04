@@ -19,18 +19,19 @@ class PurchaseController extends Controller
 		$user = $request->user();
 		$message = "";
 
-		foreach ($item->requirement as $key => $value) {
-			if ($user->resources()->where('name', $key)->amount < $amount = $value * $request->amount) {
-				$message .= "材料 {$key} 不足，需要 {$amount} \n";
+		if (!empty($item->requirement)) {
+			foreach ($item->requirement as $key => $value) {
+				if ($user->resources()->where('name', $key)->amount < $amount = $value * $request->amount) {
+					$message .= "材料 {$key} 不足，需要 {$amount} \n";
+				}
 			}
 		}
 
-		if ($message != "")
-			return $message;
+		if ($message != "") return view('errors.custom')->with('message',$message);
 
 		event(new BuyStuff($user, $item, $request->amount));
 
-		return '成功';
+		return view('success')->with('message',$message);
 	}
 
 	public function showPurchaseForm()
