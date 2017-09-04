@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/income', 'TransactionController@buyFromUser')->name('doTransIn');
 		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');//卖
 		Route::post('/outcome', 'TransactionController@sellToUser')->name('doTransOut');
-		Route::get('/{id}', 'TransactionController@')
+		Route::get('/{id}', 'TransactionController@showTransaction');
 	});
 
 	Route::group(['prefix' => 'resource'], function () {
