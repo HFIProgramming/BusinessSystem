@@ -11,6 +11,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\UserResource;
 
 class incomeTransaction
 {
@@ -32,10 +33,10 @@ class incomeTransaction
 	public function __construct(Transaction $trans)
 	{
 		//
-		$this->seller = $trans->seller();
-		$this->buyer = $trans->buyer();
-		$this->sellerItem = $trans->seller_resource_id;
-		$this->buyerItem = $trans->buyer_resource_id;
+		$this->seller = $trans->seller;
+		$this->buyer = $trans->buyer;
+		$this->sellerItem = UserResource::find($trans->seller_resource_id)->resource_id;
+		$this->buyerItem = UserResource::find($trans->buyer_resource_id)->resource_id;
 		$this->sellerAmount = $trans->seller_amount;
 		$this->buyerAmount = $trans->buyer_amount;
 	}

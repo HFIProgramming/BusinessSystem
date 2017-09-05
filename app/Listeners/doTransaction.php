@@ -6,6 +6,7 @@ use App\Events\incomeTransaction;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\DB;
+use App\Events\Logger;
 
 class doTransaction
 {
@@ -27,12 +28,11 @@ class doTransaction
 	 */
 	public function handle(incomeTransaction $event)
 	{
-
 		// 找齐
-		$sellerOutRes = $event->seller->resources()->id($event->sellerItem->id);
-		$sellerInRes = $event->seller->resources()->id($event->buyerItem->id);
-		$buyerOutRes = $event->buyer->resources()->id($event->sellerItem->id);
-		$buyerInRes = $event->buyer->resources()->id($event->buyerItem->id);
+		$sellerOutRes = $event->seller->resources()->id($event->sellerItem);
+		$sellerInRes = $event->seller->resources()->id($event->buyerItem);
+		$buyerOutRes = $event->buyer->resources()->id($event->sellerItem);
+		$buyerInRes = $event->buyer->resources()->id($event->buyerItem);
 
 		DB::beginTransaction();
 		// 操作
