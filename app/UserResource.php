@@ -12,9 +12,9 @@ class UserResource extends Model
 	];
 
 	//
-	public function scopeId($query, $id)
+	public function scopeResid($query, $id)
 	{
-		return $query->where('resource_id', $id)->first();
+		return $query->where('resource_id', $id);
 	}
 
 	public function resource()

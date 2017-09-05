@@ -26,7 +26,7 @@ class TransactionController extends Controller
 		$seller_amount = $request->seller_amount;
 		// seller_amount: sell how many; buyer_amount: price
 		$seller = $user;
-		if (empty($sellerItem = $user->resources()->id($request->resource_id))) {
+		if (empty($sellerItem = $user->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '我方：交易物品不存在');
 		}
 		if ($sellerItem->amount < $seller_amount) {
@@ -39,7 +39,7 @@ class TransactionController extends Controller
 //                return '对方：交易物品不存在';
 //            }
 		// Everyone has money
-		$buyerItem = $buyer->resources()->id(1);
+		$buyerItem = $buyer->resources()->resid(1)->first();
 //        if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
 //            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 //        }
@@ -55,7 +55,7 @@ class TransactionController extends Controller
 		$buyer_amount = $request->buyer_amount;
 		$seller_amount = $request->seller_amount;
 		$buyer = $user;
-		$buyerItem = $buyer->resources()->id(1)->first();
+		$buyerItem = $buyer->resources()->resid(1)->first();
 //			if (empty($buyerItem)) {
 //                return view('errors.custom')->with('message', '我方：交易物品不存在');
 //			}
@@ -66,10 +66,10 @@ class TransactionController extends Controller
 		if (empty($seller = User::id($request->seller_id)->first())) {
 			return view('errors.custom')->with('message', '交易对方ID不存在');
 		}
-		if (empty($sellerItem = $seller->resources()->id($request->resource_id))) {
+		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-		if (!($buyer->type - $seller->type == 1 && Resources::id($sellerItem->resource_id)->first()->type - $seller->type == 1)) {
+		if (!($buyer->type - $seller->type == 1 && Resources::resid($sellerItem->resource_id)->first()->type - $seller->type == 1)) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
@@ -83,8 +83,8 @@ class TransactionController extends Controller
 		$seller_amount = $request->seller_amount;
 		$seller = $user;
 		$buyer = User::type(0)->first();
-		$buyerItem = $buyer->resources()->id(1);//money
-		if (empty($sellerItem = $user->resources()->id($request->resource_id))) {
+		$buyerItem = $buyer->resources()->resid(1)->first();//money
+		if (empty($sellerItem = $user->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '我方：交易物品不存在');
 		}
 		if ($sellerItem->amount < $request->seller_amount) {
@@ -104,8 +104,8 @@ class TransactionController extends Controller
 		$seller_amount = 1;
 		$seller = User::type(0)->first();
 		$buyer = $user;
-		$buyerItem = $buyer->resources()->id(1);
-		if (empty($sellerItem = $buyer->resources()->id($request->resource_id))) {
+		$buyerItem = $buyer->resources()->resid(1)->first();
+		if (empty($sellerItem = $buyer->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
 		$buyer_amount = $sellerItem->employment_price;
@@ -114,7 +114,7 @@ class TransactionController extends Controller
 
 	public function showTransaction(Request $request, $id)
 	{
-		$trans = Transaction::query()->find($id);
+		$trans = Transaction::find($id);
 		if (empty($trans)) {
 			return redirect('errors.custom')->with('message', '此交易不存在');
 		}
@@ -176,23 +176,23 @@ class TransactionController extends Controller
 
 		// 接受交易
 		if ($trans->type == 'sell') {
-			if ($user->resources()->id($trans->buyer_resource_id)->amount < $trans->buyer_amount) {
+			if ($user->resources()->find($trans->buyer_resource_id)->amount < $trans->buyer_amount) {
 				return view('errors.custom')->with('message', '无法确认订单，物品数量不足');
 			}
-			if (User::id($trans->seller_id)->first()->resources()->id($trans->seller_resource_id)->amount < $trans->seller_amount) {
+			if (User::id($trans->seller_id)->first()->resources()->find($trans->seller_resource_id)->amount < $trans->seller_amount) {
 				return view('errors.custom')->with('message', "卖方物品数量不足，交易失败");
 			}
 		}
 		if ($trans->type == 'buy') {
-			if ($user->resources()->id($trans->seller_resource_id)->amount < $trans->seller_amount) {
+			if ($user->resources()->find($trans->seller_resource_id)->amount < $trans->seller_amount) {
 				return view('errors.custom')->with('message', '无法确认订单，物品数量不足');
 			}
-			if (User::id($trans->buyer_id)->first()->resources()->id($trans->buyer_resource_id)->amount < $trans->buyer_amount) {
+			if (User::id($trans->buyer_id)->first()->resources()->find($trans->buyer_resource_id)->amount < $trans->buyer_amount) {
 				return view('errors.custom')->with('message', "买方金钱数量不足，交易失败");
 			}
 		}
-		event(new incomeTransaction($trans));
 
+		event(new incomeTransaction($trans));
 		return '成功';
 	}
 

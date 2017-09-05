@@ -29,16 +29,16 @@ class doTransaction
 	public function handle(incomeTransaction $event)
 	{
 		// 找齐
-		$sellerOutRes = $event->seller->resources()->id($event->sellerItem);
-		$sellerInRes = $event->seller->resources()->id($event->buyerItem);
-		$buyerOutRes = $event->buyer->resources()->id($event->sellerItem);
-		$buyerInRes = $event->buyer->resources()->id($event->buyerItem);
+		$sellerOutRes = $event->seller->resources()->resid($event->sellerItem)->first();
+		$sellerInRes = $event->seller->resources()->resid($event->buyerItem)->first();
+		$buyerOutRes = $event->buyer->resources()->resid($event->buyerItem)->first();
+		$buyerInRes = $event->buyer->resources()->resid($event->sellerItem)->first();
 
 		DB::beginTransaction();
 		// 操作
 		$sellerOutRes->amount -= $event->sellerAmount;
 		$sellerInRes->amount += $event->buyerAmount;
-		$buyerOutRes->amount -= $event->sellerItem;
+		$buyerOutRes->amount -= $event->buyerAmount;
 		$buyerInRes->amount += $event->sellerAmount;
 
 		$sellerOutRes->save();
