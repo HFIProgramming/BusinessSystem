@@ -167,7 +167,7 @@ class TransactionController extends Controller
 		$trans->type == 'sell' ? $checked = -1 : $checked = -2; // -1 买家 -2 卖家
 
 		// Declined
-		if ($request->comfirm == false) {
+		if ($request->confirm == false) {
 			$trans->checked = $checked;
 			$trans->save();
 
