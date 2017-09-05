@@ -69,9 +69,9 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-		if (!($buyer->type - $seller->type == 1 && Resources::resid($sellerItem->resource_id)->first()->type - $seller->type == 1)) {
-			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-		}
+//		if (!($buyer->type - $seller->type == 1 && Resources::resid($sellerItem->resource_id)->first()->type - $seller->type == 1)) {
+//			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
+//		}
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
@@ -167,7 +167,7 @@ class TransactionController extends Controller
 		$trans->type == 'sell' ? $checked = -1 : $checked = -2; // -1 买家 -2 卖家
 
 		// Declined
-		if ($request->confirm == false) {
+		if ($request->confirm === 'false') {
 			$trans->checked = $checked;
 			$trans->save();
 
@@ -191,6 +191,8 @@ class TransactionController extends Controller
 				return view('errors.custom')->with('message', "买方金钱数量不足，交易失败");
 			}
 		}
+		$trans->checked = 1;
+		$trans->save();
 
 		event(new incomeTransaction($trans));
 		return '成功';

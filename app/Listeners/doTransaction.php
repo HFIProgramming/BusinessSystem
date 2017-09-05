@@ -28,27 +28,28 @@ class doTransaction
 	 */
 	public function handle(incomeTransaction $event)
 	{
-		// 找齐
-		$sellerOutRes = $event->seller->resources()->resid($event->sellerItem)->first();
-		$sellerInRes = $event->seller->resources()->resid($event->buyerItem)->first();
-		$buyerOutRes = $event->buyer->resources()->resid($event->buyerItem)->first();
-		$buyerInRes = $event->buyer->resources()->resid($event->sellerItem)->first();
 
+
+        // 操作
 		DB::beginTransaction();
-		// 操作
+        $sellerOutRes = $event->seller->resources()->resid($event->sellerItem)->first();
+        $buyerOutRes = $event->buyer->resources()->resid($event->buyerItem)->first();
 		$sellerOutRes->amount -= $event->sellerAmount;
-		$sellerInRes->amount += $event->buyerAmount;
 		$buyerOutRes->amount -= $event->buyerAmount;
-		$buyerInRes->amount += $event->sellerAmount;
-
 		$sellerOutRes->save();
-		$sellerInRes->save();
 		$buyerOutRes->save();
-		$buyerInRes->save();
-
 		DB::commit();
 
-		event(new Logger($event->user->id, 'Trans.Accepted', "Seller Item :{$event->sellerItem->id}; Amount: {$event->sellerAmount}
-		<=> Buyer Item: {$event->buyerItem->id}; Amount: {$event->buyerAmount}"));
+		DB::beginTransaction();
+        $sellerInRes = $event->seller->resources()->resid($event->buyerItem)->first();
+        $buyerInRes = $event->buyer->resources()->resid($event->sellerItem)->first();
+        $sellerInRes->amount += $event->buyerAmount;
+        $buyerInRes->amount += $event->sellerAmount;
+        $sellerInRes->save();
+        $buyerInRes->save();
+		DB::commit();
+
+		event(new Logger($event->seller->id, 'Trans.Accepted', "Seller Item :{$event->sellerItem}; Amount: {$event->sellerAmount}
+		<=> Buyer Item: {$event->buyerItem}; Amount: {$event->buyerAmount}"));
 	}
 }
