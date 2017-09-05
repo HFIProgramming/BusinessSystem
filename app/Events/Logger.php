@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Config;
 use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -18,6 +19,7 @@ class Logger
 	public $user;
 	public $function;
 	public $message;
+	public $currentRound;
 
 	/**
 	 * Create a new event instance.
@@ -29,6 +31,7 @@ class Logger
 		$this->user = $user;
 		$this->function = $function;
 		$this->message = $message;
+		$this->currentRound = Config::KeyValue('current_round')->value;
 	}
 
 	/**

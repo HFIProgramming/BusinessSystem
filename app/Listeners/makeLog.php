@@ -33,6 +33,7 @@ class makeLog
 	    $log->user_id = $event->user;
 	    $log->function = $event->function;
 	    $log->message = $event->message;
+	    $log->current_round = $event->currentRound;
 	    $log->save();
     }
 }

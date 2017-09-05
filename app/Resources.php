@@ -12,6 +12,10 @@ class Resources extends Model
         'equivalent_to' => 'array'
 	];
 
+	protected $fillable = [
+		'code', 'name', 'description', 'type',
+	];
+
 	public function getResourceTypeAttribute()
 	{
 		switch ($this->type) {
@@ -33,6 +37,6 @@ class Resources extends Model
 
 	public function scopeId($query, $id)
 	{
-		return $query->where('id', $id)->first();
+		return $query->where('id', $id);
 	}
 }

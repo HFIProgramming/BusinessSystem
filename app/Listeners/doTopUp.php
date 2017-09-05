@@ -35,10 +35,12 @@ class doTopUp
 		$requirement = $event->item->requirement;
 
 		DB::beginTransaction();
-		foreach ($requirement as $key => $value) {
-			$currentItem = $userResources->where('name', $key)->first();
-			$currentItem->amount -= $value * $event->amount;
-			$currentItem->save();
+		if(!empty($requirement)) {
+			foreach ($requirement as $key => $value) {
+				$currentItem = $userResources->where('name', $key)->first();
+				$currentItem->amount -= $value * $event->amount;
+				$currentItem->save();
+			}
 		}
 		$newItem = UserResource::query()->where('resource_id', $event->item->id)->firstOrCreate([
 			'user_id'     => $event->user->id,

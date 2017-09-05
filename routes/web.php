@@ -23,6 +23,8 @@ Route::group(['middleware' => 'register'], function () {
 	Route::post('register', 'Auth\RegisterController@register');
 });
 
+Route::get('error', 'HomeController@showErrorPage')->name('error');
+
 // Password Reset Routes...
 //Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 //Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');

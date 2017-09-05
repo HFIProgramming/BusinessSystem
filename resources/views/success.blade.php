@@ -1,7 +1,7 @@
 @extends('layouts.error')
 
 @section('title')
-    An Error Occur
+    Success
 @endsection
 
 @section('script')
@@ -36,20 +36,20 @@
 
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                        啊哈！
+                        哇喔？
                     </div>
                 </div>
 
                 <div class="mdui-card-header-subtitle adjust_card_subtitle">
                     <div class="mdui-text-center">
-                        您的操作产生了一个错误，请检查
+                        您的操作已经完成，请检查
                     </div>
                 </div>
                 <div class="mdui-card-content mdui-typo">
                     @if(!empty($message))
                         {{$message}}
                     @else
-                        操作将不能继续进行，如有疑问请联系管理员
+                        操作完成，如有疑问请联系管理员
                     @endif
                     <button class="mdui-btn mdui-color-theme mdui-ripple" onclick="window.history.back()">返回上一层</button>
                 </div>

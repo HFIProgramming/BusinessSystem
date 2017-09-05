@@ -17,7 +17,7 @@ class VerifyRegister
 	public function handle($request, Closure $next)
 	{
 		if (Config::KeyValue('is_able_to_register')->value == false) {
-			return view('errors.custom')->with('message', '注册被停用');
+			return Redirect('error')->with('message', '注册被停用');
 		}
 
 		return $next($request);

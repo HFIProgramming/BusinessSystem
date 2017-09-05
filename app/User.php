@@ -47,12 +47,12 @@ class User extends Authenticatable
 
     public function scopeId($query, $id)
     {
-        return $query->where('id', $id)->first();
+        return $query->where('id', $id);
     }
 
     public function scopeType($query, $type)
     {
-        return $query->where('type', $type)->first();
+        return $query->where('type', $type);
     }
 
     public function getAllTransAttribute()
