@@ -17,6 +17,7 @@ class NewTransaction
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $starter;
     public $seller;
     public $buyer;
     public $sellerItem;
@@ -28,6 +29,7 @@ class NewTransaction
     /**
      * Create a new event instance.
      *
+     * @param User $starter
      * @param User $seller
      * @param User $buyer
      * @param UserResource $sellerItem
@@ -36,9 +38,10 @@ class NewTransaction
      * @param $buyerAmount
      * @param $type
      */
-    public function __construct(User $seller, User $buyer, UserResource $sellerItem, UserResource $buyerItem, $sellerAmount, $buyerAmount, $type)
+    public function __construct(User $starter, User $seller, User $buyer, UserResource $sellerItem, UserResource $buyerItem, $sellerAmount, $buyerAmount, $type)
     {
         //
+	    $this->starter = $starter;
 	    $this->seller = $seller;
 	    $this->buyer = $buyer;
 	    $this->sellerItem = $sellerItem;

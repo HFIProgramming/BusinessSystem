@@ -44,7 +44,7 @@ class TransactionController extends Controller
 //        if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
 //            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 //        }
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
 	}
@@ -73,7 +73,7 @@ class TransactionController extends Controller
 //		if (!($buyer->type - $seller->type == 1 && Resources::resid($sellerItem->resource_id)->first()->type - $seller->type == 1)) {
 //			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 //		}
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
 	}
@@ -96,7 +96,7 @@ class TransactionController extends Controller
 			return view('errors.custom')->with('message', '政府不收购此物品');
 		}
 		$buyer_amount = $seller_amount * $acquisition_price;
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'sell'));
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'sell'));
 	}
 
 	public function buyFromGovernment(Request $request)
@@ -110,14 +110,14 @@ class TransactionController extends Controller
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
 		if ($sellerItem->resource->employment_price == 0) {
-		    return view('errors.custom')->with('message', '不能向政府购买该物品');
-        }
+			return view('errors.custom')->with('message', '不能向政府购买该物品');
+		}
 		if ($buyerItem->amount < $sellerItem->resource->employment_price) {
-		    return view('errors.custom')->with('message', '您的余额不足');
-        }
+			return view('errors.custom')->with('message', '您的余额不足');
+		}
 
 		$buyer_amount = $sellerItem->resource->employment_price;
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
 	}
 
 	/**
@@ -141,14 +141,14 @@ class TransactionController extends Controller
 	}
 
 	public function showBuyGovCreateForm()
-    {
-        return view('transactions.buyFromGov');
-    }
+	{
+		return view('transactions.buyFromGov');
+	}
 
-    public function showSellGovCreateForm()
-    {
-        return view('transactions.sellToGov');
-    }
+	public function showSellGovCreateForm()
+	{
+		return view('transactions.sellToGov');
+	}
 
 	public function showTransactionList(Request $request)
 	{
@@ -165,7 +165,7 @@ class TransactionController extends Controller
 	public function handleTransaction(Request $request)
 	{
 		$user = $request->user();
-		if (empty($trans = Transaction::find($request->transactionId))) {
+		if (empty($trans = Transaction::query()->find($request->transactionId))) {
 			return view('errors.custom')->with('message', '订单不存在');
 		}
 		if (($trans->type == 'buy' && $trans->seller_id != $user->id) || ($trans->type == 'sell' && $trans->buyer_id != $user->id)) {
@@ -203,6 +203,7 @@ class TransactionController extends Controller
 		$trans->save();
 
 		event(new incomeTransaction($trans));
+
 		return '成功';
 	}
 
