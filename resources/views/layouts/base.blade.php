@@ -91,11 +91,11 @@
         {{--@TODO Add Level Limits--}}
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Buy From Government</a>
+            <a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Sell To Government</a>
+            <a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>
         </li>
         <li class="mdui-divider"></li>
         @if(auth()->id() == 1)

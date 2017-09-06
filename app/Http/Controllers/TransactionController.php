@@ -120,16 +120,6 @@ class TransactionController extends Controller
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
 	}
 
-	public function showTransaction(Request $request, $id)
-	{
-		$trans = Transaction::find($id);
-		if (empty($trans)) {
-			return redirect('errors.custom')->with('message', '此交易不存在');
-		}
-
-		return view('transactions.individual')->with('transaction', $trans);
-	}
-
 	/**
 	 * 用户是买方
 	 *
