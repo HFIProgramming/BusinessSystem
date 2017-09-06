@@ -91,7 +91,7 @@ class TransactionController extends Controller
 		if ($sellerItem->amount < $request->seller_amount) {
 			return view('errors.custom')->with('message', '数量不够交易');
 		}
-		$acquisition_price = Resources::id($sellerItem->resource_id)->first()->acquisition_price;
+		$acquisition_price = $sellerItem->resource->acquisition_price;
 		if ($acquisition_price == 0) {
 			return view('errors.custom')->with('message', '政府不收购此物品');
 		}
@@ -109,14 +109,14 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-		if ($sellerItem->employment_price == 0) {
+		if ($sellerItem->resource->employment_price == 0) {
 		    return view('errors.custom')->with('message', '不能向政府购买该物品');
         }
-		if ($buyerItem->amount < $sellerItem->employment_price) {
+		if ($buyerItem->amount < $sellerItem->resource->employment_price) {
 		    return view('errors.custom')->with('message', '您的余额不足');
         }
 
-		$buyer_amount = $sellerItem->employment_price;
+		$buyer_amount = $sellerItem->resource->employment_price;
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
 	}
 
