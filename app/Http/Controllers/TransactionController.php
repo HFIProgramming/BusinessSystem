@@ -41,9 +41,9 @@ class TransactionController extends Controller
 		// Everyone has money
 		$buyerItem = $buyer->resources()->resid(1)->first();
 		//@TODO test type limits
-//        if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
-//            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-//        }
+        if (!($buyer->type - $seller->type == 1 && $sellerItem->resource->type == $seller->type)) {
+            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
+        }
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
@@ -70,9 +70,9 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-//		if (!($buyer->type - $seller->type == 1 && Resources::resid($sellerItem->resource_id)->first()->type - $seller->type == 1)) {
-//			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-//		}
+        if (!($buyer->type - $seller->type == 1 && $sellerItem->resource->type == $seller->type)) {
+			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
+		}
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
 		return '成功';
@@ -97,6 +97,8 @@ class TransactionController extends Controller
 		}
 		$buyer_amount = $seller_amount * $acquisition_price;
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'sell'));
+
+		return '成功';
 	}
 
 	public function buyFromGovernment(Request $request)
@@ -118,6 +120,8 @@ class TransactionController extends Controller
 
 		$buyer_amount = $sellerItem->resource->employment_price;
 		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
+
+        return '成功';
 	}
 
 	/**

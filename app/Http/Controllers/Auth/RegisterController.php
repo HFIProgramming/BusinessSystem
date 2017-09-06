@@ -76,7 +76,18 @@ class RegisterController extends Controller
 			'user_id'     => $user->id,
 			'amount'      => Config::KeyValue('startup_fund')->value,
 		]);
-		//@TODO Initialization
+		foreach (Resource::all() as $resource)
+        {
+            if($resource->id != 1) {
+                //not money
+                $user->resources()->create([
+                    'resource_id' => $resource->id, //money
+                    'user_id'     => $user->id,
+                    'amount'      => 0,
+                ]);
+            }
+        }
+		//@TODO Test Initialization
 		return $user;
 	}
 
