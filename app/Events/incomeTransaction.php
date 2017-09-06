@@ -35,8 +35,8 @@ class incomeTransaction
 		//
 		$this->seller = $trans->seller;
 		$this->buyer = $trans->buyer;
-		$this->sellerItem = UserResource::find($trans->seller_resource_id)->resource_id;
-		$this->buyerItem = UserResource::find($trans->buyer_resource_id)->resource_id;
+		$this->sellerItem = UserResource::query()->find($trans->seller_resource_id)->resource_id;
+		$this->buyerItem = UserResource::query()->find($trans->buyer_resource_id)->resource_id;
 		$this->sellerAmount = $trans->seller_amount;
 		$this->buyerAmount = $trans->buyer_amount;
 	}
