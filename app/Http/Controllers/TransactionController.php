@@ -40,13 +40,12 @@ class TransactionController extends Controller
 //            }
 		// Everyone has money
 		$buyerItem = $buyer->resources()->resid(1)->first();
-		//@TODO test type limits
-//        if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
-//            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-//        }
+		if (!$this->canTransactionMade($buyer, $seller, $buyerItem, $sellerItem)) {
+			return view('errors.custom')->with('message ', '你们之间不能交易这两种物品');
+		}
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
-		return '成功';
+		return view('success')->with('message', '成功');
 	}
 
 	public function buyFromUser(Request $request)
@@ -70,12 +69,12 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-//		if (!($buyer->type - $seller->type == 1 && Resources::resid($sellerItem->resource_id)->first()->type - $seller->type == 1)) {
-//			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-//		}
+		if (!$this->canTransactionMade($buyer, $seller, $buyerItem, $sellerItem)) {
+			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
+		}
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
-		return '成功';
+		return view('success')->with('message', '成功');
 	}
 
 	public function sellToGovernment(Request $request)
@@ -204,7 +203,36 @@ class TransactionController extends Controller
 
 		event(new incomeTransaction($trans));
 
-		return '成功';
+		return view('success')->with('message', '成功');
 	}
 
+	protected function canTransactionMade(User $buyer, User $seller, Resources $buyerItem, Resources $sellerItem)
+	{
+		if ($this->canUserAcquireThisProduct($buyer, $sellerItem) &&
+			$this->canUserAcquireThisProduct($seller, $buyerItem) &&
+			$this->canUserTransactionWithThisUser($buyer, $seller)
+		) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected function canUserAcquireThisProduct(User $user, Resources $product)
+	{
+		if (in_array($product->type, $user->transactionRule()->first()->resource_type)) {
+			return true;
+		};
+
+		return false;
+	}
+
+	protected function canUserTransactionWithThisUser(User $user, User $opposite)
+	{
+		if (in_array($opposite->type, $user->transactionRule()->first()->user_transaction_type)) {
+			return true;
+		};
+
+		return false;
+	}
 }
