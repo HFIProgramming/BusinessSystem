@@ -109,58 +109,58 @@
             </div>
         </div>
         <!--row-->
-    </div>
-    <div class="mdui-col-xs-12  mdui-col-md-6">
-        <div class="mdui-card">
-            <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title">Latest Transaction</div>
-                <div class="mdui-card-primary-subtitle">Take good care of it !</div>
-            </div>
-            <div class="mdui-card-content">
-                <ul class="mdui-list" mdui-collapse="{accordion: true}">
-                    @if ($user->AllTrans->isempty())
-                        <li class="mdui-collapse-item mdui-collapse-item">
-                            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                                <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
-                                <div class="mdui-list-item-content">什么都没有诶……</div>
-                                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                            </div>
-                            <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                                <li class="mdui-list-item mdui-ripple">快去创建你的第一个订单吧</li>
-                            </ul>
-                        </li>
-                    @else
-                        @foreach($user->AllTrans->sortByDesc('created_at')->first() as $trans)
-                            <li class="mdui-collapse-item mdui-collapse-item-close">
+        <div class="mdui-col-xs-12  mdui-col-md-6">
+            <div class="mdui-card">
+                <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title">Latest Transaction</div>
+                    <div class="mdui-card-primary-subtitle">Take good care of it !</div>
+                </div>
+                <div class="mdui-card-content">
+                    <ul class="mdui-list" mdui-collapse="{accordion: true}">
+                        @if ($user->AllTrans->isempty())
+                            <li class="mdui-collapse-item mdui-collapse-item">
                                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                                     <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
-                                    <div class="mdui-list-item-content">订单ID: {{$trans->id}}</div>
+                                    <div class="mdui-list-item-content">什么都没有诶……</div>
                                     <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                                 </div>
                                 <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                                    <li class="mdui-list-item mdui-ripple">状态: <code> {{$trans->status}}</code>
-                                    </li>
-                                    <li class="mdui-list-item mdui-ripple">时间:
-                                        <code> {{$trans->created_at}}</code></li>
-                                    <li class="mdui-list-item mdui-ripple">买方: {{$trans->buyer->name}} <code>
-                                        </code>
-                                    </li>
-                                    <li class="mdui-list-item mdui-ripple">买方: {{$trans->seller->name}} <code>
-                                        </code>
-                                    </li>
+                                    <li class="mdui-list-item mdui-ripple">快去创建你的第一个订单吧</li>
                                 </ul>
                             </li>
-                        @endforeach
-                    @endif
-                </ul>
-                <br/>
-                <div class="mdui-card-actions">
-                    <button onclick="window.location.href='{{route('TransactionList')}}'"
-                            class="mdui-btn mdui-ripple">Transaction List
-                    </button>
-                    <button onclick="window.location.href='#'"
-                            class="mdui-btn mdui-ripple">New Transaction
-                    </button>
+                        @else
+                            @foreach($user->AllTrans->sortByDesc('created_at')->first() as $trans)
+                                <li class="mdui-collapse-item mdui-collapse-item-close">
+                                    <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                                        <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
+                                        <div class="mdui-list-item-content">订单ID: {{$trans->id}}</div>
+                                        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                                    </div>
+                                    <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                                        <li class="mdui-list-item mdui-ripple">状态: <code> {{$trans->status}}</code>
+                                        </li>
+                                        <li class="mdui-list-item mdui-ripple">时间:
+                                            <code> {{$trans->created_at}}</code></li>
+                                        <li class="mdui-list-item mdui-ripple">买方: {{$trans->buyer->name}} <code>
+                                            </code>
+                                        </li>
+                                        <li class="mdui-list-item mdui-ripple">买方: {{$trans->seller->name}} <code>
+                                            </code>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul>
+                    <br/>
+                    <div class="mdui-card-actions">
+                        <button onclick="window.location.href='{{route('TransactionList')}}'"
+                                class="mdui-btn mdui-ripple">Transaction List
+                        </button>
+                        <button onclick="window.location.href='#'"
+                                class="mdui-btn mdui-ripple">New Transaction
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
