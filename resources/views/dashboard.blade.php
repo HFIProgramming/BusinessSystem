@@ -6,9 +6,9 @@
 @section('body')
 
     <div class="mdui-container doc-container">
-        <div class="mdui-row">
+        <div class="mdui-col">
             @if (!empty($announcement))
-                <div class="mdui-col-xs-12 mdui-col-md-6">
+                <div class="mdui-row-xs-12 mdui-row-md-6">
                     <div class="mdui-card">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             @else
-                <div class="mdui-col-xs-12 mdui-col-md-6">
+                <div class="mdui-row-xs-12 mdui-row-md-6">
                     <div class="mdui-card">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             @endif
-            <div class="mdui-col-xs-12 mdui-col-md-6">
+            <div class="mdui-row-xs-12 mdui-row-md-6">
                 <div class="mdui-card">
                     <div class="mdui-card-media">
                         <img src="/img/card.jpg"/>
@@ -63,7 +63,7 @@
                                 <div class="mdui-card-primary">
                                     <div class="mdui-card-primary-title">实时情况</div>
                                     <div class="mdui-card-primary-subtitle">
-                                        <a class="mdui-list-item-content" href="{{ route('dashboard') }}">点击更新数据</a>
+                                        点击右侧栏DashBoard更新数据
                                     </div>
                                 </div>
                             </div>
@@ -111,8 +111,8 @@
             </div>
             <!--row-->
         </div>
-        <div class="mdui-row">
-            <div class="mdui-col-xs-12  mdui-col-md-6">
+        <div class="mdui-col">
+            <div class="mdui-row-xs-12  mdui-row-md-6">
                 <div class="mdui-card">
                     <div class="mdui-card-primary">
                         <div class="mdui-card-primary-title">Latest Transaction</div>
