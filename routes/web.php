@@ -48,7 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/sellgov', 'TransactionController@showSellGovCreateForm')->name('SellGov');//向政府卖
         Route::post('/sellgov', 'TransactionController@sellToGovernment')->name('doSellGov');
 		Route::post('/confirm', 'TransactionController@handleTransaction')->name('confirmTrans');
-		Route::get('/{id}', 'TransactionController@showTransaction');
 	});
 
 	Route::group(['prefix' => 'resource'], function () {
