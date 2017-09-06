@@ -129,7 +129,7 @@
                                 </ul>
                             </li>
                         @else
-                            @foreach($user->AllTrans->sortByDesc('created_at')->first() as $trans)
+                            @foreach($user->AllTrans->sortByDesc('created_at') as $trans)
                                 <li class="mdui-collapse-item mdui-collapse-item-close">
                                     <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                                         <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
