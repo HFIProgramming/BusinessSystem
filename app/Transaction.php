@@ -25,6 +25,27 @@ class Transaction extends Model
 
 	public function sellerResource()
 	{
-		return $this->belongsTo(UserResource::class,'seller_resource_id');
+		return $this->belongsTo(UserResource::class, 'seller_resource_id');
+	}
+
+	public function getStatusAttribute()
+	{
+		switch ($this->checked){
+			case 0:
+				return '待确认';
+				break;
+			case 1:
+				return '已完成';
+				break;
+			case -1:
+				return '由买家取消';
+				break;
+			case -2:
+				return '由卖家取消';
+				break;
+			default:
+				return '这他妈什么情况？？？';
+				break;
+		}
 	}
 }

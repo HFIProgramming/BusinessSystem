@@ -40,13 +40,13 @@ class TransactionController extends Controller
 //            }
 		// Everyone has money
 		$buyerItem = $buyer->resources()->resid(1)->first();
-		//@TODO test type limits
-        if (!($buyer->type - $seller->type == 1 && $sellerItem->resource->type == $seller->type)) {
-            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
-        }
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
-		return '成功';
+		if (!$this->canTransactionMade($buyer, $seller, $buyerItem, $sellerItem)) {
+			return view('errors.custom')->with('message ', '你们之间不能交易这两种物品');
+		}
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
+
+		return view('success')->with('message', '成功');
 	}
 
 	public function buyFromUser(Request $request)
@@ -70,12 +70,13 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-        if (!($buyer->type - $seller->type == 1 && $sellerItem->resource->type == $seller->type)) {
+
+		if (!$this->canTransactionMade($buyer, $seller, $buyerItem, $sellerItem)) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
-		return '成功';
+		return view('success')->with('message', '成功');
 	}
 
 	public function sellToGovernment(Request $request)
@@ -96,8 +97,8 @@ class TransactionController extends Controller
 			return view('errors.custom')->with('message', '政府不收购此物品');
 		}
 		$buyer_amount = $seller_amount * $acquisition_price;
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'sell'));
 
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'sell'));
 		return '成功';
 	}
 
@@ -112,16 +113,17 @@ class TransactionController extends Controller
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
 		if ($sellerItem->resource->employment_price == 0) {
-		    return view('errors.custom')->with('message', '不能向政府购买该物品');
-        }
+			return view('errors.custom')->with('message', '不能向政府购买该物品');
+		}
 		if ($buyerItem->amount < $sellerItem->resource->employment_price) {
-		    return view('errors.custom')->with('message', '您的余额不足');
-        }
+			return view('errors.custom')->with('message', '您的余额不足');
+		}
 
 		$buyer_amount = $sellerItem->resource->employment_price;
-		event(new NewTransaction($seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
+		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
 
-        return '成功';
+		return '成功';
+
 	}
 
 	/**
@@ -145,14 +147,14 @@ class TransactionController extends Controller
 	}
 
 	public function showBuyGovCreateForm()
-    {
-        return view('transactions.buyFromGov');
-    }
+	{
+		return view('transactions.buyFromGov');
+	}
 
-    public function showSellGovCreateForm()
-    {
-        return view('transactions.sellToGov');
-    }
+	public function showSellGovCreateForm()
+	{
+		return view('transactions.sellToGov');
+	}
 
 	public function showTransactionList(Request $request)
 	{
@@ -169,7 +171,7 @@ class TransactionController extends Controller
 	public function handleTransaction(Request $request)
 	{
 		$user = $request->user();
-		if (empty($trans = Transaction::find($request->transactionId))) {
+		if (empty($trans = Transaction::query()->find($request->transactionId))) {
 			return view('errors.custom')->with('message', '订单不存在');
 		}
 		if (($trans->type == 'buy' && $trans->seller_id != $user->id) || ($trans->type == 'sell' && $trans->buyer_id != $user->id)) {
@@ -207,7 +209,37 @@ class TransactionController extends Controller
 		$trans->save();
 
 		event(new incomeTransaction($trans));
-		return '成功';
+
+		return view('success')->with('message', '成功');
 	}
 
+	protected function canTransactionMade(User $buyer, User $seller, Resources $buyerItem, Resources $sellerItem)
+	{
+		if ($this->canUserAcquireThisProduct($buyer, $sellerItem) &&
+			$this->canUserAcquireThisProduct($seller, $buyerItem) &&
+			$this->canUserTransactionWithThisUser($buyer, $seller)
+		) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected function canUserAcquireThisProduct(User $user, Resources $product)
+	{
+		if (in_array($product->type, $user->transactionRule()->first()->resource_type)) {
+			return true;
+		};
+
+		return false;
+	}
+
+	protected function canUserTransactionWithThisUser(User $user, User $opposite)
+	{
+		if (in_array($opposite->type, $user->transactionRule()->first()->user_transaction_type)) {
+			return true;
+		};
+
+		return false;
+	}
 }

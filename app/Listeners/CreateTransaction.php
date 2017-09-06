@@ -33,6 +33,7 @@ class CreateTransaction
 		//
 		$trans = new Transaction();
 		$trans->seller_id = $event->seller->id;
+		$trans->starter_id = $event->starter->id;
 		$trans->buyer_id = $event->buyer->id;
 		$trans->seller_resource_id = $event->sellerItem->id;
 		$trans->buyer_resource_id = $event->buyerItem->id;
