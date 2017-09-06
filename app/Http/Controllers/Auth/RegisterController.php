@@ -76,7 +76,7 @@ class RegisterController extends Controller
 			'user_id'     => $user->id,
 			'amount'      => Config::KeyValue('startup_fund')->value,
 		]);
-
+		//@TODO Initialization
 		return $user;
 	}
 

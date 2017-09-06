@@ -40,6 +40,7 @@ class TransactionController extends Controller
 //            }
 		// Everyone has money
 		$buyerItem = $buyer->resources()->resid(1)->first();
+		//@TODO test type limits
 //        if (!($buyer->type - $seller->type == 1 && Resource::id($sellerItem->resource_id)->type - $seller->type == 1)) {
 //            return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 //        }
@@ -112,7 +113,7 @@ class TransactionController extends Controller
 		    return view('errors.custom')->with('message', '不能向政府购买该物品');
         }
 		if ($buyerItem->amount < $sellerItem->employment_price) {
-		    return view('errors.custom')->with('message', '您的余额不足')
+		    return view('errors.custom')->with('message', '您的余额不足');
         }
 
 		$buyer_amount = $sellerItem->employment_price;
@@ -148,6 +149,16 @@ class TransactionController extends Controller
 	{
 		return view('transactions.newOutTrans');
 	}
+
+	public function showBuyGovCreateForm()
+    {
+        return view('transactions.buyFromGov');
+    }
+
+    public function showSellGovCreateForm()
+    {
+        return view('transactions.sellToGov');
+    }
 
 	public function showTransactionList(Request $request)
 	{
