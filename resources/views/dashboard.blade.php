@@ -80,7 +80,7 @@
                         </div>
                         <li class="mdui-list-item mdui-ripple">
                             当前比赛：{{\App\Config::KeyValue('is_continued')->value == true ? '正在进行' : '暂停中'}}</li>
-                        @if(\App\Config::KeyValue('is_continued') == true)
+                        @if(\App\Config::KeyValue('is_continued')->value == true)
                             <div class="mdui-progress">
                                 <div class="mdui-progress-indeterminate"></div>
                             </div>
