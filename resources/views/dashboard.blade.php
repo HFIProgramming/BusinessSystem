@@ -62,7 +62,7 @@
                             <div class="mdui-card-primary">
                                 <div class="mdui-card-primary-title">实时情况</div>
                                 <div class="mdui-card-primary-subtitle">
-                                    点击右侧栏DashBoard更新数据
+                                    点击左侧栏DashBoard更新数据
                                 </div>
                             </div>
                         </div>
