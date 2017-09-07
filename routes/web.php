@@ -32,31 +32,32 @@ Route::get('error', 'HomeController@showErrorPage')->name('error');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
-
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/dashboard', 'UserController@index')->name('dashboard');
 
-	Route::group(['prefix' => 'transaction'], function () {
-		Route::get('/list', 'TransactionController@showTransactionList')->name('TransactionList');
-		Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');//买
-		Route::post('/income', 'TransactionController@buyFromUser')->name('doTransIn');
-		Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');//卖
-		Route::post('/outcome', 'TransactionController@sellToUser')->name('doTransOut');
-		Route::get('/buygov', 'TransactionController@showBuyGovCreateForm')->name('BuyGov');//从政府买
-        Route::post('/buygov', 'TransactionController@buyFromGovernment')->name('doBuyGov');
-        Route::get('/sellgov', 'TransactionController@showSellGovCreateForm')->name('SellGov');//向政府卖
-        Route::post('/sellgov', 'TransactionController@sellToGovernment')->name('doSellGov');
-		Route::post('/confirm', 'TransactionController@handleTransaction')->name('confirmTrans');
-	});
+	Route::group(['middleware' => 'suspend'], function () {
 
-	Route::group(['prefix' => 'resource'], function () {
-		Route::get('/list', 'HomeController@showResource')->name('resource');
-		Route::get('/{id}', 'HomeController@showIndividualResource');
-		Route::get('/purchase', 'PurchaseController@showPurchaseForm')->name('purchaseForm');
-		Route::post('/purchase', 'PurchaseController@TopUp')->name('doPurchase');
-	});
+		Route::group(['prefix' => 'transaction'], function () {
+			Route::get('/list', 'TransactionController@showTransactionList')->name('TransactionList');
+			Route::get('/income', 'TransactionController@showIncomeCreateForm')->name('TransIn');//买
+			Route::post('/income', 'TransactionController@buyFromUser')->name('doTransIn');
+			Route::get('/outcome', 'TransactionController@showOutcomeCreateForm')->name('TransOut');//卖
+			Route::post('/outcome', 'TransactionController@sellToUser')->name('doTransOut');
+			Route::get('/buygov', 'TransactionController@showBuyGovCreateForm')->name('BuyGov');//从政府买
+			Route::post('/buygov', 'TransactionController@buyFromGovernment')->name('doBuyGov');
+			Route::get('/sellgov', 'TransactionController@showSellGovCreateForm')->name('SellGov');//向政府卖
+			Route::post('/sellgov', 'TransactionController@sellToGovernment')->name('doSellGov');
+			Route::post('/confirm', 'TransactionController@handleTransaction')->name('confirmTrans');
+		});
 
+		Route::group(['prefix' => 'resource'], function () {
+			Route::get('/list', 'HomeController@showResource')->name('resource');
+			Route::get('/{id}', 'HomeController@showIndividualResource');
+			Route::get('/purchase', 'PurchaseController@showPurchaseForm')->name('purchaseForm');
+			Route::post('/purchase', 'PurchaseController@TopUp')->name('doPurchase');
+		});
+	});
 	Route::group(['prefix' => 'announcement'], function () {
 		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
 	});

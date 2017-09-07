@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
 		'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 		'admin'      => \App\Http\Middleware\VerifyAdmin::class,
 		'register'   => \App\Http\Middleware\VerifyRegister::class,
+		'suspend' => \App\Http\Middleware\VeriryCompetitionStatus::class,
 	];
 }
