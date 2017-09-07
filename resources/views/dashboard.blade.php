@@ -94,7 +94,7 @@
                         <li class="mdui-list-item mdui-ripple">物品清单</li>
                         <br>
                         @foreach($user->resources()->get() as $resource)
-                            <li class="mdui-list-item mdui-ripple">{{ucfirst($resource->resource()->value('name'))}}
+                            <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
                                 : {{$resource->amount}}</li>
                         @endforeach
                         <br/>
