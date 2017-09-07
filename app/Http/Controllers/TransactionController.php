@@ -80,6 +80,9 @@ class TransactionController extends Controller
 	public function sellToGovernment(Request $request)
 	{
 		$user = $request->user();
+        if ($user->type != 2) {
+            return view('errors.custom')->with('message', '您不能向政府购买商品');
+        }
 		$seller_amount = $request->seller_amount;
 		$seller = $user;
 		$buyer = User::type(0)->first();
@@ -103,6 +106,9 @@ class TransactionController extends Controller
 	public function buyFromGovernment(Request $request)
 	{
 		$user = $request->user();
+		if ($user->type != 1) {
+		    return view('errors.custom')->with('message', '您不能向政府购买商品');
+        }
 		$seller_amount = 1;
 		$seller = User::type(0)->first();
 		$buyer = $user;
