@@ -79,7 +79,7 @@
                                  style="width: {{$percent = ($current/$total)*100}}%;"></div>
                         </div>
                         <li class="mdui-list-item mdui-ripple">
-                            当前比赛：{{\App\Config::KeyValue('is_continued') == true ? '正在进行' : '暂停中'}}</li>
+                            当前比赛：{{\App\Config::KeyValue('is_continued')->value == true ? '正在进行' : '暂停中'}}</li>
                         @if(\App\Config::KeyValue('is_continued') == true)
                             <div class="mdui-progress">
                                 <div class="mdui-progress-indeterminate"></div>
