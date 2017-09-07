@@ -126,7 +126,7 @@ class TransactionController extends Controller
 		$buyer_amount = $sellerItem->resource->employment_price;
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'buy'));
 
-		return '成功';
+		return view('success')->with('message', '成功');
 
 	}
 
@@ -189,7 +189,7 @@ class TransactionController extends Controller
 			$trans->checked = $checked;
 			$trans->save();
 
-			return '取消成功';
+			return view('success')->with('message', '取消成功');
 		}
 
 		// 接受交易

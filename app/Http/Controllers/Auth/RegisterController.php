@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Config;
+use App\Resources;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -76,7 +77,7 @@ class RegisterController extends Controller
 			'user_id'     => $user->id,
 			'amount'      => Config::KeyValue('startup_fund')->value,
 		]);
-		foreach (Resource::all() as $resource)
+		foreach (Resources::all() as $resource)
         {
             if($resource->id != 1) {
                 //not money

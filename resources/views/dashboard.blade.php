@@ -144,7 +144,7 @@
                                         <li class="mdui-list-item mdui-ripple">买方: {{$trans->buyer->name}} <code>
                                             </code>
                                         </li>
-                                        <li class="mdui-list-item mdui-ripple">买方: {{$trans->seller->name}} <code>
+                                        <li class="mdui-list-item mdui-ripple">卖方: {{$trans->seller->name}} <code>
                                             </code>
                                         </li>
                                     </ul>
