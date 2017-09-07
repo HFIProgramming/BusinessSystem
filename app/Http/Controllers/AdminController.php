@@ -23,7 +23,7 @@ class AdminController extends Controller
             foreach(Resource::all() as $resource) {
                 if(empty($user->resources()->resid($resource->id)->first())) {
                     $user->resources()->create([
-                        'resource_id' => $resource->id, //money
+                        'resource_id' => $resource->id,
                         'user_id'     => $user->id,
                         'amount'      => 0,
                     ]);
