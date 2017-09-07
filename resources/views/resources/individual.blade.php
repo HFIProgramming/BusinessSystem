@@ -79,7 +79,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($resource->requirement as $key => $value)
+                                    @foreach($resource->equivalent_to as $key => $value)
                                         <tr>
                                             <td>{{\App\Resources::query()->find($key)->first()->name}}</td>
                                             <td>{{$value}}</td>
