@@ -51,6 +51,7 @@
                             </div>
                         </div>
                         @endif
+                        <br>
                         <div class="mdui-card">
                             <div class="mdui-card-primary">
                                 <div class="mdui-card-primary-title">Latest Transaction</div>
