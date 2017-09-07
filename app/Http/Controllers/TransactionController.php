@@ -40,9 +40,8 @@ class TransactionController extends Controller
 //            }
 		// Everyone has money
 		$buyerItem = $buyer->resources()->resid(1)->first();
-
-		if (!$this->canTransactionMade($buyer, $seller, $buyerItem, $sellerItem)) {
-			return view('errors.custom')->with('message ', '你们之间不能交易这两种物品');
+		if (!$this->canTransactionMade($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first())) {
+			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
 
@@ -70,8 +69,7 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-
-		if (!$this->canTransactionMade($buyer, $seller, $buyerItem, $sellerItem)) {
+		if (!$this->canTransactionMade($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first())) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));

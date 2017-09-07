@@ -79,8 +79,8 @@
                                  style="width: {{$percent = ($current/$total)*100}}%;"></div>
                         </div>
                         <li class="mdui-list-item mdui-ripple">
-                            当前比赛：{{\App\Config::KeyValue('is_continued') == true ? '正在进行' : '暂停中'}}</li>
-                        @if(\App\Config::KeyValue('is_continued') == true)
+                            当前比赛：{{\App\Config::KeyValue('is_continued')->value == true ? '正在进行' : '暂停中'}}</li>
+                        @if(\App\Config::KeyValue('is_continued')->value == true)
                             <div class="mdui-progress">
                                 <div class="mdui-progress-indeterminate"></div>
                             </div>
@@ -129,7 +129,7 @@
                                 </ul>
                             </li>
                         @else
-                            @foreach($user->AllTrans->sortByDesc('created_at') as $trans)
+                            @foreach($user->AllTrans->sortByDesc('created_at')->take(1) as $trans)
                                 <li class="mdui-collapse-item mdui-collapse-item-close">
                                     <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                                         <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
@@ -140,7 +140,7 @@
                                         <li class="mdui-list-item mdui-ripple">状态: <code> {{$trans->status}}</code>
                                         </li>
                                         <li class="mdui-list-item mdui-ripple">时间:
-                                            <code> {{$trans->created_at}}</code></li>
+                                            <code> {{$trans->created_at->diffForHumans()}}</code></li>
                                         <li class="mdui-list-item mdui-ripple">买方: {{$trans->buyer->name}} <code>
                                             </code>
                                         </li>

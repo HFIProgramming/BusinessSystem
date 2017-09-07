@@ -10,7 +10,7 @@ class UserTransactionRule extends Model
 
 	protected $casts = [
 		'resource_type'         => 'array',
-		'transaction_user_type' => 'array',
+		'user_transaction_type' => 'array',
 	];
 
 	protected $fillable = [

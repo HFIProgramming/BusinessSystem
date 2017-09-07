@@ -14,7 +14,7 @@ class UserRoleSeeder extends Seeder
 		//
 
 		$default1 = [
-			'user_type'             => 2,
+			'user_type'             => 1,
 			'resource_type'         => [0, 1],
 			'user_transaction_type' => [0, 1, 2],
 		];

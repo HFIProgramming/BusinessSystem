@@ -62,7 +62,7 @@ class User extends Authenticatable
 
 	public function transactionRule()
 	{
-		return $this->belongsTo(UserTransactionRule::class, 'user_type', 'type');
+		return $this->belongsTo(UserTransactionRule::class, 'type', 'user_type');
 	}
 
 }
