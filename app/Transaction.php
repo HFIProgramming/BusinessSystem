@@ -18,6 +18,11 @@ class Transaction extends Model
 		return $this->belongsTo(User::class, 'buyer_id');
 	}
 
+	public function starter()
+    {
+        return $this->belongsTo(User::class, 'starter_id');
+    }
+
 	public function buyerResource()
 	{
 		return $this->belongsTo(UserResource::class, 'buyer_resource_id');
