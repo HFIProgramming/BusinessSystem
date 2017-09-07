@@ -42,6 +42,7 @@
                                 <th>交易方</th>
                                 <th>时间</th>
                                 <th>状态</th>
+                                <th>更新时间</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -53,7 +54,7 @@
                                 <td>{{$transaction->buyerResource->resource->name}}</td>
                                 <td>{{$transaction->buyer_amount}}</td>
                                 <td>{{$transaction->seller->name}}</td>
-                                <td>{{$transaction->timestamp}}</td>
+                                <td>{{$transaction->created_at}}</td>
                                 @if($transaction->checked == 0)
                                     @if($transaction->type == 'sell')
                                         <td>
@@ -85,6 +86,7 @@
                                         完成
                                     </td>
                                 @endif
+                                <td>{{$transaction->updated_at}}</td>
                             </tr>
                             @endforeach
                             @foreach($outComeTransactions as $transaction){{-- I am seller --}}
@@ -95,7 +97,7 @@
                                 <td>{{$transaction->sellerResource->resource->name}}</td>
                                 <td>{{$transaction->seller_amount}}</td>
                                 <td>{{$transaction->buyer->name}}</td>
-                                <td>{{$transaction->timestamp}}</td>
+                                <td>{{$transaction->created_at}}</td>
                                 @if($transaction->checked == 0)
                                     @if($transaction->type == 'buy')
                                         <td>
@@ -128,6 +130,7 @@
                                         完成
                                     </td>
                                 @endif
+                                <td>{{$transaction->updated_at}}</td>
                             </tr>
                             @endforeach
                             </tbody>
