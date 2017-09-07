@@ -41,7 +41,7 @@ class doAutoTransaction
 				$newTrans->seller_amount = $quantity;
 				$newTrans->buyer_amount = 0;
 				$newTrans->type = 'special';
-				event(new NewTransaction($newTrans->seller, $newTrans->buyer, UserResource::find($newTrans->seller_resource_id), UserResource::find($newTrans->buyer_resource_id), $newTrans->seller_amount, $newTrans->buyer_amount, $newTrans->type));
+				event(new NewTransaction($newTrans->starter, $newTrans->seller, $newTrans->buyer, UserResource::find($newTrans->seller_resource_id), UserResource::find($newTrans->buyer_resource_id), $newTrans->seller_amount, $newTrans->buyer_amount, $newTrans->type));
 			}
 		}
 	}
