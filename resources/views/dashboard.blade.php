@@ -152,7 +152,7 @@
                                     <br>
                                     @foreach($user->resources()->get() as $resource)
                                         <li class="mdui-list-item mdui-ripple">{{$resource->resource->id}}
-                                            .|{{$resource->resource->name}}
+                                            .{{$resource->resource->name}}
                                             : {{$resource->amount}}</li>
                                     @endforeach
                                     <br/>

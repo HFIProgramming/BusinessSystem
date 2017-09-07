@@ -93,48 +93,51 @@
                             @endif
                             @endforeach
                             @foreach($outComeTransactions as $transaction){{-- I am seller --}}
-                            <tr>
-                                <td>{{$transaction->id}}</td>
-                                <td>{{$transaction->buyerResource->resource->name}}</td>
-                                <td>{{$transaction->buyer_amount}}</td>
-                                <td>{{$transaction->sellerResource->resource->name}}</td>
-                                <td>{{$transaction->seller_amount}}</td>
-                                <td>{{$transaction->buyer->name}}</td>
-                                <td>{{$transaction->created_at}}</td>
-                                @if($transaction->checked == 0)
-                                    @if($transaction->type == 'buy')
+                            @if ($transaction->type != 'special')
+                                <tr>
+                                    <td>{{$transaction->id}}</td>
+                                    <td>{{$transaction->buyerResource->resource->name}}</td>
+                                    <td>{{$transaction->buyer_amount}}</td>
+                                    <td>{{$transaction->sellerResource->resource->name}}</td>
+                                    <td>{{$transaction->seller_amount}}</td>
+                                    <td>{{$transaction->buyer->name}}</td>
+                                    <td>{{$transaction->created_at}}</td>
+                                    @if($transaction->checked == 0)
+                                        @if($transaction->type == 'buy')
+                                            <td>
+                                                <form action="{{ route('confirmTrans') }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="transactionId"
+                                                           value={{$transaction->id}}>
+                                                    <button type="submit" name="confirm" value="true"
+                                                            class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
+                                                        <i class="mdui-icon material-icons">check</i>
+                                                    </button>
+                                                    &nbsp&nbsp
+                                                    <button type='submit' name="confirm" value="false"
+                                                            class="mdui-btn mdui-btn-icon mdui-color-red mdui-ripple">
+                                                        <i class="mdui-icon material-icons">close</i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        @else
+                                            <td>
+                                                等待
+                                            </td>
+                                        @endif
+
+                                    @elseif($transaction->checked == -1 || $transaction->checked == -2)
                                         <td>
-                                            <form action="{{ route('confirmTrans') }}" method="post">
-                                                {{ csrf_field() }}
-                                                <input type="hidden" name="transactionId" value={{$transaction->id}}>
-                                                <button type="submit" name="confirm" value="true"
-                                                        class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
-                                                    <i class="mdui-icon material-icons">check</i>
-                                                </button>
-                                                &nbsp&nbsp
-                                                <button type='submit' name="confirm" value="false"
-                                                        class="mdui-btn mdui-btn-icon mdui-color-red mdui-ripple">
-                                                    <i class="mdui-icon material-icons">close</i>
-                                                </button>
-                                            </form>
+                                            被取消
                                         </td>
-                                    @else
+                                    @elseif($transaction->checked == 1)
                                         <td>
-                                            等待
+                                            完成
                                         </td>
                                     @endif
-
-                                @elseif($transaction->checked == -1 || $transaction->checked == -2)
-                                    <td>
-                                        被取消
-                                    </td>
-                                @elseif($transaction->checked == 1)
-                                    <td>
-                                        完成
-                                    </td>
-                                @endif
-                                <td>{{$transaction->updated_at}}</td>
-                            </tr>
+                                    <td>{{$transaction->updated_at}}</td>
+                                </tr>
+                            @endif
                             @endforeach
                             </tbody>
                         </table>
