@@ -17,7 +17,7 @@ class CreateUserTransactionRulesTable extends Migration
             $table->increments('id');
             $table->integer('user_type');
             $table->text('resource_type');
-            $table->text('transaction_user_type');
+            $table->text('user_transaction_type');
             $table->timestamps();
         });
     }
