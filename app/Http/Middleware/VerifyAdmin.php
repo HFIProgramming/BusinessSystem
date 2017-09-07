@@ -16,7 +16,7 @@ class VerifyAdmin
 	public function handle($request, Closure $next)
 	{
 		if ($request->user()->id !== 1) {
-			return Redirect('error')->with('Message', 'Admin Only!');
+			return Redirect('error')->with('message', '小子你想法不错哦，居然想篡位？？？');
 		}
 
 		return $next($request);
