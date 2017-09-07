@@ -43,6 +43,8 @@ class CreateTransaction
 		$trans->save();
 		event(new Logger($event->seller->id, 'Create.Trans', $event->buyer->id));
 		if ($trans->buyer->type == 0 || $trans->seller->type == 0) {
+		    $trans->checked = 1;
+		    $trans->save();
 		    event(new AutoTransaction($trans));
         }
 	}
