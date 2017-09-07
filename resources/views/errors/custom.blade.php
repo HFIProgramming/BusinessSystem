@@ -46,8 +46,8 @@
                     </div>
                 </div>
                 <div class="mdui-card-content mdui-typo">
-                    @if ( session()->has('message') )
-                        {{session()->get('message')}}
+                    @if (!empty($message))
+                        {{$message}}
                     @else
                         操作将不能继续进行，如有疑问请联系管理员
                     @endif

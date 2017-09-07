@@ -24,7 +24,7 @@ class PurchaseController extends Controller
 			return view('errors.custom')->with('message', '商品不存在');
 		}
 
-		if (!($this->canUserAcquireThisProduct($user, $item) && $item->type == 0)) { // 中间货币不能被直接购买
+		if (!(($this->canUserAcquireThisProduct($user, $item)) && ($item->type == 0))) { // 中间货币不能被直接购买
 			return view('errors.custom')->with('message', '你不能购买这个商品');
 		}
 
