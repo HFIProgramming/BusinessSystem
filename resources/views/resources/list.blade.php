@@ -49,7 +49,7 @@
                                     <td>{{$resource->ResourceType}}</td>
                                     <td>
                                         <button class="mdui-btn mdui-color-theme mdui-ripple"
-                                                onclick="window.location.href='/resource/{{$resource->id}}'">查看要求
+                                                onclick="window.location.href='/resource/{{$resource->id}}'">查看详情
                                         </button>
                                     </td>
                                     <td>{{$resource->description}}</td>
