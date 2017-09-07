@@ -70,6 +70,7 @@ class TransactionController extends Controller
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
 		if (!$this->canTransactionMade($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first())) {
+			return 'debug';
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
