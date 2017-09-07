@@ -81,7 +81,7 @@
                                     <tbody>
                                     @foreach($resource->equivalent_to as $key => $value)
                                         <tr>
-                                            <td>{{\App\Resources::query()->find($key)->first()->name}}</td>
+                                            <td>{{\App\Resources::query()->where('id',$key)->first()->name}}</td>
                                             <td>{{$value}}</td>
                                         </tr>
                                     @endforeach
