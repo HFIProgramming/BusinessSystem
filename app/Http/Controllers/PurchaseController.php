@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\BuyStuff;
 use App\Resources;
+use App\User;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
