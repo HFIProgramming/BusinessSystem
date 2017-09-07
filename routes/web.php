@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 		Route::get('/', 'AdminController@showDashboard')->name('adminDashboard');
+		Route::get('/refreshUserResource', 'AdminController@refreshUserResource');
 	});
 });
 
