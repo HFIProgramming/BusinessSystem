@@ -88,21 +88,32 @@
             </ul>
         </li>
         {{--@TODO Add Level Limits--}}
-        <li class="mdui-collapse-item">
-            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
-                <div class="mdui-list-item-content">Government Related</div>
-                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-            </div>
-            <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                <li class="mdui-list-item mdui-ripple">
-                    <a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>
-                </li>
-                <li class="mdui-list-item mdui-ripple">
-                    <a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>
-                </li>
-            </ul>
-        </li>
+        {{--<li class="mdui-collapse-item">--}}
+        {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
+        {{--<i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>--}}
+        {{--<div class="mdui-list-item-content">Government Related</div>--}}
+        {{--<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>--}}
+        {{--</div>--}}
+        {{--<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+        {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
+        {{--</li>--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+        {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
+        {{--</li>--}}
+        {{--</ul>--}}
+        {{--</li>--}}
+        @if (Auth::user()->type == 1)
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
+                <a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>
+            </li>
+        @else
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
+                <a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>
+            </li>
+        @endif
         <li class="mdui-divider"></li>
         @if(auth()->id() == 1)
             <li class="mdui-list-item mdui-ripple">
