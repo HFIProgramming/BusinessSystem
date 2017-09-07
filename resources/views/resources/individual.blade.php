@@ -63,7 +63,7 @@
                     <div class="mdui-card">
                         <div class="mdui-card-header">
                             <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-
+                                PACK：购买后获得
                             </div>
                         </div>
 
