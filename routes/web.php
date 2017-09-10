@@ -57,6 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('/purchase', 'PurchaseController@showPurchaseForm')->name('purchaseForm');
 			Route::post('/purchase', 'PurchaseController@TopUp')->name('doPurchase');
 		});
+
+
 	});
 	Route::group(['prefix' => 'announcement'], function () {
 		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');

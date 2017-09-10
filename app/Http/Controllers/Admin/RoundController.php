@@ -10,7 +10,7 @@ class RoundController extends Controller
     //
     public function showCurrent(Request $request)
     {
-        return view('admin.year')->with('current', Config::KeyValue('current_round')->value)
+        return view('admin.round')->with('current', Config::KeyValue('current_round')->value)
             ->with('total', Config::KeyValue('total_round')->value);
     }
 
