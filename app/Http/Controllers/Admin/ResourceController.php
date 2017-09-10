@@ -37,6 +37,14 @@ class ResourceController extends Controller
 
     public function updateMiners(Request $request)
     {
-
+        $miners = $request->miners;
+        foreach($miners as $id=>$emp_price)
+        {
+            if($miner = Resource::find($id))
+            {
+                $miner->employment_price = $emp_price;
+                $miner->save();
+            }
+        }
     }
 }
