@@ -37,7 +37,7 @@ class doTopUp
 		DB::beginTransaction();
 		if(!empty($requirement)) {
 			foreach ($requirement as $key => $value) {
-				$currentItem = $userResources->where('name', $key)->first();
+				$currentItem = $userResources->resid($key)->first();
 				$currentItem->amount -= $value * $event->amount;
 				$currentItem->save();
 			}

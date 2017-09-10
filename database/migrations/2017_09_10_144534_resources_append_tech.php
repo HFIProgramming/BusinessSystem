@@ -17,7 +17,6 @@ class ResourcesAppendTech extends Migration
         Schema::table('resources', function(Blueprint $table) {
             $table->integer('required_tech');
             $table->integer('tech_type');
-            // 0=basic tech 1=top up tech
             $table->integer('tech_level');
             $table->integer('tech_price')->default(0);
         });

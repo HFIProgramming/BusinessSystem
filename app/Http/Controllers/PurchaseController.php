@@ -28,10 +28,12 @@ class PurchaseController extends Controller
 			return view('errors.custom')->with('message', '你不能购买这个商品');
 		}
 
-		if (!empty($item->requirement)) {
-			foreach ($item->requirement as $key => $value) {
-				if ($user->resources()->resid(Resources::where('name', $key)->first()->id)->first()->amount < $amount = $value * $request->amount) {
-					$message .= "材料 {$key} 不足，需要 {$amount} \n";
+		$requirement = ($item->requirement)[$user->techLevel($item->required_tech)];
+
+		if (!empty($requirement)) {
+			foreach ($requirement as $key => $value) {
+				if ($user->resources()->resid($key)->first()->amount < ($amount = $value * $request->amount)) {
+					$message .= ($user->resources()->resid($key)->first()->resource->name)." 不足，需要 {$amount} \n";
 				}
 			}
 		}
