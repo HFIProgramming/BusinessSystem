@@ -4,21 +4,38 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Resources;
 
 class ResourceController extends Controller
 {
     //
-    function createResource(Request $request)
+    public function listBots(Request $request)
     {
-
+        $bots = Resources::where('type', 3)->get();
+        return view('admin.acquisition_price_list')->with('bots', $bots);
     }
 
-    function modifyResource(Request $request)
+    public function updateBots(Request $request)
     {
-
+        $bots = $request->bots;
+        foreach($bots as $id => $acq_price)
+        {
+            if($bot = Resources::find($id))
+            {
+                $bot->acquisition_price = $acq_price;
+                $bot->save();
+            }
+        }
+        return view('success')->with('message', '👌ojbk!');
     }
 
-    function listResources()
+    public function listMiners(Request $request)
+    {
+        $miners = Resources::where('type', 4)->get();
+        return view('admin.employment_price_list')->with('miners', $miners);
+    }
+
+    public function updateMiners(Request $request)
     {
 
     }

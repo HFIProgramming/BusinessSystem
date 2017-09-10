@@ -68,8 +68,10 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-		Route::get('/', 'AdminController@showDashboard')->name('adminDashboard');
-		Route::get('/refreshUserResource', 'AdminController@refreshUserResource');
+		Route::get('/', 'Admin\AdminController@showDashboard')->name('adminDashboard');
+		Route::get('/refreshUserResource', 'Admin\AdminController@refreshUserResource');
+		Route::get('/acquisition_price/list', 'Admin\ResourceController@listBots')->name('listBots');
+		Route::post('/acquisition_price/update', 'Admin\ResourceController@updateBots')->name('updateBots');
 	});
 });
 

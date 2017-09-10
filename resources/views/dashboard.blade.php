@@ -151,9 +151,10 @@
                                     <li class="mdui-list-item mdui-ripple mdui-typo-headline">物品清单</li>
                                     <br>
                                     @foreach($user->resources()->get() as $resource)
-                                        <li class="mdui-list-item mdui-ripple">{{$resource->resource->id}}
-                                            .{{$resource->resource->name}}
+                                        @if($resource->resource->type >=0 && $resource->resource->type <= 3)
+                                        <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
                                             : {{$resource->amount}}</li>
+                                        @endif
                                     @endforeach
                                     <br/>
                                 </ul>
