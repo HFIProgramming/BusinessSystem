@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/refreshUserResource', 'Admin\AdminController@refreshUserResource');
 		Route::get('/acquisition_price/list', 'Admin\ResourceController@listBots')->name('listBots');
 		Route::post('/acquisition_price/update', 'Admin\ResourceController@updateBots')->name('updateBots');
+		Route::get('/employment_price/list', 'Admin\ResourceController@listMiners')->name('listMiners');
+		Route::post('/employment_price/update', 'Admin\ResourceController@updateMiners')->name('updateMiners');
 	});
 });
 

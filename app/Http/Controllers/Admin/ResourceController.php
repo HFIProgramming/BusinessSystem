@@ -40,11 +40,12 @@ class ResourceController extends Controller
         $miners = $request->miners;
         foreach($miners as $id=>$emp_price)
         {
-            if($miner = Resource::find($id))
+            if($miner = Resources::find($id))
             {
                 $miner->employment_price = $emp_price;
                 $miner->save();
             }
         }
+        return view('success')->with('message', '👌ojbk!');
     }
 }

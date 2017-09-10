@@ -4,7 +4,7 @@
     <div class="mdui-container doc-container">
         <div class="mdui-row">
             <div class="mdui-col-xs-12">
-                <form action="{{ route('updateBots') }}" method="post" enctype="application/json">
+                <form action="{{ route('updateMiners') }}" method="post" enctype="application/json">
                     {{ csrf_field() }}
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
@@ -34,7 +34,7 @@
                                         <td class="mdui-textfield">
                                             <input class="mdui-textfield-input" type="text"
                                                    value="{{ $miner->employment_price }}"
-                                                   name="bots[{{$miner->id}}]"/>
+                                                   name="miners[{{$miner->id}}]"/>
                                         </td>
                                     </tr>
                                 @endforeach
