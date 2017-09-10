@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Config;
 
 class RoundController extends Controller
 {
     //
-    public function showCurrent(Request $request)
+    public function show(Request $request)
     {
-        return view('admin.round')->with('current', Config::KeyValue('current_round')->value)
+        return view('admin.fiscal_year')->with('current', Config::KeyValue('current_round')->value)
             ->with('total', Config::KeyValue('total_round')->value);
     }
 
@@ -19,6 +20,7 @@ class RoundController extends Controller
         $total = Config::KeyValue('total_round');
         $total->value = $request->total_round;
         $total->save();
+        return redirect()->back();
     }
 
     public function changeCurrent(Request $request)
@@ -26,5 +28,6 @@ class RoundController extends Controller
         $current = Config::KeyValue('current_round');
         $current->value += $request->increment;
         $current->save();
+        return redirect()->back();
     }
 }
