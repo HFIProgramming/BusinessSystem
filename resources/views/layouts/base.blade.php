@@ -87,7 +87,6 @@
                 </li>
             </ul>
         </li>
-        {{--@TODO Add Level Limits--}}
         {{--<li class="mdui-collapse-item">--}}
         {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
         {{--<i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>--}}
@@ -108,10 +107,16 @@
                 <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
                 <a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>
             </li>
-        @else
+        @elseif (Auth::user()->type == 2)
             <li class="mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
                 <a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>
+            </li>
+        @endif
+        @if (Auth::user()->type == 2)
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>
+                <a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>
             </li>
         @endif
         <li class="mdui-divider"></li>

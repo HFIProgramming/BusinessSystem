@@ -30,7 +30,7 @@ class PurchaseController extends Controller
 
 		if (!empty($item->requirement)) {
 			foreach ($item->requirement as $key => $value) {
-				if ($user->resources()->where('name', $key)->amount < $amount = $value * $request->amount) {
+				if ($user->resources()->resid(Resources::where('name', $key)->first()->id)->first()->amount < $amount = $value * $request->amount) {
 					$message .= "材料 {$key} 不足，需要 {$amount} \n";
 				}
 			}

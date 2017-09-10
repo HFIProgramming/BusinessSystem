@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Technology;
 use App\Resources;
-use Illuminate\Http\Resources\Json\Resource;
+use App\User;
+use App\Events\NewTransaction;
 
 class TechnologyController extends Controller
 {
@@ -14,7 +15,7 @@ class TechnologyController extends Controller
     {
     }
 
-    public function showTechForm(Request $request)
+    public function showTechPage(Request $request)
     {
         $user = $request->user();
         $tech_type = 1;
@@ -28,7 +29,7 @@ class TechnologyController extends Controller
 //        $tech_type = $request->tech_type; //There is only one meaningful type now anyway
         $tech_type = 1;//for less front-end work
         $currentLevel  = $user->techLevel($tech_type);
-        $newTech = Resource::where('tech_type', $tech_type)->where('tech_level', $currentLevel+1)->first();
+        $newTech = Resources::where('tech_type', $tech_type)->where('tech_level', $currentLevel+1)->first();
         if ($user->type != 2 || $tech_type != 1) {
             return view('errors.custom')->with('message', '您不能进行该升级');
         }

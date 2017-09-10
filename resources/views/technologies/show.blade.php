@@ -24,7 +24,7 @@
                     </div>
                     <div>
                         <br><br>
-                        &nbsp&nbsp&nbsp&nbsp<button id="update" name="update" value="升级" class="mdui-btn mdui-btn-raised mdui-ripple">升级</button>
+                        &nbsp&nbsp&nbsp&nbsp<button onclick="window.location.href='{{ route('updateTech') }}';" class="mdui-btn mdui-btn-raised mdui-ripple">升级</button>
                     </div>
                     <br><br>
                 </div>

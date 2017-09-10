@@ -58,7 +58,10 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::post('/purchase', 'PurchaseController@TopUp')->name('doPurchase');
 		});
 
-
+		Route::group(['prefix' => 'technology'], function () {
+		   Route::get('/show', 'TechnologyController@showTechPage')->name('showTech');
+		   Route::get('/update', 'TechnologyController@updateTech')->name('updateTech');
+        });
 	});
 	Route::group(['prefix' => 'announcement'], function () {
 		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
