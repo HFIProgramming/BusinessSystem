@@ -49,22 +49,26 @@
 
 <div class="mdui-drawer mdui-drawer-open" id="left-drawer">
     <ul class="mdui-list">
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
-            <div class="mdui-list-item-content">公告</div>
-        </li>
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+            {{--<i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>--}}
+            {{--<div class="mdui-list-item-content">公告</div>--}}
+        {{--</li>--}}
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
-            <div class="mdui-list-item-content">用户信息</div>
+            <a href="{{ route('listMiners') }}" class="mdui-list-item-content">Employment Prices</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
-            <div class="mdui-list-item-content">资源信息</div>
+            <a href="{{ route('listBots') }}" class="mdui-list-item-content">Acquisition Prices</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>
-            <div class="mdui-list-item-content">日志</div>
+            <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+            <a href="{{ route('showRound') }}" class="mdui-list-item-content">Fiscal Year</a>
         </li>
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+            {{--<i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>--}}
+            {{--<div class="mdui-list-item-content">日志</div>--}}
+        {{--</li>--}}
         <li class="mdui-divider"></li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>

@@ -74,6 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/acquisition_price/update', 'Admin\ResourceController@updateBots')->name('updateBots');
 		Route::get('/employment_price/list', 'Admin\ResourceController@listMiners')->name('listMiners');
 		Route::post('/employment_price/update', 'Admin\ResourceController@updateMiners')->name('updateMiners');
+		Route::get('/fiscal_year/show')->name('showRound');
+		Route::post('/fiscal_year/change_total', 'Admin\RoundController@changeTotal')->name('changeTotalRound');
+		Route::post('/fiscal_year/change_current', 'Admin\RoundController@changeCurrent')->name('changeCurrentRound');
 	});
 });
 
