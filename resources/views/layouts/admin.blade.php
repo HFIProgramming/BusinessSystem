@@ -33,6 +33,12 @@
         .footer {
             margin-top: 25px;
         }
+
+        .mdui-theme-accent-red .mdui-textfield-focus .mdui-textfield-input {
+            border-bottom-color: #3f51b5;
+            -webkit-box-shadow: 0 1px 0 0 #3f51b5;
+            box-shadow: 0 1px 0 0 #3f51b5;
+        }
     </style>
     @yield('stylesheet')
     @yield('script')
