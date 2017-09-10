@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTechnologiesTable extends Migration
+class ResourcesAppendTech extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTechnologiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('technologies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('tech');
-            $table->integer('level')->default(1);
-            $table->timestamps();
+        //
+        Schema::table('resources', function(Blueprint $table) {
+            $table->integer('required_tech');
+            $table->integer('tech_if_tech');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateTechnologiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('technologies');
+        //
     }
 }

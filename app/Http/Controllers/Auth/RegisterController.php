@@ -88,7 +88,7 @@ class RegisterController extends Controller
                 ]);
             }
         }
-		//@TODO Test Initialization
+		//@TODO Tech Initialization
 		return $user;
 	}
 
