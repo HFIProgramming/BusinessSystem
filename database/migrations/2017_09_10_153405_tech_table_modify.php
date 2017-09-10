@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ResourcesAppendTech extends Migration
+class TechTableModify extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,10 @@ class ResourcesAppendTech extends Migration
     public function up()
     {
         //
-        Schema::table('resources', function(Blueprint $table) {
-            $table->integer('required_tech');
-            $table->integer('tech_type');
-            // 0=basic tech 1=top up tech
-            $table->integer('tech_level');
-            $table->integer('tech_price')->default(0);
+        Schema::table('Technologies', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('type');
+            $table->integer('level');
         });
     }
 

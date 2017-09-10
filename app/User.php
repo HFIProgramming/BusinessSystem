@@ -32,6 +32,11 @@ class User extends Authenticatable
 		return $this->hasMany(UserResource::class);
 	}
 
+	public function techLevel($tech_type)
+    {
+        return $this->hasMany(Technology::class)->where('type', $tech_type)->first()->level;
+    }
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */

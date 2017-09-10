@@ -15,9 +15,6 @@ class CreateTechnologiesTable extends Migration
     {
         Schema::create('technologies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('tech');
-            $table->integer('level')->default(1);
             $table->timestamps();
         });
     }

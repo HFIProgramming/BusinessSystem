@@ -32,7 +32,7 @@ class doTopUp
 	{
 		// First, check requirements
 		$userResources = $event->user->resources();
-		$requirement = $event->item->requirement;
+		$requirement = ($event->item->requirement)[$event->user->techLevel($event->item->required_tech)];
 
 		DB::beginTransaction();
 		if(!empty($requirement)) {
