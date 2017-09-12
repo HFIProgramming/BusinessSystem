@@ -14,6 +14,9 @@ class Resources extends Model
 
 	protected $fillable = [
 		'code', 'name', 'description', 'type',
+        'requirement', 'equivalent_to',
+        'acquisition_price', 'employment_price',
+        'required_tech', 'tech_type', 'tech_level', 'tech_price'
 	];
 
 	public function getResourceTypeAttribute()
