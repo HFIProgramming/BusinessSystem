@@ -26,6 +26,10 @@ class CreateResourcesTable extends Migration
             $table->integer('acquisition_price')->default(0);//政府收购价
             $table->integer('employment_price')->default(0);//雇佣价
             $table->text('equivalent_to')->nullable();
+            $table->integer('required_tech')->nullable();
+            $table->integer('tech_type')->nullable();
+            $table->integer('tech_level')->nullable();
+            $table->integer('tech_price')->nullable();
             $table->timestamps();
         });
     }
