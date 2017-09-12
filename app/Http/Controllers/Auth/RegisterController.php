@@ -75,7 +75,7 @@ class RegisterController extends Controller
 		$user->resources()->create([
 			'resource_id' => 1, //money
 			'user_id'     => $user->id,
-			'amount'      => Config::KeyValue('startup_fund')->value,
+			'amount'      => Config::KeyValue('startup_fund_'.$data['type'])->value,
 		]);
 		foreach (Resources::all() as $resource)
         {
@@ -88,7 +88,6 @@ class RegisterController extends Controller
                 ]);
             }
         }
-		//@TODO Tech Initialization
 		return $user;
 	}
 
