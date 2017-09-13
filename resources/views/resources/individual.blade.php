@@ -38,9 +38,9 @@
                                 <tbody>
                                 @if (!empty($resource->requirement))
                                     @foreach($resource->requirement as $level => $req)
-                                        <?php
-                                        $i = 0
-                                        ?>
+                                        @php()
+                                        $i = 0;
+                                        @endphp
                                         @foreach ($req as $key => $value)
                                             <tr>
                                                 @if(++$i == 1)
