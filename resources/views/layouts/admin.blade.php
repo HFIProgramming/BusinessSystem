@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta')
 
-    <title>@yield('title'){{ config('app.name', ' NoticeBoard') }}</title>
+    <title>@yield('title'){{ config('app.name', ' - HFIProgramming') }}</title>
 
     <!-- Basic Styles and JS-->
     <link href="//cdn.bootcss.com/mdui/0.2.1/css/mdui.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
     @yield('script')
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-red mdui-drawer-body-left mdui-appbar-with-toolbar">
+<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-drawer-body-left mdui-appbar-with-toolbar">
 
 <div class="mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar mdui-color-theme">
@@ -55,10 +55,10 @@
 
 <div class="mdui-drawer mdui-drawer-open" id="left-drawer">
     <ul class="mdui-list">
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-            {{--<i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>--}}
-            {{--<div class="mdui-list-item-content">公告</div>--}}
-        {{--</li>--}}
+        <li class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
+            <a href="{{ route('addAnnouncement') }}" class="mdui-list-item-content">Add Announcement</a>
+        </li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
             <a href="{{ route('listMiners') }}" class="mdui-list-item-content">Employment Prices</a>
@@ -71,10 +71,10 @@
             <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
             <a href="{{ route('showRound') }}" class="mdui-list-item-content">Fiscal Year</a>
         </li>
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-            {{--<i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>--}}
-            {{--<div class="mdui-list-item-content">日志</div>--}}
-        {{--</li>--}}
+        <li class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>
+            <a href="{{ route('showLogs') }}" class="mdui-list-item-content">Logs</a>
+        </li>
         <li class="mdui-divider"></li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>

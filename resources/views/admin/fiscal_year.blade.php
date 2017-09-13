@@ -10,6 +10,8 @@
                     <br>
                     <div class="mdui-card-header mdui-text-center">
                         <div class="mdui-card-primary-title">当前财年：{{ $current }}</div>
+                        <div class="mdui-card-primary-title">
+                            当前比赛状态：{{ \App\Config::KeyValue('is_continued') ? '正在进行' : '暂停中' }}</div>
                     </div>
                     <div class="mdui-text-center">
                         <br><br>
@@ -24,6 +26,16 @@
                                     class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-offset-xs-1">
                                 <i class="mdui-icon material-icons">keyboard_arrow_right</i>
                                 下一年
+                            </button>
+                            <button type="submit" name="condition" value="1"
+                                    class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-offset-xs-1">
+                                <i class="mdui-icon material-icons">keyboard_arrow_right</i>
+                                开始
+                            </button>
+                            <button type="submit" name="condition" value="-1"
+                                    class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-offset-xs-1">
+                                <i class="mdui-icon material-icons">keyboard_arrow_right</i>
+                                暂停
                             </button>
                         </form>
                     </div>
