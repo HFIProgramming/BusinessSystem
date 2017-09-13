@@ -13,6 +13,6 @@ class LogController extends Controller
 
 	public function showLogs()
 	{
-		return view('admin.logs')->with('logs', Logs::with('user')->all());
+		return view('admin.logs')->with('logs', Logs::with('user')->get());
 	}
 }

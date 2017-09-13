@@ -29,10 +29,6 @@
                     <div class="mdui-card-content mdui-typo">
                         <form method="post">
                             {{ csrf_field() }}
-                            <div class="mdui-textfield">
-                                <input class="mdui-textfield-input" type="text" placeholder="User Name"/>
-                            </div>
-
                             <div class="mdui-textfield mdui-textfield-floating-label">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">title</i>
                                 <label class="mdui-textfield-label">标题</label>
