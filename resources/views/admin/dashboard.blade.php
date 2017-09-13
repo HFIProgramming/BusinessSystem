@@ -63,7 +63,7 @@
             </div>
             <br>
             <div class="mdui-card-content">
-                <div class="mdui-typo-subheading">以下为更新的当前财年：</div>
+
                 <ul class="mdui-list">
                     <li class="mdui-list-item mdui-ripple">{{\App\Config::KeyValue('current_round')->value}}</li>
                 </ul>

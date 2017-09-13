@@ -32,7 +32,7 @@
                                 <i class="mdui-icon material-icons">keyboard_arrow_right</i>
                                 开始
                             </button>
-                            <button type="submit" name="condition" value="-1"
+                            <button type="submit" name="condition" value="0"
                                     class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-offset-xs-1">
                                 <i class="mdui-icon material-icons">keyboard_arrow_right</i>
                                 暂停
