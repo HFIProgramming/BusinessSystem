@@ -30,25 +30,33 @@
                             <table class="mdui-table">
                                 <thead>
                                 <tr>
+                                    <th>科技等级</th>
                                     <th>需要的物品</th>
                                     <th>需要的物品数量</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @if (!empty($resource->requirement))
-                                    @foreach($resource->requirement as $key => $value)
-                                        <tr>
-                                            <td>{{$key}}</td>
-                                            <td>{{$value}}</td>
-                                        </tr>
+                                    @foreach($resource->requirement as $level => $req)
+                                        <?php
+                                        $i = 0
+                                        ?>
+                                        @foreach ($req as $key => $value)
+                                            <tr>
+                                                @if(++$i == 1)
+                                                    <td rowspan={{count($req)}}>{{$level}}</td>
+                                                @endif
+                                                <td>{{App\Resources::find($key)->name}}</td>
+                                                <td>{{$value}}</td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
-                                </tbody>
                                 @else
                                     <tr>
-                                        <td>没有需求</td>
-                                        <td>空</td>
+                                        <td colspan="3">没有需求</td>
                                     </tr>
                                 @endif
+                                </tbody>
                             </table>
                         </div>
                         <br>
