@@ -8,26 +8,34 @@ use App\Config;
 
 class RoundController extends Controller
 {
-    //
-    public function show(Request $request)
-    {
-        return view('admin.fiscal_year')->with('current', Config::KeyValue('current_round')->value)
-            ->with('total', Config::KeyValue('total_round')->value);
-    }
+	//
+	public function show(Request $request)
+	{
+		return view('admin.fiscal_year')->with('current', Config::KeyValue('current_round')->value)
+			->with('total', Config::KeyValue('total_round')->value);
+	}
 
-    public function changeTotal(Request $request)
-    {
-        $total = Config::KeyValue('total_round');
-        $total->value = $request->total_round;
-        $total->save();
-        return redirect()->back();
-    }
+	public function changeTotal(Request $request)
+	{
+		$total = Config::KeyValue('total_round');
+		$total->value = $request->total_round;
+		$total->save();
 
-    public function changeCurrent(Request $request)
-    {
-        $current = Config::KeyValue('current_round');
-        $current->value += $request->increment;
-        $current->save();
-        return redirect()->back();
-    }
+		return redirect()->back();
+	}
+
+	public function changeCurrent(Request $request)
+	{
+		if (!empty($request->increment)) {
+			$current = Config::KeyValue('current_round');
+			$current->value += $request->increment;
+			$current->save();
+		} elseif (!empty($request->condition)) {
+			$condition = Config::KeyValue('is_continued');
+			$condition->value = $request->condition;
+			$condition->save();
+		}
+
+		return redirect()->back();
+	}
 }

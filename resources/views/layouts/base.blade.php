@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta')
 
-    <title>@yield('title'){{ config('app.name', ' HFIProgramming') }}</title>
+    <title>@yield('title'){{ config('app.name', ' - HFIProgramming') }}</title>
 
     <!-- Basic Styles and JS-->
     <link href="https://cdn.bootcss.com/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
