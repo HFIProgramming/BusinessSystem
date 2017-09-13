@@ -11,7 +11,7 @@
                     <div class="mdui-card-header mdui-text-center">
                         <div class="mdui-card-primary-title">当前财年：{{ $current }}</div>
                         <div class="mdui-card-primary-title">
-                            当前比赛状态：{{ \App\Config::KeyValue('is_continued') == true ? '正在进行' : '暂停中' }}</div>
+                            当前比赛状态：{{ \App\Config::KeyValue('is_continued')->value == true ? '正在进行' : '暂停中' }}</div>
                     </div>
                     <div class="mdui-text-center">
                         <br><br>
