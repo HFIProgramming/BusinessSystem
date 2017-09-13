@@ -91,7 +91,7 @@ class RegisterController extends Controller
         for ($t = 0; $t <= 1; $t++) {
             Technology::create([
                 'user_id' => $user->id,
-                'type' => 0,
+                'type' => $t,
                 'level' => 1
             ]);
         }
