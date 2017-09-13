@@ -238,5 +238,36 @@ class ResourceSeeder extends Seeder
                 1 => [18 => 1, 19 => 1, 20 => 1]
             ]
         ]);
+
+        //矿工队A
+        for($i=1;$i<=4;$i++) {
+            Resources::create([
+                'code' => 'mineA lv'.$i,
+                'name' => '采矿A - Lv.'.$i,
+                'description' => "采矿A - 科技树{$i}级",
+                'type' => 4,
+                'equivalent_to' => [2 => 800*(1+($i-1)/10), 3 => 400*(1+($i-1)/10), 4 => 600*(1+($i-1)/10)]
+            ]);
+        }
+        //矿工队B
+        for($i=1;$i<=4;$i++) {
+            Resources::create([
+                'code' => 'mineB lv'.$i,
+                'name' => '采矿B - Lv.'.$i,
+                'description' => "采矿B - 科技树{$i}级",
+                'type' => 4,
+                'equivalent_to' => [2 => 600*(1+($i-1)/10), 3 => 800*(1+($i-1)/10), 4 => 400*(1+($i-1)/10)]
+            ]);
+        }
+        //矿工队C
+        for($i=1;$i<=4;$i++) {
+            Resources::create([
+                'code' => 'mineC lv'.$i,
+                'name' => '采矿C - Lv.'.$i,
+                'description' => "采矿C - 科技树{$i}级",
+                'type' => 4,
+                'equivalent_to' => [2 => 400*(1+($i-1)/10), 3 => 600*(1+($i-1)/10), 4 => 800*(1+($i-1)/10)]
+            ]);
+        }
     }
 }
