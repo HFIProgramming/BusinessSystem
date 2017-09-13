@@ -26,11 +26,11 @@ class RoundController extends Controller
 
 	public function changeCurrent(Request $request)
 	{
-		if (!empty($request->increment)) {
+		if ($request->increment != NULL) {
 			$current = Config::KeyValue('current_round');
 			$current->value += $request->increment;
 			$current->save();
-		} elseif (!empty($request->condition)) {
+		} elseif ($request->condition != NULL) {
 			$condition = Config::KeyValue('is_continued');
 			$condition->value = $request->condition;
 			$condition->save();
