@@ -50,6 +50,6 @@ class doTransaction
 		DB::commit();
 
 		event(new Logger($event->seller->id, 'Trans.Accepted', "Seller Item :{$event->sellerItem}; Amount: {$event->sellerAmount}
-		<=> Buyer Item: {$event->buyerItem}; Amount: {$event->buyerAmount} Opposite: {$event->buyer->id}|{$event->buyer->name}"));
+		<=> Buyer Item: {$event->buyerItem}; Amount: {$event->buyerAmount}; \r\n Opposite: {$event->buyer->id}|{$event->buyer->name}"));
 	}
 }
