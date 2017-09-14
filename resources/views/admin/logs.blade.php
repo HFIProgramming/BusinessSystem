@@ -48,7 +48,7 @@
                                     <td>{{$log->id}}</td>
                                     <td>{{$log->user->name}}</td>
                                     <td>{{$log->current_round}}</td>
-                                    <td>{{$logs->function}}</td>
+                                    <td>{{$log->function}}</td>
                                     <td>{{$log->message}}</td>
                                     <td>{{$log->created_at}}</td>
                                 </tr>
