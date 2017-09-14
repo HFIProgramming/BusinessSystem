@@ -30,10 +30,10 @@ class doTransaction
 	{
 
 
-        // 操作
+		// 操作
 		DB::beginTransaction();
-        $sellerOutRes = $event->seller->resources()->resid($event->sellerItem)->first();
-        $buyerOutRes = $event->buyer->resources()->resid($event->buyerItem)->first();
+		$sellerOutRes = $event->seller->resources()->resid($event->sellerItem)->first();
+		$buyerOutRes = $event->buyer->resources()->resid($event->buyerItem)->first();
 		$sellerOutRes->amount -= $event->sellerAmount;
 		$buyerOutRes->amount -= $event->buyerAmount;
 		$sellerOutRes->save();
@@ -41,15 +41,15 @@ class doTransaction
 		DB::commit();
 
 		DB::beginTransaction();
-        $sellerInRes = $event->seller->resources()->resid($event->buyerItem)->first();
-        $buyerInRes = $event->buyer->resources()->resid($event->sellerItem)->first();
-        $sellerInRes->amount += $event->buyerAmount;
-        $buyerInRes->amount += $event->sellerAmount;
-        $sellerInRes->save();
-        $buyerInRes->save();
+		$sellerInRes = $event->seller->resources()->resid($event->buyerItem)->first();
+		$buyerInRes = $event->buyer->resources()->resid($event->sellerItem)->first();
+		$sellerInRes->amount += $event->buyerAmount;
+		$buyerInRes->amount += $event->sellerAmount;
+		$sellerInRes->save();
+		$buyerInRes->save();
 		DB::commit();
 
 		event(new Logger($event->seller->id, 'Trans.Accepted', "Seller Item :{$event->sellerItem}; Amount: {$event->sellerAmount}
-		<=> Buyer Item: {$event->buyerItem}; Amount: {$event->buyerAmount}"));
+		<=> Buyer Item: {$event->buyerItem}; Amount: {$event->buyerAmount} Opposite: {$event->buyer->id}|{$event->buyer->name}"));
 	}
 }
