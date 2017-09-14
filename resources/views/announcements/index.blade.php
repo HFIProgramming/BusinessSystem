@@ -24,7 +24,7 @@
                         </div>
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">{{$announcement->title}}</div>
-                            <!--<div class="mdui-card-primary-subtitle">Recent Nodes Adjustment</div>-->
+                            {{--<div class="mdui-card-primary-subtitle">Recent Nodes Adjustment</div>--}}
                         </div>
                         <div class="mdui-card-content">
                             {{$announcement->content}}

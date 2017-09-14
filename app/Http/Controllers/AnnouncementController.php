@@ -14,7 +14,7 @@ class AnnouncementController extends Controller
 
     public function showAnnouncementList()
     {
-        return view('announcements.index')->with('announcements', Announcement::query()->orderByDesc('created_at')->get());
+        return view('announcements.index')->with('announcements', Announcement::query()->orderBy('created_at')->get());
     }
 
     public function createAnnouncement(Request $request)
