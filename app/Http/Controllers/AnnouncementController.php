@@ -14,11 +14,11 @@ class AnnouncementController extends Controller
 
     public function showAnnouncementList()
     {
-        return view('announcements.index')->with('announcements', Announcement::all());
+        return view('announcements.index')->with('announcements', Announcement::query()->orderByDesc('created_at')->get());
     }
 
     public function createAnnouncement(Request $request)
     {
-        Announcement::create($request->all());
+        Announcement::query()->create($request->all());
     }
 }

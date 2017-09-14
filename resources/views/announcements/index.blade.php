@@ -20,7 +20,7 @@
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src="/img/avg.jpg"/>
                             <div class="mdui-card-header-title">Root</div>
-                            <div class="mdui-card-header-subtitle">Published At: {{$announcement->timestamp}}</div>
+                            <div class="mdui-card-header-subtitle">Published At: {{$announcement->created_at->diffForHumans()}}</div>
                         </div>
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">{{$announcement->title}}</div>
