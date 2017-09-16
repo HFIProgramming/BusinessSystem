@@ -31,7 +31,7 @@ class doTopUp
 	public function handle(BuyStuff $event)
 	{
 		// First, check requirements
-		$userResources = $event->user->resources();
+		$userResources = $event->user->resources()->get();
 		$requirement = ($event->item->requirement)[$event->user->techLevel($event->item->required_tech)];
 
 		DB::beginTransaction();
