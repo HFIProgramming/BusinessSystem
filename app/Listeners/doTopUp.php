@@ -38,7 +38,7 @@ class doTopUp
 		if(!empty($requirement)) {
 			foreach ($requirement as $key => $value) {
 				$currentItem = $userResources->resid($key)->first();
-				$currentItem->amount -= $value * $event->amount;
+				$currentItem->amount = $currentItem->amount - $value * $event->amount;
 				$currentItem->save();
 			}
 		}
