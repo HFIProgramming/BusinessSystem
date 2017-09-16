@@ -34,12 +34,16 @@ class doTopUp
 		$userResources = $event->user->resources();
 		$requirement = ($event->item->requirement)[$event->user->techLevel($event->item->required_tech)];
 
-		DB::beginTransaction();
+		//DB::beginTransaction();
 		if (!empty($requirement)) {
 			foreach ($requirement as $key => $value) {
-				$currentItem = $userResources->where('resource_id', $key)->first();
-				$currentItem->amount = $currentItem->amount - $value * $event->amount;
-				$currentItem->save();
+				$currentChosenItem = $event->user->resources()->where('resource_id', $key)->first();
+				//$currentItem = clone $currentChosenItem;	
+				$amount = (double)$currentChosenItem->amount;
+				//dd($currentChosenItem->amount);
+				$currentChosenItem->amount = $amount - ($value * $event->amount);
+				$currentChosenItem->save();
+				//$currentChosenItem = NULL;
 			}
 		}
 		$newItem = UserResource::query()->where('resource_id', $event->item->id)->firstOrCreate([
