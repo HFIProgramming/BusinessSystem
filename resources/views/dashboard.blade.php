@@ -126,6 +126,8 @@
                                 <ul class="mdui-list">
                                     <li class="mdui-list-item mdui-ripple">
                                         你的ID：{{$user->id}}</li>
+                                    <li class="mdui-list-item mdui-ripple">
+                                        你的类型：{{$user->userType}}</li>
                                     <li class="mdui-divider"></li>
                                     <li class="mdui-list-item mdui-ripple">
                                         当前财年：{{$current = \App\Config::KeyValue('current_round')->value}}</li>

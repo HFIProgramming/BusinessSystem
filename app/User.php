@@ -33,9 +33,9 @@ class User extends Authenticatable
 	}
 
 	public function techLevel($tech_type)
-    {
-        return $this->hasMany(Technology::class)->where('type', $tech_type)->first()->level;
-    }
+	{
+		return $this->hasMany(Technology::class)->where('type', $tech_type)->first()->level;
+	}
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -70,4 +70,22 @@ class User extends Authenticatable
 		return $this->belongsTo(UserTransactionRule::class, 'type', 'user_type');
 	}
 
+	public function getUserTypeAttribute()
+	{
+		switch ($this->type) {
+			case 0:
+				return '管理员';
+				break;
+			case 1:
+				return '原材料商';
+				break;
+			case 2:
+				return '加工商';
+				break;
+			default:
+				return '你什么鬼？';
+				break;
+		}
+	}
 }
+

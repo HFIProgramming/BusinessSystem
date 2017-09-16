@@ -8,15 +8,15 @@ class Resources extends Model
 {
 	//
 	protected $casts = [
-		'requirement' => 'array',
-        'equivalent_to' => 'array'
+		'requirement'   => 'array',
+		'equivalent_to' => 'array',
 	];
 
 	protected $fillable = [
 		'code', 'name', 'description', 'type',
-        'requirement', 'equivalent_to',
-        'acquisition_price', 'employment_price',
-        'required_tech', 'tech_type', 'tech_level', 'tech_price'
+		'requirement', 'equivalent_to',
+		'acquisition_price', 'employment_price',
+		'required_tech', 'tech_type', 'tech_level', 'tech_price',
 	];
 
 	public function getResourceTypeAttribute()
@@ -33,6 +33,13 @@ class Resources extends Model
 				break;
 			case 3:
 				return '完成品';
+				break;
+			case 4:
+				return '采矿队';
+				break;
+			case 5:
+				return '科技等级';
+				break;
 			default:
 				return '这尼玛是什么玩意';
 		}
