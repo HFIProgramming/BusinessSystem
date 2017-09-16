@@ -31,13 +31,13 @@ class doTopUp
 	public function handle(BuyStuff $event)
 	{
 		// First, check requirements
-		$userResources = $event->user->resources()->get();
+		$userResources = $event->user->resources();
 		$requirement = ($event->item->requirement)[$event->user->techLevel($event->item->required_tech)];
 
 		DB::beginTransaction();
 		if(!empty($requirement)) {
 			foreach ($requirement as $key => $value) {
-				$currentItem = $userResources->resid($key)->first();
+				$currentItem = $userResources->where('resource_id', $key)->first();
 				$currentItem->amount -= $value * $event->amount;
 				$currentItem->save();
 			}
