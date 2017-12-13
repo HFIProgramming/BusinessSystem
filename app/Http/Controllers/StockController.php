@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewTransaction;
+use App\Events\StockTransaction;
 use App\Stock;
 use Illuminate\Http\Request;
 use App\User;
@@ -34,6 +35,7 @@ class StockController extends Controller
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
+        event(new StockTransaction($stock, 'buy', $amount));
 
     }
 
@@ -60,5 +62,6 @@ class StockController extends Controller
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
+        event(new StockTransaction($stock, 'sell', $amount));
     }
 }

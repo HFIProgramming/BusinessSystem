@@ -27,5 +27,18 @@ class UpdateRemaining
     public function handle(StockTransaction $event)
     {
         //
+        $stock = $event->stock;
+        $type = $event->type;
+        $amount = $event->amount;
+        if($type == 'buy')
+        {
+            $stock->sell_remain -= $amount;
+            $stock->save();
+        }
+        if($type == 'sell')
+        {
+            $stock->buy_remain -= $amount;
+            $stock->save();
+        }
     }
 }

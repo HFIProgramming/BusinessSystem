@@ -14,14 +14,21 @@ class StockTransaction
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $stock;
+    public $type;
+    public $amount;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($stock, $type, $amount)
     {
         //
+        $this->stock = $stock;
+        $this->type = $type;
+        $this->amount = $amount;
     }
 
     /**
