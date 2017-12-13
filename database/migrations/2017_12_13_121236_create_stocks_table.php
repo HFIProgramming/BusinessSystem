@@ -18,6 +18,13 @@ class CreateStocksTable extends Migration
             $table->float('current_price');
             $table->string('history_prices');
             $table->integer('company');
+            $table->integer('resource');
+            $table->integer('total');
+            $table->float('dividend');
+            $table->string('up_poly_coeff');//the polynomial coefficients to calculate the price if go up
+            $table->string('down_poly_coeff');//similar as above
+            $table->integer('sell_remain');
+            $table->integer('buy_remain');
             $table->timestamps();
         });
     }
