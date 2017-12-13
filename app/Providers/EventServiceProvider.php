@@ -31,6 +31,10 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\AutoTransaction' => [
             'App\Listeners\doAutoTransaction'
+        ],
+
+        'App\Events\StockTransaction' => [
+            'App\Listeners\UpdateRemaining'
         ]
 
 	];
