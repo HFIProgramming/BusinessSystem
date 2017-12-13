@@ -17,8 +17,8 @@ class CreateStocksTable extends Migration
             $table->increments('id');
             $table->float('current_price');
             $table->string('history_prices');
-            $table->integer('company');
-            $table->integer('resource');
+            $table->integer('company_id');
+            $table->integer('resource_id');
             $table->integer('total');
             $table->float('dividend');
             $table->string('up_poly_coeff');//the polynomial coefficients to calculate the price if go up

@@ -35,4 +35,9 @@ class Stock extends Model
         }
         return $sum;
     }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
 }
