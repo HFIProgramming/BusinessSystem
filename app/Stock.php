@@ -7,4 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     //
+    protected $table = 'stocks';
+
+    protected $casts = [
+      'history_prices' => 'array',
+      'up_poly_coeff' => 'array',
+      'down_poly_coeff' => 'array'
+    ];
+
+    public function getSellPrice() //卖盘卖出价 上升
+    {
+        return $this->calculatePriceFromPolyCoeffs($this->up_poly_coeff);
+    }
+
+    public function getBuyPrice() //买盘买入价 下降
+    {
+        return $this->calculatePriceFromPolyCoeffs($this->down_poly_coeff);
+    }
+
+    protected function calculatePriceFromPolyCoeffs($coeffs)
+    {
+        $current = $this -> current_price;
+        $sum = 0;
+        for($i=0;$i<count($coeffs);$i++)
+        {
+            $sum += $coeffs[$i] * pow($current,$i);
+        }
+        return $sum;
+    }
 }
