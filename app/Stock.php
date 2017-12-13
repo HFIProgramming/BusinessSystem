@@ -40,4 +40,9 @@ class Stock extends Model
     {
         return $this->belongsTo('App\Company');
     }
+
+    public function resource()
+    {
+        return $this->belongsTo('App\Resource');
+    }
 }

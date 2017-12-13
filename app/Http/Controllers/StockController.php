@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewTransaction;
+use App\Stock;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -11,11 +13,52 @@ class StockController extends Controller
 
     public function buyStock(Request $request)
     {
+        $buyer = $request->user();
+        $seller = User::type(0)->first();
+        $amount = $request->amount;
+        $buyerItem = $buyer->resources()->resid(1)->first();//money
+        if(empty($stock = Stock::find($request->stock_id)))
+        {
+            return view('errors.custom')->with('message', '该股票不存在');
+        }
+        $sellerItem = $seller->resources()->resid($stock->resource->id)->first();
+        $sellerAmount = $amount;
+        $buyerAmount = $amount * $stock->getSellPrice();
+        if($buyer->type != 2)
+        {
+            return view('errors.custom')->with('message', '您不能进行股票交易');
+        }
+        if($buyerItem->amount < $buyerAmount)
+        {
+            return view('errors.custom')->with('message', '您的余额不足');
+        }
+
+        event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
 
     }
 
     public function sellStock(Request $request)
     {
+        $buyer = User::type(0)->first();
+        $seller = $request->user();
+        $amount = $request->amount;
+        $buyerItem = $buyer->resources()->resid(1)->first();//money
+        if(empty($stock = Stock::find($request->stock_id)))
+        {
+            return view('errors.custom')->with('message', '该股票不存在');
+        }
+        $sellerItem = $seller->resources()->resid($stock->resource()->id)->first();
+        $sellerAmount = $amount;
+        $buyerAmount = $amount * $stock->getBuyPrice();
+        if($buyer->type != 2)
+        {
+            return view('errors.custom')->with('message', '您不能进行股票交易');
+        }
+        if($sellerItem->amount < $sellerAmount)
+        {
+            return view('errors.custom')->with('message', '您持有的该股票不足进行交易');
+        }
 
+        event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
     }
 }
