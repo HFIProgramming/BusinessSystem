@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\StockPriceChange;
+use App\IntToVal;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -38,6 +39,9 @@ class UpdateStockPrice
         {
             $stock->current_price = $stock->sellPrice();
         }
+        $risk = $stock->riskIndex();
+        $stock->sell_remain = $stock->availableInMarket() * IntToVal::IntervalValue('sell_update', $risk)->value;
+        $stock->buy_remain = $stock->availableInMarket() * IntToVal::IntervalValue('buy_update', $risk)->value;
         $stock->save();
     }
 }

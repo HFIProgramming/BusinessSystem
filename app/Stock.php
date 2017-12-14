@@ -51,5 +51,8 @@ class Stock extends Model
         return User::type(0)->first()->resources()->resid($this->resource->id)->first()->amount;
     }
 
-
+    public function riskIndex()
+    {
+        return $this->total*$this->current_price/$this->company->last_year_profit;//@TODO Check if rounded
+    }
 }
