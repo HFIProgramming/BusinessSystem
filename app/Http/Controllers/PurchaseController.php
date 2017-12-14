@@ -23,11 +23,11 @@ class PurchaseController extends Controller
 		$message = "";
 
 		if (empty($item)) {
-			return view('errors.custom')->with('message', '商品不存在');
+			return view('errors.custom')->with('message', '建筑不存在');
 		}
 
 		if (!(($this->canUserAcquireThisProduct($user, $item)) && ($item->type != 0))) { // 中间货币不能被直接购买
-			return view('errors.custom')->with('message', '你不能购买这个商品');
+			return view('errors.custom')->with('message', '你不能建造这个建筑');
 		}
 
 		$requirement = ($item->requirement)[$user->techLevel($item->required_tech)];
@@ -44,7 +44,7 @@ class PurchaseController extends Controller
 
 		event(new BuyStuff($user, $item, $request->amount));
 
-		return view('success')->with('message', '升级成功');
+		return view('success')->with('message', '建造完成');
 	}
 
 	public function buildArchitecture(Request $request)//This function is specifically for purchases that come along with transactions
@@ -54,7 +54,7 @@ class PurchaseController extends Controller
             return view('errors.custom')->with('message', '你来到了建筑的荒原');//使用知乎体是怎样一种体验？
         }
         $view = $this->TopUp($request);
-        if($view != view('success')->with('message', '升级成功'))
+        if($view != view('success')->with('message', '建造完成'))
         {
             return $view;
         }
@@ -62,7 +62,7 @@ class PurchaseController extends Controller
         $user = $request->user();
         foreach ($resource->tax as $item => $amount)
         {
-            $seller = $user;
+            $seller = User::type(0)->first();//This should NOT be the purchaser because 无中生有
             $buyer = $zone->user;
             $buyerItem = $seller->resources()->resid(1)->first(); //This can be anything, in fact, for the amount is 0.
             $buyerAmount = 0;
@@ -70,7 +70,7 @@ class PurchaseController extends Controller
             $sellerAmount = $amount;
             event(new NewTransaction($user, $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'special'));
         }
-        return view('success')->with('message', '建造完成');
+        return $view;
     }
 
 	public function showPurchaseForm()
