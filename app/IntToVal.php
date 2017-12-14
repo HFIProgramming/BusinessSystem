@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class IntToVal extends Model
 {
     //
-    protected $table = 'intervals_to_value';
+    protected $table = 'interval_to_value';
 }

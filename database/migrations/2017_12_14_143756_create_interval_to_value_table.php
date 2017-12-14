@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIntervalsToValueTable extends Migration
+class CreateIntervalToValueTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIntervalsToValueTable extends Migration
      */
     public function up()
     {
-        Schema::create('intervals_to_value', function (Blueprint $table) {
+        Schema::create('interval_to_value', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lower');//close
             $table->integer('upper');//open
@@ -31,6 +31,6 @@ class CreateIntervalsToValueTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('intervals_to_value');
+        Schema::dropIfExists('interval_to_value');
     }
 }
