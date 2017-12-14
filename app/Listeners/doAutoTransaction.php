@@ -33,7 +33,7 @@ class doAutoTransaction
 		//
 		$trans = $event->trans;
 		event(new incomeTransaction($trans));
-		if ($trans->type == 'buy') {
+		if (UserResource::find($trans->seller_resource_id)->resource->type == 4) {
 			$equivalence = UserResource::find($trans->seller_resource_id)->resource->equivalent_to;
 			foreach ($equivalence as $resource_id => $quantity) {
 				$newTrans = $trans;
@@ -43,6 +43,6 @@ class doAutoTransaction
 				$newTrans->type = 'special';
 				event(new NewTransaction($newTrans->starter, $newTrans->seller, $newTrans->buyer, UserResource::find($newTrans->seller_resource_id), UserResource::find($newTrans->buyer_resource_id), $newTrans->seller_amount, $newTrans->buyer_amount, $newTrans->type));
 			}
-		}
+		}//@TODO check if this new condition works
 	}
 }
