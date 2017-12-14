@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('type');
-            //0=System 1=公司 2=投行
+            //0=System 1=公司 2=投行 3=地块
             $table->rememberToken();
             $table->timestamps();
         });
