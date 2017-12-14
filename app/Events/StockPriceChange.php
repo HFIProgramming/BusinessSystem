@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Stock;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -21,7 +22,7 @@ class StockPriceChange
      *
      * @return void
      */
-    public function __construct($stock)
+    public function __construct(Stock $stock)
     {
         //
         $this->stock = $stock;
