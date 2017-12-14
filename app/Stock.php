@@ -45,4 +45,9 @@ class Stock extends Model
     {
         return $this->belongsTo('App\Resource');
     }
+
+    public function getStocksAvailableInMarket()
+    {
+        return User::type(0)->first()->resources()->resid($this->resource->id)->first()->amount;
+    }
 }
