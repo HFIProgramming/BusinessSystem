@@ -31,19 +31,14 @@ class doTopUp
 	public function handle(BuyStuff $event)
 	{
 		// First, check requirements
-//		$userResources = $event->user->resources();
 		$requirement = ($event->item->requirement)[$event->user->techLevel($event->item->required_tech)];
 
-		//DB::beginTransaction();
 		if (!empty($requirement)) {
 			foreach ($requirement as $key => $value) {
 				$currentChosenItem = $event->user->resources()->where('resource_id', $key)->first();
-				//$currentItem = clone $currentChosenItem;	
 				$amount = (double)$currentChosenItem->amount;
-				//dd($currentChosenItem->amount);
 				$currentChosenItem->amount = $amount - ($value * $event->amount);
 				$currentChosenItem->save();
-				//$currentChosenItem = NULL;
 			}
 		}
 		$newItem = UserResource::query()->where('resource_id', $event->item->id)->firstOrCreate([
@@ -53,7 +48,15 @@ class doTopUp
 
 		$newItem->amount += $event->amount * $event->item->pack;
 		$newItem->save();
-//		DB::commit();
+        if (!empty($event->item->equivalent_to))
+        {
+            foreach ($event->item->equivalent_to as $item => $amount)
+            {
+                $resource = $event->user->resources()->resid($item)->first();
+                $resource->amount += $amount;
+                $resource->save();
+            }
+        }
 		event(new Logger($event->user->id, 'User.TopUp', "Item :{$event->item->id}; Amount: {$event->amount}"));
 	}
 }
