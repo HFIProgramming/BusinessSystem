@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\StockPriceChange;
 use App\Events\StockTransaction;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -39,6 +40,10 @@ class UpdateRemaining
         {
             $stock->buy_remain -= $amount;
             $stock->save();
+        }
+        if($stock->buy_remain * $stock->sell_remain == 0)//Time to Update Prices!!
+        {
+            event(new StockPriceChange($stock));
         }
     }
 }

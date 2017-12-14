@@ -14,14 +14,17 @@ class StockPriceChange
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $stock;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($stock)
     {
         //
+        $this->stock = $stock;
     }
 
     /**
