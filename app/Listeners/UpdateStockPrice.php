@@ -32,11 +32,11 @@ class UpdateStockPrice
         array_push($stock->history_prices, $stock->current_price);
         if($stock->buy_remain == 0) //Go down!
         {
-            $stock->current_price = $stock->getBuyPrice();
+            $stock->current_price = $stock->buyPrice();
         }
         else if($stock->sell_remain == 0) //Go up!
         {
-            $stock->current_price = $stock->getSellPrice();
+            $stock->current_price = $stock->sellPrice();
         }
         $stock->save();
     }

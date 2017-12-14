@@ -24,7 +24,7 @@ class StockController extends Controller
         }
         $sellerItem = $seller->resources()->resid($stock->resource->id)->first();
         $sellerAmount = $amount;
-        $buyerAmount = $amount * $stock->getSellPrice();
+        $buyerAmount = $amount * $stock->sellPrice();
         if($buyer->type != 2)
         {
             return view('errors.custom')->with('message', '您不能进行股票交易');
@@ -56,7 +56,7 @@ class StockController extends Controller
         }
         $sellerItem = $seller->resources()->resid($stock->resource()->id)->first();
         $sellerAmount = $amount;
-        $buyerAmount = $amount * $stock->getBuyPrice();
+        $buyerAmount = $amount * $stock->buyPrice();
         if($buyer->type != 2)
         {
             return view('errors.custom')->with('message', '您不能进行股票交易');

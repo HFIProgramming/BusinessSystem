@@ -15,12 +15,12 @@ class Stock extends Model
       'down_poly_coeff' => 'array'
     ];
 
-    public function getSellPrice() //卖盘卖出价 上升
+    public function sellPrice() //卖盘卖出价 上升
     {
         return $this->calculatePriceFromPolyCoeffs($this->up_poly_coeff);
     }
 
-    public function getBuyPrice() //买盘买入价 下降
+    public function buyPrice() //买盘买入价 下降
     {
         return $this->calculatePriceFromPolyCoeffs($this->down_poly_coeff);
     }
@@ -46,8 +46,10 @@ class Stock extends Model
         return $this->belongsTo('App\Resource');
     }
 
-    public function getStocksAvailableInMarket()
+    public function availableInMarket()
     {
         return User::type(0)->first()->resources()->resid($this->resource->id)->first()->amount;
     }
+
+
 }
