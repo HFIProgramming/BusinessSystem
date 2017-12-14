@@ -33,9 +33,14 @@ class StockController extends Controller
         {
             return view('errors.custom')->with('message', '您的余额不足');
         }
+        if($sellerAmount > $stock->sell_reamin)
+        {
+            $sellerAmount = $stock->sell_remain;
+        }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
-        event(new StockTransaction($stock, 'buy', $amount));
+        event(new StockTransaction($stock, 'buy', $sellerAmount));
+        //Price Updates are written in StockTransaction Event
 
     }
 
@@ -60,8 +65,13 @@ class StockController extends Controller
         {
             return view('errors.custom')->with('message', '您持有的该股票不足进行交易');
         }
+        if($buyerAmount > $stock->buy_remain)
+        {
+            $buyerAmount = $stock->buy_remain;
+        }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
-        event(new StockTransaction($stock, 'sell', $amount));
+        event(new StockTransaction($stock, 'sell', $buyerAmount));
+        //Prices Updates are written in StockTransaction Event
     }
 }
