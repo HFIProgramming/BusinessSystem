@@ -20,6 +20,7 @@ class CreateUserResourcesTable extends Migration
 			$table->increments('id');
 			$table->integer('resource_id');
 			$table->integer('user_id');
+			$table->text('zones')->nullable();//A dictionary indicating how many in each zone: zone=>number
 			$table->bigInteger('amount')->default(0);
 			$table->timestamps();
 		});

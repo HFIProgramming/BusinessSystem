@@ -11,6 +11,10 @@ class UserResource extends Model
 		'resource_id', 'user_id', 'amount',
 	];
 
+	protected $casts = [
+	  'zones' => 'array'
+    ];
+
 	//
 	public function scopeResid($query, $id)
 	{
