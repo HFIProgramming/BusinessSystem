@@ -51,7 +51,7 @@ class PurchaseController extends Controller
     {
         if(empty($zone = Zone::find($request->zone_id)))
         {
-            return view('errors.custom')->with('message', '你来到了建筑的荒原');//使用知乎体是怎样一种体验？
+            return view('errors.custom')->with('message', '你似乎来到了没有建筑存在的荒原');//使用知乎体是怎样一种体验？
         }
         $view = $this->TopUp($request);
         if($view != view('success')->with('message', '建造完成'))
