@@ -51,7 +51,7 @@ class PurchaseController extends Controller
     {
         $resource = Resources::find($request->item_id);
         $user = $request->user();
-        if($resource->type != 2 || empty($resource))
+        if($resource->type != 2 || empty($resource))//Refer to migrations to see type.
         {
             return view('errors.custom')->with('message', '不能建造这种建筑');
         }
