@@ -49,6 +49,12 @@ class PurchaseController extends Controller
 
 	public function buildArchitecture(Request $request)//This function is specifically for purchases that come along with transactions
     {
+        $resource = Resources::find($request->item_id);
+        $user = $request->user();
+        if($resource->type != 2 || empty($resource))
+        {
+            return view('errors.custom')->with('message', '不能建造这种建筑');
+        }
         if(empty($zone = Zone::find($request->zone_id)))
         {
             return view('errors.custom')->with('message', '你似乎来到了没有建筑存在的荒原');//使用知乎体是怎样一种体验？
@@ -58,8 +64,18 @@ class PurchaseController extends Controller
         {
             return $view;
         }
-        $resource = Resources::find($request->item_id);
-        $user = $request->user();
+
+        $built = $user->resources()->resid($request->item_id)->first();
+        if(array_key_exists($zone->id,$built->zones))
+        {
+            $built->zones[$zone->id]++;
+        }
+        else
+        {
+            $built->zones[$zone->id] = 1;
+        }
+        $built->save();
+
         foreach ($resource->tax as $item => $amount)
         {
             $seller = User::type(0)->first();//This should NOT be the purchaser because 无中生有
