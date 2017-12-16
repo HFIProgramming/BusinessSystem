@@ -33,8 +33,8 @@ class doAutoTransaction
 		//
 		$trans = $event->trans;
 		event(new incomeTransaction($trans));
-		if (!empty(UserResource::find($trans->seller_resource_id)->resource->equivalent_to)) {
-			$equivalence = UserResource::find($trans->seller_resource_id)->resource->equivalent_to;
+		if (!empty($trans->sellerResource->resource->equivalent_to)) {
+			$equivalence = $trans->sellerResource->resource->equivalent_to;
 			foreach ($equivalence as $resource_id => $quantity) {
 				$newTrans = $trans;
 				$newTrans->seller_resource_id = User::type(0)->first()->resources()->resid($resource_id)->first()->id;

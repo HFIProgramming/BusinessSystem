@@ -39,6 +39,6 @@ class doRedeem
         $buyerItem = $buyer->resources()->resid(1)->first();
         $buyerAmount = 0;
 
-        event(new NewTransaction($seller, $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerItem, 'loan_redeem'));
+        event(new NewTransaction($seller, $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'loan_redeem'));
     }
 }
