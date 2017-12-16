@@ -32,6 +32,8 @@ class doAutoTransaction
 	{
 		//
 		$trans = $event->trans;
+        $trans->checked = 1;
+        $trans->save();
 		event(new incomeTransaction($trans));
 		if (!empty($trans->sellerResource->resource->equivalent_to)) {
 			$equivalence = $trans->sellerResource->resource->equivalent_to;
