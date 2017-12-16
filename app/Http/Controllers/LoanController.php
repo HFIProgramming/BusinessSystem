@@ -42,7 +42,17 @@ class LoanController extends Controller
         {
             return view('errors.custom')->with('message', '说好借你钱的人不够钱 带着小姨子跑了');
         }
+        if($creditor->id == $request->user()->id)
+        {
+            return view('errors.custom')->with('message', '不能接受自己放出的贷款');
+        }
         event(new AcceptLoan($loan));
         return view('success')->with('message', '贷款已到账');
+    }
+
+    public function redeemLoan(Request $request)
+    {
+        $loan_id = $request->loan_id;
+
     }
 }
