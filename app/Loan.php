@@ -8,7 +8,7 @@ class Loan extends Model
 {
     //
     protected $fillable = [
-        'debtor_id', 'creditor_id', 'loan_transaction_id', 'amount', 'interest'
+        'debtor_id', 'creditor_id', 'loan_transaction_id', 'amount', 'interest', 'status'
     ];
 
     public function loanTransaction()

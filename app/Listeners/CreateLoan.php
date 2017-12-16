@@ -53,7 +53,8 @@ class CreateLoan
             'creditor_id' => $seller->id,
             'amount' => $event->amount,
             'interest' => $event->interest,
-            'loan_transaction_id' => $trans->id
+            'loan_transaction_id' => $trans->id,
+            'status' => 'pending'
         ]);
     }
 }
