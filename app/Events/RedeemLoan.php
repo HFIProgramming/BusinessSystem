@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Loan;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -13,15 +14,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class RedeemLoan
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    public $loan;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Loan $loan)
     {
         //
+        $this->loan = $loan;
     }
 
     /**
