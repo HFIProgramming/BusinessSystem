@@ -32,6 +32,9 @@ class doLoan
         $loan = $event->loan;
         $loan->status = 'accepted';
         $loan->save();
-        event(new incomeTransaction($loan->loanTransaction));
+        $trans = $loan->loanTransaction;
+        $trans->checked = 1;
+        $trans->save();
+        event(new incomeTransaction($trans));
     }
 }

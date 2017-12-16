@@ -6,6 +6,7 @@ use App\Events\AcceptLoan;
 use App\Events\NewLoan;
 use App\Events\RedeemLoan;
 use App\User;
+use App\Loan;
 use Illuminate\Http\Request;
 
 class LoanController extends Controller
@@ -50,6 +51,7 @@ class LoanController extends Controller
         event(new AcceptLoan($loan));
         return view('success')->with('message', '贷款已到账');
     }
+    //@TODO Decline Loan
 
     public function redeemLoan(Request $request)
     {
