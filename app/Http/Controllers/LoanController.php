@@ -8,6 +8,7 @@ class LoanController extends Controller
 {
     //
     //@TODO 贷款方限制
+    //@TODO 不能跟管理员交易！！！⬆
     public function grantLoan(Request $request)
     {
         $debtor_id = $request->debtor_id;
