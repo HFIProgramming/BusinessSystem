@@ -15,9 +15,12 @@ class CreateLoansTable extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('creditor_id');
+            $table->integer('debtor_id');
             $table->integer('amount');
             $table->float('interest');
             $table->integer('loan_transaction_id');//The transaction that grants the loan
+            $table->integer('status');//pending, accepted, redeemed
             $table->timestamps();
         });
     }
