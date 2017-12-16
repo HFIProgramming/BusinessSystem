@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AcceptLoan;
+use App\Events\NewLoan;
+use App\User;
 use Illuminate\Http\Request;
 
 class LoanController extends Controller
@@ -23,10 +26,23 @@ class LoanController extends Controller
         {
             return view('errors.custom')->with('message', '不够钱还是先别放款了吧');
         }
+        event(new NewLoan($debtor, $creditor, $amount, $interest));
+        return view('success')->with('message', '放款成功 等待对方接受');
     }
 
     public function acceptLoan(Request $request)
     {
-
+        $loan_id = $request->loan_id;
+        if(empty($loan = Loan::find($loan_id)))
+        {
+            return view('errors.custom')->with('message', '这笔款怕是鬼给放的？请检查贷款ID是否正确');
+        }
+        $creditor = User::find($loan->creditor_id);
+        if($loan->amount > $creditor->resources()->resid(1)->first()->amount) //End-weight principle tells us to put the longer expression at the end hence '>' instead of '<'
+        {
+            return view('errors.custom')->with('message', '说好借你钱的人不够钱 带着小姨子跑了');
+        }
+        event(new AcceptLoan($loan));
+        return view('success')->with('message', '贷款已到账');
     }
 }

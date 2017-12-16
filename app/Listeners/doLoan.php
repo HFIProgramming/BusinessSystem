@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\AcceptLoan;
+use App\Events\incomeTransaction;
+use App\Transaction;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -27,5 +29,9 @@ class doLoan
     public function handle(AcceptLoan $event)
     {
         //
+        $loan = $event->loan;
+        $loan->status = 'accepted';
+        $loan->save();
+        event(new incomeTransaction($loan->loanTransaction));
     }
 }
