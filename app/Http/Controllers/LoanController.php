@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\AcceptLoan;
 use App\Events\NewLoan;
+use App\Events\RedeemLoan;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class LoanController extends Controller
         {
             return view('errors.custom')->with('message', '这笔款怕是鬼给放的？请检查贷款ID是否正确');
         }
-        $creditor = User::find($loan->creditor_id);
+        $creditor = $loan->creditor;
         if($loan->amount > $creditor->resources()->resid(1)->first()->amount) //End-weight principle tells us to put the longer expression at the end hence '>' instead of '<'
         {
             return view('errors.custom')->with('message', '说好借你钱的人不够钱 带着小姨子跑了');
@@ -53,6 +54,21 @@ class LoanController extends Controller
     public function redeemLoan(Request $request)
     {
         $loan_id = $request->loan_id;
-
+        if(empty($loan = Loan::find($loan_id)))
+        {
+            return view('errors.custom')->with('message', '给鬼还钱？请检查贷款ID是否正确');
+        }
+        $debtor = $loan->debtor;
+        $creditor = $loan->creditor;
+        if(round($loan->amount * $loan->interest) > $debtor->resources()->resid(1)->first()->amount)
+        {
+            return view('errors.custom')->with('message', '剩下的钱不够还了 快带上小姨子跑路吧');
+        }
+        if($creditor->id == $request->user()->id)
+        {
+            return view('errors.custom')->with('message', '不能通过这种方式催债哦');
+        }
+        event(new RedeemLoan($loan));
+        return view('success')->with('message', '还款成功');
     }
 }
