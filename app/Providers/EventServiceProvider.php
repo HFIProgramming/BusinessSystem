@@ -39,6 +39,18 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\StockPriceChange' => [
             'App\Listeners\UpdateStockPrice'
+        ],
+
+        'App\Events\NewLoan' => [
+            'App\Listeners\CreateLoan'
+        ],
+
+        'App\Events\AcceptLoan' => [
+            'App\Listeners\doLoan'
+        ],
+
+        'App\Events\RedeemLoan' => [
+            'App\Listeners\doRedeem'
         ]
 
 	];

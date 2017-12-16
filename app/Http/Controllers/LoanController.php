@@ -22,7 +22,6 @@ class LoanController extends Controller
         {
             return view('errors.custom')->with('message', '不够钱还是先别放款了吧');
         }
-
     }
 
     public function acceptLoan(Request $request)
