@@ -60,6 +60,15 @@ class PurchaseController extends Controller
             return view('errors.custom')->with('message', '你似乎来到了没有建筑存在的荒原');//使用知乎体是怎样一种体验？
         }
         $view = $this->TopUp($request);
+        //Just a word of warning:
+        //TopUp Event automatically resolves the equivalent_to field and gives corresponding resources
+        //But this does NOT create a chain reaction as Transaction does
+        //In other words, Transaction resolves the equivalent_to fields of the items gained from the equivalent_to fields, and this goes on.
+        //For example, you buy something called A, and it is equivalent to B,C,D, in which B is equivalent to E,F.
+        //Then, you get A through F.
+        //However, TopUp does not do this.
+        //Contact msasysu.lzh@icloud.com or wechat 18124289726 if you do not understand.
+        //Perhaps there is a better place to place this warning.
         if($view != view('success')->with('message', '建造完成'))
         {
             return $view;
