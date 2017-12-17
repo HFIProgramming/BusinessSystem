@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\EndOfYear;
 use App\Events\NewTransaction;
+use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use function Psy\sh;
