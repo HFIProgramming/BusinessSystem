@@ -42,7 +42,7 @@ class CreateTransaction
 		$trans->type = $event->type;
 		$trans->save();
 		event(new Logger($event->seller->id, 'Create.Trans', $event->buyer->id));
-		if ($trans->buyer->type == 0 || $trans->seller->type == 0 || in_array($trans->type, ['special', 'loan_redeem', 'yearly_yield'])) {
+		if ($trans->buyer->type == 0 || $trans->seller->type == 0 || in_array($trans->type, ['special', 'loan_redeem', 'yearly_yield', 'stock_dividend'])) {
 		    event(new AutoTransaction($trans));
         }
 	}

@@ -49,4 +49,9 @@ class Resources extends Model
 	{
 		return $query->where('id', $id);
 	}
+
+	public function stock()
+    {
+        return $this->hasOne(Stock::class);
+    }
 }
