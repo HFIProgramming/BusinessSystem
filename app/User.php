@@ -87,5 +87,15 @@ class User extends Authenticatable
 				break;
 		}
 	}
+
+	public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
+    public function bank()
+    {
+        return $this->hasone(Bank::class);
+    }
 }
 
