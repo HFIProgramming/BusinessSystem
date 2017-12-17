@@ -56,7 +56,8 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\EndOfYear' => [
             'App\Listeners\CalculateProfits',
             'App\Listeners\DistributeDividends',
-            'App\Listeners\SaveToCompany'
+            'App\Listeners\SaveToCompany',
+            'App\Listeners\GenerateReports'
         ]
 
 	];

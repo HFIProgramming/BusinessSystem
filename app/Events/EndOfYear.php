@@ -13,15 +13,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class EndOfYear
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    public $current_year;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($current_year)
     {
         //
+        $this->current_year = $current_year;
     }
 
     /**
