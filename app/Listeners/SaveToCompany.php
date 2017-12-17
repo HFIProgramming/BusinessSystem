@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Company;
+use App\Config;
 use App\Events\EndOfYear;
 use App\IntToVal;
 use Illuminate\Queue\InteractsWithQueue;
@@ -45,6 +46,7 @@ class SaveToCompany
                         {
                             $coeff *= IntToVal::IntervalValue($factor.'_'.$userResource->resource->code, $zone->$factor())->value;
                         }
+                        $coeff *= Config::KeyValue('crisis_'.$userResource->resource->code)->value;
                         foreach ($userResource->resource->equivalent_to as $resource_id => $amount)
                         {
                             if($resource_id != 1)//Money is dealt with separately @TODO EXCLUDE Pollution Index

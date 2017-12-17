@@ -46,8 +46,9 @@ class CalculateProfits
                         foreach($factors as $factor)
                         {
                             $coeff = IntToVal::IntervalValue($factor.'_'.$userResource->resource->code, $zone->$factor())->value;
-                            $zoneProfit *= $coeff;//@TODO Crisis; round()
+                            $zoneProfit *= $coeff;//@TODO round()
                         }
+                        $zoneProfit *= Config::KeyValue('crisis_'.$userResource->resource->code)->value;
                         $sum += $zoneProfit;
                     }
                 }
