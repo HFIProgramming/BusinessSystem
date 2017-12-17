@@ -35,9 +35,9 @@ class CalculateProfits
             $sum = 0;
             foreach($company->user->resources as $userResource)
             {
-                if($userResource->resource->type == 2 && array_key_exists(1, $userResource->equivalent_to)) //A building that generates money
+                if($userResource->resource->type == 2 && array_key_exists(1, $userResource->resource->equivalent_to)) //A building that generates money
                 {
-                    $rawProfit = $userResource->equivalent_to[1];
+                    $rawProfit = $userResource->resource->equivalent_to[1];
                     $factors = ['powerIndex', 'happinessIndex'];
                     foreach($userResource->zones as $zone_id => $quantity)
                     {
