@@ -51,6 +51,12 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\RedeemLoan' => [
             'App\Listeners\doRedeem'
+        ],
+
+        'App\Events\EndOfYear' => [
+            'App\Listeners\CalculateProfits',
+            'App\Listeners\DistributeDividends',
+            'App\Listeners\SaveToCompany'
         ]
 
 	];
