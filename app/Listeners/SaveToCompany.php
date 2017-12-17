@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Company;
 use App\Events\EndOfYear;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -27,5 +28,9 @@ class SaveToCompany
     public function handle(EndOfYear $event)
     {
         //
+        foreach(Company::all() as $company)
+        {
+
+        }
     }
 }

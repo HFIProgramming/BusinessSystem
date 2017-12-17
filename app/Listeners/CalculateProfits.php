@@ -55,7 +55,7 @@ class CalculateProfits
 
             $tax = IntToVal::IntervalValue('pollution_tax', $company->pollutionIndex());
 
-            $company->last_year_profit = $sum - $tax;//@TODO what if this is negative
+            $company->last_year_profit = $sum * (1 - $tax);
             $company->save();
         }
     }
