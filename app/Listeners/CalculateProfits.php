@@ -46,7 +46,7 @@ class CalculateProfits
                         foreach($factors as $factor)
                         {
                             $coeff = IntToVal::IntervalValue($factor.'_'.$userResource->resource->code, $zone->$factor())->value;
-                            $zoneProfit *= $coeff;//@TODO round()
+                            $zoneProfit *= $coeff;
                         }
                         $zoneProfit *= Config::KeyValue('crisis_'.$userResource->resource->code)->value;
                         $sum += $zoneProfit;
@@ -56,7 +56,7 @@ class CalculateProfits
 
             $tax = IntToVal::IntervalValue('pollution_tax', $company->pollutionIndex());
 
-            $company->last_year_profit = $sum * (1 - $tax);
+            $company->last_year_profit = round($sum * (1 - $tax));
             $company->save();
         }
     }
