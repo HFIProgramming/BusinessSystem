@@ -20,7 +20,8 @@ class CreateReportsTable extends Migration
             $table->string('type');//'bank', 'company'
             $table->text('components');//different for bank and company
             $table->float('stock_price')->nullable();//only for company
-            $table->integer('profit');
+            $table->integer('profit')->nullable();//only for company
+            $table->integer('loan_total');
             $table->timestamps();
             //This is a migration very specific for this contest. Probably useless later.
         });
