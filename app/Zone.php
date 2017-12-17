@@ -11,4 +11,14 @@ class Zone extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function powerIndex()
+    {
+        return $this->user->resources()->resid()->amount;//@TODO Fill resid()!!
+    }
+
+    public function happinessIndex()
+    {
+        return $this->user->resources()->resid()->amount;//@TODO Fill resid()!!
+    }
 }
