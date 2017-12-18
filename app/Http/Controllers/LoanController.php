@@ -33,7 +33,7 @@ class LoanController extends Controller
         return view('success')->with('message', '放款成功 等待对方接受');
     }
 
-    public function acceptLoan(Request $request)
+    public function handleLoan(Request $request)
     {
         $loan_id = $request->loan_id;
         if(empty($loan = Loan::find($loan_id)))
@@ -41,31 +41,32 @@ class LoanController extends Controller
             return view('errors.custom')->with('message', '这笔款怕是鬼给放的？请检查贷款ID是否正确');
         }
         $creditor = $loan->creditor;
-        if($loan->amount > $creditor->resources()->resid(1)->first()->amount) //End-weight principle tells us to put the longer expression at the end hence '>' instead of '<'
+        if($request->confirm == 'true')
         {
-            return view('errors.custom')->with('message', '说好借你钱的人不够钱 带着小姨子跑了');
+            if($loan->amount > $creditor->resources()->resid(1)->first()->amount) //End-weight principle tells us to put the longer expression at the end hence '>' instead of '<'
+            {
+                return view('errors.custom')->with('message', '说好借你钱的人不够钱 带着小姨子跑了');
+            }
+            if($creditor->id == $request->user()->id)
+            {
+                return view('errors.custom')->with('message', '不能接受自己放出的贷款');
+            }
+            event(new AcceptLoan($loan));
+            return view('success')->with('message', '贷款已到账');
         }
-        if($creditor->id == $request->user()->id)
+        else if($request->confirm == 'false')
         {
-            return view('errors.custom')->with('message', '不能接受自己放出的贷款');
+            if($creditor->id == $request->user()->id)
+            {
+                return view('errors.custom')->with('message', '不能拒绝自己放出的贷款');
+            }
+            event(new DeclineLoan($loan));
+            return view('success')->with('message', '拒绝成功');
         }
-        event(new AcceptLoan($loan));
-        return view('success')->with('message', '贷款已到账');
-    }
-
-    public function declineLoan(Request $request)
-    {
-        $loan_id = $request->loan_id;
-        if(empty($loan = Loan::find($loan_id)))
+        else
         {
-            return view('errors.custom')->with('message', '这笔款怕是鬼给放的？请检查贷款ID是否正确');
+            return view('errors.custom')->with('message', 'Ummmmm...Something went WRONG and 啥都没干');
         }
-        $creditor = $loan->creditor;
-        if($creditor->id == $request->user()->id)
-        {
-            return view('errors.custom')->with('message', '不能拒绝自己放出的贷款');
-        }
-        event(new DeclineLoan($loan));
     }
 
     public function redeemLoan(Request $request)
