@@ -85,4 +85,23 @@ class StockController extends Controller
         event(new StockTransaction($seller, $stock, 'sell', $buyerAmount));
         //Prices Updates are written in StockTransaction Event
     }
+
+    public function sendData(Request $request)
+    {
+        $response = [];
+        foreach (Stock::all() as $stock)
+        {
+            $stockData = [];
+            $stockData['id'] = $stock->id;
+            $stockData['current_price'] = $stock->current_price;
+            $stockData['all_prices'] = array_push($stock->history_prices, $stock->current_price);
+            $stockData['company_name'] = $stock->company->name;
+            $stockData['total'] = $stock->total;
+            $stockData['dividend'] = $stock->dividend;
+            $stockData['sell_remain'] = $stock->sell_remain;
+            $stockData['buy_remain'] = $stock->buy_remain;
+            array_push($response, $stockData);
+        }
+        return response()->json($response);
+    }
 }

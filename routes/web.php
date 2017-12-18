@@ -69,6 +69,13 @@ Route::group(['middleware' => 'auth'], function () {
 		   Route::post('/handle', 'LoanController@handleLoan')->name('handleLoan');
 		   Route::post('/redeem', 'LoanController@redeemLoan')->name('redeemLoan');
         });
+
+        Route::group(['prefix' => 'stock'], function () {
+            Route::get('/view', 'StockController@viewStocks')->name('viewStocks');
+            Route::get('/data', 'StockController@sendData')->name('stockData');
+            Route::post('/buy', 'StockController@buyStock')->name('buyStock');
+            Route::post('/sell', 'StockController@sellStock')->name('sellStock');
+        });
 	});
 	Route::group(['prefix' => 'announcement'], function () {
 		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
