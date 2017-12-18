@@ -62,6 +62,14 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('/show', 'TechnologyController@showTechPage')->name('showTech');
 			Route::get('/update', 'TechnologyController@updateTech')->name('updateTech');
 		});
+
+		Route::group(['prefix' => 'loan'], function () {
+		   Route::get('/create', 'LoanController@displayCreateForm')->name('loanForm');
+		   Route::post('/create', 'LoanController@grantLoan')->name('grantLoan');
+		   Route::get('/accept', 'LoanController@acceptLoan')->name('acceptLoan');
+		   Route::get('/decline', 'LoanController@declineLoan')->name('declineLoan');
+		   Route::get('/redeem', 'LoanController@redeemLoan')->name('redeemLoan');
+        });
 	});
 	Route::group(['prefix' => 'announcement'], function () {
 		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
