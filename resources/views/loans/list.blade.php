@@ -106,11 +106,10 @@
                             <td>
                               <form action="{{ route('redeemLoan') }}" method="post">
                                 {{ csrf_field() }}
-                                <input type="hidden" name="confirm"
+                                <input type="hidden" name="loan_id"
                                 value={{$loan-id}}>
-                                <button type="submit" name="confirm"
-                                class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
-                                <i class="mdui-icon material-icons">check</i>
+                                <button class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
+                                还款
                               </button>
                             </td>
                           @endif
