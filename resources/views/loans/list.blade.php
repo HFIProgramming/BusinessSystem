@@ -51,8 +51,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+
                           @foreach($meOut as $loan)
+                            <tr>
                             <td>{{$loan->debtor->name}}</td>
                             <td>{{$loan->amount}}</td>
                             <td>{{$loan->interest}}</td>
@@ -65,8 +66,9 @@
                             @elseif ($loan->status == 'redemmed')
                               <td>已还</td>
                             @endif
+                          </tr>
                           @endforeach
-                        </tr>
+
                       </tbody>
                     </table>
                   </td>
@@ -81,8 +83,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+
                           @foreach($meIn as $loan)
+                            <tr>
                             <td>{{$loan->creditor->name}}</td>
                             <td>{{$loan->amount}}</td>
                             <td>{{$loan->interest}}</td>
@@ -113,8 +116,9 @@
                               </button>
                             </td>
                           @endif
+                          <tr>
                         @endforeach
-                      </tr>
+
                     </tbody>
                   </table>
                 </td>
