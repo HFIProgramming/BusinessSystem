@@ -114,7 +114,10 @@
                                                             <button class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
                                                                 还款
                                                             </button>
+                                                        </form>
                                                     </td>
+                                                @elseif ($loan->status == 'declined')
+                                                    <td>已拒绝</td>
                                                 @elseif ($loan->status == 'redeemed')
                                                     <td>已还</td>
                                             @endif
