@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Config;
 use App\Events\NewTransaction;
 use App\Events\StockTransaction;
 use App\Stock;
@@ -14,6 +15,11 @@ class StockController extends Controller
 
     public function buyStock(Request $request)
     {
+        $limit = Config::KeyValue('stock_transactions_limit')->value;
+        if($request->user()->stockTransactionTimes() >= $limit)
+        {
+            return view('errors.custom')->with('message', '本财年股票交易次数已上限');
+        }
         $buyer = $request->user();
         $seller = User::type(0)->first();
         $amount = $request->amount;
@@ -46,6 +52,11 @@ class StockController extends Controller
 
     public function sellStock(Request $request)
     {
+        $limit = Config::KeyValue('stock_transactions_limit')->value;
+        if($request->user()->stockTransactionTimes() >= $limit)
+        {
+            return view('errors.custom')->with('message', '本财年股票交易次数已上限');
+        }
         $buyer = User::type(0)->first();
         $seller = $request->user();
         $amount = $request->amount;
