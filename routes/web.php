@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 		Route::group(['prefix' => 'loan'], function () {
 		   Route::get('/create', 'LoanController@displayCreateForm')->name('loanForm');
+		   Route::get('/list', 'LoanController@listLoans')->name('listLoans');
 		   Route::post('/create', 'LoanController@grantLoan')->name('grantLoan');
 		   Route::post('/handle', 'LoanController@handleLoan')->name('handleLoan');
 		   Route::post('/redeem', 'LoanController@redeemLoan')->name('redeemLoan');

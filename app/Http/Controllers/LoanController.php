@@ -15,6 +15,19 @@ class LoanController extends Controller
     //
     //@TODO 贷款方限制
     //@TODO 不能跟管理员交易！！！⬆
+
+    public function displayCreateForm(Request $request)
+    {
+        return view('loans.grantLoan');
+    }
+
+    public function listLoans(Request $request)
+    {
+        $meOut = Loan::where('creditor_id', $request->user()->id)->get();
+        $meIn = Loan::where('debtor_id', $request->user()->id)->get();
+        return view('loans.list')->with('meOut', $meOut)->with('meIn', $meIn);
+    }
+
     public function grantLoan(Request $request)
     {
         $debtor_id = $request->debtor_id;
