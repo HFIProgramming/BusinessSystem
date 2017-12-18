@@ -7,7 +7,9 @@ use App\Config;
 use App\Events\EndOfYear;
 use App\Events\NewTransaction;
 use App\IntToVal;
+use App\Resources;
 use App\User;
+use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use function Sodium\compare;
@@ -53,7 +55,7 @@ class SaveToCompany
                         $coeff *= Config::KeyValue('crisis_'.$userResource->resource->code)->value;
                         foreach ($userResource->resource->equivalent_to as $resource_id => $amount)
                         {
-                            if($resource_id != 1)//Money is dealt with separately @TODO EXCLUDE Pollution Index
+                            if($resource_id != 1 && Resources::find($resource_id)->type != 6)//Money is dealt with separately
                             {
                                 if(!array_key_exists($resource_id, $gains))
                                 {
