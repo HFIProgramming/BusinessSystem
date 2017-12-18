@@ -35,7 +35,7 @@ class doRedeem
         $seller = $loan->debtor;
         $sellerItem = $seller->resources()->resid(1)->first();
         $sellerAmount = round($loan->amount * $loan->interest);
-        $buyer = $loan->creditor();
+        $buyer = $loan->creditor;
         $buyerItem = $buyer->resources()->resid(1)->first();
         $buyerAmount = 0;
 
