@@ -51,7 +51,20 @@ class LoanController extends Controller
         event(new AcceptLoan($loan));
         return view('success')->with('message', '贷款已到账');
     }
-    //@TODO Decline Loan
+
+    public function declineLoan(Request $request)
+    {
+        $loan_id = $request->loan_id;
+        if(empty($loan = Loan::find($loan_id)))
+        {
+            return view('errors.custom')->with('message', '这笔款怕是鬼给放的？请检查贷款ID是否正确');
+        }
+        $creditor = $loan->creditor;
+        if($creditor->id == $request->user()->id)
+        {
+            return view('errors.custom')->with('message', '不能拒绝自己放出的贷款');
+        }
+    }
 
     public function redeemLoan(Request $request)
     {

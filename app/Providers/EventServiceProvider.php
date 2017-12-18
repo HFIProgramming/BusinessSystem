@@ -49,6 +49,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\doLoan'
         ],
 
+        'App\Events\DeclineLoan' => [
+          'App\Listeners\cancelLoan'
+        ],
+
         'App\Events\RedeemLoan' => [
             'App\Listeners\doRedeem'
         ],
