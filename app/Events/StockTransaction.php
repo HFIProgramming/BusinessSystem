@@ -17,18 +17,20 @@ class StockTransaction
     public $stock;
     public $type;
     public $amount;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($stock, $type, $amount)
+    public function __construct($user, $stock, $type, $amount)
     {
         //
         $this->stock = $stock;
         $this->type = $type;
         $this->amount = $amount;
+        $this->user = $user;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\Logger;
 use App\Events\StockPriceChange;
 use App\Events\StockTransaction;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,6 +29,7 @@ class UpdateRemaining
     public function handle(StockTransaction $event)
     {
         //
+        $user = $event->user;
         $stock = $event->stock;
         $type = $event->type;
         $amount = $event->amount;
@@ -41,6 +43,7 @@ class UpdateRemaining
             $stock->buy_remain -= $amount;
             $stock->save();
         }
+        event(new Logger($user->id, 'Stock.'.$type, $stock->id));
         if($stock->buy_remain * $stock->sell_remain == 0)//Time to Update Prices!!
         {
             event(new StockPriceChange($stock));

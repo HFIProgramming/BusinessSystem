@@ -39,7 +39,7 @@ class StockController extends Controller
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
-        event(new StockTransaction($stock, 'buy', $sellerAmount));
+        event(new StockTransaction($buyer, $stock, 'buy', $sellerAmount));
         //Price Updates are written in StockTransaction Event
 
     }
@@ -71,7 +71,7 @@ class StockController extends Controller
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
-        event(new StockTransaction($stock, 'sell', $buyerAmount));
+        event(new StockTransaction($seller, $stock, 'sell', $buyerAmount));
         //Prices Updates are written in StockTransaction Event
     }
 }
