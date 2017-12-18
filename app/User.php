@@ -97,5 +97,13 @@ class User extends Authenticatable
     {
         return $this->hasone(Bank::class);
     }
+
+    public function stockTransactionTimes()
+    {
+        $year = Config::KeyValue('current_round')->value;
+        return count(Logs::where('current_round', $year)->where(function ($query){
+            $query->where('function', 'Stock.buy')->orWhere('function', 'Stock.sell');
+        })->get());
+    }
 }
 
