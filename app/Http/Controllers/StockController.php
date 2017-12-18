@@ -70,7 +70,7 @@ class StockController extends Controller
             $buyerAmount = $stock->buy_remain;
         }
 
-        event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
+        event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
         event(new StockTransaction($stock, 'sell', $buyerAmount));
         //Prices Updates are written in StockTransaction Event
     }
