@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\EndOfYear;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Config;
@@ -34,6 +35,10 @@ class RoundController extends Controller
 			$condition = Config::KeyValue('is_continued');
 			$condition->value = $request->condition;
 			$condition->save();
+			if($request->condition == '0')
+            {
+                event(new EndOfYear(Config::KeyValue('current_round')->value));
+            }
 		}
 
 		return redirect()->back();
