@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\AcceptLoan;
+use App\Events\DeclineLoan;
 use App\Events\NewLoan;
 use App\Events\RedeemLoan;
 use App\User;
@@ -64,6 +65,7 @@ class LoanController extends Controller
         {
             return view('errors.custom')->with('message', '不能拒绝自己放出的贷款');
         }
+        event(new DeclineLoan($loan));
     }
 
     public function redeemLoan(Request $request)
