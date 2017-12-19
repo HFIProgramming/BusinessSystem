@@ -100,7 +100,7 @@
                                                                 <i class="mdui-icon material-icons">check</i>
                                                             </button>
                                                             <button type="submit" name="confirm" value="false"
-                                                                    class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
+                                                                    class="mdui-btn mdui-btn-icon mdui-color-red mdui-ripple">
                                                                 <i class="mdui-icon material-icons">close</i>
                                                             </button>
                                                         </form>
