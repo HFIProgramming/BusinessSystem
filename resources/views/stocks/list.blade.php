@@ -89,7 +89,7 @@
             $.each(receivedInfo, function () {
                 html += '<tr> <td class="mdui-panel " mdui-panel> <div class="mdui-panel-item"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';
                 html += this.company_name + '</div>';
-                html += '<div class="mdui-panel-item-summary">Current Price: ' + this.currrent_price + '</div>';
+                html += '<div class="mdui-panel-item-summary">Current Price: ' + this.current_price + '</div>';
 //                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';
                 html += '<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i> </div>';
                 html += '<div class="mdui-panel-item-body"> <p>total: ' + this.total + '</p>';
