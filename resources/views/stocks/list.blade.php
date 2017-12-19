@@ -3,7 +3,7 @@
 @section('title')
     Stock List
 @endsection
-
+{{-- @TODO labels and frontend shit fix--}}
 @section('script')
     <script>
 
@@ -22,28 +22,28 @@
             return "rgb(" + r + ',' + g + ',' + b + ")";
         }
 
-                var receivedInfo = [{
-                        "id": 001,
-                        "current_price": 10,
-                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                        "company_name": "test1",
-                        "total": 500,
-                        "dividend": 20,
-//                        "hand_up": 0,
-                        "sell_remain": 5,
-                        "buy_remain": 10
-                    }, {
-                        "id": 002,
-                        "current_price": 100,
-                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                        "company_name": "test2",
-                        "total": 5000,
-                        "dividend": 200,
-//                        "hand_up": 20,
-                        "sell_remain": 50,
-                        "buy_remain": 100
-                    }]
-                ;
+//                var receivedInfo = [{
+//                        "id": 001,
+//                        "current_price": 10,
+//                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+//                        "company_name": "test1",
+//                        "total": 500,
+//                        "dividend": 20,
+////                        "hand_up": 0,
+//                        "sell_remain": 5,
+//                        "buy_remain": 10
+//                    }, {
+//                        "id": 002,
+//                        "current_price": 100,
+//                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+//                        "company_name": "test2",
+//                        "total": 5000,
+//                        "dividend": 200,
+////                        "hand_up": 20,
+//                        "sell_remain": 50,
+//                        "buy_remain": 100
+//                    }]
+//                ;
 
         function information() {
             $.ajax({
@@ -62,8 +62,17 @@
                         datasets[i]["fill"] = false;
                         datasets[i]["data"] = msg[i]["all_prices"];
                         datasets[i]["yAxisID"] = "y-axis";
-                        labels.push("");
+//                        labels.push("");
                     }
+                    createDom();
+                    $('i').click(function () {
+//                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
+                        if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
+                            $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
+                        } else {
+                            $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
+                        }
+                    });
                 },
                 error: function () {
                     alert("qubudaoDBQ");
@@ -100,15 +109,15 @@
 
         $(document).ready(function () {
                     setInterval(information(),5000);
-            createDom();
-            $('i').click(function () {
-//                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
-                if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
-                    $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
-                } else {
-                    $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
-                }
-            });
+//            createDom();
+//            $('i').click(function () {
+////                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
+//                if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
+//                    $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
+//                } else {
+//                    $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
+//                }
+//            });
 //            $(html).insertAfter("#table");
 //            document.getElementById("table").innerHTML = html;
         });
