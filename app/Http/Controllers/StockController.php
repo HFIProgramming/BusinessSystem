@@ -91,10 +91,12 @@ class StockController extends Controller
         $response = [];
         foreach (Stock::all() as $stock)
         {
+            $all_prices = $stock->history_prices;
+            array_push($all_prices, $stock->current_price);
             $stockData = [];
             $stockData['id'] = $stock->id;
             $stockData['current_price'] = $stock->current_price;
-            $stockData['all_prices'] = array_push($stock->history_prices, $stock->current_price);
+            $stockData['all_prices'] = $all_prices;
             $stockData['company_name'] = $stock->company->name;
             $stockData['total'] = $stock->total;
             $stockData['dividend'] = $stock->dividend;
@@ -102,7 +104,7 @@ class StockController extends Controller
             $stockData['buy_remain'] = $stock->buy_remain;
             array_push($response, $stockData);
         }
-        return response()->json($response);
+        return $response;
     }
 
     public function viewStocks(Request $request)

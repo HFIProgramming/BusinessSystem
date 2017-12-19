@@ -8,7 +8,8 @@
     <script>
 
         var html = '';
-        var receivedInfo, labels, datasets;
+        var receivedInfo = [], labels = [], datasets = [];
+        var dataLength = 0;
 
         var randomScalingFactor = function () {
             return Math.round(Math.random() * 100);
@@ -21,28 +22,28 @@
             return "rgb(" + r + ',' + g + ',' + b + ")";
         }
 
-        //        var receivedInfo = [{
-        //                "id": 001,
-        //                "cur_price": 10,
-        //                "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-        //                "company_name": "test1",
-        //                "total": 500,
-        //                "dividend": 20,
-        //                "hand_up": 0,
-        //                "sell_remain": 5,
-        //                "buy_remain": 10
-        //            }, {
-        //                "id": 002,
-        //                "cur_price": 100,
-        //                "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-        //                "company_name": "test2",
-        //                "total": 5000,
-        //                "dividend": 200,
-        //                "hand_up": 20,
-        //                "sell_remain": 50,
-        //                "buy_remain": 100
-        //            }]
-        //        ;
+                var receivedInfo = [{
+                        "id": 001,
+                        "current_price": 10,
+                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                        "company_name": "test1",
+                        "total": 500,
+                        "dividend": 20,
+//                        "hand_up": 0,
+                        "sell_remain": 5,
+                        "buy_remain": 10
+                    }, {
+                        "id": 002,
+                        "current_price": 100,
+                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                        "company_name": "test2",
+                        "total": 5000,
+                        "dividend": 200,
+//                        "hand_up": 20,
+                        "sell_remain": 50,
+                        "buy_remain": 100
+                    }]
+                ;
 
         function information() {
             $.ajax({
@@ -52,7 +53,8 @@
                 success: function (msg) {
                     receivedInfo = msg;
                     for (var i = 0; i < msg.length; i++) {
-                        datasets[i]["lineTension: "] = 0;
+                        datasets[i] = {};
+                        datasets[i]["lineTension"] = 0;
                         datasets[i]["label"] = msg[i]["company_name"];
                         var color = randomColor();
                         datasets[i]["borderColor"] = color;
@@ -78,8 +80,8 @@
             $.each(receivedInfo, function () {
                 html += '<tr> <td class="mdui-panel " mdui-panel> <div class="mdui-panel-item"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';
                 html += this.company_name + '</div>';
-                html += '<div class="mdui-panel-item-summary">Current Price: ' + this.cur_price + '</div>';
-                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';
+                html += '<div class="mdui-panel-item-summary">Current Price: ' + this.currrent_price + '</div>';
+//                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';
                 html += '<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i> </div>';
                 html += '<div class="mdui-panel-item-body"> <p>total: ' + this.total + '</p>';
                 html += '<p>dividend: ' + this.dividend + '</p>';
@@ -92,13 +94,13 @@
                 html += '<input type="hidden" name=' + this.id + '>';
                 html += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Sell </button> </form> </td> </tr>';
             });
+            $('#table').html(html);
         };
         //
 
         $(document).ready(function () {
-//                    setTimeout(information(),5000);
+                    setInterval(information(),5000);
             createDom();
-            $('#table').html(html);
             $('i').click(function () {
 //                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
                 if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
