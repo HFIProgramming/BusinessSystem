@@ -111,7 +111,7 @@
                                                             {{ csrf_field() }}
                                                             <input type="hidden" name="loan_id"
                                                                    value={{$loan->id}}>
-                                                            <button class="mdui-btn mdui-btn-icon mdui-color-green mdui-ripple">
+                                                            <button class="mdui-btn mdui-btn-icon mdui-color-red mdui-ripple">
                                                                 还款
                                                             </button>
                                                         </form>
