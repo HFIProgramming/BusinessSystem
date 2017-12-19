@@ -104,4 +104,9 @@ class StockController extends Controller
         }
         return response()->json($response);
     }
+
+    public function viewStocks(Request $request)
+    {
+        return view('stocks.list');
+    }
 }

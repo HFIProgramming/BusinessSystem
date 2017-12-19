@@ -13,6 +13,7 @@
     <script>
 
         var html = '';
+        var receivedInfo, labels,datasets;
 
         var randomScalingFactor = function () {
             return Math.round(Math.random() * 100);
@@ -25,59 +26,54 @@
             return "rgb(" + r + ',' + g + ',' + b + ")";
         }
 
-        var receivedInfo = [{
-                "id": 001,
-                "cur_price": 10,
-                "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                "company_name": "test1",
-                "total": 500,
-                "dividend": 20,
-                "hand_up": 0,
-                "sell_remain": 5,
-                "buy_remain": 10
-            }, {
-                "id": 002,
-                "cur_price": 100,
-                "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                "company_name": "test2",
-                "total": 5000,
-                "dividend": 200,
-                "hand_up": 20,
-                "sell_remain": 50,
-                "buy_remain": 100
-            }]
-        ;
+//        var receivedInfo = [{
+//                "id": 001,
+//                "cur_price": 10,
+//                "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+//                "company_name": "test1",
+//                "total": 500,
+//                "dividend": 20,
+//                "hand_up": 0,
+//                "sell_remain": 5,
+//                "buy_remain": 10
+//            }, {
+//                "id": 002,
+//                "cur_price": 100,
+//                "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+//                "company_name": "test2",
+//                "total": 5000,
+//                "dividend": 200,
+//                "hand_up": 20,
+//                "sell_remain": 50,
+//                "buy_remain": 100
+//            }]
+//        ;
 
-        var data1 = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-        var data2 = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-        var data3 = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-        var labels = ["", "", "", "", "", "", ""];
+        function information() {
+            $.ajax({
+                url: "{{route('stockData')}}",
+                dataType: "json",
+                type: "GET",
+                success: function(msg) {
+                    receivedInfo = msg;
+                    for (var i=0;i<msg.length;i++) {
+                        datasets[i]["lineTension: "] = 0;
+                        datasets[i]["label"] = msg[i]["company_name"];
+                        var color = randomColor();
+                        datasets[i]["borderColor"] = color;
+                        datasets[i]["backgroundColor"] = color;
+                        datasets[i]["fill"] = false;
+                        datasets[i]["data"] = msg[i]["all_prices"];
+                        datasets[i]["yAxisID"] = "y-axis";
+                        labels.push("");
+                    }
+                },
+                error: function() {
+                   alert("qubudaoDBQ");
+                }
+            })
+        }
 
-        //        function information() {
-        //            $.ajax({
-        //                url: "{{route('stockData')}}",
-        //                dataType: "json",
-        //                type: "GET",
-        //                success: function(msg) {
-        //                    receivedInfo = msg;
-        //                    for (var i=0,i<msg.length;i++) {
-        //                        datasets[i]["lineTension: "] = 0;
-        //                        datasets[i]["label"] = msg[i]["id"];
-        //                        var color = randomColor();
-        //                        datasets[i]["borderColor"] = color;
-        //                        datasets[i]["backgroundColor"] = color;
-        //                        datasets[i]["fill"] = false;
-        //                        datasets[i]["data"] = msg[i]["all_prices"];
-        //                        datasets[i]["yAxisID"] = "y-axis";
-        //                        labels.push("");
-        //                    }
-        //                },
-        //                error: function() {
-        //                   alert("qubudaoDBQ");
-        //                }
-        //            })
-        //        }
-        //
 
 
 //下面这个反正放进去就不能用了估计是没引入（？）之类的问题
@@ -122,31 +118,31 @@
         });
 
 
-        var datasets = [{
-            lineTension: 0,
-            label: "My First dataset",
-            borderColor: window.chartColors.red,
-            backgroundColor: window.chartColors.red,
-            fill: false,
-            data: data1,
-            yAxisID: "y-axis",
-        }, {
-            lineTension: 0,
-            label: "My Second dataset",
-            borderColor: window.chartColors.blue,
-            backgroundColor: window.chartColors.blue,
-            fill: false,
-            data: data2,
-            yAxisID: "y-axis"
-        }, {
-            lineTension: 0,
-            label: "My Third dataset",
-            borderColor: window.chartColors.blue,
-            backgroundColor: window.chartColors.blue,
-            fill: false,
-            data: data3,
-            yAxisID: "y-axis"
-        }];
+//        var datasets = [{
+//            lineTension: 0,
+//            label: "My First dataset",
+//            borderColor: window.chartColors.red,
+//            backgroundColor: window.chartColors.red,
+//            fill: false,
+//            data: data1,
+//            yAxisID: "y-axis",
+//        }, {
+//            lineTension: 0,
+//            label: "My Second dataset",
+//            borderColor: window.chartColors.blue,
+//            backgroundColor: window.chartColors.blue,
+//            fill: false,
+//            data: data2,
+//            yAxisID: "y-axis"
+//        }, {
+//            lineTension: 0,
+//            label: "My Third dataset",
+//            borderColor: window.chartColors.blue,
+//            backgroundColor: window.chartColors.blue,
+//            fill: false,
+//            data: data3,
+//            yAxisID: "y-axis"
+//        }];
 
         var lineChartData = {
             labels: labels,
