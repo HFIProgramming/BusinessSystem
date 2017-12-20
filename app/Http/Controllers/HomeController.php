@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use App\Resources;
+use App\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -46,4 +47,10 @@ class HomeController extends Controller
 	{
 		return view('errors.custom');
 	}
+
+	public function showBills()
+    {
+        $transactions = Transaction::where('type', 'yearly_yield')->orWhere('type', 'stock_dividend')->get();
+        return view('bills.list')->with('transactions', $transactions);
+    }
 }
