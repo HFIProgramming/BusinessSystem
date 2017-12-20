@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('/{id}', 'HomeController@showIndividualResource');
 			Route::get('/purchase', 'PurchaseController@showPurchaseForm')->name('purchaseForm');
 			Route::post('/purchase', 'PurchaseController@TopUp')->name('doPurchase');
+			Route::get('/build', 'PurchaseController@showBuildForm')->name('buildForm');
+			Route::post('/build', 'PurchaseController@buildArchitecture')->name('build');
 		});
 
 		Route::group(['prefix' => 'technology'], function () {
