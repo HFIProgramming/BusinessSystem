@@ -10,6 +10,7 @@ class Resources extends Model
 	protected $casts = [
 		'requirement'   => 'array',
 		'equivalent_to' => 'array',
+        'tax' => 'array'
 	];
 
 	protected $fillable = [
