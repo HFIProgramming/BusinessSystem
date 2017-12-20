@@ -108,6 +108,7 @@
         //
 
         $(document).ready(function () {
+
             setInterval(information(), 5000);
 //            createDom();
 //            $('i').click(function () {
