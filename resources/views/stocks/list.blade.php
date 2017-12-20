@@ -22,28 +22,28 @@
             return "rgb(" + r + ',' + g + ',' + b + ")";
         }
 
-//                var receivedInfo = [{
-//                        "id": 001,
-//                        "current_price": 10,
-//                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-//                        "company_name": "test1",
-//                        "total": 500,
-//                        "dividend": 20,
-////                        "hand_up": 0,
-//                        "sell_remain": 5,
-//                        "buy_remain": 10
-//                    }, {
-//                        "id": 002,
-//                        "current_price": 100,
-//                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-//                        "company_name": "test2",
-//                        "total": 5000,
-//                        "dividend": 200,
-////                        "hand_up": 20,
-//                        "sell_remain": 50,
-//                        "buy_remain": 100
-//                    }]
-//                ;
+        //                var receivedInfo = [{
+        //                        "id": 001,
+        //                        "current_price": 10,
+        //                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+        //                        "company_name": "test1",
+        //                        "total": 500,
+        //                        "dividend": 20,
+        ////                        "hand_up": 0,
+        //                        "sell_remain": 5,
+        //                        "buy_remain": 10
+        //                    }, {
+        //                        "id": 002,
+        //                        "current_price": 100,
+        //                        "all_prices": [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+        //                        "company_name": "test2",
+        //                        "total": 5000,
+        //                        "dividend": 200,
+        ////                        "hand_up": 20,
+        //                        "sell_remain": 50,
+        //                        "buy_remain": 100
+        //                    }]
+        //                ;
 
         function information() {
             $.ajax({
@@ -82,8 +82,8 @@
 
 
         //下面这个反正放进去就不能用了估计是没引入（？）之类的问题
-        //        html += '</div> </div> </td> <td> <form action="{{ route('buyStock') }}" method="post"> {{ csrf_field() }}';
-        //        html += '<td> <form action="{{ route('sellStock') }}" method="post">{{ csrf_field() }}';
+        {{--//        html += '</div> </div> </td> <td> <form action="{{ route('buyStock') }}" method="post"> {{ csrf_field() }}';--}}
+        {{--//        html += '<td> <form action="{{ route('sellStock') }}" method="post">{{ csrf_field() }}';--}}
 
         function createDom() {
             $.each(receivedInfo, function () {
@@ -96,11 +96,11 @@
                 html += '<p>dividend: ' + this.dividend + '</p>';
                 html += '<p>sell remain: ' + this.sell_remain + '</p>';
                 html += '<p>buy remain: ' + this.buy_remain + '</p>';
-                html += '</div> </div> </td> <td> <form>';
-                html += '<input type="hidden" name=' + this.id + '>';
+                html += '</div> </div> </td> <td> <form action="{{ route('buyStock') }}" method="post"> {{ csrf_field() }}';
+                html += '<input type="hidden" name="stock_id" value=' + this.id + '>';
                 html += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount" placeholder="$"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Buy </button> </form> </td>';
-                html += '<td> <form>';
-                html += '<input type="hidden" name=' + this.id + '>';
+                html += '<td> <form action="{{ route('sellStock') }}" method="post"> {{ csrf_field() }}';
+                html += '<input type="hidden" name="stock_id" value=' + this.id + '>';
                 html += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Sell </button> </form> </td> </tr>';
             });
             $('#table').html(html);
@@ -108,7 +108,8 @@
         //
 
         $(document).ready(function () {
-                    setInterval(information(),5000);
+
+            setInterval(information(), 5000);
 //            createDom();
 //            $('i').click(function () {
 ////                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
