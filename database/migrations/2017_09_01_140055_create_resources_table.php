@@ -26,7 +26,7 @@ class CreateResourcesTable extends Migration
             $table->integer('acquisition_price')->default(0);//政府收购价
             $table->integer('employment_price')->default(0);//雇佣价
             $table->text('equivalent_to')->nullable();//used for BOTH Transactions and TopUps
-            $table->text('tax');
+            $table->text('tax')->nullable();
             //The item above lists the items that do not go to the buyer but to someone else.
             //This mechanism is similar to the process of taxing, hence the name.
             $table->integer('required_tech')->nullable();
