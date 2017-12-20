@@ -43,7 +43,7 @@ class Stock extends Model
 
     public function resource()
     {
-        return $this->belongsTo('App\Resource');
+        return $this->belongsTo('App\Resources');
     }
 
     public function availableInMarket()

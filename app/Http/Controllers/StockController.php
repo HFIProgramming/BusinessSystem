@@ -39,7 +39,7 @@ class StockController extends Controller
         {
             return view('errors.custom')->with('message', '您的余额不足');
         }
-        if($sellerAmount > $stock->sell_reamin)
+        if($sellerAmount > $stock->sell_remain)
         {
             $sellerAmount = $stock->sell_remain;
         }
@@ -47,6 +47,7 @@ class StockController extends Controller
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
         event(new StockTransaction($buyer, $stock, 'buy', $sellerAmount));
         //Price Updates are written in StockTransaction Event
+        return view('success')->with('message', '购买成功');
 
     }
 
@@ -65,10 +66,10 @@ class StockController extends Controller
         {
             return view('errors.custom')->with('message', '该股票不存在');
         }
-        $sellerItem = $seller->resources()->resid($stock->resource()->id)->first();
+        $sellerItem = $seller->resources()->resid($stock->resource->id)->first();
         $sellerAmount = $amount;
         $buyerAmount = $amount * $stock->buyPrice();
-        if($buyer->type != 2)
+        if($seller->type != 2)
         {
             return view('errors.custom')->with('message', '您不能进行股票交易');
         }
@@ -79,11 +80,13 @@ class StockController extends Controller
         if($buyerAmount > $stock->buy_remain)
         {
             $buyerAmount = $stock->buy_remain;
+            return 'dont move, you '.$buyerAmount;
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
         event(new StockTransaction($seller, $stock, 'sell', $buyerAmount));
         //Prices Updates are written in StockTransaction Event
+        return view('success')->with('message', '出售成功');
     }
 
     public function sendData(Request $request)

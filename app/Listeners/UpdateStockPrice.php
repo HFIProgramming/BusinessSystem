@@ -30,7 +30,9 @@ class UpdateStockPrice
         //
         $stock = $event->stock;
         //Need to update: current$, history$, sell_remain, buy_remain
-        array_push($stock->history_prices, $stock->current_price);
+        $history = $stock->history_prices;
+        array_push($history, $stock->current_price);
+        $stock->history_prices = $history;
         if($stock->buy_remain == 0) //Go down!
         {
             $stock->current_price = $stock->buyPrice();
