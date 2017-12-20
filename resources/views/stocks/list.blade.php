@@ -65,14 +65,6 @@
 //                        labels.push("");
                     }
                     createDom();
-                    $('i').click(function () {
-//                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
-                        if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
-                            $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
-                        } else {
-                            $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
-                        }
-                    });
                 },
                 error: function () {
                     alert("qubudaoDBQ");
@@ -80,10 +72,6 @@
             })
         }
 
-
-        //下面这个反正放进去就不能用了估计是没引入（？）之类的问题
-        {{--//        html += '</div> </div> </td> <td> <form action="{{ route('buyStock') }}" method="post"> {{ csrf_field() }}';--}}
-        {{--//        html += '<td> <form action="{{ route('sellStock') }}" method="post">{{ csrf_field() }}';--}}
 
         function createDom() {
             $.each(receivedInfo, function () {
@@ -109,16 +97,16 @@
 
         $(document).ready(function () {
 
-            setInterval(information(), 5000);
-//            createDom();
-//            $('i').click(function () {
-////                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
-//                if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
-//                    $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
-//                } else {
-//                    $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
-//                }
-//            });
+            setInterval("information()", 5000);
+           // createDom();
+           $('i').click(function () {
+//                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
+               if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
+                   $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
+               } else {
+                   $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
+               }
+           });
 //            $(html).insertAfter("#table");
 //            document.getElementById("table").innerHTML = html;
         });
