@@ -96,28 +96,29 @@ class RegisterController extends Controller
                 'level' => 1
             ]);
         }
-        if($user->type == 1)//Company
+        if ($user->type == 1)//Company
         {
             $company = $user->company()->create([
-               'name' => $user->name,
-               'last_year_profit' => 1000 //to be determined
+                'name' => $user->name,
+                'last_year_profit' => 1000 //to be determined
             ]);
             $stockResource = Resources::create([
-                'code' => $user->name.'_stock',
-                'name' => $user->name.'公司股票',
-                'description' => $user->name.'公司股票',
+                'code' => $user->name . '_stock',
+                'name' => $user->name . '公司股票',
+                'description' => $user->name . '公司股票',
                 'type' => 3
             ]);
-            $stockResource->stock()->create([
-               'current_price' => 5,
-               'history_prices' => [],
-               'total' => 1000000,
-               'dividend' => 0.1,
-               'up_poly_coeff' => [0.3,1],
-               'down_poly_coeff' => [-0.3,1],
-               'sell_remain' => 1000,
-               'buy_remain' => 1000,
-               'company_id' => $company->id
+            Resources::create([
+                'current_price' => 5,
+                'history_prices' => [],
+                'total' => 1000000,
+                'dividend' => 0.1,
+                'up_poly_coeff' => [0.3, 1],
+                'down_poly_coeff' => [-0.3, 1],
+                'sell_remain' => 1000,
+                'buy_remain' => 1000,
+                'company_id' => $company->id,
+                'resource_id' => $stockResource->id
             ]);
         }
         return $user;
