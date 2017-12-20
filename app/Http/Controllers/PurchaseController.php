@@ -103,6 +103,11 @@ class PurchaseController extends Controller
 		return view('resources.purchase');
 	}
 
+	public function showBuildForm()
+    {
+        return view('resources.build');
+    }
+
 	protected function canUserAcquireThisProduct(User $user, Resources $product)
 	{
 		if (in_array($product->type, $user->transactionRule()->first()->resource_type)) {

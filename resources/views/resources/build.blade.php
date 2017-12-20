@@ -46,10 +46,9 @@
                         <div class="mdui-textfield mdui-textfield-floating-label ">
                             <i class="mdui-icon material-icons adjust_mdui_icon">account_circle</i>
                             <label class="mdui-textfield-label">数量</label>
-                            <input class="mdui-textfield-input" id="amount" name="amoun" type="number" required/>
+                            <input class="mdui-textfield-input" id="amount" name="amount" type="number" required/>
                             <div class="mdui-textfield-error">数量不能为空</div>
                         </div>
-                        <input hidden id="transaction_type" value="buy">
                         <button data-no-instant type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交
                         </button>
                     </form>
