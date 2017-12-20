@@ -8,6 +8,7 @@ class IntToVal extends Model
 {
     //
     protected $table = 'interval_to_value';
+    protected $fillable = ['lower', 'upper', 'value', 'flag'];
 
     public function scopeIntervalValue($query, $flag, $value)
     {
