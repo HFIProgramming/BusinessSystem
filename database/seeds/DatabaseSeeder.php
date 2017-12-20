@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
 		$this->call(ResourceSeeder::class);
 		$this->call(UserRoleSeeder::class);
 		$this->call(IntToValSeeder::class);
+		$this->call(ZoneSeeder::class);
 	}
 }
