@@ -23,7 +23,7 @@
             }],
             stock_shares: [{
                 name: "stock1",
-                amount: 3,
+                amount: 10,
                 Annoymous: "12%"
             }, {
                 name: "stock",
@@ -69,7 +69,11 @@
         }
 
         function createDom() {
+            var configS = [];
+            var idS = []
+
             $.each(receivedInfo, function () {
+                idS.push(this.company_id);
                 var data = [];
                 var backgroundColor = [];
                 var labels = [];
@@ -81,7 +85,7 @@
                     labels.push(this.stock_shares[i].name + "(" + ((this.stock_shares[i].amount / this.total) * 100).toFixed(2) + "%)");
                 }
 
-                var config = {
+                configS.push({
                     type: 'pie',
                     data: {
                         datasets: [{
@@ -94,7 +98,7 @@
                     options: {
                         responsive: true
                     }
-                };
+                });
 
                 html += '<div class="company mdui-col-md-12"> <div class="mdui-card"> <div class="mdui-card-primary">';
                 html += '<div class="mdui-card-primary-title">'+ this.company_name + '</div> </div> <div class="mdui-card-content">';
@@ -102,20 +106,23 @@
                 html += '<li class="mdui-list-item mdui-ripple">总股数：' + this.total + '</li>';
                 html += '<li class="mdui-list-item mdui-ripple">股价：' + this.price + '</li>';
                 html += '<li class="mdui-list-item mdui-ripple">去年的利润：' + this.lastProfit + '</li>';
-                html += '<li class="mdui-list-item mdui-ripple">公司持有的建筑：<ul>';
+                html += '<li class="mdui-list-item mdui-ripple">公司持有的建筑：<ul class="mdui-list">';
                 for (var i=0;i<this.buildings.length;i++) {
-                    html += '<li>'+ this.buildings[i].name + ' X ' + this.buildings[i].amount + '</li>';
+                    html += '<li class="mdui-list-item mdui-ripple">'+ this.buildings[i].name + ' X ' + this.buildings[i].amount + '</li>';
                 }
-                html += '</ul><li class="mdui-list-item mdui-ripple">分红率：<ul>';
+                html += '</ul><li class="mdui-list-item mdui-ripple">分红率：<ul class="mdui-list">';
                 for (var i=0;i<this.stock_shares.length;i++) {
-                    html += '<li>'+ this.stock_shares[i].name + ': ' + this.stock_shares[i].Annoymous + '</li>';
+                    html += '<li class="mdui-list-item mdui-ripple">'+ this.stock_shares[i].name + ': ' + this.stock_shares[i].Annoymous + '</li>';
                 }
                 html += '</ul></li> </ul> </div> </div> </div>';
 
-                var ctx = document.getElementById(this.company_id).getContext("2d");
-                window.myPie = new Chart(ctx, config);
+
             });
             $('#table').html(html);
+            for (var i=0;i<configS.length;i++) {
+                var ctx = document.getElementById(idS[i]).getContext("2d");
+                window.myPie = new Chart(ctx, configS[i]);
+            }
         };
 
 
