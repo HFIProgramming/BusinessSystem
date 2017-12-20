@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Zone extends Model
 {
     //
+    protected $fillable = ['user_id'];
+
     public function user()
     {
         return $this->belongsTo('App\User');
