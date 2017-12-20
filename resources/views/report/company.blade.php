@@ -124,15 +124,11 @@
             <a class="mdui-ripple">1</a>
             <a class="mdui-ripple">2</a>
             <a class="mdui-ripple">3</a>
-        <!--@foreach ($years as $year)-->
-            <!--<a href="#example2-tab6" class="mdui-ripple">maps</a>-->
-        <!--<li>{{ $user->name }}</li>-->
-            <!--@endforeach-->
         </div>
         </br></br>
         <div class="mdui-card-header">
             <div class="mdui-typo-display-1 mdui-text-center mdui-text-color-theme">
-                Financial Report
+                Company Report
             </div>
         </div>
         <div class="mdui-col-md-12">
