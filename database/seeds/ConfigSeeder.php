@@ -21,6 +21,8 @@ class ConfigSeeder extends Seeder
 			'current_round'       => 0,
 			'total_round'         => 20,
 			'is_continued'        => 1,
+            'crisis_PowerStation' => 1,
+            'crisis_Disney' => 1
 		];
 		foreach ($config as $key => $value) {
 			\App\Config::query()->create([

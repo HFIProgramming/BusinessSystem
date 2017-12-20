@@ -86,5 +86,26 @@ class IntToValSeeder extends Seeder
             'flag' => 'pollution_tax',
             'value' => 0.5
         ]);
+
+        $arr = [[0.1125, 0, 30], [0.025, 30, 60], [0.0125, 60, 100], [0.002, 100, 1000000]];
+        foreach ($arr as $data)
+        {
+            IntToVal::create([
+                'lower' => $data[1],
+                'upper' => $data[2],
+                'flag' => 'buy_remain',
+                'value' => $data[0]
+            ]);
+        }
+        $arr = [[0.0125, 0, 30], [0.025, 30, 60], [0.1125, 60, 100], [0.18, 100, 1000000]];
+        foreach ($arr as $data)
+        {
+            IntToVal::create([
+                'lower' => $data[1],
+                'upper' => $data[2],
+                'flag' => 'sell_remain',
+                'value' => $data[0]
+            ]);
+        }
     }
 }
