@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Zone;
 use App\User;
+use App\Resources;
 
 class ZoneSeeder extends Seeder
 {
