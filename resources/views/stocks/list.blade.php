@@ -62,7 +62,7 @@
                         datasets[i]["fill"] = false;
                         datasets[i]["data"] = msg[i]["all_prices"];
                         datasets[i]["yAxisID"] = "y-axis";
-//                        labels.push("");
+                       labels.push("");
                     }
                     createDom();
                 },
@@ -74,6 +74,7 @@
 
 
         function createDom() {
+            html = '';
             $.each(receivedInfo, function () {
                 html += '<tr> <td class="mdui-panel " mdui-panel> <div class="mdui-panel-item"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';
                 html += this.company_name + '</div>';
