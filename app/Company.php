@@ -8,6 +8,7 @@ class Company extends Model
 {
     //
     protected $table = 'companies';
+    protected $fillable = ['name', 'last_year_profit'];
 
     public function stock()
     {

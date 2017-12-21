@@ -15,6 +15,10 @@ class Stock extends Model
       'down_poly_coeff' => 'array'
     ];
 
+    protected $fillable = [
+        'current_price', 'history_prices', 'total', 'dividend', 'up_poly_coeff', 'down_poly_coeff', 'sell_remain', 'company_id', 'resource_id'
+    ];
+
     public function sellPrice() //卖盘卖出价 上升
     {
         return $this->calculatePriceFromPolyCoeffs($this->up_poly_coeff);
