@@ -16,11 +16,7 @@ class Stock extends Model
     ];
 
     protected $fillable = [
-<<<<<<< HEAD
-        'current_price', 'history_prices', 'total', 'dividend', 'up_poly_coeff', 'down_poly_coeff', 'sell_remain', 'company_id', 'resource_id'
-=======
         'current_price', 'history_prices', 'total', 'dividend', 'up_poly_coeff', 'down_poly_coeff', 'sell_remain', 'buy_remain', 'company_id', 'resource_id'
->>>>>>> 3ca5191ec0b97fd516750bbacc57450aeafd3bf0
     ];
 
     public function sellPrice() //卖盘卖出价 上升
