@@ -242,7 +242,7 @@
                         </div>
                         <div class="mdui-card-content">
                             <div id="canvas-holder">
-                                <canvas id="chart-area"/>
+                                <canvas id="{{$company -> company_id}}"/>
                             </div>
                             <ul class="mdui-list">
                                 <li class="mdui-list-item mdui-ripple">总股数：{{$company -> total}}</li>
@@ -271,6 +271,42 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    var data = [];
+                    var backgroundColor = [];
+                    var labels = [];
+                    var label = {{$company - > name}};
+
+                    @@foreach($company -> datas as $data)
+                    data.push({{$data}})
+                    backgroundColor.push(randomColor());
+                    @@endforeach
+
+                    @@foreach($company -> stock_shares as $stock_share)
+                    labels.push({{$stock_share -> name}} +"(" + (({{$stock_share -> amount}} / {{$company -> total}}) * 100).toFixed(2) + "%)");
+                    @@endforeach
+
+
+                    var config = ({
+                            type: 'pie',
+                            data: {
+                                datasets: [{
+                                    data: data,
+                                    backgroundColor: backgroundColor,
+                                    label: label
+                                }],
+                                labels: labels
+                            },
+                            options: {
+                                responsive: true
+                            }
+                        });
+                    });
+
+
+                    var ctx = document.getElementById({{$company -> company_id}}).getContext("2d");
+                    window.myPie = new Chart(ctx, config);
+                </script>
             @endforeach
         </div>
     </div>
