@@ -7,53 +7,56 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.bundle.js"></script>
     <script>
-        var receivedInfo = [{
-            company_id: "1",
-            company_name: "scriTrashPeople",
-            year: "2001",
-            price: "50",
-            total: 20,
-            lastProfit: "50",
-            buildings: [{
-                name: "building1",
-                amount: 3
+        var receivedInfo = {
+            year: 1
+            info: [{
+                company_id: "1",
+                company_name: "scriTrashPeople",
+                year: "2001",
+                price: "50",
+                total: 20,
+                lastProfit: "50",
+                buildings: [{
+                    name: "building1",
+                    amount: 3
+                }, {
+                    name: "building2",
+                    amount: 5
+                }],
+                stock_shares: [{
+                    name: "stock1",
+                    amount: 10,
+                    Annoymous: "12%"
+                }, {
+                    name: "stock",
+                    amount: 10,
+                    Annoymous: "20%"
+                }]
             }, {
-                name: "building2",
-                amount: 5
-            }],
-            stock_shares: [{
-                name: "stock1",
-                amount: 10,
-                Annoymous: "12%"
-            }, {
-                name: "stock",
-                amount: 10,
-                Annoymous: "20%"
+                company_id: "2",
+                company_name: "johannaTrashPeople",
+                year: "2001",
+                price: "50",
+                total: "20",
+                lastProfit: "70",
+                buildings: [{
+                    name: "building1",
+                    amount: 3,
+                }, {
+                    name: "building2",
+                    amount: 5
+                }],
+                stock_shares: [{
+                    name: "stock1",
+                    amount: 3,
+                    Annoymous: "92%"
+                }, {
+                    name: "stock",
+                    amount: 10,
+                    Annoymous: "82%"
+                }]
             }]
-        }, {
-            company_id: "2",
-            company_name: "johannaTrashPeople",
-            year: "2001",
-            price: "50",
-            total: "20",
-            lastProfit: "70",
-            buildings: [{
-                name: "building1",
-                amount: 3,
-            }, {
-                name: "building2",
-                amount: 5
-            }],
-            stock_shares: [{
-                name: "stock1",
-                amount: 3,
-                Annoymous: "92%"
-            }, {
-                name: "stock",
-                amount: 10,
-                Annoymous: "82%"
-            }]
-        }];
+        };
 
         var html = '';
 
@@ -227,87 +230,90 @@
             </div>
         </div>
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
-            @foreach($yeas as $year)
+            @foreach($years as $year)
                 <a class="mdui-ripple" onclick="display()">{{$year->index}}</a>
             @endforeach
         </div>
         </br></br>
 
-        <div id="table" class="mdui-col-md-12">
-            @foreach($companys as $company)
-                <div class="company mdui-col-md-12">
-                    <div class="mdui-card">
-                        <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">{{$company -> name}}</div>
-                        </div>
-                        <div class="mdui-card-content">
-                            <div id="canvas-holder">
-                                <canvas id="{{$company -> company_id}}"/>
+        @foreach($companyReports as $companyReport)
+            <div id="table" class="mdui-col-md-12">
+                @foreach($companys as $company)
+                    <div class="company mdui-col-md-12">
+                        <div class="mdui-card">
+                            <div class="mdui-card-primary">
+                                <div class="mdui-card-primary-title">{{$company -> name}}</div>
                             </div>
-                            <ul class="mdui-list">
-                                <li class="mdui-list-item mdui-ripple">总股数：{{$company -> total}}</li>
-                                <li class="mdui-list-item mdui-ripple">股价：{{$company -> price}}</li>
-                                <li class="mdui-list-item mdui-ripple">去年的利润：{{$company -> last_profit}}</li>
-                                <li class="mdui-list-item mdui-ripple">
-                                    公司持有的建筑：
-                                    <ul class="mdui-list">
-                                        @foreach($company -> buildings as $building)
-                                            <li class="mdui-list-item mdui-ripple">{{$building -> name}}
-                                                （数量：{{$building -> amount}}）
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                                <li class="mdui-list-item mdui-ripple">
-                                    分红率：
-                                    <ul class="mdui-list">
-                                        @foreach($company -> stock_shares as $stock_share)
-                                            <li class="mdui-list-item mdui-ripple">{{$stock_share -> name}}
-                                                ： {{$stock_share -> Annoymous}}</li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            </ul>
+                            <div class="mdui-card-content">
+                                <div id="canvas-holder">
+                                    <canvas id="{{$company -> company_id}}"/>
+                                </div>
+                                <ul class="mdui-list">
+                                    <li class="mdui-list-item mdui-ripple">总股数：{{$company -> total}}</li>
+                                    <li class="mdui-list-item mdui-ripple">股价：{{$company -> price}}</li>
+                                    <li class="mdui-list-item mdui-ripple">去年的利润：{{$company -> last_profit}}</li>
+                                    <li class="mdui-list-item mdui-ripple">
+                                        公司持有的建筑：
+                                        <ul class="mdui-list">
+                                            @foreach($company -> buildings as $building)
+                                                <li class="mdui-list-item mdui-ripple">{{$building -> name}}
+                                                    （数量：{{$building -> amount}}）
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    <li class="mdui-list-item mdui-ripple">
+                                        分红率：
+                                        <ul class="mdui-list">
+                                            @foreach($company -> stock_shares as $stock_share)
+                                                <li class="mdui-list-item mdui-ripple">{{$stock_share -> name}}
+                                                    ： {{$stock_share -> Annoymous}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <script>
-                    var data = [];
-                    var backgroundColor = [];
-                    var labels = [];
-                    var label = {{$company - > name}};
+                    <script>
+                        var data = [];
+                        var backgroundColor = [];
+                        var labels = [];
+                        var label = {{$company - > name}};
 
                     @@foreach($company -> datas as $data)
-                    data.push({{$data}})
-                    backgroundColor.push(randomColor());
+                        data.push({{$data}})
+                        backgroundColor.push(randomColor());
                     @@endforeach
 
-                    @@foreach($company -> stock_shares as $stock_share)
-                    labels.push({{$stock_share -> name}} +"(" + (({{$stock_share -> amount}} / {{$company -> total}}) * 100).toFixed(2) + "%)");
+                        @@foreach($company -> stock_shares as $stock_share)
+                        labels.push({{$stock_share -> name}} +"(" + (({{$stock_share -> amount}} / {{$company -> total}}) * 100).toFixed(2) + "%)");
                     @@endforeach
 
 
-                    var config = ({
-                            type: 'pie',
-                            data: {
-                                datasets: [{
-                                    data: data,
-                                    backgroundColor: backgroundColor,
-                                    label: label
-                                }],
-                                labels: labels
-                            },
-                            options: {
-                                responsive: true
-                            }
-                        });
-                    });
+                        var config = ({
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        data: data,
+                                        backgroundColor: backgroundColor,
+                                        label: label
+                                    }],
+                                    labels: labels
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            });
+                        })
+                        ;
 
 
-                    var ctx = document.getElementById({{$company -> company_id}}).getContext("2d");
-                    window.myPie = new Chart(ctx, config);
-                </script>
-            @endforeach
-        </div>
+                        var ctx = document.getElementById({{$company -> company_id}}).getContext("2d");
+                        window.myPie = new Chart(ctx, config);
+                    </script>
+                @endforeach
+            </div>
+        @endforeach
     </div>
 @endsection
