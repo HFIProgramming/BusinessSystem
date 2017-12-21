@@ -77,11 +77,14 @@ class User extends Authenticatable
 				return '管理员';
 				break;
 			case 1:
-				return '原材料商';
+				return '实业公司';
 				break;
 			case 2:
-				return '加工商';
+				return '投行';
 				break;
+            case 3:
+                return '地块';
+                break;
 			default:
 				return '你什么鬼？';
 				break;
