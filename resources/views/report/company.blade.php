@@ -268,8 +268,8 @@
                                         公司持有的建筑：
                                         <ul class="mdui-list">
                                             @foreach($company -> buildings as $building)
-                                                <li class="mdui-list-item mdui-ripple">{{$building -> name}}
-                                                    （数量：{{$building -> amount}}）
+                                                <li class="mdui-list-item mdui-ripple">{{$building['name']}}
+                                                    （数量：{{$building['amount']}}）
                                                 </li>
                                             @endforeach
                                         </ul>

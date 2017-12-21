@@ -24,7 +24,7 @@ class GenerateReports
     /**
      * Handle the event.
      *
-     * @param  EndOfYear  $event
+     * @param  EndOfYear $event
      * @return void
      */
     public function handle(EndOfYear $event)
@@ -32,16 +32,13 @@ class GenerateReports
         //
         $current = $event->current_year;
         $companyShareHolders = [];
-        foreach(User::type(2)->get() as $bank)
-        {
+        foreach (User::type(2)->get() as $bank) {
             $components = [];
-            foreach($bank->resources as $userResource)
-            {
-                if($userResource->resource->type == 3)//Stock
+            foreach ($bank->resources as $userResource) {
+                if ($userResource->resource->type == 3)//Stock
                 {
                     $share = $userResource->amount / $userResource->resource->stock->total;
-                    if($share >= 0.1)
-                    {
+                    if ($share >= 0.1) {
                         $components[$userResource->resource->stock->company->user_id] = $share;
                         $companyShareHolders[$userResource->resource->stock->company->user_id][$bank->id] = $share;
                     }
@@ -56,16 +53,23 @@ class GenerateReports
                 'loan_total' => $loan_total
             ]);
         }
-        foreach(User::type(1)->get() as $company)
-        {
-            $components = array_key_exists($company->id, $companyShareHolders)?$companyShareHolders[$company->id]:[];
+        foreach (User::type(1)->get() as $company) {
+            $components = array_key_exists($company->id, $companyShareHolders) ? $companyShareHolders[$company->id] : [];
+            $buildings = [];
+            foreach ($company->resources as $userResource) {
+                if ($userResource->resource->type == 2)//Building
+                {
+                    array_push($buildings, ['name' => $userResource->resource->name, 'amount' => $userResource->amount]);
+                }
+            }
             Report::create([
-               'year' => $current,
-               'user_id' => $company->id,
-               'type' => 'company',
-               'stock_price' => $company->company->stock->current_price,
-               'profit' => $company->company->last_year_profit,
-               'components' => $components
+                'year' => $current,
+                'user_id' => $company->id,
+                'type' => 'company',
+                'stock_price' => $company->company->stock->current_price,
+                'profit' => $company->company->last_year_profit,
+                'components' => $components,
+                'buildings' => $buildings
             ]);
         }
     }

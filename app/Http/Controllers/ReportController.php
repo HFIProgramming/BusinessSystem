@@ -27,7 +27,12 @@ class ReportController extends Controller
                 $array['total'] = $company->stock->total;
                 $array['stock_price'] = $rawReport->stock_price;
                 $array['last_profit'] = $rawReport->profit;
+                $array['buildings'] = $rawReport->buildings;
+                array_push($companyReport['info'], $array);
             }
+            array_push($companyReports, $companyReport);
         }
+
+        return view('report.company')->with('companyReports', $companyReports);
     }
 }

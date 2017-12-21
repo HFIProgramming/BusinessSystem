@@ -12,7 +12,8 @@ class Report extends Model
     ];
 
     protected $casts = [
-        'components' => 'array'
+        'components' => 'array',
+        'buildings' => 'array'
     ];
 
     public function user()
