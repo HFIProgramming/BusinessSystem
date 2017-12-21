@@ -20,8 +20,8 @@ class Company extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function pollutionIndex()//@TODO resid() NOT FILLED IN!
+    public function pollutionIndex()
     {
-        return $this->user->resources->resid()->first()->amount;
+        return $this->user->resources()->resid(7)->first()->amount;
     }
 }

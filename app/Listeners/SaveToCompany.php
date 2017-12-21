@@ -9,6 +9,7 @@ use App\Events\NewTransaction;
 use App\IntToVal;
 use App\Resources;
 use App\User;
+use App\Zone;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

@@ -6,6 +6,7 @@ use App\Company;
 use App\Events\EndOfYear;
 use App\IntToVal;
 use App\Zone;
+use App\Config;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -54,7 +55,7 @@ class CalculateProfits
                 }
             }
 
-            $tax = IntToVal::IntervalValue('pollution_tax', $company->pollutionIndex());
+            $tax = IntToVal::IntervalValue('pollution_tax', $company->pollutionIndex())->value;
 
             $company->last_year_profit = round($sum * (1 - $tax));
             $company->save();

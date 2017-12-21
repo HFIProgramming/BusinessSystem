@@ -53,7 +53,7 @@ class doTopUp
             foreach ($event->item->equivalent_to as $item => $amount)
             {
                 $resource = $event->user->resources()->resid($item)->first();
-                $resource->amount += $amount;
+                $resource->amount += $amount * $event->amount;
                 $resource->save();
             }
         }

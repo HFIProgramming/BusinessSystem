@@ -17,9 +17,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-	    Schema::defaultStringLength(191);
-	    Carbon::setLocale('zh');
-        URL::forceScheme('https');
+        Schema::defaultStringLength(191);
+        Carbon::setLocale('zh');
+        if (env('APP_HTTPS', 'false') == 'true') {
+            URL::forceScheme('https');
+        }
     }
 
     /**

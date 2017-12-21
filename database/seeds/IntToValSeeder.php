@@ -51,6 +51,25 @@ class IntToValSeeder extends Seeder
             'value' => 1.2
         ]);
 
+        IntToVal::create([
+            'lower' => -1000000,
+            'upper' => -30,
+            'flag' => 'powerIndex_Mining',
+            'value' => 0.8
+        ]);
+        IntToVal::create([
+            'lower' => -30,
+            'upper' => 30,
+            'flag' => 'powerIndex_Mining',
+            'value' => 1
+        ]);
+        IntToVal::create([
+            'lower' => 30,
+            'upper' => 1000000,
+            'flag' => 'powerIndex_Mining',
+            'value' => 1.2
+        ]);
+
         $arr = [[1.3, 200, 1000000], [1.2, 100, 200], [1.1, 50, 100], [1, -50, 50], [0.9, -100, -50], [0.8, -200, -100], [0.7, -1000000, -200]];
         foreach ($arr as $data)
         {
@@ -65,6 +84,12 @@ class IntToValSeeder extends Seeder
                 'upper' => $data[2],
                 'flag' => 'happinessIndex_PowerStation',
                 'value' => $data[0]
+            ]);
+            IntToVal::create([
+                'lower' => $data[1],
+                'upper' => $data[2],
+                'flag' => 'happinessIndex_Mining',
+                'value' => 1
             ]);
         }
 

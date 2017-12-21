@@ -16,11 +16,11 @@ class Zone extends Model
 
     public function powerIndex()
     {
-        return $this->user->resources()->resid(5)->amount;
+        return $this->user->resources()->resid(5)->first()->amount;
     }
 
     public function happinessIndex()
     {
-        return $this->user->resources()->resid(6)->amount;
+        return $this->user->resources()->resid(6)->first()->amount;
     }
 }

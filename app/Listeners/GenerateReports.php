@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\EndOfYear;
 use App\Loan;
 use App\Report;
+use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -57,13 +58,13 @@ class GenerateReports
         }
         foreach(User::type(1)->get() as $company)
         {
-            $components = $companyShareHolders[$company->id];
+            $components = array_key_exists($company->id, $companyShareHolders)?$companyShareHolders[$company->id]:[];
             Report::create([
                'year' => $current,
                'user_id' => $company->id,
                'type' => 'company',
-               'stock_price' => $company->stock->current_price,
-               'profit' => $company->last_year_profit,
+               'stock_price' => $company->company->stock->current_price,
+               'profit' => $company->company->last_year_profit,
                'components' => $components
             ]);
         }

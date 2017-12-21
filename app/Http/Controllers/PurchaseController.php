@@ -51,7 +51,7 @@ class PurchaseController extends Controller
     {
         $resource = Resources::find($request->item_id);
         $user = $request->user();
-        if($resource->type != 4 || empty($resource))//Refer to migrations to see type.
+        if(($resource->type != 4 && $resource->id != 15) || empty($resource))//Refer to migrations to see type. 15 is special building
         {
             return view('errors.custom')->with('message', '不能建造这种建筑');
         }
@@ -74,16 +74,19 @@ class PurchaseController extends Controller
             return $view;
         }
 
-        $built = $user->resources()->resid($request->item_id)->first();
-        if(array_key_exists($zone->id,$built->zones))
+        $purchased = Resources::find($request->item_id);
+        foreach($purchased->equivalent_to as $built_id => $quantity)
         {
-            $built->zones[$zone->id]++;
+            $built = $user->resources()->resid($built_id)->first();
+            $zones = $built->zones;
+            if (array_key_exists($zone->id, $built->zones)) {
+                $zones[$zone->id] += $quantity * $request->amount;
+            } else {
+                $zones[$zone->id] = $quantity * $request->amount;
+            }
+            $built->zones = $zones;
+            $built->save();
         }
-        else
-        {
-            $built->zones[$zone->id] = 1;
-        }
-        $built->save();
 
         foreach ($resource->tax as $item => $amount)
         {

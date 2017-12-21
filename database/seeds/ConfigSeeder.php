@@ -23,6 +23,7 @@ class ConfigSeeder extends Seeder
 			'is_continued'        => 1,
             'crisis_PowerStation' => 1,
             'crisis_Disney' => 1,
+            'crisis_Mining' => 1,
             'stock_transactions_limit' => 10
 		];
 		foreach ($config as $key => $value) {
