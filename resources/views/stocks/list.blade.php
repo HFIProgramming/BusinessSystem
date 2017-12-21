@@ -67,7 +67,7 @@
                     createDom();
                 },
                 error: function () {
-                    alert("qubudaoDBQ");
+                    // alert("qubudaoDBQ");
                 }
             })
         }
@@ -221,79 +221,6 @@
                     </tr>
                     </thead>
                     <tbody id="table">
-                    <tr>
-                        <td class="mdui-panel" mdui-panel>
-                            <div class="mdui-panel-item ">
-                                <div class="mdui-panel-item-header">
-                                    <div class="mdui-panel-item-title">Stock</div>
-                                    <div class="mdui-panel-item-summary">Start date: Feb 29, 2016</div>
-                                    <div class="mdui-panel-item-summary">End date: Not set</div>
-                                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                                </div>
-                                <div class="mdui-panel-item-body">
-                                    <p>对不起啦人家就是想把信息放下拉</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <form action="{{ route('buyStock') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="hidden" name=>
-                                <div class="mdui-textfield">
-                                    <input class="mdui-textfield-input" type="text" name="amount">
-                                </div>
-                                <button type="submit"
-                                        class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">
-                                    Buy
-                                </button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="{{ route('sellStock') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="hidden" name=>
-                                <div class="mdui-textfield">
-                                    <input class="mdui-textfield-input" type="text" name="amount">
-                                </div>
-                                <button type="submit"
-                                        class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">
-                                    Sell
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="mdui-panel" mdui-panel>
-                            <div class="mdui-panel-item">
-                                <div class="mdui-panel-item-header">
-                                    <div class="mdui-panel-item-title">Stock</div>
-                                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                                </div>
-                                <div class="mdui-panel-item-body">
-                                    <ul>
-                                        <li>
-                                            test1
-                                        </li>
-                                        <li>
-                                            tes2
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="mdui-textfield">
-                                <input class="mdui-textfield-input" type="text" placeholder="$"/>
-                            </div>
-                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Buy</button>
-                        </td>
-                        <td>
-                            <div class="mdui-textfield">
-                                <input class="mdui-textfield-input" type="text" placeholder="$"/>
-                            </div>
-                            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Buy</button>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
