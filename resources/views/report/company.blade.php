@@ -274,15 +274,7 @@
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li class="mdui-list-item mdui-ripple">
-                                        分红率：
-                                        <ul class="mdui-list">
-                                            @foreach($company -> stock_shares as $stock_share)
-                                                <li class="mdui-list-item mdui-ripple">{{$stock_share -> name}}
-                                                    ： {{$stock_share -> Annoymous}}</li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
+                                    <li class="mdui-list-item mdui-ripple">分红率：{{$company['dividend']}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -292,15 +284,15 @@
                         var data = [];
                         var backgroundColor = [];
                         var labels = [];
-                        var label = "{{$company -> name}}";
+                        var label = "{{$company['name']}}";
 
-                    @@foreach($company -> datas as $data)
+                    @@foreach($company['datas'] as $data)
                         data.push({{$data}})
                         backgroundColor.push(randomColor());
                     @@endforeach
 
                         @@foreach($company -> stock_shares as $stock_share)
-                        labels.push({{$stock_share -> name}} +"(" + (({{$stock_share -> amount}} / {{$company -> total}}) * 100).toFixed(2) + "%)");
+                        labels.push({{$stock_share['name']}} +"(" + (({{$stock_share['amount']}} / {{$company['total']}}) * 100).toFixed(2) + "%)");
                     @@endforeach
 
 
@@ -322,7 +314,7 @@
                         ;
 
 
-                        var ctx = document.getElementById({{$company -> company_id}}).getContext("2d");
+                        var ctx = document.getElementById({{$company['company_id']}}).getContext("2d");
                         window.myPie = new Chart(ctx, config);
                     </script>
                 @endforeach
