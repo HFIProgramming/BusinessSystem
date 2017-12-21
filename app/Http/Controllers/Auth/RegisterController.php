@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Company;
 use App\Config;
 use App\Resources;
+use App\Stock;
 use App\Technology;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -108,7 +109,8 @@ class RegisterController extends Controller
                 'description' => $user->name . '公司股票',
                 'type' => 3
             ]);
-            Resources::create([
+
+            Stock::create([
                 'current_price' => 5,
                 'history_prices' => [],
                 'total' => 1000000,
