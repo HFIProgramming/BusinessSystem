@@ -30,17 +30,20 @@ class Resources extends Model
 				return '原材料';
 				break;
 			case 2:
-				return '半成品';
+				return '建筑';
 				break;
 			case 3:
-				return '完成品';
+				return '股票';
 				break;
 			case 4:
-				return '采矿队';
+				return '建筑建造';
 				break;
 			case 5:
 				return '科技等级';
 				break;
+            case 6:
+                return '指数';
+                break;
 			default:
 				return '这尼玛是什么玩意';
 		}
