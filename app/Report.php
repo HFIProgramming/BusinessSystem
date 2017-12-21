@@ -14,4 +14,9 @@ class Report extends Model
     protected $casts = [
         'components' => 'array'
     ];
+
+    public function user()
+    {
+        return $this->$this->belongsTo(User::class);
+    }
 }

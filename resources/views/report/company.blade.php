@@ -9,7 +9,7 @@
     <script>
 
         var receivedInfo = {
-            year: 1
+            year: 1,
             info: [{
                 company_id: "1",
                 company_name: "scriTrashPeople",
@@ -150,7 +150,7 @@
         ///////new stuff
         function display() {
             var matchId = 'table-' + this.text();
-            $('.mdui-container').children('.cardId').each(function(){
+            $('.mdui-container').children('.cardId').each(function () {
                 if ($(this).attr('id') === matchId) {
                     $(this).style.display = "block";
                 } else {
@@ -254,16 +254,16 @@
                     <div class="company mdui-col-md-12">
                         <div class="mdui-card">
                             <div class="mdui-card-primary">
-                                <div class="mdui-card-primary-title">{{$company -> name}}</div>
+                                <div class="mdui-card-primary-title">{{$company['name']}}</div>
                             </div>
                             <div class="mdui-card-content">
                                 <div id="canvas-holder">
-                                    <canvas id="{{$company -> company_id}}"/>
+                                    <canvas id="{{$company['id']}}"/>
                                 </div>
                                 <ul class="mdui-list">
-                                    <li class="mdui-list-item mdui-ripple">总股数：{{$company -> total}}</li>
-                                    <li class="mdui-list-item mdui-ripple">股价：{{$company -> price}}</li>
-                                    <li class="mdui-list-item mdui-ripple">去年的利润：{{$company -> last_profit}}</li>
+                                    <li class="mdui-list-item mdui-ripple">总股数：{{$company['total']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">股价：{{$company['price']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">去年的利润：{{$company['last_profit']}}</li>
                                     <li class="mdui-list-item mdui-ripple">
                                         公司持有的建筑：
                                         <ul class="mdui-list">
@@ -292,7 +292,7 @@
                         var data = [];
                         var backgroundColor = [];
                         var labels = [];
-                        var label = {{$company - > name}};
+                        var label = "{{$company -> name}}";
 
                     @@foreach($company -> datas as $data)
                         data.push({{$data}})
