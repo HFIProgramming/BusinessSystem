@@ -62,6 +62,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\DistributeDividends',
             'App\Listeners\SaveToCompany',
             'App\Listeners\GenerateReports'
+        ],
+
+        'App\Events\NewResource' => [
+            'App\Listeners\RefreshUserResources'
         ]
 
 	];

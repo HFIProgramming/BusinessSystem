@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Company;
 use App\Config;
+use App\Events\NewResource;
 use App\Resources;
 use App\Stock;
 use App\Technology;
@@ -122,6 +123,7 @@ class RegisterController extends Controller
                 'company_id' => $company->id,
                 'resource_id' => $stockResource->id
             ]);
+            event(new NewResource());
         }
         return $user;
     }
