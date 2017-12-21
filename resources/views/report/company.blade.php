@@ -249,8 +249,8 @@
         <br><br>
 
         @foreach($companyReports as $companyReport)
-            <div id="table-{{$companyReport -> year}}" class="cardId mdui-col-md-12" style="display: none">
-                @foreach($companyReport -> info as $company)
+            <div id="table-{{$companyReport['year']}}" class="cardId mdui-col-md-12" style="display: none">
+                @foreach($companyReport['info'] as $company)
                     <div class="company mdui-col-md-12">
                         <div class="mdui-card">
                             <div class="mdui-card-primary">
