@@ -52,6 +52,7 @@
                 type: "GET",
                 success: function (msg) {
                     receivedInfo = msg;
+                    var points = msg[0]["all_prices"].length;
                     for (var i = 0; i < msg.length; i++) {
                         datasets[i] = {};
                         datasets[i]["lineTension"] = 0;
@@ -61,8 +62,14 @@
                         datasets[i]["backgroundColor"] = color;
                         datasets[i]["fill"] = false;
                         datasets[i]["data"] = msg[i]["all_prices"];
+                        if (msg[i]["all_prices"].length > points) {
+                            points = msg[i]["all_prices"].length
+                        }
                         datasets[i]["yAxisID"] = "y-axis";
-                       labels.push("");
+                       // labels.push("");
+                    }
+                    for (var j = 0; j< points;j ++) {
+                        labels.push("");
                     }
                     createDom();
                 },
@@ -80,7 +87,7 @@
                 html += this.company_name + '</div>';
                 html += '<div class="mdui-panel-item-summary">Current Price: ' + this.current_price + '</div>';
 //                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';
-                html += '<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i> </div>';
+                html += '<i class="mdui-panel-item-arrow mdui-icon material-icons" onclick="arrow()">keyboard_arrow_down</i> </div>';
                 html += '<div class="mdui-panel-item-body"> <p>total: ' + this.total + '</p>';
                 html += '<p>dividend: ' + this.dividend + '</p>';
                 html += '<p>sell remain: ' + this.sell_remain + '</p>';
@@ -90,24 +97,24 @@
                 html += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount" placeholder="$"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Buy </button> </form> </td>';
                 html += '<td> <form action="{{ route('sellStock') }}" method="post"> {{ csrf_field() }}';
                 html += '<input type="hidden" name="stock_id" value=' + this.id + '>';
-                html += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Sell </button> </form> </td> </tr>';
+                html += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount" placeholder="$"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Sell </button> </form> </td> </tr>';
             });
             $('#table').html(html);
         };
         //
 
+        function arrow() {
+            if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
+                $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
+            } else {
+                $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
+            }
+        }
+
         $(document).ready(function () {
 
             setInterval("information()", 5000);
            // createDom();
-           $('i').click(function () {
-//                alert($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open"));
-               if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
-                   $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
-               } else {
-                   $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
-               }
-           });
 //            $(html).insertAfter("#table");
 //            document.getElementById("table").innerHTML = html;
         });
