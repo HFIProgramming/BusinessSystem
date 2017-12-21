@@ -79,7 +79,7 @@
                 var labels = [];
                 var label = this.company_name;
 
-                for (var i=0;i<this.stock_shares.length;i++) {
+                for (var i = 0; i < this.stock_shares.length; i++) {
                     data.push(this.stock_shares[i].amount);
                     backgroundColor.push(randomColor());
                     labels.push(this.stock_shares[i].name + "(" + ((this.stock_shares[i].amount / this.total) * 100).toFixed(2) + "%)");
@@ -101,25 +101,25 @@
                 });
 
                 html += '<div class="company mdui-col-md-12"> <div class="mdui-card"> <div class="mdui-card-primary">';
-                html += '<div class="mdui-card-primary-title">'+ this.company_name + '</div> </div> <div class="mdui-card-content">';
+                html += '<div class="mdui-card-primary-title">' + this.company_name + '</div> </div> <div class="mdui-card-content">';
                 html += '<div id="canvas-holder"> <canvas id="' + this.company_id + '"/> </div> <ul class="mdui-list">';
                 html += '<li class="mdui-list-item mdui-ripple">总股数：' + this.total + '</li>';
                 html += '<li class="mdui-list-item mdui-ripple">股价：' + this.price + '</li>';
                 html += '<li class="mdui-list-item mdui-ripple">去年的利润：' + this.lastProfit + '</li>';
                 html += '<li class="mdui-list-item mdui-ripple">公司持有的建筑：<ul class="mdui-list">';
-                for (var i=0;i<this.buildings.length;i++) {
-                    html += '<li class="mdui-list-item mdui-ripple">'+ this.buildings[i].name + ' X ' + this.buildings[i].amount + '</li>';
+                for (var i = 0; i < this.buildings.length; i++) {
+                    html += '<li class="mdui-list-item mdui-ripple">' + this.buildings[i].name + ' X ' + this.buildings[i].amount + '</li>';
                 }
                 html += '</ul><li class="mdui-list-item mdui-ripple">分红率：<ul class="mdui-list">';
-                for (var i=0;i<this.stock_shares.length;i++) {
-                    html += '<li class="mdui-list-item mdui-ripple">'+ this.stock_shares[i].name + ': ' + this.stock_shares[i].Annoymous + '</li>';
+                for (var i = 0; i < this.stock_shares.length; i++) {
+                    html += '<li class="mdui-list-item mdui-ripple">' + this.stock_shares[i].name + ': ' + this.stock_shares[i].Annoymous + '</li>';
                 }
                 html += '</ul></li> </ul> </div> </div> </div>';
 
 
             });
             $('#table').html(html);
-            for (var i=0;i<configS.length;i++) {
+            for (var i = 0; i < configS.length; i++) {
                 var ctx = document.getElementById(idS[i]).getContext("2d");
                 window.myPie = new Chart(ctx, configS[i]);
             }
@@ -145,6 +145,12 @@
         $(document).ready(function () {
             setTimeout("information()", 500);
         });
+
+
+        ///////new stuff
+        function display() {
+
+        }
 
         // var data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
         // var backgroundColor = [];
@@ -215,46 +221,57 @@
 
 @section('body')
     <div class="mdui-container doc-container">
+        <div id="title">
+            <div class="mdui-center mdui-typo-display-1 mdui-text-center mdui-text-color-white">
+                Financial Report
+            </div>
+        </div>
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
+            @foreach($yeas as $year)
+                <a class="mdui-ripple" onclick="display()">{{$year->index}}</a>
+            @endforeach
         </div>
         </br></br>
-        <div class="mdui-card-header">
-            <div class="mdui-typo-display-1 mdui-text-center mdui-text-color-theme">
-                Company Report
-            </div>
-        </div>
+
         <div id="table" class="mdui-col-md-12">
-            <div class="company mdui-col-md-12">
-                <div class="mdui-card">
-                    <div class="mdui-card-primary">
-                        <div class="mdui-card-primary-title">CompanyName1</div>
-                    </div>
-                    <div class="mdui-card-content">
-                        <div id="canvas-holder">
-                            <canvas id="chart-area"/>
+            @foreach($companys as $company)
+                <div class="company mdui-col-md-12">
+                    <div class="mdui-card">
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">{{$company -> name}}</div>
                         </div>
-                        <ul class="mdui-list">
-                            <li class="mdui-list-item mdui-ripple">总股数：</li>
-                            <li class="mdui-list-item mdui-ripple">股价：</li>
-                            <li class="mdui-list-item mdui-ripple">去年的利润：</li>
-                            <li class="mdui-list-item mdui-ripple">公司持有的建筑：</li>
-                            <li class="mdui-list-item mdui-ripple">分红率：</li>
-                        </ul>
+                        <div class="mdui-card-content">
+                            <div id="canvas-holder">
+                                <canvas id="chart-area"/>
+                            </div>
+                            <ul class="mdui-list">
+                                <li class="mdui-list-item mdui-ripple">总股数：{{$company -> total}}</li>
+                                <li class="mdui-list-item mdui-ripple">股价：{{$company -> price}}</li>
+                                <li class="mdui-list-item mdui-ripple">去年的利润：{{$company -> last_profit}}</li>
+                                <li class="mdui-list-item mdui-ripple">
+                                    公司持有的建筑：
+                                    <ul class="mdui-list">
+                                        @foreach($company -> buildings as $building)
+                                            <li class="mdui-list-item mdui-ripple">{{$building -> name}}
+                                                （数量：{{$building -> amount}}）
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                <li class="mdui-list-item mdui-ripple">
+                                    分红率：
+                                    <ul class="mdui-list">
+                                        @foreach($company -> stock_shares as $stock_share)
+                                            <li class="mdui-list-item mdui-ripple">{{$stock_share -> name}}
+                                                ： {{$stock_share -> Annoymous}}</li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
