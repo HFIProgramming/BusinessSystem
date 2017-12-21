@@ -79,8 +79,8 @@ class StockController extends Controller
         }
         if($buyerAmount > $stock->buy_remain)
         {
-            $buyerAmount = $stock->buy_remain;
-            return 'dont move, you '.$buyerAmount;
+            $sellerAmount = $stock->buy_remain;
+//            return 'dont move, you '.$buyerAmount;
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
