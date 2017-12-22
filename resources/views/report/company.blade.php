@@ -190,54 +190,57 @@
                         </div>
                     </div>
                     <script>
-                        var data = [];
-                        var backgroundColor = [];
-                        var labels = [];
-                        var label = "{{$company['name']}}";
-                        var sum = 0;
+                        function render{{$companyReport['year']}}_{{$company['id']}}()
+                        {
+                            var data = [];
+                            var backgroundColor = [];
+                            var labels = [];
+                            var label = "{{$company['name']}}";
+                            var sum = 0;
 
-                        {{--@foreach($company['datas'] as $data)--}}
-                        {{--data.push({{$data}})--}}
-                        {{--backgroundColor.push(randomColor());--}}
-                        {{--@endforeach--}}
+                            {{--@foreach($company['datas'] as $data)--}}
+                            {{--data.push({{$data}})--}}
+                            {{--backgroundColor.push(randomColor());--}}
+                            {{--@endforeach--}}
 
-                        @foreach($company['stock_shares'] as $id => $percent)
-                        data.push({{$percent}});
-                        backgroundColor.push(randomColor());
-                        labels.push({{$id}} +
-                                "(" +
-                            "{{ $percent * 100}}".toFixed(2) +
-                            "%)");
-                        sum = sum + {{$percent}};
-                        @endforeach
-
-
-                        data.push(1-sum);
-                        backgroundColor.push(randomColor());
-                        labels.push("Anonymous(" +
-                            ((1-sum)*100).toFixed(2) +
-                            "%)");
+                            @foreach($company['stock_shares'] as $id => $percent)
+                            data.push({{$percent}});
+                            backgroundColor.push(randomColor());
+                            labels.push({{$id}} +
+                                    "(" +
+                                {{ $percent * 100}}.toFixed(2) +
+                                "%)");
+                            sum = sum + {{$percent}};
+                            @endforeach
 
 
-
-                        var config = ({
-                            type: 'pie',
-                            data: {
-                                datasets: [{
-                                    data: data,
-                                    backgroundColor: backgroundColor,
-                                    label: label
-                                }],
-                                labels: labels
-                            },
-                            options: {
-                                responsive: true
-                            }
-                        });
+                            data.push(1 - sum);
+                            backgroundColor.push(randomColor());
+                            labels.push("Anonymous(" +
+                                ((1 - sum) * 100).toFixed(2) +
+                                "%)");
 
 
-                        var ctx = document.getElementById("c{{$companyReport['year']}}-{{$companyReport['info']['id']}}").getContext("2d");
-                        window.myPie = new Chart(ctx, config);
+                            var config = ({
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        data: data,
+                                        backgroundColor: backgroundColor,
+                                        label: label
+                                    }],
+                                    labels: labels
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            });
+
+
+                            var ctx = document.getElementById("c{{$companyReport['year']}}-{{$company['id']}}").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        }
+                        render{{$companyReport['year']}}_{{$company['id']}}();
                     </script>
                 @endforeach
             </div>
