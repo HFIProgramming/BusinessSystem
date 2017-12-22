@@ -192,6 +192,14 @@
 </div>
 
 <img id="gfcImage" src="img/background.png" style="width: 100%;">
+<div id="title">
+    <div class="mdui-center mdui-typo-display-1 mdui-text-center mdui-text-color-white">
+        @yield('title')
+    </div>
+</div>
+
+
+<div id="block"></div>
 
 
                 {{--<li class="mdui-list-item mdui-ripple">--}}
