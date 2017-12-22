@@ -72,64 +72,6 @@
             return "rgb(" + r + ',' + g + ',' + b + ")";
         }
 
-        // function createDom() {
-        //     var configS = [];
-        //     var idS = []
-        //
-        //     $.each(receivedInfo, function () {
-        //         idS.push(this.company_id);
-        //         var data = [];
-        //         var backgroundColor = [];
-        //         var labels = [];
-        //         var label = this.company_name;
-        //
-        //         for (var i = 0; i < this.stock_shares.length; i++) {
-        //             data.push(this.stock_shares[i].amount);
-        //             backgroundColor.push(randomColor());
-        //             labels.push(this.stock_shares[i].name + "(" + ((this.stock_shares[i].amount / this.total) * 100).toFixed(2) + "%)");
-        //         }
-        //
-        //         configS.push({
-        //             type: 'pie',
-        //             data: {
-        //                 datasets: [{
-        //                     data: data,
-        //                     backgroundColor: backgroundColor,
-        //                     label: label
-        //                 }],
-        //                 labels: labels
-        //             },
-        //             options: {
-        //                 responsive: true
-        //             }
-        //         });
-        //
-        //         html += '<div class="company mdui-col-md-12"> <div class="mdui-card"> <div class="mdui-card-primary">';
-        //         html += '<div class="mdui-card-primary-title">' + this.company_name + '</div> </div> <div class="mdui-card-content">';
-        //         html += '<div id="canvas-holder"> <canvas id="' + this.company_id + '"/> </div> <ul class="mdui-list">';
-        //         html += '<li class="mdui-list-item mdui-ripple">总股数：' + this.total + '</li>';
-        //         html += '<li class="mdui-list-item mdui-ripple">股价：' + this.price + '</li>';
-        //         html += '<li class="mdui-list-item mdui-ripple">去年的利润：' + this.lastProfit + '</li>';
-        //         html += '<li class="mdui-list-item mdui-ripple">公司持有的建筑：<ul class="mdui-list">';
-        //         for (var i = 0; i < this.buildings.length; i++) {
-        //             html += '<li class="mdui-list-item mdui-ripple">' + this.buildings[i].name + ' X ' + this.buildings[i].amount + '</li>';
-        //         }
-        //         html += '</ul><li class="mdui-list-item mdui-ripple">分红率：<ul class="mdui-list">';
-        //         for (var i = 0; i < this.stock_shares.length; i++) {
-        //             html += '<li class="mdui-list-item mdui-ripple">' + this.stock_shares[i].name + ': ' + this.stock_shares[i].Annoymous + '</li>';
-        //         }
-        //         html += '</ul></li> </ul> </div> </div> </div>';
-        //
-        //
-        //     });
-        //     $('#table').html(html);
-        //     for (var i = 0; i < configS.length; i++) {
-        //         var ctx = document.getElementById(idS[i]).getContext("2d");
-        //         window.myPie = new Chart(ctx, configS[i]);
-        //     }
-        // };
-
-
         function information() {
             // $.ajax({
             //     url: "wtfFrontEndIsShit.php",
@@ -171,51 +113,6 @@
             // setTimeout("information()", 500);
 
         });
-
-        // var data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
-        // var backgroundColor = [];
-        // var name = ['red', 'blue']
-        // var labels = [];
-        // var sum = 0;
-        // // sum直接等于总股数
-        // // 下面这个循环就先用着到时候删掉
-        // for (var i = 0; i < data.length; i++) {
-        //     sum += data[i];
-        // }
-        // //
-        // for (var i = 0; i < data.length; i++) {
-        //     backgroundColor.push(randomColor());
-        // }
-        //
-        // for (var i = 0; i < name.length; i++) {
-        //     labels.push(name[i] + "(" + ((data[i] / sum) * 100).toFixed(2) + "%)");
-        // }
-        //
-        //
-        // $(document).ready(function () {
-        //     setTimeout("information()", 5000);
-        // });
-        //
-        // var config = {
-        //     type: 'pie',
-        //     data: {
-        //         datasets: [{
-        //             data: data,
-        //             backgroundColor: backgroundColor,
-        //             label: 'Dataset 1'
-        //         }],
-        //         labels: labels
-        //     },
-        //     options: {
-        //         responsive: true
-        //     }
-        // };
-        //
-        // window.onload = function () {
-        //     var ctx = document.getElementById("chart-area").getContext("2d");
-        //     window.myPie = new Chart(ctx, config);
-        // };
-
 
     </script>
 @endsection

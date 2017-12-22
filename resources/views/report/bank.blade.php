@@ -5,51 +5,21 @@
 @endsection
 
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.bundle.js"></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.bundle.js"></script>--}}
     <script>
 
         var html = '';
 
-        var receivedInfo = [{
-            bank_name: "bank1",
-            last_profit: 10,
-            loan_amount: 100,
-            chigu: [{
-                name: "company1",
-                proportion: "15%"
-            }, {
-                name: "company2",
-                proportion: "20%"
-            }, {
-                bank_name: "bank2",
-                last_profit: 50,
-                loan_amount: 500,
-                chigu: [{
-                    name: "company1",
-                    proportion: "35%"
-                }, {
-                    name: "company2",
-                    proportion: "40%"
-                }]
-            }];
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 100);
+        };
 
-//        function createDom() {
-//
-//            $.each(receivedInfo, function () {
-//                html += '<div class="company mdui-col-md-12"> <div class="mdui-card"> <div class="mdui-card-primary">';
-//                html += '<div class="mdui-card-primary-title">' + this.bank_name + '</div> </div> <div class="mdui-card-content">';
-//                html += '<ul class="mdui-list">';
-//                html += '<li class="mdui-list-item mdui-ripple">总股数：' + this.total + '</li>';
-//                html += '<li class="mdui-list-item mdui-ripple">在外贷款数额：' + this.loan_amount + '</li>';
-//                html += '<li class="mdui-list-item mdui-ripple">去年的利润：' + this.last_profit + '</li>';
-//                html += '<li class="mdui-list-item mdui-ripple">持股大于10%的公司：<ul class="mdui-list">';
-//                for (var i = 0; i < this.chigu.length; i++) {
-//                    html += '<li class="mdui-list-item mdui-ripple">' + this.chigu[i].name + ': ' + this.buildings[i].proportion + '</li>';
-//                }
-//                html += '</ul></li> </ul> </div> </div> </div>';
-//            });
-//            $('#table').html(html);
-//        };
+        function randomColor() {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return "rgb(" + r + ',' + g + ',' + b + ")";
+        }
 
 
         function information() {
@@ -69,8 +39,9 @@
         };
 
 
+        ///////new stuff
         function display() {
-                alert("wow");
+
 //            console.log(event);
 
             var matchId = 'table-' + event.target.id;
@@ -87,62 +58,11 @@
         }
 
         $(document).ready(function () {
-           alert("test");
-           display();
-        });
 
 //            $('#table-1').style.display = "block";
             // setTimeout("information()", 500);
 
-
-
-
-
-        // var data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
-        // var backgroundColor = [];
-        // var name = ['red', 'blue']
-        // var labels = [];
-        // var sum = 0;
-        // // sum直接等于总股数
-        // // 下面这个循环就先用着到时候删掉
-        // for (var i = 0; i < data.length; i++) {
-        //     sum += data[i];
-        // }
-        // //
-        // for (var i = 0; i < data.length; i++) {
-        //     backgroundColor.push(randomColor());
-        // }
-        //
-        // for (var i = 0; i < name.length; i++) {
-        //     labels.push(name[i] + "(" + ((data[i] / sum) * 100).toFixed(2) + "%)");
-        // }
-        //
-        //
-        // $(document).ready(function () {
-        //     setTimeout("information()", 5000);
-        // });
-        //
-        // var config = {
-        //     type: 'pie',
-        //     data: {
-        //         datasets: [{
-        //             data: data,
-        //             backgroundColor: backgroundColor,
-        //             label: 'Dataset 1'
-        //         }],
-        //         labels: labels
-        //     },
-        //     options: {
-        //         responsive: true
-        //     }
-        // };
-        //
-        // window.onload = function () {
-        //     var ctx = document.getElementById("chart-area").getContext("2d");
-        //     window.myPie = new Chart(ctx, config);
-        // };
-
-
+        });
 
     </script>
 @endsection
