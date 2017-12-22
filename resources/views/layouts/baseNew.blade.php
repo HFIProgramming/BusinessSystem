@@ -15,183 +15,278 @@
     <link href="https://cdn.bootcss.com/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js" data-no-instant></script>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var tTop = parseFloat($("#gfcImage").css("height")) + parseFloat($(".mdui-appbar").css("height")) - parseFloat($("img").css("height")) * 0.3 / 2 + "px";
+            var tLeft = (parseFloat($("#gfcImage").css("width")) / 2) - (parseFloat($("img").css("width")) * 0.3 / 2) + "px";
+            var width = parseFloat($("#gfcImage").css("width")) * 0.3 + "px";
+            var height = parseFloat($("#gfcImage").css("height")) * 0.3 + "px";
+            var blockHeight = parseFloat($("#gfcImage").css("height")) * 0.3 / 2 + "px";
+            // alert($("#nav").css("width"));
+
+            $('#title').css({
+                "position": "absolute",
+                "width": width,
+                "height": height,
+                "top": tTop,
+                "left": tLeft,
+                "background-color": "#389688"
+            });
+            $('#title').addClass('mdui-valign');
+            $('#title').addClass('mdui-shadow-12');
+
+            $('#block').css({
+                "height": blockHeight
+            });
+
+
+            $('.navButton').hover(
+                function () {
+                    var bLeft = $(this).position().left;
+                    bLeft -= 8;
+                    $('#effect').css({
+                        "position": "absolute",
+                        "top": "100%",
+                        "left": bLeft,
+                        "background-color": "#389688",
+                        "width": "150px",
+                        "height": "10%"
+                    })
+                    $(this).addClass('mdui-shadow-5')
+                },
+                function () {
+                    $('#effect').css({
+                        "background-color": "transparent"
+                    })
+                    $(this).removeClass('mdui-shadow-5')
+                }
+            )
+
+
+        })
+    </script>
     <style>
         .doc-container {
             padding-top: 30px;
             padding-bottom: 150px;
+
         }
 
-        .footer {
-            margin-top: 25px;
+        .mdui-tab {
+            min-width: 40px;
+        !important;
         }
 
-        .footer_bar {
-            margin-top: 100px;
+        .company {
+            padding: 10px;
+        !important;
         }
 
-        .adjust_card_subtitle {
-            margin-left: 0;
-        }
-
-        .adjust_card {
-            padding-top: 30px;
-            padding-bottom: 130px;
-        }
-
-        .adjust_mdui_icon {
-            bottom: 33px !important;
+        .title {
+            height: 1000px;
+            width: 5000px;
+            background-color: black;
         }
     </style>
     @yield('stylesheet')
     @yield('script')
 </head>
 
-<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-drawer-body-left mdui-appbar-with-toolbar">
+<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-appbar-with-toolbar">
 
-<div class="mdui-appbar mdui-appbar-fixed">
-    <div class="mdui-toolbar mdui-color-theme">
-        <a class="mdui-btn mdui-btn-icon" onclick="inst.toggle()"><i class="mdui-icon material-icons">menu</i></a>
-        <a href="{{route('dashboard')}}" class="mdui-typo-title">Gamble For Crisis</a>
+<div id="nav" class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-white mdui-row">
+        <!--<a class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}"><i class="mdui-icon material-icons">menu</i></a>-->
+        <div class="mdui-col-md-1"></div>
+        <a href="{{route('dashboard')}}" class="mdui-typo-title">Finance Club</a>
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#first'}">Info
+        </button>
+        <div></div>
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#second'}">Loans
+        </button>
+        <div></div>
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#third'}">Resources
+        </button>
+        <div></div>
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#fourth'}">Transaction
+        </button>
+        <div id="effect"></div>
+        <ul class="mdui-menu mdui-menu-cascade" id="first">
+            <li class="mdui-menu-item">
+                <a href="{{route('companyReports')}} class="mdui-ripple">
+                    Company Report
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('bankReports')}} class="mdui-ripple">
+                Bank Report
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('zones')}} class="mdui-ripple">
+                Zones
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('viewStocks')}} class="mdui-ripple">
+                Stocks
+                </a>
+            </li>
+        </ul>
+
+
+        <ul class="mdui-menu mdui-menu-cascade" id="second">
+            <li class="mdui-menu-item">
+                <a href="{{route('loanForm')}} class="mdui-ripple">
+                Grant Loan
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('listLoans')}} class="mdui-ripple">
+                Loan List
+                </a>
+            </li>
+        </ul>
+
+        <ul class="mdui-menu mdui-menu-cascade" id="third">
+            <li class="mdui-menu-item">
+                <a href="{{route('resource')}} class="mdui-ripple">
+                Resource List
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('buildForm')}} class="mdui-ripple">
+                Build
+                </a>
+            </li>
+        </ul>
+
+        <ul class="mdui-menu mdui-menu-cascade" id="fourth">
+            <li class="mdui-menu-item">
+                <a href="{{route('TransactionList')}} class="mdui-ripple">
+                Transaction List
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('BuyGov')}} class="mdui-ripple">
+                Buy from Government
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('SellGov')}} class="mdui-ripple">
+                Sell to Government
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('TransIn')}} class="mdui-ripple">
+                Buy
+                </a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="{{route('TransOut')}} class="mdui-ripple">
+                Sell
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 
-<div class="mdui-drawer mdui-drawer-open" id="left-drawer">
-    <ul class="mdui-list" mdui-collapse="{accordion: true}">
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
-            <a href="{{route('dashboard')}}" class="mdui-list-item-content">DashBoard</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">view_list</i>
-            <a href="{{route('TransactionList')}}" class="mdui-list-item-content">List Transaction</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
-            <a href="{{route('resource')}}" class="mdui-list-item-content">List Resource</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
-            <a href="{{route('listLoans')}}" class="mdui-list-item-content">List Loans</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
-            <a href="{{route('loanForm')}}" class="mdui-list-item-content">New Loan</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
-            <a href="{{route('viewStocks')}}" class="mdui-list-item-content">Stocks</a>
-        </li>
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-        {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
-        {{--<a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>--}}
-        {{--</li>--}}
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <a href="{{route('buildForm')}}" class="mdui-list-item-content">Build</a>
-        </li>
-        <li class="mdui-collapse-item">
-            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
-                <div class="mdui-list-item-content">New Transaction</div>
-                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-            </div>
-            <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+
+                {{--<li class="mdui-list-item mdui-ripple">--}}
+                {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
+                {{--<a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>--}}
+                {{--</li>--}}
+
+
+
+                {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
+                {{--<i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>--}}
+                {{--<div class="mdui-list-item-content">Government Related</div>--}}
+                {{--<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>--}}
+                {{--</div>--}}
+                {{--<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">--}}
+                {{--<li class="mdui-list-item mdui-ripple">--}}
+                {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
+                {{--</li>--}}
+                {{--<li class="mdui-list-item mdui-ripple">--}}
+                {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
+                {{--</li>--}}
+                {{--</ul>--}}
+                {{--</li>--}}
+                {{--@if (Auth::user()->type == 1)--}}
+                {{--<li class="mdui-list-item mdui-ripple">--}}
+                {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
+                {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
+                {{--</li>--}}
+                {{--@elseif (Auth::user()->type == 2)--}}
+                {{--<li class="mdui-list-item mdui-ripple">--}}
+                {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
+                {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
+                {{--</li>--}}
+                {{--@endif--}}
+                @if (Auth::user()->type == 2)
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>
+                        <a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>
+                    </li>
+                @endif
                 <li class="mdui-list-item mdui-ripple">
-                    <a class="mdui-list-item-content" href="{{ route('TransOut') }}">As a Seller</a>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+                    <a href="{{route('announcement')}}" class="mdui-list-item-content">Announcement</a>
                 </li>
+                <li class="mdui-divider"></li>
+                @if(auth()->id() == 1)
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
+                        <a href="{{route('adminDashboard')}}" data-no-instant class="mdui-list-item-content">Admin
+                            Config</a>
+                    </li>
+                @endif
                 <li class="mdui-list-item mdui-ripple">
-                    <a class="mdui-list-item-content" href="{{ route('TransIn') }}">As a Buyer</a>
+                    <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>
+                    <a href="{{route('logout')}}" data-no-instant class="mdui-list-item-content">Log Out</a>
                 </li>
             </ul>
-        </li>
-        {{--<li class="mdui-collapse-item">--}}
-        {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
-        {{--<i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>--}}
-        {{--<div class="mdui-list-item-content">Government Related</div>--}}
-        {{--<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>--}}
-        {{--</div>--}}
-        {{--<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">--}}
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-        {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
-        {{--</li>--}}
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-        {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--</li>--}}
-        {{--@if (Auth::user()->type == 1)--}}
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-        {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
-        {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
-        {{--</li>--}}
-        {{--@elseif (Auth::user()->type == 2)--}}
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-        {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
-        {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
-        {{--</li>--}}
-        {{--@endif--}}
-        @if (Auth::user()->type == 2)
-            <li class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>
-                <a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>
-            </li>
-        @endif
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
-            <a href="{{route('announcement')}}" class="mdui-list-item-content">Announcement</a>
-        </li>
-        <li class="mdui-divider"></li>
-        @if(auth()->id() == 1)
-            <li class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">developer_board</i>
-                <a href="{{route('adminDashboard')}}" data-no-instant class="mdui-list-item-content">Admin Config</a>
-            </li>
-        @endif
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">subdirectory_arrow_left</i>
-            <a href="{{route('logout')}}" data-no-instant class="mdui-list-item-content">Log Out</a>
-        </li>
-    </ul>
-</div>
+        </div>
 
-<script>var inst = new mdui.Drawer('#left-drawer');</script>
 
-@yield('body')
-<div class="footer_bar mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-theme">
-    <div class="mdui-container">
-        <div class="mdui-row">
-            <div class="mdui-row-lg-6">
-                <div class="footer mdui-typo-caption-opacity mdui-text-center">
-                    Designed By HFIProgramming Club，编程社出品
+
+        @yield('body')
+        <div class="footer_bar mdui-bottom-nav mdui-bottom-nav-text-auto mdui-color-theme">
+            <div class="mdui-container">
+                <div class="mdui-row">
+                    <div class="mdui-row-lg-6">
+                        <div class="footer mdui-typo-caption-opacity mdui-text-center">
+                            Designed By HFIProgramming Club，编程社出品
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>
-    var $$ = mdui.JQ;
-    InstantClick.on('wait', function () {
-        $$.showOverlay(5000);
-    });
-    InstantClick.on('fetch', function () {
-        console.log('Page Pre-loading!');
-    });
-    InstantClick.on('change', function () {
-        console.log('Page Loaded!' + location.pathname + location.search);
-        var s = document.createElement('script');
-        s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
-        document.body.appendChild(s);
-        var $$ = mdui.JQ;
-        $$.hideOverlay(true);
-        if (document.body.scrollWidth < 1025) {
-            var inst = new mdui.Drawer('#left-drawer');
-            inst.close();
-        }
-    });
-    InstantClick.init();
-    <!--I know it is dirty :> But please-->
-</script>
+        <script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+        <script data-no-instant>
+            var $$ = mdui.JQ;
+            InstantClick.on('wait', function () {
+                $$.showOverlay(5000);
+            });
+            InstantClick.on('fetch', function () {
+                console.log('Page Pre-loading!');
+            });
+            InstantClick.on('change', function () {
+                console.log('Page Loaded!' + location.pathname + location.search);
+                var s = document.createElement('script');
+                s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
+                document.body.appendChild(s);
+                var $$ = mdui.JQ;
+                $$.hideOverlay(true);
+                // if (document.body.scrollWidth < 1025) {
+                //     var inst = new mdui.Drawer('#left-drawer');
+                //     inst.close();
+                // }
+            });
+            InstantClick.init();
+            <!--I know it is dirty :> But please-->
+        </script>
 </body>
 </html>
