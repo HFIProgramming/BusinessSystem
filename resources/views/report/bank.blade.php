@@ -68,9 +68,29 @@
             createDom();
         };
 
+        function display() {
+
+//            console.log(event);
+
+            var matchId = 'table-' + event.target.id;
+            var selected;
+            $('.mdui-container').children('.cardId').each(function () {
+                if (this.id === matchId) {
+                    document.getElementById(this.id).style.display = "block";
+                } else {
+                    document.getElementById(this.id).style.display = "none";
+                }
+
+            })
+
+        }
+
         $(document).ready(function () {
-            setTimeout("information()", 500);
+//            $('#table-1').style.display = "block";
+            // setTimeout("information()", 500);
+
         });
+
 
         // var data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
         // var backgroundColor = [];
@@ -116,22 +136,6 @@
         //     window.myPie = new Chart(ctx, config);
         // };
 
-        function display() {
-
-//            console.log(event);
-
-            var matchId = 'table-' + event.target.id;
-            var selected;
-            $('.mdui-container').children('.cardId').each(function () {
-                if (this.id === matchId) {
-                    document.getElementById(this.id).style.display = "block";
-                } else {
-                    document.getElementById(this.id).style.display = "none";
-                }
-
-            })
-
-        }
 
 
     </script>
@@ -160,8 +164,7 @@
     <div class="mdui-container doc-container">
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
             @foreach($bankReports as $banksYearlyReport)
-                <a class="mdui-ripple" onclick="display()"
-                   id="{{$banksYearlyReport['year']}}">{{$banksYearlyReport['year']}}</a>
+                <a class="mdui-ripple" onclick="display()" id="{{$banksYearlyReport['year']}}">{{$banksYearlyReport['year']}}</a>
             @endforeach
         </div>
         </br></br>
