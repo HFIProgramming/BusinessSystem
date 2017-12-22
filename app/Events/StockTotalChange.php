@@ -13,15 +13,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class StockTotalChange
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    public $stock;
+    public $total;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($stock, $total)
     {
         //
+        $this->stock = $stock;
+        $this->total = $total;
     }
 
     /**

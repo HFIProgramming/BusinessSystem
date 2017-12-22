@@ -27,5 +27,11 @@ class UpdateStockTotal
     public function handle(StockTotalChange $event)
     {
         //
+        //This is actually a listener with wrong name, as this listener can only set the total
+        $stock = $event->stock;
+        $root = User::type(0)->first();
+        $stockResource = $root->resources()->resid($stock->resource->id)->first();
+        $stockResource->amount = $event->total;
+        $stockResource->save();
     }
 }

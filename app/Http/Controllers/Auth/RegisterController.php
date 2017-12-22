@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Company;
 use App\Config;
 use App\Events\NewResource;
+use App\Events\StockTotalChange;
 use App\Resources;
 use App\Stock;
 use App\Technology;
@@ -111,7 +112,7 @@ class RegisterController extends Controller
                 'type' => 3
             ]);
 
-            Stock::create([
+            $stock = Stock::create([
                 'current_price' => 5,
                 'history_prices' => [],
                 'total' => 1000000,
@@ -124,6 +125,7 @@ class RegisterController extends Controller
                 'resource_id' => $stockResource->id
             ]);
             event(new NewResource());
+            event(new StockTotalChange($stock, $stock->total));
         }
         return $user;
     }
