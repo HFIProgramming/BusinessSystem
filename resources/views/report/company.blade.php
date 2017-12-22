@@ -5,7 +5,7 @@
 @endsection
 
 @section('script')
-    <script src="js/Chart.bundle.js"></script>
+    <script src="/js/Chart.bundle.js"></script>
     <script>
 
         var receivedInfo = {
