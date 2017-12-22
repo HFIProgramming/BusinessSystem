@@ -133,7 +133,7 @@ class RegisterController extends Controller
         }
         else if ($user->type == 2)//Bank
         {
-            $bank = $user->company()->create([
+            $bank = $user->bank()->create([
                'name' => $user->name
             ]);
         }
