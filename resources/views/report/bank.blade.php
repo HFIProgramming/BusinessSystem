@@ -131,6 +131,9 @@
                                             @endforeach
                                         </ul>
                                     </li>
+                                    <li class="mdui-list-item mdui-ripple">
+                                        欠款未还： {{$bank['unredeemed_loan']}}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
