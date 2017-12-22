@@ -33,23 +33,23 @@
                 }]
             }];
 
-        function createDom() {
-
-            $.each(receivedInfo, function () {
-                html += '<div class="company mdui-col-md-12"> <div class="mdui-card"> <div class="mdui-card-primary">';
-                html += '<div class="mdui-card-primary-title">' + this.bank_name + '</div> </div> <div class="mdui-card-content">';
-                html += '<ul class="mdui-list">';
-                html += '<li class="mdui-list-item mdui-ripple">总股数：' + this.total + '</li>';
-                html += '<li class="mdui-list-item mdui-ripple">在外贷款数额：' + this.loan_amount + '</li>';
-                html += '<li class="mdui-list-item mdui-ripple">去年的利润：' + this.last_profit + '</li>';
-                html += '<li class="mdui-list-item mdui-ripple">持股大于10%的公司：<ul class="mdui-list">';
-                for (var i = 0; i < this.chigu.length; i++) {
-                    html += '<li class="mdui-list-item mdui-ripple">' + this.chigu[i].name + ': ' + this.buildings[i].proportion + '</li>';
-                }
-                html += '</ul></li> </ul> </div> </div> </div>';
-            });
-            $('#table').html(html);
-        };
+//        function createDom() {
+//
+//            $.each(receivedInfo, function () {
+//                html += '<div class="company mdui-col-md-12"> <div class="mdui-card"> <div class="mdui-card-primary">';
+//                html += '<div class="mdui-card-primary-title">' + this.bank_name + '</div> </div> <div class="mdui-card-content">';
+//                html += '<ul class="mdui-list">';
+//                html += '<li class="mdui-list-item mdui-ripple">总股数：' + this.total + '</li>';
+//                html += '<li class="mdui-list-item mdui-ripple">在外贷款数额：' + this.loan_amount + '</li>';
+//                html += '<li class="mdui-list-item mdui-ripple">去年的利润：' + this.last_profit + '</li>';
+//                html += '<li class="mdui-list-item mdui-ripple">持股大于10%的公司：<ul class="mdui-list">';
+//                for (var i = 0; i < this.chigu.length; i++) {
+//                    html += '<li class="mdui-list-item mdui-ripple">' + this.chigu[i].name + ': ' + this.buildings[i].proportion + '</li>';
+//                }
+//                html += '</ul></li> </ul> </div> </div> </div>';
+//            });
+//            $('#table').html(html);
+//        };
 
 
         function information() {
@@ -68,8 +68,9 @@
             createDom();
         };
 
-        function display() {
 
+        function display() {
+                alert("wow");
 //            console.log(event);
 
             var matchId = 'table-' + event.target.id;
@@ -83,13 +84,18 @@
 
             })
 
-        }
+        };
 
         $(document).ready(function () {
+           alert("test");
+           display();
+        });
+
 //            $('#table-1').style.display = "block";
             // setTimeout("information()", 500);
 
-        });
+
+
 
 
         // var data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
@@ -164,8 +170,12 @@
     <div class="mdui-container doc-container">
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
             @foreach($bankReports as $banksYearlyReport)
-                <a class="mdui-ripple" onclick="display()" id="{{$banksYearlyReport['year']}}">{{$banksYearlyReport['year']}}</a>
+                <a class="mdui-ripple" onclick="display()"
+                   id="{{$banksYearlyReport['year']}}">{{$banksYearlyReport['year']}}</a>
             @endforeach
+            {{--@foreach($bankReports as $banksYearlyReport)--}}
+                {{--<a class="mdui-ripple" onclick="display()" id="{{$banksYearlyReport['year']}}">{{$banksYearlyReport['year']}}</a>--}}
+            {{--@endforeach--}}
         </div>
         </br></br>
         <div class="mdui-card-header">

@@ -166,6 +166,7 @@
         }
 
         $(document).ready(function () {
+
 //            $('#table-1').style.display = "block";
             // setTimeout("information()", 500);
 
