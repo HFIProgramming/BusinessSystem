@@ -58,6 +58,7 @@
                 dataType: "json",
                 type: "GET",
                 success: function (msg) {
+                    var labels = [];
                     receivedInfo = msg;
                     var points = msg[0]["all_prices"].length;
                     for (var i = 0; i < msg.length; i++) {
