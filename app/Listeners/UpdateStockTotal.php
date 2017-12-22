@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\StockTotalChange;
+use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
