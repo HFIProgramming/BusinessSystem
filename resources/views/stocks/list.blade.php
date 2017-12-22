@@ -67,6 +67,9 @@
                     window.myLine = Chart.Line(ctx, {
                         data: lineChartData,
                         options: {
+                            animation: {
+                                duration:0
+                            },
                             responsive: true,
                             hoverMode: 'index',
                             stacked: false,
@@ -120,7 +123,7 @@
 
             setInterval("information()", 5000);
             // createDom();
-
+        });
     </script>
 
 @endsection
