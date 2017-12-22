@@ -33,7 +33,9 @@ class ReportController extends Controller
                 $array['dividend'] = $rawReport->dividend;
                 array_push($companyReport['info'], $array);
             }
-            array_push($companyReports, $companyReport);
+            if(!empty($companyReport['info'])) {
+                array_push($companyReports, $companyReport);
+            }
         }
 //        return $companyReports;
 
@@ -60,9 +62,9 @@ class ReportController extends Controller
                 ];
                 array_push($banksYearlyReport['data'], $individualReport);
             }
-//            if(!empty($banksYearlyReport['data'])) {
+            if(!empty($banksYearlyReport['data'])) {
                 array_push($bankReports, $banksYearlyReport);
-//            }
+            }
         }
 
 //        return $bankReports;
