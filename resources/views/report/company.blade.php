@@ -190,8 +190,8 @@
                     </div>
                 @endforeach
             </div>
-            {{--@endforeach--}}
-
+            @endforeach
+            @foreach($companyReports as $companyReport)
             <script>
                 var data = [];
                 var backgroundColor = [];
