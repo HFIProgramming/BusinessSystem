@@ -8,13 +8,7 @@
     <script src="{{ asset('js/Chart.bundle.js') }}"></script>
     <script>
 
-        var html = '';
-        var html2 = '<td> <form action="{{ route('buyStock') }}" method="post"> {{ csrf_field() }}';
-        html2 += '<input type="hidden" name="stock_id" value=' + this.id + '>';
-        html2 += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount" placeholder="$"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Buy </button> </form> </td>';
-        html2 += '<td> <form action="{{ route('sellStock') }}" method="post"> {{ csrf_field() }}';
-        html2 += '<input type="hidden" name="stock_id" value=' + this.id + '>';
-        html2 += '<div class="mdui-textfield"> <input class="mdui-textfield-input" type="text" name="amount" placeholder="$"> </div> <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Sell </button> </form> </td> </tr>';
+       var flag = 0;
 
         var receivedInfo = [], labels = [], datasets = [];
         var dataLength = 0;
