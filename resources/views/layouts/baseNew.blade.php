@@ -77,34 +77,30 @@
         .doc-container {
             padding-top: 30px;
             padding-bottom: 150px;
+
         }
 
-        .footer {
-            margin-top: 25px;
+        .mdui-tab {
+            min-width: 40px;
+        !important;
         }
 
-        .footer_bar {
-            margin-top: 100px;
+        .company {
+            padding: 10px;
+        !important;
         }
 
-        .adjust_card_subtitle {
-            margin-left: 0;
-        }
-
-        .adjust_card {
-            padding-top: 30px;
-            padding-bottom: 130px;
-        }
-
-        .adjust_mdui_icon {
-            bottom: 33px !important;
+        .title {
+            height: 1000px;
+            width: 5000px;
+            background-color: black;
         }
     </style>
     @yield('stylesheet')
     @yield('script')
 </head>
 
-<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-drawer-body-left mdui-appbar-with-toolbar">
+<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-appbar-with-toolbar">
 
 <div class="mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar mdui-color-theme">
