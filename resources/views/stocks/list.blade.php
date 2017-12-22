@@ -83,7 +83,7 @@
         function createDom() {
             html = '';
             $.each(receivedInfo, function () {
-                html += '<tr> <td class="mdui-panel mdui-panel-item-open" mdui-panel> <div class="mdui-panel-item"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';
+                html += '<tr> <td class="mdui-panel" mdui-panel> <div class="mdui-panel-item mdui-panel-item-open"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';
                 html += this.company_name + '</div>';
                 html += '<div class="mdui-panel-item-summary">Current Price: ' + this.current_price + '</div>';
 //                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';
