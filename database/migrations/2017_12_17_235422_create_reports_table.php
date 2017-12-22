@@ -23,6 +23,7 @@ class CreateReportsTable extends Migration
             $table->float('dividend')->nullable();
             $table->bigInteger('profit')->nullable();//only for company
             $table->bigInteger('loan_total')->nullable();//only for bank
+            $table->bigInteger('unredeemed_loan')->nullable();//only for company
             $table->text('buildings')->nullable();//only for company
             $table->timestamps();
             //This is a migration very specific for this contest. Probably useless later.

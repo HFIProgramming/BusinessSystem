@@ -170,7 +170,7 @@
                                 <ul class="mdui-list">
                                     <li class="mdui-list-item mdui-ripple">总股数：{{$company['total']}}</li>
                                     <li class="mdui-list-item mdui-ripple">股价：{{$company['price']}}</li>
-                                    <li class="mdui-list-item mdui-ripple">去年的利润：{{$company['last_profit']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">当年利润（分红前）：{{$company['last_profit']}}</li>
                                     <li class="mdui-list-item mdui-ripple">
                                         公司持有的建筑：
                                         <ul class="mdui-list">
@@ -182,6 +182,7 @@
                                         </ul>
                                     </li>
                                     <li class="mdui-list-item mdui-ripple">分红率：{{$company['dividend']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">欠款未还：{{$company['unredeemed_loan']}}</li>
                                 </ul>
                             </div>
                         </div>

@@ -31,6 +31,7 @@ class ReportController extends Controller
                 $array['buildings'] = $rawReport->buildings;
                 $array['stock_shares'] = $rawReport->components;
                 $array['dividend'] = $rawReport->dividend;
+                $array['unredeemed_loan'] = $rawReport->unredeemed_loan;
                 array_push($companyReport['info'], $array);
             }
             if(!empty($companyReport['info'])) {

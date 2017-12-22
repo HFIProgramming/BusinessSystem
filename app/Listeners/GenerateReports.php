@@ -62,6 +62,7 @@ class GenerateReports
                     array_push($buildings, ['name' => $userResource->resource->name, 'amount' => $userResource->amount]);
                 }
             }
+            $unredeemed_loan = Loan::where('debtor_id', $company->id)->where('status', 'accepted')->get()->sum('amount');
             Report::create([
                 'year' => $current,
                 'user_id' => $company->id,
@@ -70,7 +71,8 @@ class GenerateReports
                 'profit' => $company->company->last_year_profit,
                 'components' => $components,
                 'buildings' => $buildings,
-                'dividend' => $company->company->stock->dividend
+                'dividend' => $company->company->stock->dividend,
+                'unredeemed_loan' => $unredeemed_loan
             ]);
         }
     }

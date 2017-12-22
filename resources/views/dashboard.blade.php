@@ -153,10 +153,14 @@
                                     <li class="mdui-list-item mdui-ripple mdui-typo-headline">物品清单</li>
                                     <br>
                                     @foreach($user->resources()->get() as $resource)
-{{--                                        @if($resource->resource->type >=0 && $resource->resource->type <= 3)--}}
-                                        <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
-                                            : {{$resource->amount}}</li>
-                                        {{--@endif--}}
+                                        @if(Auth::user()->type == 2 &&  ($resource->resource->type == 0 || $resource->resource->type == 3))
+                                            <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
+                                                : {{$resource->amount}}</li>
+                                        @endif
+                                        @if(Auth::user()->type == 1 && (($resource->resource->type >= 0 && $resource->resource->type <= 3) || $resource->$resource->name == '污染指数'))
+                                            <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
+                                                : {{$resource->amount}}</li>
+                                        @endif
                                     @endforeach
                                     <br/>
                                 </ul>
