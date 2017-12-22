@@ -117,7 +117,7 @@ class RegisterController extends Controller
             ]);
 
             $stock = Stock::create([
-                'current_price' => 5,
+                'current_price' => 20,
                 'history_prices' => [],
                 'total' => 1000000000,
                 'dividend' => 0.1,

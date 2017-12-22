@@ -18,7 +18,7 @@ class ConfigSeeder extends Seeder
             'startup_fund_2'        => 20000000000,
 			'primary_color'       => 'yellow',
 			'accent_color'        => 'red',
-			'current_round'       => 0,
+			'current_round'       => 1,
 			'total_round'         => 20,
 			'is_continued'        => 1,
             'crisis_PowerStation' => 1,

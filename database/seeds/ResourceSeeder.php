@@ -17,7 +17,7 @@ class ResourceSeeder extends Seeder
         //
         $money = [
             'code' => 'money',
-            'name' => 'money',
+            'name' => '金钱',
             'description' => 'This is money !',
             'type' => 0,
         ];
