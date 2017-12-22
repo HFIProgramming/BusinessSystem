@@ -109,7 +109,7 @@
 
         $(document).ready(function () {
 
-            document.getElementById("table-1")..style.display = "block";
+            document.getElementById("table-1").style.display = "block";
             // setTimeout("information()", 500);
 
         });
