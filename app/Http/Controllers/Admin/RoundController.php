@@ -43,6 +43,7 @@ class RoundController extends Controller
 
 	public function submitYear(Request $request)
     {
+        return 'received. nothing done.';
         if(Config::KeyValue('is_continued')->value == '0')
         {
             if(!empty(Report::where('year', Config::KeyValue('current_round')->value)->get()))
