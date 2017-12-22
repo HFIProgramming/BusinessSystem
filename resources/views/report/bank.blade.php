@@ -88,6 +88,14 @@
 
 @section('body')
     <div class="mdui-container doc-container">
+        <div class="mdui-card-header">
+            <div class="mdui-typo-display-1 mdui-text-center mdui-text-color-theme">
+                投行报表
+            </div>
+        </div>
+
+        </br></br>
+
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
             @foreach($bankReports as $banksYearlyReport)
                 <a class="mdui-ripple" onclick="display()"
@@ -97,12 +105,8 @@
                 {{--<a class="mdui-ripple" onclick="display()" id="{{$banksYearlyReport['year']}}">{{$banksYearlyReport['year']}}</a>--}}
             {{--@endforeach--}}
         </div>
-        </br></br>
-        <div class="mdui-card-header">
-            <div class="mdui-typo-display-1 mdui-text-center mdui-text-color-theme">
-                投行报表
-            </div>
-        </div>
+
+
         @foreach($bankReports as $banksYearlyReport)
             <div id="table-{{$banksYearlyReport['year']}}" class="cardId mdui-col-md-12" style="display: none">
                 @foreach($banksYearlyReport['data'] as $bank)
