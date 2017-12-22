@@ -99,37 +99,37 @@
         <!--<a class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}"><i class="mdui-icon material-icons">menu</i></a>-->
         <div class="mdui-col-md-1"></div>
         <a href="{{route('dashboard')}}" class="mdui-typo-title">Finance Club</a>
-        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#first'}">Info
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#first'}">信息
         </button>
         <div></div>
-        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#second'}">Loans
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#second'}">贷款
         </button>
         <div></div>
-        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#third'}">Resources
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#third'}">资源
         </button>
         <div></div>
-        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#fourth'}">Transaction
+        <button class="navButton mdui-btn mdui-color-theme-accent" style="width: 150px !important;height: 100% !important;" mdui-menu="{target: '#fourth'}">交易
         </button>
         <div id="effect"></div>
         <ul class="mdui-menu mdui-menu-cascade" id="first">
             <li class="mdui-menu-item">
                 <a href="{{route('companyReports')}} class="mdui-ripple">
-                    Company Report
+                    公司报表
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('bankReports')}} class="mdui-ripple">
-                Bank Report
+                投行报表
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('zones')}} class="mdui-ripple">
-                Zones
+                地块
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('viewStocks')}} class="mdui-ripple">
-                Stocks
+                股票
                 </a>
             </li>
         </ul>
@@ -138,12 +138,12 @@
         <ul class="mdui-menu mdui-menu-cascade" id="second">
             <li class="mdui-menu-item">
                 <a href="{{route('loanForm')}} class="mdui-ripple">
-                Grant Loan
+                放贷
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('listLoans')}} class="mdui-ripple">
-                Loan List
+                贷款列表
                 </a>
             </li>
         </ul>
@@ -151,12 +151,12 @@
         <ul class="mdui-menu mdui-menu-cascade" id="third">
             <li class="mdui-menu-item">
                 <a href="{{route('resource')}} class="mdui-ripple">
-                Resource List
+                资源列表
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('buildForm')}} class="mdui-ripple">
-                Build
+                建筑
                 </a>
             </li>
         </ul>
@@ -164,27 +164,27 @@
         <ul class="mdui-menu mdui-menu-cascade" id="fourth">
             <li class="mdui-menu-item">
                 <a href="{{route('TransactionList')}} class="mdui-ripple">
-                Transaction List
+                交易列表
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('BuyGov')}} class="mdui-ripple">
-                Buy from Government
+                从政府买入
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('SellGov')}} class="mdui-ripple">
-                Sell to Government
+                向政府卖出
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('TransIn')}} class="mdui-ripple">
-                Buy
+                买
                 </a>
             </li>
             <li class="mdui-menu-item">
                 <a href="{{route('TransOut')}} class="mdui-ripple">
-                Sell
+                卖
                 </a>
             </li>
         </ul>
