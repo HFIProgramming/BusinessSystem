@@ -74,11 +74,11 @@
             <a href="{{route('zones')}}" class="mdui-list-item-content">Zones</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>
+            <i class="mdui-list-item-icon mdui-icon material-icons">account_balance_wallet</i>
             <a href="{{route('bills')}}" class="mdui-list-item-content">Bills</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
+            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_bulleted</i>
             <a href="{{route('listLoans')}}" class="mdui-list-item-content">List Loans</a>
         </li>
         @if(Auth::user()->type == 2)
@@ -87,7 +87,7 @@
                 <a href="{{route('loanForm')}}" class="mdui-list-item-content">New Loan</a>
             </li>
             <li class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
+                <i class="mdui-list-item-icon mdui-icon material-icons">call_missed_outgoing</i>
                 <a href="{{route('viewStocks')}}" class="mdui-list-item-content">Stocks</a>
             </li>
         @endif
@@ -126,7 +126,7 @@
         @endif
         <li class="mdui-collapse-item">
             <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
+                <i class="mdui-list-item-icon mdui-icon material-icons">rate_review</i>
                 <div class="mdui-list-item-content">Reports</div>
                 <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
             </div>
