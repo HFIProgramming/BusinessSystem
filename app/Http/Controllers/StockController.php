@@ -15,6 +15,7 @@ class StockController extends Controller
 
     public function buyStock(Request $request)
     {
+        $msg = '';
         $limit = Config::KeyValue('stock_transactions_limit')->value;
         if($request->user()->stockTransactionTimes() >= $limit)
         {
@@ -42,17 +43,19 @@ class StockController extends Controller
         if($sellerAmount > $stock->sell_remain)
         {
             $sellerAmount = $stock->sell_remain;
+            $msg = '<br>购买数量大于卖盘剩余，已清空卖盘';
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
         event(new StockTransaction($buyer, $stock, 'buy', $sellerAmount));
         //Price Updates are written in StockTransaction Event
-        return view('success')->with('message', '购买成功');
+        return view('success')->with('message', '购买成功'.$msg);
 
     }
 
     public function sellStock(Request $request)
     {
+        $msg = '';
         $limit = Config::KeyValue('stock_transactions_limit')->value;
         if($request->user()->stockTransactionTimes() >= $limit)
         {
@@ -80,13 +83,13 @@ class StockController extends Controller
         if($sellerAmount > $stock->buy_remain)
         {
             $sellerAmount = $stock->buy_remain;
-//            return 'dont move, you '.$buyerAmount;
+            $msg = '<br>售出数量大于买盘剩余，已清空买盘';
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
         event(new StockTransaction($seller, $stock, 'sell', $buyerAmount));
         //Prices Updates are written in StockTransaction Event
-        return view('success')->with('message', '出售成功');
+        return view('success')->with('message', '出售成功'.$msg);
     }
 
     public function sendData(Request $request)

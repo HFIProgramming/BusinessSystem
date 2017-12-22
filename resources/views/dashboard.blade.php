@@ -157,7 +157,7 @@
                                             <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
                                                 : {{$resource->amount}}</li>
                                         @endif
-                                        @if(Auth::user()->type == 1 && (($resource->resource->type >= 0 && $resource->resource->type <= 3) || $resource->$resource->name == '污染指数'))
+                                        @if(Auth::user()->type == 1 && (($resource->resource->type >= 0 && $resource->resource->type <= 3) || $resource->resource->name == '污染指数'))
                                             <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
                                                 : {{$resource->amount}}</li>
                                         @endif
