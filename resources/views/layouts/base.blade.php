@@ -69,6 +69,7 @@
             <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
             <a href="{{route('resource')}}" class="mdui-list-item-content">List Resource</a>
         </li>
+        @if(Auth::user()->type == 2)
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
             <a href="{{route('listLoans')}}" class="mdui-list-item-content">List Loans</a>
@@ -81,14 +82,17 @@
             <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
             <a href="{{route('viewStocks')}}" class="mdui-list-item-content">Stocks</a>
         </li>
+        @endif
         {{--<li class="mdui-list-item mdui-ripple">--}}
             {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
             {{--<a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>--}}
         {{--</li>--}}
+        @if(Auth::user()->type == 1)
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
             <a href="{{route('buildForm')}}" class="mdui-list-item-content">Build</a>
         </li>
+        @endif
         <li class="mdui-collapse-item">
             <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
@@ -130,16 +134,16 @@
                 {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
             {{--</li>--}}
         {{--@endif--}}
-        @if (Auth::user()->type == 2)
-            <li class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>
-                <a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>
-            </li>
-        @endif
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
-            <a href="{{route('announcement')}}" class="mdui-list-item-content">Announcement</a>
-        </li>
+        {{--@if (Auth::user()->type == 2)--}}
+            {{--<li class="mdui-list-item mdui-ripple">--}}
+                {{--<i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>--}}
+                {{--<a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>--}}
+            {{--</li>--}}
+        {{--@endif--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+            {{--<i class="mdui-list-item-icon mdui-icon material-icons">list</i>--}}
+            {{--<a href="{{route('announcement')}}" class="mdui-list-item-content">Announcement</a>--}}
+        {{--</li>--}}
         <li class="mdui-divider"></li>
         @if(auth()->id() == 1)
             <li class="mdui-list-item mdui-ripple">
