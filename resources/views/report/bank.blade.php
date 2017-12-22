@@ -116,9 +116,6 @@
                                 <div class="mdui-card-primary-title">{{$bank['name']}}</div>
                             </div>
                             <div class="mdui-card-content">
-                                <div id="canvas-holder">
-                                    <canvas id="{{$bank['id']}}"/>
-                                </div>
                                 <ul class="mdui-list">
                                     <li class="mdui-list-item mdui-ripple">在外贷款金额：{{$bank['loan_total']}}</li>
                                     <li class="mdui-list-item mdui-ripple">

@@ -139,7 +139,7 @@
 @section('body')
     <div class="mdui-container doc-container">
         <div id="title">
-            <div class="mdui-center mdui-typo-display-1 mdui-text-center mdui-text-color-white">
+            <div class="mdui-center mdui-typo-display-1 mdui-text-center mdui-text-color-theme">
                 Financial Report
             </div>
         </div>
