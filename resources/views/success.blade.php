@@ -53,7 +53,7 @@
                     @else
                         操作完成，如有疑问请联系管理员
                     @endif
-                    <button class="mdui-btn mdui-color-theme mdui-ripple" onclick="window.history.back();location.reload(true)">返回上一层</button>
+                    <button class="mdui-btn mdui-color-theme mdui-ripple" onclick="self.location = document.referrer">返回上一层</button>
                 </div>
             </div>
             <!--row-->
