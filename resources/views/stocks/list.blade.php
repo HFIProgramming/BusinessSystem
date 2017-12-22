@@ -5,6 +5,8 @@
 @endsection
 {{-- @TODO labels and frontend shit fix--}}
 @section('script')
+    <script src="js/Chart.bundle.js"></script>
+    <script src="js/utils.js"></script>
     <script>
 
         var html = '';
@@ -79,6 +81,37 @@
                     for (var j = 0; j < points; j++) {
                         labels.push("");
                     }
+                    var lineChartData = {
+                        labels: labels,
+                        datasets: datasets
+                    };
+
+                    var ctx = document.getElementById("stock").getContext("2d");
+                    window.myLine = Chart.Line(ctx, {
+                        data: lineChartData,
+                        options: {
+                            responsive: true,
+                            hoverMode: 'index',
+                            stacked: false,
+                            title: {
+                                display: false,
+                                text: 'Chart.js Line Chart - Multi Axis'
+                            },
+                            scales: {
+                                yAxes: [{
+                                    type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                    display: true,
+                                    position: "left",
+                                    id: "y-axis",
+                                    // grid line settings
+                                    gridLines: {
+                                        drawOnChartArea: true, // only want the grid lines for one axis to show up
+                                    },
+                                }],
+                            }
+                        }
+                    });
+
                     createDom();
                 },
                 error: function () {
@@ -91,15 +124,15 @@
         function createDom() {
             $.each(receivedInfo, function () {
 //                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children('.mdui-panel-item-summary').text(this.name);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children(".s1").text("现价：" + this.current_price);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children(".s2").text("当前持有股数：" + this.hand_up);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b5").text("当前买入价：" + this.current_buy);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b6").text("当前卖出价：" + this.current_sell);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b1").text("总数：" + this.total);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b2").text("分红率：" + this.dividend);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b3").text("卖盘剩余：" + this.sell_remain);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b4").text("买盘剩余：" + this.buy_remain);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b7").text("风险评估：" + this.risk_evaluation);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children(".s1").text("现价：" + this.current_price);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children(".s2").text("当前持有股数：" + this.hand_up);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b5").text("当前买入价：" + this.current_buy);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b6").text("当前卖出价：" + this.current_sell);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b1").text("总数：" + this.total);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b2").text("分红率：" + this.dividend);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b3").text("卖盘剩余：" + this.sell_remain);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b4").text("买盘剩余：" + this.buy_remain);
+                $("#" + this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b7").text("风险评估：" + this.risk_evaluation);
 
 
                 {{--html += '<tr> <td class="mdui-panel" mdui-panel> <div class="mdui-panel-item mdui-panel-item-open"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';--}}
@@ -167,41 +200,42 @@
         //            yAxisID: "y-axis"
         //        }];
 
-        var lineChartData = {
-            labels: labels,
-            datasets: datasets
-        };
-
-        window.onload = function () {
-            var ctx = document.getElementById("stock").getContext("2d");
-            window.myLine = Chart.Line(ctx, {
-                data: lineChartData,
-                options: {
-                    responsive: true,
-                    hoverMode: 'index',
-                    stacked: false,
-                    title: {
-                        display: false,
-                        text: 'Chart.js Line Chart - Multi Axis'
-                    },
-                    scales: {
-                        yAxes: [{
-                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                            display: true,
-                            position: "left",
-                            id: "y-axis",
-                            // grid line settings
-                            gridLines: {
-                                drawOnChartArea: true, // only want the grid lines for one axis to show up
-                            },
-                        }],
-                    }
-                }
-            });
-        };
+        // var lineChartData = {
+        //     labels: labels,
+        //     datasets: datasets
+        // };
+        //
+        // window.onload = function () {
+        //     var ctx = document.getElementById("stock").getContext("2d");
+        //     window.myLine = Chart.Line(ctx, {
+        //         data: lineChartData,
+        //         options: {
+        //             responsive: true,
+        //             hoverMode: 'index',
+        //             stacked: false,
+        //             title: {
+        //                 display: false,
+        //                 text: 'Chart.js Line Chart - Multi Axis'
+        //             },
+        //             scales: {
+        //                 yAxes: [{
+        //                     type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+        //                     display: true,
+        //                     position: "left",
+        //                     id: "y-axis",
+        //                     // grid line settings
+        //                     gridLines: {
+        //                         drawOnChartArea: true, // only want the grid lines for one axis to show up
+        //                     },
+        //                 }],
+        //             }
+        //         }
+        //     });
+        // };
 
     </script>
-    <script src="/js/Chart.bundle.js"></script>
+    <script src="{{ asset('js/Chart.bundle.js') }}"></script>
+
 @endsection
 
 @section('stylesheet')
@@ -261,7 +295,7 @@
                                             现价： {{$stock->current_price}}
                                         </div>
                                         <div class="s2 mdui-panel-item-summary">
-                                        当前持有股数： {{Auth::user()->resources()->resid($stock->resource_id)->first()->amount}}
+                                            当前持有股数： {{Auth::user()->resources()->resid($stock->resource_id)->first()->amount}}
                                         </div>
                                         <i class="mdui-panel-item-arrow mdui-icon material-icons">
                                             keyboard_arrow_down
