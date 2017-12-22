@@ -83,11 +83,11 @@
         function createDom() {
             html = '';
             $.each(receivedInfo, function () {
-                html += '<tr> <td class="mdui-panel " mdui-panel> <div class="mdui-panel-item"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';
+                html += '<tr> <td class="mdui-panel mdui-panel-item-open" mdui-panel> <div class="mdui-panel-item"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';
                 html += this.company_name + '</div>';
                 html += '<div class="mdui-panel-item-summary">Current Price: ' + this.current_price + '</div>';
 //                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';
-                html += '<i class="mdui-panel-item-arrow mdui-icon material-icons" onclick="arrow()">keyboard_arrow_down</i> </div>';
+                html += '<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i> </div>';
                 html += '<div class="mdui-panel-item-body"> <p>total: ' + this.total + '</p>';
                 html += '<p>dividend: ' + this.dividend + '</p>';
                 html += '<p>sell remain: ' + this.sell_remain + '</p>';
@@ -102,14 +102,14 @@
             $('#table').html(html);
         };
         //
-
-        function arrow() {
-            if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
-                $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
-            } else {
-                $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
-            }
-        }
+        //
+        // function arrow() {
+        //     if ($(this).parents(".mdui-panel-item").hasClass("mdui-panel-item-open") === false) {
+        //         $(this).parents(".mdui-panel-item").addClass("mdui-panel-item-open");
+        //     } else {
+        //         $(this).parents(".mdui-panel-item").removeClass("mdui-panel-item-open");
+        //     }
+        // }
 
         $(document).ready(function () {
 
