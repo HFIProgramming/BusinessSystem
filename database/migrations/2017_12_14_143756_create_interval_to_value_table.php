@@ -15,8 +15,8 @@ class CreateIntervalToValueTable extends Migration
     {
         Schema::create('interval_to_value', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lower');//close
-            $table->integer('upper');//open
+            $table->bigInteger('lower');//close
+            $table->bigInteger('upper');//open
             //This is interval is [lower,upper)
             $table->string('value');
             $table->string('flag');//Used to discern between different functions

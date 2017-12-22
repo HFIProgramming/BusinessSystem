@@ -77,11 +77,11 @@
             <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
             <a href="{{route('listLoans')}}" class="mdui-list-item-content">List Loans</a>
         </li>
+        @if(Auth::user()->type == 2)
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
             <a href="{{route('loanForm')}}" class="mdui-list-item-content">New Loan</a>
         </li>
-        @if(Auth::user()->type == 2)
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
             <a href="{{route('viewStocks')}}" class="mdui-list-item-content">Stocks</a>

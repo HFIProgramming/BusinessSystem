@@ -17,7 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name');
-            $table->integer('last_year_profit');
+            $table->bigInteger('last_year_profit');
             $table->timestamps();
         });
     }

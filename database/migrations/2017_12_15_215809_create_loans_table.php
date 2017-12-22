@@ -17,7 +17,7 @@ class CreateLoansTable extends Migration
             $table->increments('id');
             $table->integer('creditor_id');
             $table->integer('debtor_id');
-            $table->integer('amount');
+            $table->bigInteger('amount');
             $table->float('interest');
             $table->integer('loan_transaction_id');//The transaction that grants the loan
             $table->string('status');//pending, accepted, redeemed
