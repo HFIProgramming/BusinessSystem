@@ -8,7 +8,7 @@ class Report extends Model
 {
     //
     protected $fillable = [
-        'year', 'user_id', 'type', 'components', 'stock_price', 'profit', 'loan_total'
+        'year', 'user_id', 'type', 'components', 'stock_price', 'profit', 'loan_total', 'buildings'
     ];
 
     protected $casts = [
@@ -18,6 +18,6 @@ class Report extends Model
 
     public function user()
     {
-        return $this->$this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -66,6 +66,10 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\NewResource' => [
             'App\Listeners\RefreshUserResources'
+        ],
+
+        'App\Events\StockTotalChange' => [
+            'App\Listeners\UpdateStockTotal'
         ]
 
 	];

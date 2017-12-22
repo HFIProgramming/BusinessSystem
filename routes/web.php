@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/buy', 'StockController@buyStock')->name('buyStock');
             Route::post('/sell', 'StockController@sellStock')->name('sellStock');
         });
+
 	});
 
 	Route::group(['prefix' => 'announcement'], function () {
@@ -91,6 +92,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['prefix' => 'bills'], function () {
 	   Route::get('/', 'HomeController@showBills')->name('bills');
+    });
+
+	Route::group(['prefix' => 'reports'], function() {
+	   Route::get('/company', 'ReportController@showCompanyReports');
+	   Route::get('/bank', 'ReportController@showBankReports');
     });
 
 	Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {

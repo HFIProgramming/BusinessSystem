@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ReportController extends Controller
 {
     //
-    public function getCompanyReports(Request $request)
+    public function showCompanyReports(Request $request)
     {
         $companyReports = [];
         $current_round = Config::KeyValue('current_round')->value;
@@ -32,6 +32,7 @@ class ReportController extends Controller
             }
             array_push($companyReports, $companyReport);
         }
+//        return $companyReports;
 
         return view('report.company')->with('companyReports', $companyReports);
     }
