@@ -242,8 +242,8 @@
             </div>
         </div>
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
-            @foreach($years as $year)
-                <a class="mdui-ripple" onclick="display()">{{$year->index}}</a>
+            @foreach($companyReports as $companyReport)
+                <a class="mdui-ripple" onclick="display()">{{$companyReport['year']}}</a>
             @endforeach
         </div>
         <br><br>
