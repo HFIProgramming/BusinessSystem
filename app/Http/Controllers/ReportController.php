@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bank;
 use App\Config;
 use App\Report;
 use Illuminate\Http\Request;
@@ -37,5 +38,33 @@ class ReportController extends Controller
 //        return $companyReports;
 
         return view('report.company')->with('companyReports', $companyReports);
+    }
+
+    public function showBankReports()
+    {
+        $bankReports = [];
+        $current_round = Config::KeyValue('current_round')->value;
+        for($i = 0; $i <= $current_round; $i++)
+        {
+            $banksYearlyReport = [];
+            $banksYearlyReport['year'] = $current_round;
+            $banksYearlyReport['data'] = [];
+            foreach(Report::where('type', 'bank')->where('year', $i)->get() as $rawReport)
+            {
+                $bank = $rawReport->user->bank;
+                $individualReport = [
+                    'name' => $bank->name,
+                    'id' => $bank->id,
+                    'components' => $rawReport->components,
+                    'loan_total' => $rawReport->loan_total
+                ];
+                array_push($banksYearlyReport['data'], $bank);
+            }
+            array_push($bankReports, $banksYearlyReport);
+        }
+
+        return $bankReports;
+
+        return view('report.bank')->with('bankReports', $bankReports);
     }
 }

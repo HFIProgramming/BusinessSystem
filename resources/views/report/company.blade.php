@@ -149,12 +149,16 @@
 
         ///////new stuff
         function display() {
-            var matchId = 'table-' + this.text();
+
+//            console.log(event);
+
+            var matchId = 'table-' + event.target.id;
+            var selected;
             $('.mdui-container').children('.cardId').each(function () {
-                if ($(this).attr('id') === matchId) {
-                    $(this).style.display = "block";
+                if (this.id === matchId) {
+                    document.getElementById(this.id).style.display = "block";
                 } else {
-                    $(this).style.display = "none";
+                    document.getElementById(this.id).style.display = "none";
                 }
 
             })
@@ -162,7 +166,7 @@
         }
 
         $(document).ready(function () {
-            $('#table-1').style.display = "block";
+//            $('#table-1').style.display = "block";
             // setTimeout("information()", 500);
 
         });
@@ -243,12 +247,13 @@
         </div>
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
             @foreach($companyReports as $companyReport)
-                <a class="mdui-ripple" onclick="display()">{{$companyReport['year']}}</a>
+                <a class="mdui-ripple" onclick="display()"
+                   id="{{$companyReport['year']}}">{{$companyReport['year']}}</a>
             @endforeach
         </div>
         <br><br>
 
-{{--        {{var_dump($companyReports[0]['info'])}}--}}
+{{--        {{var_dump($companyReports)}}--}}
 
         @foreach($companyReports as $companyReport)
             <div id="table-{{$companyReport['year']}}" class="cardId mdui-col-md-12" style="display: none">
@@ -285,48 +290,48 @@
             </div>
         @endforeach
 
-                    {{--<script>--}}
-                    {{--var data = [];--}}
-                    {{--var backgroundColor = [];--}}
-                    {{--var labels = [];--}}
-                    {{--var label = "{{$company['name']}}";--}}
+        {{--<script>--}}
+        {{--var data = [];--}}
+        {{--var backgroundColor = [];--}}
+        {{--var labels = [];--}}
+        {{--var label = "{{$company['name']}}";--}}
 
-                    {{--@foreach($company['datas'] as $data)--}}
-                    {{--data.push({{$data}})--}}
-                    {{--backgroundColor.push(randomColor());--}}
-                    {{--@endforeach--}}
+        {{--@foreach($company['datas'] as $data)--}}
+        {{--data.push({{$data}})--}}
+        {{--backgroundColor.push(randomColor());--}}
+        {{--@endforeach--}}
 
-                    {{--@foreach($company['stock_shares'] as $id => $percent)--}}
-                    {{--labels.push({{$id}} +--}}
-                    {{--"(" +--}}
-                    {{--"{{ $percent }}".toFixed(2) +--}}
-                    {{--"%)");--}}
-                    {{--@endforeach--}}
-
-
-                    {{--var config = ({--}}
-                    {{--type: 'pie',--}}
-                    {{--data: {--}}
-                    {{--datasets: [{--}}
-                    {{--data: data,--}}
-                    {{--backgroundColor: backgroundColor,--}}
-                    {{--label: label--}}
-                    {{--}],--}}
-                    {{--labels: labels--}}
-                    {{--},--}}
-                    {{--options: {--}}
-                    {{--responsive: true--}}
-                    {{--}--}}
-                    {{--});--}}
-                    {{--})--}}
-                    {{--;--}}
+        {{--@foreach($company['stock_shares'] as $id => $percent)--}}
+        {{--labels.push({{$id}} +--}}
+        {{--"(" +--}}
+        {{--"{{ $percent }}".toFixed(2) +--}}
+        {{--"%)");--}}
+        {{--@endforeach--}}
 
 
-                    {{--var ctx = document.getElementById({{$company['id']}}).getContext("2d");--}}
-                    {{--window.myPie = new Chart(ctx, config);--}}
-                    {{--</script>--}}
-                {{--@endforeach--}}
-            {{--</div>--}}
+        {{--var config = ({--}}
+        {{--type: 'pie',--}}
+        {{--data: {--}}
+        {{--datasets: [{--}}
+        {{--data: data,--}}
+        {{--backgroundColor: backgroundColor,--}}
+        {{--label: label--}}
+        {{--}],--}}
+        {{--labels: labels--}}
+        {{--},--}}
+        {{--options: {--}}
+        {{--responsive: true--}}
+        {{--}--}}
+        {{--});--}}
+        {{--})--}}
+        {{--;--}}
+
+
+        {{--var ctx = document.getElementById({{$company['id']}}).getContext("2d");--}}
+        {{--window.myPie = new Chart(ctx, config);--}}
+        {{--</script>--}}
+        {{--@endforeach--}}
+        {{--</div>--}}
 
         {{--@endforeach--}}
     </div>
