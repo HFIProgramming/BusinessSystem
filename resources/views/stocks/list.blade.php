@@ -89,21 +89,21 @@
 
         function createDom() {
             $.each(receivedInfo, function () {
-                $("#this.id").children(".mdui-panel-item-title").text(this.name);
-                $("#this.id").children(".s1").text("现价：" + this.current_price);
-                $("#this.id").children(".s2").text("当前持有股数：" + this.hand_up);
-                $("#this.id").children(".b5").text("当前买入价：" + this.current_buy);
-                $("#this.id").children(".b6").text("当前卖出价：" + this.current_sell);
-                $("#this.id").children(".b1").text("总数：" + this.total);
-                $("#this.id").children(".b2").text("分红率：" + this.dividend);
-                $("#this.id").children(".b3").text("卖盘剩余：" + this.sell_remain);
-                $("#this.id").children(".b4").text("买盘剩余：" + this.buy_remain);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children('.mdui-panel-item-summary').text(this.name);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".s1").text("现价：" + this.current_price);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".s2").text("当前持有股数：" + this.hand_up);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b5").text("当前买入价：" + this.current_buy);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b6").text("当前卖出价：" + this.current_sell);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b1").text("总数：" + this.total);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b2").text("分红率：" + this.dividend);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b3").text("卖盘剩余：" + this.sell_remain);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b4").text("买盘剩余：" + this.buy_remain);
 
 
                 {{--html += '<tr> <td class="mdui-panel" mdui-panel> <div class="mdui-panel-item mdui-panel-item-open"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';--}}
                 {{--html += this.company_name + '</div>';--}}
                 {{--html += '<div class="mdui-panel-item-summary">Current Price: ' + this.current_price + '</div>';--}}
-{{--//                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';--}}
+                {{--//                html += '<div class="mdui-panel-item-summary">Now you have: ' + this.hand_up + '</div>';--}}
                 {{--html += '<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i> </div>';--}}
                 {{--html += '<div class="mdui-panel-item-body"> <p>total: ' + this.total + '</p>';--}}
                 {{--html += '<p>dividend: ' + this.dividend + '</p>';--}}
@@ -119,6 +119,7 @@
 
             });
         }
+
         //
         //
         // function arrow() {
@@ -248,48 +249,48 @@
                     <tbody id="table">
                     @foreach($stocks as $stock)
                         <tr>
-                            <td id="{{$stocks -> id}}" class="mdui-panel" mdui-panel>
+                            <td id="{{$stock->id}}" class="mdui-panel" mdui-panel>
                                 <div class="mdui-panel-item mdui-panel-item-open">
                                     <div class="mdui-panel-item-header">
                                         <div class="mdui-panel-item-title">
-                                            {{$stock -> name}}
+                                            {{$stock->name}}
                                         </div>
                                         <div class="s1 mdui-panel-item-summary">
-                                            现价： {{$stock -> current_price}}
+                                            现价： {{$stock->current_price}}
                                         </div>
-                                        <div class="s2 mdui-panel-item-summary">
-                                            当前持有股数： {{$stock -> hand_up}}
-                                        </div>
+                                        {{--<div class="s2 mdui-panel-item-summary">--}}
+                                        {{--当前持有股数： {{$stock->hand_up}}--}}
+                                        {{--</div>--}}
                                         <i class="mdui-panel-item-arrow mdui-icon material-icons">
                                             keyboard_arrow_down
                                         </i>
                                     </div>
                                     <div class="mdui-panel-item-body">
                                         <p class="b5">
-                                            当前买入价： {{$stock -> current_buy}}
+                                            当前买入价： {{$stock->buyPrice()}}
                                         </p>
                                         <p class="b6">
-                                            当前卖出价： {{$stock -> current_sell}}
+                                            当前卖出价： {{$stock->sellPrice()}}
                                         </p>
                                         <p class="b1">
-                                            总数： {{$stock -> total}}
+                                            总数： {{$stock->total}}
                                         </p>
                                         <p class="b2">
-                                            分红率： {{$stock -> dividend}}
+                                            分红率： {{$stock->dividend}}
                                         </p>
                                         <p class="b3">
-                                            卖盘剩余： {{$stock -> sell_remain}}
+                                            卖盘剩余： {{$stock->sell_remain}}
                                         </p>
                                         <p class="b4">
-                                            买盘剩余： {{$stock -> buy_remain}}
+                                            买盘剩余： {{$stock->buy_remain}}
                                         </p>
                                     </div>
                                 </div>
                             </td>
 
                             <td>
-                                <form action="{{ route('buyStock') }}" method="post"> {{ csrf_field() }}';
-                                    <input type="hidden" name="stock_id" value={{$stock -> id}}>;
+                                <form action="{{ route('buyStock') }}" method="post"> {{ csrf_field() }}
+                                    <input type="hidden" name="stock_id" value={{$stock->id}}>
                                     <div class="mdui-textfield">
                                         <input class="mdui-textfield-input" type="text" name="amount" placeholder="$">
                                     </div>
@@ -301,8 +302,8 @@
                             </td>
 
                             <td>
-                                <form action="{{ route('sellStock') }}" method="post"> {{ csrf_field() }}';
-                                    <input type="hidden" name="stock_id" value={{$stock -> id}}>;
+                                <form action="{{ route('sellStock') }}" method="post"> {{ csrf_field() }}
+                                    <input type="hidden" name="stock_id" value={{$stock->id}}>
                                     <div class="mdui-textfield">
                                         <input class="mdui-textfield-input" type="text" name="amount" placeholder="$">
                                     </div>
