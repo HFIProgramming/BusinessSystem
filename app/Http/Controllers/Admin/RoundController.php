@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Events\EndOfYear;
+use App\Report;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Config;
@@ -35,12 +36,22 @@ class RoundController extends Controller
 			$condition = Config::KeyValue('is_continued');
 			$condition->value = $request->condition;
 			$condition->save();
-			if($request->condition == '0')
-            {
-                event(new EndOfYear(Config::KeyValue('current_round')->value));
-            }
 		}
 
 		return redirect()->back();
 	}
+
+	public function submitYear(Request $request)
+    {
+        if(Config::KeyValue('is_continued')->value == '0')
+        {
+            if(!empty(Report::where('year', Config::KeyValue('current_round')->value)->get()))
+            {
+                return view('errors.custom')->with('message', '本财年似乎已结算过了');
+            }
+            event(new EndOfYear(Config::KeyValue('current_round')->value));
+            return view('success')->with('message', '结算成功');
+        }
+        return view('errors.custom')->with('message', '先暂停财年');
+    }
 }
