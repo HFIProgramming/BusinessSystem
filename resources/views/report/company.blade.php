@@ -140,7 +140,7 @@
     <div class="mdui-container doc-container">
         <div id="title">
             <div class="mdui-center mdui-typo-display-1 mdui-text-center mdui-text-color-theme">
-                Financial Report
+               公司报表
             </div>
         </div>
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
@@ -151,7 +151,7 @@
         </div>
         <br><br>
 
-        <canvas id="test"></canvas>
+        {{--<canvas id="test"></canvas>--}}
 
         {{--        {{var_dump($companyReports)}}--}}
 
