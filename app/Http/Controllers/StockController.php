@@ -77,7 +77,7 @@ class StockController extends Controller
         {
             return view('errors.custom')->with('message', '您持有的该股票不足进行交易');
         }
-        if($buyerAmount > $stock->buy_remain)
+        if($sellerAmount > $stock->buy_remain)
         {
             $sellerAmount = $stock->buy_remain;
 //            return 'dont move, you '.$buyerAmount;

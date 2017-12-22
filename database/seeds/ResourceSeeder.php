@@ -115,7 +115,7 @@ class ResourceSeeder extends Seeder
             'code' => 'PowerStation',
             'name' => '发电厂',
             'description' => '发电厂',
-            'equivalent_to' => [1 => 16],
+            'equivalent_to' => [1 => 1600000000],
             'type' => 2
         ]);
 
@@ -126,7 +126,7 @@ class ResourceSeeder extends Seeder
             'description' => '建造时购买此物品',
             'type' => 4,
             'required_tech' => 0,
-            'requirement' => [1 => [1 => 46, 2 => 500, 3 => 200, 4 => 100]],
+            'requirement' => [1 => [1 => 4600000000, 2 => 500, 3 => 200, 4 => 100]],
             'equivalent_to' => [9 => 1, 7 => 50],
             'tax' => [5 => 100, 6 => -100]
         ]);
@@ -136,7 +136,7 @@ class ResourceSeeder extends Seeder
             'code' => 'Disney',
             'name' => '游乐场',
             'description' => '游乐场',
-            'equivalent_to' => [1 => 16],
+            'equivalent_to' => [1 => 1600000000],
             'type' => 2
         ]);
 
@@ -147,7 +147,7 @@ class ResourceSeeder extends Seeder
             'description' => '建造时购买此物品',
             'type' => 4,
             'required_tech' => 0,
-            'requirement' => [1 => [1 => 46, 2 => 100, 3 => 500, 4 => 200]],
+            'requirement' => [1 => [1 => 4600000000, 2 => 100, 3 => 500, 4 => 200]],
             'equivalent_to' => [11 => 1, 7 => 20],
             'tax' => [5 => -40, 6 => 60]
         ]);
@@ -168,7 +168,7 @@ class ResourceSeeder extends Seeder
             'description' => '建造时购买此物品',
             'type' => 4,
             'required_tech' => 0,
-            'requirement' => [1 => [1 => 46, 2 => 300, 3 => 200, 4 => 500]],
+            'requirement' => [1 => [1 => 4600000000, 2 => 300, 3 => 200, 4 => 500]],
             'equivalent_to' => [13 => 1, 7 => 10],
             'tax' => [5 => -10, 6 => -20]
         ]);

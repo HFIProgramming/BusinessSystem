@@ -14,8 +14,8 @@ class ConfigSeeder extends Seeder
 		//
 		$config = [
 			'is_able_to_register' => 1,
-			'startup_fund_1'        => 100,
-            'startup_fund_2'        => 200,//specific?
+			'startup_fund_1'        => 10000000000,
+            'startup_fund_2'        => 20000000000,
 			'primary_color'       => 'yellow',
 			'accent_color'        => 'red',
 			'current_round'       => 0,
