@@ -118,7 +118,7 @@ class IntToValSeeder extends Seeder
             IntToVal::create([
                 'lower' => $data[1],
                 'upper' => $data[2],
-                'flag' => 'buy_remain',
+                'flag' => 'buy_update',
                 'value' => $data[0]
             ]);
         }
@@ -128,7 +128,7 @@ class IntToValSeeder extends Seeder
             IntToVal::create([
                 'lower' => $data[1],
                 'upper' => $data[2],
-                'flag' => 'sell_remain',
+                'flag' => 'sell_update',
                 'value' => $data[0]
             ]);
         }

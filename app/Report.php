@@ -8,7 +8,7 @@ class Report extends Model
 {
     //
     protected $fillable = [
-        'year', 'user_id', 'type', 'components', 'stock_price', 'profit', 'loan_total', 'buildings'
+        'year', 'user_id', 'type', 'components', 'stock_price', 'profit', 'loan_total', 'buildings', 'dividend'
     ];
 
     protected $casts = [

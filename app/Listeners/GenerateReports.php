@@ -69,7 +69,8 @@ class GenerateReports
                 'stock_price' => $company->company->stock->current_price,
                 'profit' => $company->company->last_year_profit,
                 'components' => $components,
-                'buildings' => $buildings
+                'buildings' => $buildings,
+                'dividend' => $company->company->stock->dividend
             ]);
         }
     }

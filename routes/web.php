@@ -95,8 +95,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 	Route::group(['prefix' => 'reports'], function() {
-	   Route::get('/company', 'ReportController@showCompanyReports');
-	   Route::get('/bank', 'ReportController@showBankReports');
+	   Route::get('/company', 'ReportController@showCompanyReports')->name('companyReports');
+	   Route::get('/bank', 'ReportController@showBankReports')->name('bankReports');
     });
 
 	Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {

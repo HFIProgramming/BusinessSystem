@@ -13,7 +13,7 @@ class ReportController extends Controller
     {
         $companyReports = [];
         $current_round = Config::KeyValue('current_round')->value;
-        for($i = 1; $i <= $current_round; $i++)
+        for($i = 0; $i <= $current_round; $i++)
         {
             $companyReport = [];
             $companyReport['year'] = $i;
@@ -25,9 +25,11 @@ class ReportController extends Controller
                 $array['name'] = $company->name;
                 $array['id'] = $company->id;
                 $array['total'] = $company->stock->total;
-                $array['stock_price'] = $rawReport->stock_price;
+                $array['price'] = $rawReport->stock_price;
                 $array['last_profit'] = $rawReport->profit;
                 $array['buildings'] = $rawReport->buildings;
+                $array['stock_shares'] = $rawReport->components;
+                $array['dividend'] = $rawReport->dividend;
                 array_push($companyReport['info'], $array);
             }
             array_push($companyReports, $companyReport);

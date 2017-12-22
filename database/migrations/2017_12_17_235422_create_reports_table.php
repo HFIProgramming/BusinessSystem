@@ -20,6 +20,7 @@ class CreateReportsTable extends Migration
             $table->string('type');//'bank', 'company'
             $table->text('components');//different for bank and company
             $table->float('stock_price')->nullable();//only for company
+            $table->float('dividend')->nullable();
             $table->integer('profit')->nullable();//only for company
             $table->integer('loan_total')->nullable();//only for bank
             $table->text('buildings')->nullable();//only for company
