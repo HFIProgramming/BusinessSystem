@@ -167,7 +167,7 @@
                             </div>
                             <div class="mdui-card-content">
                                 <div id="canvas-holder">
-                                    <canvas id="{{$company['id']}}"/>
+                                    <canvas id="c{{$company['id']}}"/>
                                 </div>
                                 <ul class="mdui-list">
                                     <li class="mdui-list-item mdui-ripple">总股数：{{$company['total']}}</li>
@@ -240,7 +240,7 @@
                 });
 
 
-                var ctx = document.getElementById("{{$company['id']}}").getContext("2d");
+                var ctx = document.getElementById("c{{$company['id']}}").getContext("2d");
                 window.myPie = new Chart(ctx, config);
             </script>
         @endforeach
