@@ -155,11 +155,27 @@
                                     @foreach($user->resources()->get() as $resource)
                                         @if(Auth::user()->type == 2 &&  ($resource->resource->type == 0 || $resource->resource->type == 3))
                                             <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
-                                                : {{$resource->amount}}</li>
+                                                : {{$resource->amount}}
+                                                @if($resource->resource->id == 1)
+                                                    ({{ round($resource->amount/100000000,2) }}亿)
+                                                @endif
+                                            </li>
                                         @endif
                                         @if(Auth::user()->type == 1 && (($resource->resource->type >= 0 && $resource->resource->type <= 3) || $resource->resource->name == '污染指数'))
-                                            <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
-                                                : {{$resource->amount}}</li>
+                                                <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
+                                                    : {{$resource->amount}}
+                                                    @if($resource->resource->id == 1)
+                                                        ({{ round($resource->amount/100000000,2) }}亿)
+                                                    @endif
+                                                </li>
+                                        @endif
+                                        @if(Auth::user()->type == 0)
+                                                <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
+                                                    : {{$resource->amount}}
+                                                    @if($resource->resource->id == 1)
+                                                        ({{ round($resource->amount/100000000,2) }}亿)
+                                                    @endif
+                                                </li>
                                         @endif
                                     @endforeach
                                     <br/>
