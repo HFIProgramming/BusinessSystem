@@ -15,6 +15,10 @@ class StockController extends Controller
 
     public function buyStock(Request $request)
     {
+        if($request->user()->type != 2)
+        {
+            return view('errors.custom')->with('message', '您不能进行此操作');
+        }
         $msg = '';
         $limit = Config::KeyValue('stock_transactions_limit')->value;
         if($request->user()->stockTransactionTimes() >= $limit)
@@ -55,6 +59,10 @@ class StockController extends Controller
 
     public function sellStock(Request $request)
     {
+        if($request->user()->type != 2)
+        {
+            return view('errors.custom')->with('message', '您不能进行此操作');
+        }
         $msg = '';
         $limit = Config::KeyValue('stock_transactions_limit')->value;
         if($request->user()->stockTransactionTimes() >= $limit)
@@ -96,7 +104,8 @@ class StockController extends Controller
     {
         $response = [];
         $user = $request->user();
-        foreach (Stock::all() as $stock)
+        $collection = $user->type == 1 ? [$user->company->stock] : Stock::all();
+        foreach ($collection as $stock)
         {
             $all_prices = $stock->history_prices;
             array_push($all_prices, $stock->current_price);
@@ -121,6 +130,10 @@ class StockController extends Controller
     public function viewStocks(Request $request)
     {
         $user = $request->user();
+        if($user->type == 1)
+        {
+            return view('stocks.list')->with('stocks', [$user->company->stock]);
+        }
         return view('stocks.list')->with('stocks', Stock::all());
     }
 }
