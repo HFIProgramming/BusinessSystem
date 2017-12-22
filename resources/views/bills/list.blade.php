@@ -44,7 +44,7 @@
                                 <tr>
                                     <td>{{$trans->sellerResource->resource->name}}</td>
                                     <td>{{$trans->seller_amount}}</td>
-                                    <td>{{$trans->creaeted_at}}</td>
+                                    <td>{{$trans->created_at}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

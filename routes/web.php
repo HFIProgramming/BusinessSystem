@@ -80,9 +80,18 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/sell', 'StockController@sellStock')->name('sellStock');
         });
 	});
+
 	Route::group(['prefix' => 'announcement'], function () {
 		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
 	});
+
+	Route::group(['prefix' => 'zones'], function () {
+	   Route::get('/', 'HomeController@showZones')->name('zones');
+    });
+
+	Route::group(['prefix' => 'bills'], function () {
+	   Route::get('/', 'HomeController@showBills')->name('bills');
+    });
 
 	Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
 		Route::get('/', 'AdminController@showDashboard')->name('adminDashboard');

@@ -56,6 +56,6 @@ class Resources extends Model
 
 	public function stock()
     {
-        return $this->hasOne(Stock::class);
+        return $this->hasOne(Stock::class, 'resource_id');
     }
 }

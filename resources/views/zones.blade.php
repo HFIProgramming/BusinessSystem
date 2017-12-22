@@ -43,8 +43,8 @@
                             @foreach($zones as $zone)
                                 <tr>
                                     <td>{{$zone->id}}</td>
-                                    <td>{{$zone->electricity}}</td>
-                                    <td>{{$zone->happiness}}</td>
+                                    <td>{{$zone->powerIndex()}}</td>
+                                    <td>{{$zone->happinessIndex()}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
