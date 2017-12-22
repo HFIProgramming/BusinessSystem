@@ -5,7 +5,9 @@
 @endsection
 
 @section('script')
-    <script src="/js/Chart.bundle.js"></script>
+
+    <script src="{{ asset('js/Chart.bundle.js') }}"></script>
+    <script src="{{ asset('js/utils.js') }}"></script>
     <script>
 
         var receivedInfo = {

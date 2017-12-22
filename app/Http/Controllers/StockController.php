@@ -43,7 +43,7 @@ class StockController extends Controller
         if($sellerAmount > $stock->sell_remain)
         {
             $sellerAmount = $stock->sell_remain;
-            $msg = '<br>购买数量大于卖盘剩余，已清空卖盘';
+            $msg = ':购买数量大于卖盘剩余，已清空卖盘';
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
@@ -83,7 +83,7 @@ class StockController extends Controller
         if($sellerAmount > $stock->buy_remain)
         {
             $sellerAmount = $stock->buy_remain;
-            $msg = '<br>售出数量大于买盘剩余，已清空买盘';
+            $msg = ':售出数量大于买盘剩余，已清空买盘';
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
