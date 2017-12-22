@@ -142,44 +142,47 @@
 @section('body')
     <div class="mdui-container doc-container">
         <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
-            <a class="mdui-ripple">1</a>
-            <a class="mdui-ripple">2</a>
-            <a class="mdui-ripple">3</a>
+            @foreach($bankReports as $banksYearlyReport)
+                <a class="mdui-ripple" onclick="display()"
+                   id="{{$banksYearlyReport['year']}}">{{$banksYearlyReport['year']}}</a>
+            @endforeach
         </div>
         </br></br>
         <div class="mdui-card-header">
             <div class="mdui-typo-display-1 mdui-text-center mdui-text-color-theme">
-                Company Report
+                投行报表
             </div>
         </div>
-        <div id="table" class="mdui-col-md-12">
-            <div class="company mdui-col-md-12">
-                <div class="mdui-card">
-                    <div class="mdui-card-primary">
-                        <div class="mdui-card-primary-title">
-                            BankName1
+        @foreach($bankReports as $banksYearlyReport)
+            <div id="table-{{$banksYearlyReport['year']}}" class="cardId mdui-col-md-12" style="display: none">
+                @foreach($banksYearlyReport['info'] as $bank)
+                    <div class="company mdui-col-md-12">
+                        <div class="mdui-card">
+                            <div class="mdui-card-primary">
+                                <div class="mdui-card-primary-title">{{$bank['name']}}</div>
+                            </div>
+                            <div class="mdui-card-content">
+                                <div id="canvas-holder">
+                                    <canvas id="{{$bank['id']}}"/>
+                                </div>
+                                <ul class="mdui-list">
+                                    <li class="mdui-list-item mdui-ripple">在外贷款金额：{{$company['loan_total']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">
+                                        持股大于10%的公司：
+                                        <ul class="mdui-list">
+                                            @foreach($company['components'] as $company_id => $share)
+                                                <li class="mdui-list-item mdui-ripple">{{\App\Company::find($company_id)->name}}
+                                                    （百分比：{{$share*100}}%）
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="mdui-card-content">
-                        <ul class="mdui-list">
-                            <li class="mdui-list-item mdui-ripple">总股数：</li>
-                            <li class="mdui-list-item mdui-ripple">股价：</li>
-                            <li class="mdui-list-item mdui-ripple">去年的利润：</li>
-                            <li class="mdui-list-item mdui-ripple">公司持有的建筑：</li>
-                            <li class="mdui-list-item mdui-ripple">分红率：</li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
-        </div>
+        @endforeach
     </div>
 @endsection
