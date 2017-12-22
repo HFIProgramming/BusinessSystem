@@ -14,7 +14,7 @@ class IntToValSeeder extends Seeder
     {
         //
         IntToVal::create([
-            'lower' => -1000000,
+            'lower' => -10000000000000,
             'upper' => -30,
             'flag' => 'powerIndex_PowerStation',
             'value' => 1.2
@@ -27,13 +27,13 @@ class IntToValSeeder extends Seeder
         ]);
         IntToVal::create([
             'lower' => 30,
-            'upper' => 1000000,
+            'upper' => 10000000000000,
             'flag' => 'powerIndex_PowerStation',
             'value' => 0.8
         ]);
 
         IntToVal::create([
-            'lower' => -1000000,
+            'lower' => -10000000000000,
             'upper' => -30,
             'flag' => 'powerIndex_Disney',
             'value' => 0.8
@@ -46,13 +46,13 @@ class IntToValSeeder extends Seeder
         ]);
         IntToVal::create([
             'lower' => 30,
-            'upper' => 1000000,
+            'upper' => 10000000000000,
             'flag' => 'powerIndex_Disney',
             'value' => 1.2
         ]);
 
         IntToVal::create([
-            'lower' => -1000000,
+            'lower' => -10000000000000,
             'upper' => -30,
             'flag' => 'powerIndex_Mining',
             'value' => 0.8
@@ -65,12 +65,12 @@ class IntToValSeeder extends Seeder
         ]);
         IntToVal::create([
             'lower' => 30,
-            'upper' => 1000000,
+            'upper' => 10000000000000,
             'flag' => 'powerIndex_Mining',
             'value' => 1.2
         ]);
 
-        $arr = [[1.3, 200, 1000000], [1.2, 100, 200], [1.1, 50, 100], [1, -50, 50], [0.9, -100, -50], [0.8, -200, -100], [0.7, -1000000, -200]];
+        $arr = [[1.3, 200, 10000000000000], [1.2, 100, 200], [1.1, 50, 100], [1, -50, 50], [0.9, -100, -50], [0.8, -200, -100], [0.7, -10000000000000, -200]];
         foreach ($arr as $data)
         {
             IntToVal::create([
@@ -94,7 +94,7 @@ class IntToValSeeder extends Seeder
         }
 
         IntToVal::create([
-            'lower' => -1000000,
+            'lower' => -10000000000000,
             'upper' => 180,
             'flag' => 'pollution_tax',
             'value' => 0
@@ -107,12 +107,12 @@ class IntToValSeeder extends Seeder
         ]);
         IntToVal::create([
             'lower' => 250,
-            'upper' => 1000000,
+            'upper' => 10000000000000,
             'flag' => 'pollution_tax',
             'value' => 0.5
         ]);
 
-        $arr = [[0.1125, 0, 5], [0.05, 5, 15], [0.0125, 15, 20], [0.002, 20, 1000000]];
+        $arr = [[0.1125, 0, 5], [0.05, 5, 15], [0.0125, 15, 20], [0.002, 20, 10000000000000]];
         foreach ($arr as $data)
         {
             IntToVal::create([
@@ -122,7 +122,7 @@ class IntToValSeeder extends Seeder
                 'value' => $data[0]
             ]);
         }
-        $arr = [[0.0125, 0, 5], [0.05, 5, 15], [0.1125, 15, 20], [0.18, 20, 1000000]];
+        $arr = [[0.0125, 0, 5], [0.05, 5, 15], [0.1125, 15, 20], [0.18, 20, 10000000000000]];
         foreach ($arr as $data)
         {
             IntToVal::create([
@@ -132,7 +132,7 @@ class IntToValSeeder extends Seeder
                 'value' => $data[0]
             ]);
         }
-        $arr = [['低风险', 0, 5], ['正常风险', 5, 15], ['高风险', 15, 20], ['极高风险', 20, 1000000]];
+        $arr = [['低风险', 0, 5], ['正常风险', 5, 15], ['高风险', 15, 20], ['极高风险', 20, 10000000000000]];
         foreach ($arr as $data)
         {
             IntToVal::create([
