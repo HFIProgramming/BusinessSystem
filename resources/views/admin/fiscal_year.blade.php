@@ -39,8 +39,9 @@
                             </button>
                         </form>
                     </div>
+                    <br><br>
                     <div class="mdui-text-center">
-                        <button class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-xs-2 mdui-col-offset-xs-5" href="{{ route('submitYear') }}">财年清算</button>
+                        <a class=" mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-xs-2 mdui-col-offset-xs-5" href="{{ route('submitYear') }}"> 财年清算 </a>
                     </div>
                     <br><br><br>
                     <form method="post" action="{{ route('changeTotalRound') }}">

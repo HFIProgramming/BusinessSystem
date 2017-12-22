@@ -47,7 +47,7 @@ class ReportController extends Controller
         for($i = 0; $i <= $current_round; $i++)
         {
             $banksYearlyReport = [];
-            $banksYearlyReport['year'] = $current_round;
+            $banksYearlyReport['year'] = $i;
             $banksYearlyReport['data'] = [];
             foreach(Report::where('type', 'bank')->where('year', $i)->get() as $rawReport)
             {
@@ -58,12 +58,14 @@ class ReportController extends Controller
                     'components' => $rawReport->components,
                     'loan_total' => $rawReport->loan_total
                 ];
-                array_push($banksYearlyReport['data'], $bank);
+                array_push($banksYearlyReport['data'], $individualReport);
             }
-            array_push($bankReports, $banksYearlyReport);
+//            if(!empty($banksYearlyReport['data'])) {
+                array_push($bankReports, $banksYearlyReport);
+//            }
         }
 
-        return $bankReports;
+//        return $bankReports;
 
         return view('report.bank')->with('bankReports', $bankReports);
     }
