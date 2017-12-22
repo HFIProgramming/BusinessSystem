@@ -95,7 +95,7 @@ class StockController extends Controller
         }
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
-        event(new StockTransaction($seller, $stock, 'sell', $buyerAmount));
+        event(new StockTransaction($seller, $stock, 'sell', $sellerAmount));
         //Prices Updates are written in StockTransaction Event
         return view('success')->with('message', '出售成功'.$msg);
     }
