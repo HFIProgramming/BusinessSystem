@@ -82,40 +82,48 @@
             <a href="{{route('listLoans')}}" class="mdui-list-item-content">List Loans</a>
         </li>
         @if(Auth::user()->type == 2)
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <a href="{{route('loanForm')}}" class="mdui-list-item-content">New Loan</a>
-        </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
+                <a href="{{route('loanForm')}}" class="mdui-list-item-content">New Loan</a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
+                <a href="{{route('viewStocks')}}" class="mdui-list-item-content">Stocks</a>
+            </li>
         @endif
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
-            <a href="{{route('viewStocks')}}" class="mdui-list-item-content">Stocks</a>
-        </li>
+        @if(Auth::user()->type == 1)
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
+                <a href="{{route('viewStocks')}}" class="mdui-list-item-content">My Stock</a>
+            </li>
+        @endif
         {{--<li class="mdui-list-item mdui-ripple">--}}
-            {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
-            {{--<a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>--}}
+        {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
+        {{--<a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>--}}
         {{--</li>--}}
         @if(Auth::user()->type == 1)
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-            <a href="{{route('buildForm')}}" class="mdui-list-item-content">Build</a>
-        </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
+                <a href="{{route('buildForm')}}" class="mdui-list-item-content">Build</a>
+            </li>
         @endif
-        <li class="mdui-collapse-item">
-            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
-                <div class="mdui-list-item-content">New Transaction</div>
-                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-            </div>
-            <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                <li class="mdui-list-item mdui-ripple">
-                    <a class="mdui-list-item-content" href="{{ route('TransOut') }}">As a Seller</a>
-                </li>
-                <li class="mdui-list-item mdui-ripple">
-                    <a class="mdui-list-item-content" href="{{ route('TransIn') }}">As a Buyer</a>
-                </li>
-            </ul>
-        </li>
+        @if(Auth::user()->type != 2)
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
+                    <div class="mdui-list-item-content">New Transaction</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    <li class="mdui-list-item mdui-ripple">
+                        <a class="mdui-list-item-content" href="{{ route('TransOut') }}">As a Seller</a>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <a class="mdui-list-item-content" href="{{ route('TransIn') }}">As a Buyer</a>
+                    </li>
+                </ul>
+            </li>
+        @endif
         <li class="mdui-collapse-item">
             <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
@@ -147,21 +155,21 @@
         {{--</ul>--}}
         {{--</li>--}}
         {{--@if (Auth::user()->type == 1)--}}
-            {{--<li class="mdui-list-item mdui-ripple">--}}
-                {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
-                {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
-            {{--</li>--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+        {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
+        {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
+        {{--</li>--}}
         {{--@elseif (Auth::user()->type == 2)--}}
-            {{--<li class="mdui-list-item mdui-ripple">--}}
-                {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
-                {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
-            {{--</li>--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+        {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
+        {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
+        {{--</li>--}}
         {{--@endif--}}
         {{--@if (Auth::user()->type == 2)--}}
-            {{--<li class="mdui-list-item mdui-ripple">--}}
-                {{--<i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>--}}
-                {{--<a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>--}}
-            {{--</li>--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+        {{--<i class="mdui-list-item-icon mdui-icon material-icons">navigation</i>--}}
+        {{--<a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>--}}
+        {{--</li>--}}
         {{--@endif--}}
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
@@ -198,27 +206,27 @@
 
 {{--<script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>--}}
 {{--<script data-no-instant>--}}
-    {{--var $$ = mdui.JQ;--}}
-    {{--InstantClick.on('wait', function () {--}}
-        {{--$$.showOverlay(5000);--}}
-    {{--});--}}
-    {{--InstantClick.on('fetch', function () {--}}
-        {{--console.log('Page Pre-loading!');--}}
-    {{--});--}}
-    {{--InstantClick.on('change', function () {--}}
-        {{--console.log('Page Loaded!' + location.pathname + location.search);--}}
-        {{--var s = document.createElement('script');--}}
-        {{--s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';--}}
-        {{--document.body.appendChild(s);--}}
-        {{--var $$ = mdui.JQ;--}}
-        {{--$$.hideOverlay(true);--}}
-        {{--if (document.body.scrollWidth < 1025) {--}}
-            {{--var inst = new mdui.Drawer('#left-drawer');--}}
-            {{--inst.close();--}}
-        {{--}--}}
-    {{--});--}}
-    {{--InstantClick.init();--}}
-    {{--<!--I know it is dirty :> But please-->--}}
+{{--var $$ = mdui.JQ;--}}
+{{--InstantClick.on('wait', function () {--}}
+{{--$$.showOverlay(5000);--}}
+{{--});--}}
+{{--InstantClick.on('fetch', function () {--}}
+{{--console.log('Page Pre-loading!');--}}
+{{--});--}}
+{{--InstantClick.on('change', function () {--}}
+{{--console.log('Page Loaded!' + location.pathname + location.search);--}}
+{{--var s = document.createElement('script');--}}
+{{--s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';--}}
+{{--document.body.appendChild(s);--}}
+{{--var $$ = mdui.JQ;--}}
+{{--$$.hideOverlay(true);--}}
+{{--if (document.body.scrollWidth < 1025) {--}}
+{{--var inst = new mdui.Drawer('#left-drawer');--}}
+{{--inst.close();--}}
+{{--}--}}
+{{--});--}}
+{{--InstantClick.init();--}}
+{{--<!--I know it is dirty :> But please-->--}}
 {{--</script>--}}
 </body>
 </html>
