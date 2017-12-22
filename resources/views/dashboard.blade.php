@@ -127,6 +127,8 @@
                                     <li class="mdui-list-item mdui-ripple">
                                         你的ID：{{$user->id}}</li>
                                     <li class="mdui-list-item mdui-ripple">
+                                        你炫酷的名字：{{$user->name}}</li>
+                                    <li class="mdui-list-item mdui-ripple">
                                         你的类型：{{$user->userType}}</li>
                                     <li class="mdui-divider"></li>
                                     <li class="mdui-list-item mdui-ripple">
