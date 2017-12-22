@@ -191,6 +191,8 @@
     </div>
 </div>
 
+<img id="gfcImage" src="img/background.png" style="width: 100%;">
+
 
                 {{--<li class="mdui-list-item mdui-ripple">--}}
                 {{--<i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>--}}
