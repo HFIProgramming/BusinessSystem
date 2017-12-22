@@ -47,7 +47,7 @@
                             </thead>
                             <tbody>
                             @foreach($incomeTransactions as $transaction){{-- I am buyer --}}
-                            @if ($transaction->type != 'special')
+                            @if (!in_array($transaction->type, ['special', 'loan_grant', 'loan_redeem', 'yearly_yield', 'stock_dividend', 'stock_buy', 'stock_sell']))
                                 <tr>
                                     <td>{{$transaction->id}}</td>
                                     <td>{{$transaction->sellerResource->resource->name}}</td>
@@ -93,7 +93,7 @@
                             @endif
                             @endforeach
                             @foreach($outComeTransactions as $transaction){{-- I am seller --}}
-                            @if ($transaction->type != 'special')
+                            @if (!in_array($transaction->type, ['special', 'loan_grant', 'loan_redeem', 'yearly_yield', 'stock_dividend', 'stock_buy', 'stock_sell']))
                                 <tr>
                                     <td>{{$transaction->id}}</td>
                                     <td>{{$transaction->buyerResource->resource->name}}</td>
