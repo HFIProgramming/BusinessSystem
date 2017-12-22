@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    Company Report
+    Bank Report
 @endsection
 
 @section('script')
@@ -84,7 +84,7 @@
 
             })
 
-        };
+        }
 
         $(document).ready(function () {
            alert("test");
