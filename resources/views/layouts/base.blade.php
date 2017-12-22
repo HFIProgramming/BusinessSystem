@@ -196,29 +196,29 @@
     </div>
 </div>
 
-<script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>
-    var $$ = mdui.JQ;
-    InstantClick.on('wait', function () {
-        $$.showOverlay(5000);
-    });
-    InstantClick.on('fetch', function () {
-        console.log('Page Pre-loading!');
-    });
-    InstantClick.on('change', function () {
-        console.log('Page Loaded!' + location.pathname + location.search);
-        var s = document.createElement('script');
-        s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';
-        document.body.appendChild(s);
-        var $$ = mdui.JQ;
-        $$.hideOverlay(true);
-        if (document.body.scrollWidth < 1025) {
-            var inst = new mdui.Drawer('#left-drawer');
-            inst.close();
-        }
-    });
-    InstantClick.init();
-    <!--I know it is dirty :> But please-->
-</script>
+{{--<script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>--}}
+{{--<script data-no-instant>--}}
+    {{--var $$ = mdui.JQ;--}}
+    {{--InstantClick.on('wait', function () {--}}
+        {{--$$.showOverlay(5000);--}}
+    {{--});--}}
+    {{--InstantClick.on('fetch', function () {--}}
+        {{--console.log('Page Pre-loading!');--}}
+    {{--});--}}
+    {{--InstantClick.on('change', function () {--}}
+        {{--console.log('Page Loaded!' + location.pathname + location.search);--}}
+        {{--var s = document.createElement('script');--}}
+        {{--s.src = 'https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js';--}}
+        {{--document.body.appendChild(s);--}}
+        {{--var $$ = mdui.JQ;--}}
+        {{--$$.hideOverlay(true);--}}
+        {{--if (document.body.scrollWidth < 1025) {--}}
+            {{--var inst = new mdui.Drawer('#left-drawer');--}}
+            {{--inst.close();--}}
+        {{--}--}}
+    {{--});--}}
+    {{--InstantClick.init();--}}
+    {{--<!--I know it is dirty :> But please-->--}}
+{{--</script>--}}
 </body>
 </html>

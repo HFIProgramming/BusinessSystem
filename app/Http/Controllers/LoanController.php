@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 class LoanController extends Controller
 {
     //
-    //@TODO 贷款方限制
-    //@TODO 不能跟管理员交易！！！⬆
 
     public function displayCreateForm(Request $request)
     {
