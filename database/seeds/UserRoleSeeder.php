@@ -14,21 +14,21 @@ class UserRoleSeeder extends Seeder
 		//
 
 		$default1 = [
-			'user_type'             => 1,
-			'resource_type'         => [0, 1, 2, 3, 4, 5, 6],
-			'user_transaction_type' => [0, 1, 2, 3, 4, 5, 6],
+			'user_type'             => 1, //公司
+			'resource_type'         => [0, 1, 2, 4, 6],
+			'user_transaction_type' => [0, 1],
 		];
 
 		$default2 = [
-			'user_type'             => 2,
-			'resource_type'         => [0, 1, 2, 3, 4, 5, 6],
-			'user_transaction_type' => [0, 1, 2, 3, 4, 5, 6],
+			'user_type'             => 2, //投行
+			'resource_type'         => [0, 3],
+			'user_transaction_type' => [0],
 		];
 
         $default3 = [
-            'user_type'             => 0,
+            'user_type'             => 0, //管理员
             'resource_type'         => [0, 1, 2, 3, 4, 5, 6],
-            'user_transaction_type' => [0, 1, 2, 3, 4, 5, 6],
+            'user_transaction_type' => [0, 1, 2, 3],
         ];
 
 		//@TODO This is to be changed.
