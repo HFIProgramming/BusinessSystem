@@ -116,6 +116,23 @@
         //     window.myPie = new Chart(ctx, config);
         // };
 
+        function display() {
+
+//            console.log(event);
+
+            var matchId = 'table-' + event.target.id;
+            var selected;
+            $('.mdui-container').children('.cardId').each(function () {
+                if (this.id === matchId) {
+                    document.getElementById(this.id).style.display = "block";
+                } else {
+                    document.getElementById(this.id).style.display = "none";
+                }
+
+            })
+
+        }
+
 
     </script>
 @endsection
@@ -155,7 +172,7 @@
         </div>
         @foreach($bankReports as $banksYearlyReport)
             <div id="table-{{$banksYearlyReport['year']}}" class="cardId mdui-col-md-12" style="display: none">
-                @foreach($banksYearlyReport['info'] as $bank)
+                @foreach($banksYearlyReport['data'] as $bank)
                     <div class="company mdui-col-md-12">
                         <div class="mdui-card">
                             <div class="mdui-card-primary">
@@ -166,12 +183,12 @@
                                     <canvas id="{{$bank['id']}}"/>
                                 </div>
                                 <ul class="mdui-list">
-                                    <li class="mdui-list-item mdui-ripple">在外贷款金额：{{$company['loan_total']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">在外贷款金额：{{$bank['loan_total']}}</li>
                                     <li class="mdui-list-item mdui-ripple">
                                         持股大于10%的公司：
                                         <ul class="mdui-list">
-                                            @foreach($company['components'] as $company_id => $share)
-                                                <li class="mdui-list-item mdui-ripple">{{\App\Company::find($company_id)->name}}
+                                            @foreach($bank['components'] as $user_id => $share)
+                                                <li class="mdui-list-item mdui-ripple">{{\App\User::find($user_id)->company->name}}
                                                     （百分比：{{$share*100}}%）
                                                 </li>
                                             @endforeach

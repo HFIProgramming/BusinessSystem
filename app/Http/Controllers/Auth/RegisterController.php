@@ -127,6 +127,12 @@ class RegisterController extends Controller
             event(new NewResource());
             event(new StockTotalChange($stock, $stock->total));
         }
+        else if ($user->type == 2)//Bank
+        {
+            $bank = $user->company()->create([
+               'name' => $user->name
+            ]);
+        }
         return $user;
     }
 
