@@ -112,7 +112,7 @@ class IntToValSeeder extends Seeder
             'value' => 0.5
         ]);
 
-        $arr = [[0.1125, 0, 30], [0.025, 30, 60], [0.0125, 60, 100], [0.002, 100, 1000000]];
+        $arr = [[0.1125, 0, 5], [0.05, 5, 15], [0.0125, 15, 20], [0.002, 20, 1000000]];
         foreach ($arr as $data)
         {
             IntToVal::create([
@@ -122,13 +122,23 @@ class IntToValSeeder extends Seeder
                 'value' => $data[0]
             ]);
         }
-        $arr = [[0.0125, 0, 30], [0.025, 30, 60], [0.1125, 60, 100], [0.18, 100, 1000000]];
+        $arr = [[0.0125, 0, 5], [0.05, 5, 15], [0.1125, 15, 20], [0.18, 20, 1000000]];
         foreach ($arr as $data)
         {
             IntToVal::create([
                 'lower' => $data[1],
                 'upper' => $data[2],
                 'flag' => 'sell_update',
+                'value' => $data[0]
+            ]);
+        }
+        $arr = [['低风险', 0, 5], ['正常风险', 5, 15], ['高风险', 15, 20], ['极高风险', 20, 1000000]];
+        foreach ($arr as $data)
+        {
+            IntToVal::create([
+                'lower' => $data[1],
+                'upper' => $data[2],
+                'flag' => 'risk_evaluation',
                 'value' => $data[0]
             ]);
         }

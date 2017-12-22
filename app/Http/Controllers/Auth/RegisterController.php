@@ -107,7 +107,7 @@ class RegisterController extends Controller
         {
             $company = $user->company()->create([
                 'name' => $user->name,
-                'last_year_profit' => 700000000 //to be determined
+                'last_year_profit' => 1600000000 //to be determined
             ]);
             $stockResource = Resources::create([
                 'code' => $user->name . '_stock',
@@ -117,14 +117,14 @@ class RegisterController extends Controller
             ]);
 
             $stock = Stock::create([
-                'current_price' => 20,
+                'current_price' => 100,
                 'history_prices' => [],
-                'total' => 1000000000,
+                'total' => 200000000,
                 'dividend' => 0.1,
                 'up_poly_coeff' => [2, 1],
                 'down_poly_coeff' => [-2, 1],
-                'sell_remain' => 112500000,
-                'buy_remain' => 112500000,
+                'sell_remain' => 10000000,
+                'buy_remain' => 10000000,
                 'company_id' => $company->id,
                 'resource_id' => $stockResource->id
             ]);

@@ -59,4 +59,9 @@ class Stock extends Model
     {
         return $this->total*$this->current_price/$this->company->last_year_profit;//@TODO Check if rounded
     }
+
+    public function riskEvaluation()
+    {
+        return IntToVal::IntervalValue('risk_evaluation', $this->riskIndex())->value;
+    }
 }

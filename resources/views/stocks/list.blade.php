@@ -99,6 +99,7 @@
                 $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b2").text("分红率：" + this.dividend);
                 $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b3").text("卖盘剩余：" + this.sell_remain);
                 $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b4").text("买盘剩余：" + this.buy_remain);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b7").text("风险评估：" + this.risk_evaluation);
 
 
                 {{--html += '<tr> <td class="mdui-panel" mdui-panel> <div class="mdui-panel-item mdui-panel-item-open"> <div class="mdui-panel-item-header"> <div class="mdui-panel-item-title">';--}}
@@ -284,6 +285,9 @@
                                         </p>
                                         <p class="b4">
                                             买盘剩余： {{$stock->buy_remain}}
+                                        </p>
+                                        <p class="b7">
+                                            风险评估： {{$stock->riskEvaluation()}}
                                         </p>
                                     </div>
                                 </div>

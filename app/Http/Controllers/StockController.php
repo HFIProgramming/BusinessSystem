@@ -109,6 +109,7 @@ class StockController extends Controller
             $stockData['current_buy'] = $stock->buyPrice();
             $stockData['current_sell'] = $stock->sellPrice();
             $stockData['hand_up'] = $user->resources()->resid($stock->resource_id)->first()->amount;
+            $stockData['risk_evaluation'] = $stock->riskEvaluation();
             array_push($response, $stockData);
         }
         return $response;

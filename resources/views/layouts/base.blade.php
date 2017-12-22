@@ -112,6 +112,21 @@
                 </li>
             </ul>
         </li>
+        <li class="mdui-collapse-item">
+            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>
+                <div class="mdui-list-item-content">Reports</div>
+                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                <li class="mdui-list-item mdui-ripple">
+                    <a class="mdui-list-item-content" href="{{ route('companyReports') }}">Company</a>
+                </li>
+                <li class="mdui-list-item mdui-ripple">
+                    <a class="mdui-list-item-content" href="{{ route('bankReports') }}">Bank</a>
+                </li>
+            </ul>
+        </li>
         {{--<li class="mdui-collapse-item">--}}
         {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
         {{--<i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>--}}
