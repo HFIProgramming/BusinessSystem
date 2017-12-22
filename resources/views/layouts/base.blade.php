@@ -113,22 +113,22 @@
         <div id="effect"></div>
         <ul class="mdui-menu mdui-menu-cascade" id="first">
             <li class="mdui-menu-item">
-                <a href="{{route('companyReports')}} class="mdui-ripple">
+                <a href="{{route('companyReports')}}" class="mdui-ripple">
                     公司报表
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('bankReports')}} class="mdui-ripple">
+                <a href="{{route('bankReports')}}" class="mdui-ripple">
                 投行报表
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('zones')}} class="mdui-ripple">
+                <a href="{{route('zones')}}" class="mdui-ripple">
                 地块
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('viewStocks')}} class="mdui-ripple">
+                <a href="{{route('viewStocks')}}" class="mdui-ripple">
                 股票
                 </a>
             </li>
@@ -137,12 +137,12 @@
 
         <ul class="mdui-menu mdui-menu-cascade" id="second">
             <li class="mdui-menu-item">
-                <a href="{{route('loanForm')}} class="mdui-ripple">
+                <a href="{{route('loanForm')}}" class="mdui-ripple">
                 放贷
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('listLoans')}} class="mdui-ripple">
+                <a href="{{route('listLoans')}}" class="mdui-ripple">
                 贷款列表
                 </a>
             </li>
@@ -150,12 +150,12 @@
 
         <ul class="mdui-menu mdui-menu-cascade" id="third">
             <li class="mdui-menu-item">
-                <a href="{{route('resource')}} class="mdui-ripple">
+                <a href="{{route('resource')}}" class="mdui-ripple">
                 资源列表
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('buildForm')}} class="mdui-ripple">
+                <a href="{{route('buildForm')}}" class="mdui-ripple">
                 建筑
                 </a>
             </li>
@@ -163,27 +163,27 @@
 
         <ul class="mdui-menu mdui-menu-cascade" id="fourth">
             <li class="mdui-menu-item">
-                <a href="{{route('TransactionList')}} class="mdui-ripple">
+                <a href="{{route('TransactionList')}}" class="mdui-ripple">
                 交易列表
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('BuyGov')}} class="mdui-ripple">
+                <a href="{{route('BuyGov')}}" class="mdui-ripple">
                 从政府买入
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('SellGov')}} class="mdui-ripple">
+                <a href="{{route('SellGov')}}" class="mdui-ripple">
                 向政府卖出
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('TransIn')}} class="mdui-ripple">
+                <a href="{{route('TransIn')}}" class="mdui-ripple">
                 买
                 </a>
             </li>
             <li class="mdui-menu-item">
-                <a href="{{route('TransOut')}} class="mdui-ripple">
+                <a href="{{route('TransOut')}}" class="mdui-ripple">
                 卖
                 </a>
             </li>
