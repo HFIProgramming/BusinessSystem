@@ -15,6 +15,64 @@
     <link href="https://cdn.bootcss.com/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/mdui/0.3.0/js/mdui.min.js" data-no-instant></script>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var tTop = parseFloat($("#gfcImage").css("height")) + parseFloat($(".mdui-appbar").css("height")) - parseFloat($("img").css("height")) * 0.3 / 2 + "px";
+            var tLeft = (parseFloat($("#gfcImage").css("width")) / 2) - (parseFloat($("#gfcImage").css("width")) * 0.3 / 2) + "px";
+            var width = parseFloat($("#gfcImage").css("width")) * 0.3 + "px";
+            var height = parseFloat($("#gfcImage").css("height")) * 0.3 + "px";
+            var blockHeight = parseFloat($("#gfcImage").css("height")) * 0.3 / 2 + "px";
+            // alert($("#nav").css("width"));
+            var buttonWidth = parseFloat($("#nav").css("width")) * 0.1098 + "px";
+            $('#title').css({
+                "position": "absolute",
+                "width": width,
+                "height": height,
+                "top": tTop,
+                "left": tLeft,
+                "background-color": "#389688"
+            });
+            $('#title').addClass('mdui-valign');
+            $('#title').addClass('mdui-shadow-12');
+
+            $('#block').css({
+                "height": blockHeight
+            });
+
+            $('.navButton').css({
+                "width": buttonWidth,
+                "height": "100 %"
+            });
+
+            $('.navButton').addClass('mdui-btn');
+            $('.navButton').addClass('mdui-color-theme-accent');
+
+            $('.navButton').hover(
+                function() {
+                    var bLeft = $(this).position().left;
+                    bLeft -= 8;
+                    $('#effect').css({
+                        "position": "absolute",
+                        "top": "100%",
+                        "left": bLeft,
+                        "background-color": "#389688",
+                        "width": buttonWidth,
+                        "height": "10%"
+                    })
+                    $(this).addClass('mdui-shadow-5')
+                },
+                function() {
+                    $('#effect').css({
+                        "background-color": "transparent"
+                    })
+                    $(this).removeClass('mdui-shadow-5')
+                }
+            )
+
+
+        })
+
+    </script>
     <style>
         .doc-container {
             padding-top: 30px;
