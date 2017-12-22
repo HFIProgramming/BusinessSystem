@@ -214,7 +214,7 @@
 
                         data.push(1-sum);
                         backgroundColor.push(randomColor());
-                        labels.push("anno(" +
+                        labels.push("Anonymous(" +
                             ((1-sum)*100).toFixed(2) +
                             "%)");
 
