@@ -71,6 +71,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['type'] != 1 && $data['type'] !=2)
+        {
+            return view('errors.custom')->with('message', '不能注册此类型账号');
+        }
         $user = User::query()->create([
             'name' => $data['name'],
             'email' => $data['email'],
