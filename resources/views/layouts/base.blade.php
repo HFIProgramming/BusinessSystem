@@ -163,10 +163,10 @@
                 {{--<a href="{{route('showTech')}}" class="mdui-list-item-content">Technology</a>--}}
             {{--</li>--}}
         {{--@endif--}}
-        {{--<li class="mdui-list-item mdui-ripple">--}}
-            {{--<i class="mdui-list-item-icon mdui-icon material-icons">list</i>--}}
-            {{--<a href="{{route('announcement')}}" class="mdui-list-item-content">Announcement</a>--}}
-        {{--</li>--}}
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+            <a href="{{route('announcement')}}" class="mdui-list-item-content">Announcement</a>
+        </li>
         <li class="mdui-divider"></li>
         @if(auth()->id() == 1)
             <li class="mdui-list-item mdui-ripple">
