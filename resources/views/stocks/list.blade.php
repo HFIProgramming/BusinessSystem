@@ -30,6 +30,11 @@
             return "rgb(" + r + ',' + g + ',' + b + ")";
         }
 
+        var colors = [];
+        for (var i = 0; i < {{count($stocks)}}; i++)
+        {
+            colors.push(randomColor());
+        }
 
         function information() {
             $.ajax({
@@ -44,7 +49,7 @@
                         datasets[i] = {};
                         datasets[i]["lineTension"] = 0;
                         datasets[i]["label"] = msg[i]["company_name"];
-                        var color = randomColor();
+                        var color = colors[i];
                         datasets[i]["borderColor"] = color;
                         datasets[i]["backgroundColor"] = color;
                         datasets[i]["fill"] = false;
@@ -68,7 +73,7 @@
                         data: lineChartData,
                         options: {
                             animation: {
-                                duration:0
+                                duration: 0
                             },
                             responsive: true,
                             hoverMode: 'index',
@@ -91,7 +96,7 @@
                             }
                         }
                     });
-                    window.myLine.update();
+//                    window.myLine.update();
 
                     createDom();
                 },
@@ -120,7 +125,7 @@
 
 
         $(document).ready(function () {
-
+            information();
             setInterval("information()", 5000);
             // createDom();
         });
