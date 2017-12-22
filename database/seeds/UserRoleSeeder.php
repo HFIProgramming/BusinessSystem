@@ -22,7 +22,7 @@ class UserRoleSeeder extends Seeder
 		$default2 = [
 			'user_type'             => 2, //投行
 			'resource_type'         => [0, 3],
-			'user_transaction_type' => [0],
+			'user_transaction_type' => [2],
 		];
 
         $default3 = [
@@ -30,6 +30,7 @@ class UserRoleSeeder extends Seeder
             'resource_type'         => [0, 1, 2, 3, 4, 5, 6],
             'user_transaction_type' => [0, 1, 2, 3],
         ];
+        //管理员与选手交易必须作为买家
 
 		//@TODO This is to be changed.
 

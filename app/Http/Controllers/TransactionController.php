@@ -40,7 +40,7 @@ class TransactionController extends Controller
 //            }
 		// Everyone has money
 		$buyerItem = $buyer->resources()->resid(1)->first();
-		if (!$this->canTransactionMade($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first())) {
+		if (!($this->canBothAcquire($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first()) && $this->canUserTransactionWithThisUser($seller, $buyer))) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
@@ -69,7 +69,7 @@ class TransactionController extends Controller
 		if (empty($sellerItem = $seller->resources()->resid($request->resource_id)->first())) {
 			return view('errors.custom')->with('message', '对方：交易物品不存在');
 		}
-		if (!$this->canTransactionMade($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first())) {
+		if (!($this->canBothAcquire($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first()) && $this->canUserTransactionWithThisUser($buyer, $seller))) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
 		event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, $type));
@@ -218,12 +218,10 @@ class TransactionController extends Controller
 		return view('success')->with('message', '成功');
 	}
 
-	protected function canTransactionMade(User $buyer, User $seller, Resources $buyerItem, Resources $sellerItem)
+	protected function canBothAcquire(User $buyer, User $seller, Resources $buyerItem, Resources $sellerItem)
 	{
 		if ($this->canUserAcquireThisProduct($buyer, $sellerItem) &&
-			$this->canUserAcquireThisProduct($seller, $buyerItem) &&
-			$this->canUserTransactionWithThisUser($buyer, $seller)
-		) {
+			$this->canUserAcquireThisProduct($seller, $buyerItem)) {
 			return true;
 		}
 
