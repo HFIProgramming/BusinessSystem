@@ -92,6 +92,7 @@ class StockController extends Controller
     public function sendData(Request $request)
     {
         $response = [];
+        $user = $request->user();
         foreach (Stock::all() as $stock)
         {
             $all_prices = $stock->history_prices;
@@ -105,6 +106,9 @@ class StockController extends Controller
             $stockData['dividend'] = $stock->dividend;
             $stockData['sell_remain'] = $stock->sell_remain;
             $stockData['buy_remain'] = $stock->buy_remain;
+            $stockData['current_buy'] = $stock->buyPrice();
+            $stockData['current_sell'] = $stock->sellPrice();
+            $stockData['hand_up'] = $user->resources()->resid($stock->resource_id)->amount;
             array_push($response, $stockData);
         }
         return $response;
@@ -112,6 +116,7 @@ class StockController extends Controller
 
     public function viewStocks(Request $request)
     {
-        return view('stocks.list');
+        $user = $request->user();
+        return view('stocks.list')->with('stocks', Stock::all());
     }
 }

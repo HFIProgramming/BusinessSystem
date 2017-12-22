@@ -89,9 +89,9 @@
 
         function createDom() {
             $.each(receivedInfo, function () {
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children('.mdui-panel-item-summary').text(this.name);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".s1").text("现价：" + this.current_price);
-                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".s2").text("当前持有股数：" + this.hand_up);
+//                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-header').children('.mdui-panel-item-summary').text(this.name);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-summary').children(".s1").text("现价：" + this.current_price);
+                $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-summary').children(".s2").text("当前持有股数：" + this.hand_up);
                 $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b5").text("当前买入价：" + this.current_buy);
                 $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b6").text("当前卖出价：" + this.current_sell);
                 $("#"+this.id).children('.mdui-panel-item').children('.mdui-panel-item-body').children(".b1").text("总数：" + this.total);
@@ -253,14 +253,14 @@
                                 <div class="mdui-panel-item mdui-panel-item-open">
                                     <div class="mdui-panel-item-header">
                                         <div class="mdui-panel-item-title">
-                                            {{$stock->name}}
+                                            {{$stock->company->name}}
                                         </div>
                                         <div class="s1 mdui-panel-item-summary">
                                             现价： {{$stock->current_price}}
                                         </div>
-                                        {{--<div class="s2 mdui-panel-item-summary">--}}
-                                        {{--当前持有股数： {{$stock->hand_up}}--}}
-                                        {{--</div>--}}
+                                        <div class="s2 mdui-panel-item-summary">
+                                        当前持有股数： {{$stock->hand_up}}
+                                        </div>
                                         <i class="mdui-panel-item-arrow mdui-icon material-icons">
                                             keyboard_arrow_down
                                         </i>

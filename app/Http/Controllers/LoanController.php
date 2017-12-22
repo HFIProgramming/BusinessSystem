@@ -38,7 +38,7 @@ class LoanController extends Controller
         {
             return view('errors.custom')->with('message', '不支持给冥界放款哦 请检查对方ID是否正确');//@TODO 这页面丑死了 有空换一个吧
         }
-        if(!($creditor->type == 2 && $debtor->type == 2))
+        if(!($creditor->type == 2 && $debtor->type == 1))
         {
             return view('errors.custom')->with('message', '你们之间不允许接待操作');
         }
