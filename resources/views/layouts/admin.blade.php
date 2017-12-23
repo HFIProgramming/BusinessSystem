@@ -54,7 +54,7 @@
 </div>
 
 <div class="mdui-drawer mdui-drawer-open" id="left-drawer">
-    <ul class="mdui-list">
+    <ul class="mdui-list" mdui-collapse="{accordion: true}">
         <li class="mdui-list-item mdui-ripple">
         <i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
             <a href="{{ route('addAnnouncement') }}" class="mdui-list-item-content">Add Announcement</a>
@@ -74,6 +74,21 @@
         <li class="mdui-list-item mdui-ripple">
         <i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>
             <a href="{{ route('showLogs') }}" class="mdui-list-item-content">Logs</a>
+        </li>
+        <li class="mdui-collapse-item">
+            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">rate_review</i>
+                <div class="mdui-list-item-content">Stats</div>
+                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                <li class="mdui-list-item mdui-ripple">
+                    <a class="mdui-list-item-content" href="{{ route('companyStats') }}">Company</a>
+                </li>
+                <li class="mdui-list-item mdui-ripple">
+                    <a class="mdui-list-item-content" href="{{ route('bankStats') }}">Bank</a>
+                </li>
+            </ul>
         </li>
         <li class="mdui-divider"></li>
         <li class="mdui-list-item mdui-ripple">

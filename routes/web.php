@@ -113,8 +113,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/fiscal_year/change_total', 'RoundController@changeTotal')->name('changeTotalRound');
 		Route::post('/fiscal_year/change_current', 'RoundController@changeCurrent')->name('changeCurrentRound');
 		Route::get('/fiscal_year/submit_EOY', 'RoundController@submitYear')->name('submitYear');
-		Route::get('/company_stat', 'AdminController@showCompanyStats');
-        Route::get('/bank_stat', 'AdminController@showBankStats');
+		Route::get('/company_stat', 'AdminController@showCompanyStats')->name('companyStats');
+        Route::get('/bank_stat', 'AdminController@showBankStats')->name('bankStats');
 	});
 });
 

@@ -151,10 +151,10 @@
             </div>
             <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
                 <li class="mdui-list-item mdui-ripple">
-                    <a class="mdui-list-item-content" href="{{ route('companyReports') }}">Company</a>
+                    <a class="mdui-list-item-content" href="{{ route('companyStats') }}">Company</a>
                 </li>
                 <li class="mdui-list-item mdui-ripple">
-                    <a class="mdui-list-item-content" href="{{ route('bankReports') }}">Bank</a>
+                    <a class="mdui-list-item-content" href="{{ route('bankStats') }}">Bank</a>
                 </li>
             </ul>
         </li>
