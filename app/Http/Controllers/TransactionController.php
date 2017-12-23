@@ -39,7 +39,7 @@ class TransactionController extends Controller
 //                return '对方：交易物品不存在';
 //            }
 		// Everyone has money
-		$buyerItem = $buyer->resources()->resid(1)->first();
+		$buyerItem = $buyer->resources()->resid($request->buyer_item)->first();
 		if (!($this->canBothAcquire($buyer, $seller, $buyerItem->resource()->first(), $sellerItem->resource()->first()) && $this->canUserTransactionWithThisUser($seller, $buyer))) {
 			return view('errors.custom')->with('message', '你们之间不能交易这两种物品');
 		}
@@ -55,7 +55,7 @@ class TransactionController extends Controller
 		$buyer_amount = $request->buyer_amount;
 		$seller_amount = $request->seller_amount;
 		$buyer = $user;
-		$buyerItem = $buyer->resources()->resid(1)->first();
+		$buyerItem = $buyer->resources()->resid($request->buyer_item)->first();
 //			if (empty($buyerItem)) {
 //                return view('errors.custom')->with('message', '我方：交易物品不存在');
 //			}
