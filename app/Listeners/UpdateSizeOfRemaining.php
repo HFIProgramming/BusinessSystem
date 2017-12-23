@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\StockEvaluationChange;
+use App\IntToVal;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

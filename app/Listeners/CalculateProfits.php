@@ -67,7 +67,7 @@ class CalculateProfits
             }
             $company->save();
 
-            $risk2 = $company->stock->riskEvaluation();
+            $risk2 = Company::find($company->id)->stock->riskEvaluation();
             if($risk1 != $risk2)
             {
                 event(new StockEvaluationChange($company->stock));
