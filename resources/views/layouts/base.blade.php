@@ -123,10 +123,10 @@
                     </li>
                 </ul>
             </li>
-            <li class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">call_missed_outgoing</i>
-                <a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>
-            </li>
+            {{--<li class="mdui-list-item mdui-ripple">--}}
+                {{--<i class="mdui-list-item-icon mdui-icon material-icons">call_missed_outgoing</i>--}}
+                {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
+            {{--</li>--}}
         @endif
         {{--<li class="mdui-collapse-item">--}}
             {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
