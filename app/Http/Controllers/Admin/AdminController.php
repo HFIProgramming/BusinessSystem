@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 //use Illuminate\Http\Request;
+use App\Bank;
+use App\Company;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Resources;
@@ -33,5 +35,15 @@ class AdminController extends Controller
             }
         }
         return 'Success';
+    }
+
+    public function showCompanyStats()
+    {
+        return view('admin.company_stat')->with('companies', Company::all());
+    }
+
+    public function showBankStats()
+    {
+        return view('admin.bank_stat')->with('banks', Bank::all());
     }
 }
