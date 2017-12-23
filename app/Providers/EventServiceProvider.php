@@ -70,6 +70,10 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\StockTotalChange' => [
             'App\Listeners\UpdateStockTotal'
+        ],
+
+        'App\Events\StockEvaluationChange' => [
+            'App\Listeners\UpdateSizeOfRemaining'
         ]
 
 	];

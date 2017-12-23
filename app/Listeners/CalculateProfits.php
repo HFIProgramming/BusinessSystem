@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Company;
 use App\Events\EndOfYear;
+use App\Events\StockEvaluationChange;
 use App\IntToVal;
 use App\Zone;
 use App\Config;
@@ -57,12 +58,20 @@ class CalculateProfits
 
             $tax = IntToVal::IntervalValue('pollution_tax', $company->pollutionIndex())->value;
 
+            $risk1 = $company->stock->riskEvaluation();
+
             $company->last_year_profit = round($sum * (1 - $tax));
             if($company->last_year_profit == 0)
             {
                 $company->last_year_profit = 1;
             }
             $company->save();
+
+            $risk2 = $company->stock->riskEvaluation();
+            if($risk1 != $risk2)
+            {
+                event(new StockEvaluationChange($company->stock));
+            }
         }
     }
 }
