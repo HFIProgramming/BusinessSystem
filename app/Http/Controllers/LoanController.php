@@ -40,7 +40,7 @@ class LoanController extends Controller
         {
             return view('errors.custom')->with('message', '你们之间不允许接待操作');
         }
-        if($debtor->resources()->resid(1)->first()->amount < $amount)
+        if($creditor->resources()->resid(1)->first()->amount < $amount)
         {
             return view('errors.custom')->with('message', '不够钱还是先别放款了吧');
         }
