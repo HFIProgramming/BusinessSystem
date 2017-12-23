@@ -49,6 +49,7 @@ class StockController extends Controller
             $sellerAmount = $stock->sell_remain;
             $msg = ':购买数量大于卖盘剩余，已清空卖盘';
         }
+        $buyerAmount = $sellerAmount * $stock->sellPrice();
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_buy'));
         event(new StockTransaction($buyer, $stock, 'buy', $sellerAmount));
@@ -79,7 +80,6 @@ class StockController extends Controller
         }
         $sellerItem = $seller->resources()->resid($stock->resource->id)->first();
         $sellerAmount = $amount;
-        $buyerAmount = $amount * $stock->buyPrice();
         if($seller->type != 2)
         {
             return view('errors.custom')->with('message', '您不能进行股票交易');
@@ -93,6 +93,7 @@ class StockController extends Controller
             $sellerAmount = $stock->buy_remain;
             $msg = ':售出数量大于买盘剩余，已清空买盘';
         }
+        $buyerAmount = $sellerAmount * $stock->buyPrice();
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'stock_sell'));
         event(new StockTransaction($seller, $stock, 'sell', $sellerAmount));
