@@ -83,8 +83,8 @@ class TransactionController extends Controller
     public function sellToGovernment(Request $request)
     {
         $user = $request->user();
-        if ($user->type != 2) {
-            return view('errors.custom')->with('message', '您不能向政府购买商品');
+        if ($user->type != 1) {
+            return view('errors.custom')->with('message', '您不能向政府出售商品');
         }
         $seller_amount = $request->seller_amount;
         $seller = $user;
@@ -100,7 +100,8 @@ class TransactionController extends Controller
         if ($acquisition_price == 0) {
             return view('errors.custom')->with('message', '政府不收购此物品');
         }
-        $buyer_amount = $seller_amount * $acquisition_price;
+        $buyer_amount = $seller_amount * $acquisition_price * 100000000;
+//        return [$request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'sell'];
 
         event(new NewTransaction($request->user(), $seller, $buyer, $sellerItem, $buyerItem, $seller_amount, $buyer_amount, 'sell'));
 
