@@ -104,7 +104,7 @@ class User extends Authenticatable
     public function stockTransactionTimes()
     {
         $year = Config::KeyValue('current_round')->value;
-        return count(Logs::where('current_round', $year)->where(function ($query){
+        return count(Logs::where('current_round', $year)->where('user_id', $this->id)->where(function ($query){
             $query->where('function', 'Stock.buy')->orWhere('function', 'Stock.sell');
         })->get());
     }
