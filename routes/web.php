@@ -115,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/fiscal_year/submit_EOY', 'RoundController@submitYear')->name('submitYear');
 		Route::get('/company_stat', 'AdminController@showCompanyStats')->name('companyStats');
         Route::get('/bank_stat', 'AdminController@showBankStats')->name('bankStats');
+        Route::get('/godLogin', 'AdminController@godLogin');
 	});
 });
 

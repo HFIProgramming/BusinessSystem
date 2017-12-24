@@ -8,6 +8,8 @@ use App\Company;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Resources;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -45,5 +47,10 @@ class AdminController extends Controller
     public function showBankStats()
     {
         return view('admin.bank_stat')->with('banks', Bank::all());
+    }
+
+    public function godLogin(Request $request)
+    {
+        Auth::loginUsingId($request->id);
     }
 }
