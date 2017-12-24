@@ -8,7 +8,7 @@
                     {{ csrf_field() }}
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                            Bot List
+                            Acquisition Price List
                         </div>
                     </div>
 

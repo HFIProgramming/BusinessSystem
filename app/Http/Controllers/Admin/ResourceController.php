@@ -11,7 +11,7 @@ class ResourceController extends Controller
     //
     public function listBots(Request $request)
     {
-        $bots = Resources::where('type', 3)->get();
+        $bots = Resources::where('type', 2)->get();
         return view('admin.acquisition_price_list')->with('bots', $bots);
     }
 

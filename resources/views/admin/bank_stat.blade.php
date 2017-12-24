@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Zone List
+    Bank Stats
 @endsection
 
 @section('script')
@@ -19,7 +19,7 @@
 
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                        Company List
+                        Bank Stats
                     </div>
                 </div>
 
