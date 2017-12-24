@@ -123,25 +123,27 @@
                     </li>
                 </ul>
             </li>
-            {{--<li class="mdui-list-item mdui-ripple">--}}
-                {{--<i class="mdui-list-item-icon mdui-icon material-icons">call_missed_outgoing</i>--}}
-                {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
-            {{--</li>--}}
+            @if(\App\Config::KeyValue('sell_to_gov')->value == '1')
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">call_missed_outgoing</i>
+                    <a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>
+                </li>
+            @endif
         @endif
         {{--<li class="mdui-collapse-item">--}}
-            {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
-                {{--<i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>--}}
-                {{--<div class="mdui-list-item-content">Government Related</div>--}}
-                {{--<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>--}}
-            {{--</div>--}}
-            {{--<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">--}}
-                {{--<li class="mdui-list-item mdui-ripple">--}}
-                    {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
-                {{--</li>--}}
-                {{--<li class="mdui-list-item mdui-ripple">--}}
-                    {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
+        {{--<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">--}}
+        {{--<i class="mdui-list-item-icon mdui-icon material-icons">people_outline</i>--}}
+        {{--<div class="mdui-list-item-content">Government Related</div>--}}
+        {{--<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>--}}
+        {{--</div>--}}
+        {{--<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+        {{--<a href="{{route('BuyGov')}}" class="mdui-list-item-content">Buy From Government</a>--}}
+        {{--</li>--}}
+        {{--<li class="mdui-list-item mdui-ripple">--}}
+        {{--<a href="{{route('SellGov')}}" class="mdui-list-item-content">Sell To Government</a>--}}
+        {{--</li>--}}
+        {{--</ul>--}}
         {{--</li>--}}
         <li class="mdui-collapse-item">
             <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Config;
 use App\Events\incomeTransaction;
 use App\Events\NewTransaction;
 use App\Resources;
@@ -83,6 +84,10 @@ class TransactionController extends Controller
     public function sellToGovernment(Request $request)
     {
         $user = $request->user();
+        if(Config::KeyValue('sell_to_gov') != '1')
+        {
+            return view('errors.custom')->with('message', '目前不能进行此操作');
+        }
         if ($user->type != 1) {
             return view('errors.custom')->with('message', '您不能向政府出售商品');
         }
