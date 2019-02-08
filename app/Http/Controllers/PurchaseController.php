@@ -16,18 +16,18 @@ class PurchaseController extends Controller
 	{
 	}
 
-	public function TopUp(Request $request)
+	public function TopUp(Request $request) // This is for building robots and chips and for building architectures
 	{
 		$item = Resources::query()->where('id', $request->item_id)->first();
 		$user = $request->user();
 		$message = "";
 
 		if (empty($item)) {
-			return view('errors.custom')->with('message', '建筑不存在');
+			return view('errors.custom')->with('message', '人类似乎还不能制造你所说的物品');
 		}
 
 		if (!(($this->canUserAcquireThisProduct($user, $item)) && ($item->type != 0))) { // 中间货币不能被直接购买
-			return view('errors.custom')->with('message', '你不能建造这个建筑');
+			return view('errors.custom')->with('message', '不允许你制造这种物品！');
 		}
 
 		$requirement = ($item->requirement)[$user->techLevel($item->required_tech)];
@@ -47,17 +47,20 @@ class PurchaseController extends Controller
 		return view('success')->with('message', '建造完成');
 	}
 
-	public function buildArchitecture(Request $request)//This function is specifically for purchases that come along with transactions
+	public function buildArchitecture(Request $request) //This function is specifically for purchases that come along with transactions
     {
         $resource = Resources::find($request->item_id);
         $user = $request->user();
-        if(($resource->type != 4 && $resource->id != 15) || empty($resource))//Refer to migrations to see type. 15 is special building
+        if(empty($resource) || $resource->type != 4) //Refer to migrations to see type.
         {
-            return view('errors.custom')->with('message', '不能建造这种建筑');
+            return view('errors.custom')->with('message', '挖土机、推土机、钢筋混凝土、包工头等均表示无法理解你要建造什么建筑');
         }
-        if(empty($zone = Zone::find($request->zone_id)))
+        if(empty($zone = Zone::find($request->zone_id))) //This should now be fixed.
         {
             return view('errors.custom')->with('message', '你似乎来到了没有建筑存在的荒原');//使用知乎体是怎样一种体验？
+        }
+        if (!(($this->canUserAcquireThisProduct($user, $item)) && ($item->type != 0))) { // 中间货币不能被直接购买
+            return view('errors.custom')->with('message', '你不能建造这种建筑');
         }
         $view = $this->TopUp($request);
         //Just a word of warning:
@@ -74,7 +77,7 @@ class PurchaseController extends Controller
             return $view;
         }
 
-        $purchased = Resources::find($request->item_id);
+        $purchased = $resource;
         foreach($purchased->equivalent_to as $built_id => $quantity)
         {
             $built = $user->resources()->resid($built_id)->first();
