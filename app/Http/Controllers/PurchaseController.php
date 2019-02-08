@@ -51,11 +51,12 @@ class PurchaseController extends Controller
     {
         $resource = Resources::find($request->item_id);
         $user = $request->user();
+        $zone_id = $user->type;
         if(empty($resource) || $resource->type != 4) //Refer to migrations to see type.
         {
             return view('errors.custom')->with('message', '挖土机、推土机、钢筋混凝土、包工头等均表示无法理解你要建造什么建筑');
         }
-        if(empty($zone = Zone::find($request->zone_id))) //This should now be fixed.
+        if(empty($zone = Zone::find($zone_id))) //This should now be fixed.
         {
             return view('errors.custom')->with('message', '你似乎来到了没有建筑存在的荒原');//使用知乎体是怎样一种体验？
         }

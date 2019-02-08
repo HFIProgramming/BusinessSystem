@@ -14,7 +14,7 @@ class CreateZonesTable extends Migration
     public function up()
     {
         Schema::create('zones', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id'); //Zone IDs will align with user types
             $table->integer('user_id');
             $table->timestamps();
         });
