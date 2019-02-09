@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
 use App\Resources;
+use App\Config;
 
 class ResourceSeeder extends Seeder
 {
@@ -174,7 +175,7 @@ class ResourceSeeder extends Seeder
             'name' => '加工厂（耗材）',
             'description' => '既是建筑本身，又是加工的耗材',
             'equivalent_to' => [],
-            'type' => 2
+            'type' => 7
         ]);
 
         //id=16
@@ -185,7 +186,7 @@ class ResourceSeeder extends Seeder
             'type' => 4,
             'required_tech' => 0,
             'requirement' => [1 => [1 => 4600000000, 2 => 300, 3 => 200, 4 => 500]],
-            'equivalent_to' => [15 => 10000000000], //@TODO: 数量待定
+            'equivalent_to' => [15 => Config::KeyValue('infinity')->value],
             'tax' => [5 => -10, 6 => -20]
         ]);
 
@@ -195,7 +196,7 @@ class ResourceSeeder extends Seeder
         Resources::create([
                 'code' => 'WarBot',
                 'name' => '战争机器人',
-                'description' => '迅猛凶残的战争机器人',
+                'description' => '西点军校研究院制造的迅猛凶残的战争机器人',
                 'type' => 3,
                 'requirement' => [1 => [2 => 50, 3 => 20, 4 => 10, 8 => 20, 15 => 1]]
         ]);
@@ -204,7 +205,7 @@ class ResourceSeeder extends Seeder
         Resources::create([
                 'code' => 'MedBot',
                 'name' => '医疗机器人',
-                'description' => '大白',
+                'description' => '出身哈佛医学院的大白',
                 'type' => 3,
                 'requirement' => [1 => [2 => 10, 3 => 50, 4 => 20, 8 => 20, 15 => 1]]
         ]);
@@ -213,7 +214,7 @@ class ResourceSeeder extends Seeder
         Resources::create([
                 'code' => 'EngBot',
                 'name' => '工程机器人',
-                'description' => '毕业于牛津大学工程系',
+                'description' => '牛津大学工程系一等毕业生',
                 'type' => 3,
                 'requirement' => [1 => [2 => 20, 3 => 10, 4 => 50, 8 => 20, 15 => 1]]
         ]);
@@ -225,7 +226,7 @@ class ResourceSeeder extends Seeder
             'name' => '芯片耗材',
             'description' => '你在南方的艳阳里砍树挖矿，我在北方的寒夜里制造芯片',
             'equivalent_to' => [],
-            'type' => 2
+            'type' => 7
         ]);
     }
 }

@@ -24,7 +24,8 @@ class ConfigSeeder extends Seeder
             'crisis_PowerStation' => 1,
             'crisis_Disney' => 1,
             'crisis_Mining' => 1,
-            'stock_transactions_limit' => 15
+            'stock_transactions_limit' => 15,
+            'infinity' => 10000000000
 		];
 		foreach ($config as $key => $value) {
 			\App\Config::query()->create([
