@@ -112,35 +112,17 @@ class IntToValSeeder extends Seeder
             'value' => 0.5
         ]);
 
-        $arr = [[0.1125, 0, 5], [0.05, 5, 15], [0.0125, 15, 20], [0.002, 20, 10000000000000]];
-        foreach ($arr as $data)
-        {
-            IntToVal::create([
-                'lower' => $data[1],
-                'upper' => $data[2],
-                'flag' => 'buy_update',
-                'value' => $data[0]
-            ]);
-        }
-        $arr = [[0.0125, 0, 5], [0.05, 5, 15], [0.1125, 15, 20], [0.18, 20, 10000000000000]];
-        foreach ($arr as $data)
-        {
-            IntToVal::create([
-                'lower' => $data[1],
-                'upper' => $data[2],
-                'flag' => 'sell_update',
-                'value' => $data[0]
-            ]);
-        }
-        $arr = [['低风险', 0, 5], ['正常风险', 5, 15], ['高风险', 15, 20], ['极高风险', 20, 10000000000000]];
-        foreach ($arr as $data)
-        {
-            IntToVal::create([
-                'lower' => $data[1],
-                'upper' => $data[2],
-                'flag' => 'risk_evaluation',
-                'value' => $data[0]
-            ]);
-        }
+        IntToVal::create([
+            'lower' => 1,
+            'upper' => 2,
+            'flag' => 'regionalMiningIndex_Mining',
+            'value' => 3
+        ]);
+        IntToVal::create([
+            'lower' => 2,
+            'upper' => 3,
+            'flag' => 'regionalMiningIndex_Mining',
+            'value' => 1
+        ]);
     }
 }
