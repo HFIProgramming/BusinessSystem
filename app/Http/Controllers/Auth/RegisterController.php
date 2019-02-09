@@ -71,7 +71,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['type'] != 1 && $data['type'] !=2)
+        if($data['type'] < 1 || $data['type'] > 2)
         {
             return view('errors.custom')->with('message', '不能注册此类型账号');
         }
@@ -86,9 +86,14 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'amount' => Config::KeyValue('startup_fund_' . $data['type'])->value,
         ]);
+        $user->resources()->create([
+            'resource_id' => 15, //chip materials
+            'user_id' => $user->id,
+            'amount' => $data['type'] == 1 ? 0 : Config::KeyValue()->value,
+        ]);
         foreach (Resources::all() as $resource) {
-            if ($resource->id != 1) {
-                //not money
+            if ($resource->id != 1 && $resource->id != 15) {
+                //excluding money and chip materials
                 $user->resources()->create([
                     'resource_id' => $resource->id, //money
                     'user_id' => $user->id,
@@ -102,41 +107,11 @@ class RegisterController extends Controller
                 'type' => $t,
                 'level' => 1
             ]);
-        }
-        if ($user->type == 1)//Company
-        {
-            $company = $user->company()->create([
-                'name' => $user->name,
-                'last_year_profit' => 1600000000 //to be determined
+        } //@TODO
+        $company = $user->company()->create([
+            'name' => $user->name,
+                'last_year_profit' => 0 //to be determined
             ]);
-            $stockResource = Resources::create([
-                'code' => $user->name . '_stock',
-                'name' => $user->name . '公司股票',
-                'description' => $user->name . '公司股票',
-                'type' => 3
-            ]);
-
-            $stock = Stock::create([
-                'current_price' => 100,
-                'history_prices' => [],
-                'total' => 200000000,
-                'dividend' => 0.1,
-                'up_poly_coeff' => [2, 1],
-                'down_poly_coeff' => [-2, 1],
-                'sell_remain' => 10000000,
-                'buy_remain' => 10000000,
-                'company_id' => $company->id,
-                'resource_id' => $stockResource->id
-            ]);
-            event(new NewResource());
-            event(new StockTotalChange($stock, $stock->total));
-        }
-        else if ($user->type == 2)//Bank
-        {
-            $bank = $user->bank()->create([
-               'name' => $user->name
-            ]);
-        }
         return $user;
     }
 
