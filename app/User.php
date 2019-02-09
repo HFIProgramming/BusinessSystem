@@ -101,6 +101,16 @@ class User extends Authenticatable
         return $this->hasone(Bank::class);
     }
 
+    public function auctions()
+    {
+    	return $this->hasMany('App\Auction');
+    }
+
+    public function acquisitions()
+    {
+    	return $this->hasMany('App\Acquisition');
+    }
+
     public function stockTransactionTimes()
     {
         $year = Config::KeyValue('current_round')->value;
