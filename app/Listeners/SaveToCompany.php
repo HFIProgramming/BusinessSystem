@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Company;
+use App\user;
 use App\Config;
 use App\Events\EndOfYear;
 use App\Events\NewTransaction;
@@ -39,12 +39,11 @@ class SaveToCompany
         foreach(Company::all() as $company)
         {
             $gains = [];
-            $gains[1] = $company->last_year_profit * (1 - $company->stock->dividend);//$$$$$$$$
             foreach($company->user->resources as $userResource)
             {
                 if($userResource->resource->type == 2)
                 {
-                    $factors = ['powerIndex', 'happinessIndex'];
+                    $factors = ['powerIndex', 'happinessIndex', 'regionalMiningIndex'];
                     foreach($userResource->zones as $zone_id => $quantity)
                     {
                         $zone = Zone::find($zone_id);
@@ -56,7 +55,7 @@ class SaveToCompany
                         $coeff *= Config::KeyValue('crisis_'.$userResource->resource->code)->value;
                         foreach ($userResource->resource->equivalent_to as $resource_id => $amount)
                         {
-                            if($resource_id != 1 && Resources::find($resource_id)->type != 6)//Money is dealt with separately
+                            if(Resources::find($resource_id)->type != 6)
                             {
                                 if(!array_key_exists($resource_id, $gains))
                                 {
