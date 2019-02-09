@@ -35,10 +35,6 @@ class doAutoTransaction
         $trans->checked = 1;
         $trans->save();
 		event(new incomeTransaction($trans));
-		if($trans->type == 'sell')//临时解决方案
-        {
-            return;
-        }
 		if (!empty($trans->sellerResource->resource->equivalent_to)) {
 			$equivalence = $trans->sellerResource->resource->equivalent_to;
 			foreach ($equivalence as $resource_id => $quantity) {
@@ -49,7 +45,6 @@ class doAutoTransaction
 				$newTrans->type = 'special';
 				event(new NewTransaction($newTrans->starter, $newTrans->seller, $newTrans->buyer, $newTrans->sellerResource, $newTrans->buyerResource, $newTrans->seller_amount, $newTrans->buyer_amount, $newTrans->type));
 			}
-		}//@TODO check if this new condition works. Fuck it does not...
-        //@TODO DELIBERATE on whether to use type or equivalent_to as the condition.
+		}
 	}
 }
