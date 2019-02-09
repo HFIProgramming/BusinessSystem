@@ -79,7 +79,7 @@ class PurchaseController extends Controller
         }
 
         $purchased = $resource;
-        foreach($purchased->equivalent_to as $built_id => $quantity)
+        foreach($purchased->equivalent_to as $built_id => $quantity)//This merely does the statistics and does not update the quantity of resources -- it is already updated in the TopUp event.
         {
             $built = $user->resources()->resid($built_id)->first();
             $zones = $built->zones;
