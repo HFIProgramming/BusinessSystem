@@ -124,5 +124,12 @@ class IntToValSeeder extends Seeder
             'flag' => 'regionalMiningIndex_Mining',
             'value' => 1
         ]);
+
+        IntToVal::create([
+            'lower' => 2000000000,
+            'upper' => 4000000001,
+            'flag' => 'acceptable_bid_range',
+            'value' => 1
+        ]);
     }
 }

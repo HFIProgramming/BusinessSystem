@@ -228,5 +228,14 @@ class ResourceSeeder extends Seeder
             'equivalent_to' => [],
             'type' => 7
         ]);
+
+        //id=21
+        Resources::create([
+            'code' => 'MaterialsPack',
+            'name' => '材料包',
+            'description' => '拍卖成功时获得此项目及其所包含项目',
+            'type' => 4,
+            'equivalent_to' => [2 => 300, 3 => 300, 4 => 300, 8 => 50]
+        ]);
     }
 }

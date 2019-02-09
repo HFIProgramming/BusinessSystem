@@ -27,7 +27,8 @@ class ConfigSeeder extends Seeder
             'stock_transactions_limit' => 15,
             'infinity' => 10000000000,
             'auction_activated' => 0,
-            'auction_items_and_amount' => json_encode([]),
+            'auction_item_id' => 100, //change this
+            'auction_amount' => 10,
             'acquisition_activated' => 0,
             'acquisition_items_and_amount' => json_encode([])
 		];
