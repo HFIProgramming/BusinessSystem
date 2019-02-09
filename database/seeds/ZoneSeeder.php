@@ -15,10 +15,11 @@ class ZoneSeeder extends Seeder
     public function run()
     {
         //
-        for ($i = 1; $i <= 3; $i++) {
+        $zones = ['南方', '北方'];
+        for ($zones as $zone) {
             $user = User::create([
-                'name' => 'Zone' . $i,
-                'email' => 'Zone' . $i . '@finance.club',
+                'name' => $zone,
+                'email' => $zone . '@finance.club',
                 'password' => bcrypt('zonezonezone'),
                 'type' => 3
             ]);
