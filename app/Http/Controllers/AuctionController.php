@@ -58,5 +58,6 @@ class AuctionController extends Controller
             'year' => Config::KeyValue('current_round')->value,
             'status' => 'submitted'
         ]);
+        return view('success')->with('message', '提交成功');
     }
 }

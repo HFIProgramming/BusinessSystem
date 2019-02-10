@@ -14,8 +14,9 @@ class AuctionController extends Controller
 	{
     	// Use this page to configure auctions: start, end, set amount, show current bids, etc.
     	$year = Config::KeyValue('current_round')->value;
-    	$bids = Auction::where('year', $year)->get();
-    	return view('admin.auction_control')->with('bids', $bids);
+    	$status = Config::KeyValue('auction_activated')->value;
+    	$bids = Auction::where('year', $year)->orderBy('price', 'asc')->latest()->get();
+    	return view('admin.auction_control')->with('bids', $bids)->with('year', $year)->with('status', $status);
 	}
 
 	public function setStatus(Request $request)
