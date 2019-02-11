@@ -60,14 +60,6 @@
             <a href="{{ route('addAnnouncement') }}" class="mdui-list-item-content">Add Announcement</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
-            <a href="{{ route('listMiners') }}" class="mdui-list-item-content">Employment Prices</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
-            <a href="{{ route('listBots') }}" class="mdui-list-item-content">Acquisition Prices</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
             <a href="{{ route('showRound') }}" class="mdui-list-item-content">Fiscal Year</a>
         </li>

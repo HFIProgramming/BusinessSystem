@@ -34,7 +34,7 @@
                         <table class="mdui-table">
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>名称</th>
                                 <th>电力指数</th>
                                 <th>幸福指数</th>
                             </tr>
@@ -42,7 +42,7 @@
                             <tbody>
                             @foreach($zones as $zone)
                                 <tr>
-                                    <td>{{$zone->id}}</td>
+                                    <td>{{$zone->name}}</td>
                                     <td>{{$zone->powerIndex()}}</td>
                                     <td>{{$zone->happinessIndex()}}</td>
                                 </tr>

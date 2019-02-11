@@ -155,15 +155,7 @@
                                     <li class="mdui-list-item mdui-ripple mdui-typo-headline">物品清单</li>
                                     <br>
                                     @foreach($user->resources()->get() as $resource)
-                                        @if(Auth::user()->type == 2 &&  ($resource->resource->type == 0 || $resource->resource->type == 3))
-                                            <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
-                                                : {{$resource->amount}}
-                                                @if($resource->resource->id == 1)
-                                                    ({{ round($resource->amount/100000000,2) }}亿)
-                                                @endif
-                                            </li>
-                                        @endif
-                                        @if(Auth::user()->type == 1 && (($resource->resource->type >= 0 && $resource->resource->type <= 3) || $resource->resource->name == '污染指数'))
+                                        @if(in_array($resource->resource->type, [0, 1, 2, 3, 7]))
                                             <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
                                                 : {{$resource->amount}}
                                                 @if($resource->resource->id == 1)
@@ -172,17 +164,9 @@
                                                 @if($resource->resource->type == 2 && !empty($resource->zones))
                                                     (
                                                     @foreach($resource->zones as $zone => $number)
-                                                        地块{{$zone}}:{{$number}}座;
+                                                        {{App\Zone::find($zone)->name}}:{{$number}}座
                                                     @endforeach
                                                     )
-                                                @endif
-                                            </li>
-                                        @endif
-                                        @if(Auth::user()->type == 0)
-                                            <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
-                                                : {{$resource->amount}}
-                                                @if($resource->resource->id == 1)
-                                                    ({{ round($resource->amount/100000000,2) }}亿)
                                                 @endif
                                             </li>
                                         @endif

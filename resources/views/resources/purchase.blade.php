@@ -18,7 +18,7 @@
             <div class="mdui-card">
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                        New Upgrade
+                        Manufacture
                     </div>
                 </div>
                 <div class="mdui-card-header-subtitle adjust_card_subtitle">
@@ -32,7 +32,7 @@
                         <div class="mdui-textfield mdui-textfield-floating-label">
                             <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
                             <label class="mdui-textfield-label">目标商品ID</label>
-                            <input class="mdui-textfield-input" id="item_id" name="item_id" type="number" required/>
+                            <input class="mdui-textfield-input" id="item_id" name="item_id" type="text" required/>
                             <div class="mdui-textfield-error">目标商品不能为空</div>
                         </div>
                         <div class="mdui-textfield mdui-textfield-floating-label ">

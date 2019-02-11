@@ -2,7 +2,6 @@
 
 namespace App\Listeners;
 
-use App\user;
 use App\Config;
 use App\Events\EndOfYear;
 use App\Events\NewTransaction;
@@ -10,6 +9,7 @@ use App\IntToVal;
 use App\Resources;
 use App\User;
 use App\Zone;
+use App\Company;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

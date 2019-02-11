@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Zone extends Model
 {
     //
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'name'];
 
     public function user()
     {
@@ -22,5 +22,10 @@ class Zone extends Model
     public function happinessIndex()
     {
         return $this->user->resources()->resid(6)->first()->amount;
+    }
+
+    public function regionalMiningIndex()
+    {
+        return $this->user->resources()->resid(7)->first()->amount;
     }
 }

@@ -26,25 +26,11 @@ class PurchaseController extends Controller
 			return view('errors.custom')->with('message', '人类似乎还不能制造你所说的物品');
 		}
 
-		if (!(($this->canUserAcquireThisProduct($user, $item)) && ($item->type != 0))) { // 中间货币不能被直接购买
+		if (!$this->canUserAcquireThisProduct($user, $item) || $item->type == 0 || $item->type == 4) { // 中间货币不能被直接购买
 			return view('errors.custom')->with('message', '不允许你制造这种物品！');
 		}
-
-		$requirement = ($item->requirement)[$user->techLevel($item->required_tech)];
-
-		if (!empty($requirement)) {
-			foreach ($requirement as $key => $value) {
-				if ($user->resources()->resid($key)->first()->amount < ($amount = $value * $request->amount)) {
-					$message .= ($user->resources()->resid($key)->first()->resource->name)." 不足，需要 {$amount} \n";
-				}
-			}
-		}
-
-		if ($message != "") return view('errors.custom')->with('message', $message);
-
-		event(new BuyStuff($user, $item, $request->amount));
-
-		return view('success')->with('message', '建造完成');
+		
+        return $this->doManufactureOrBuild($item, $request->amount, $user);
 	}
 
 	public function buildArchitecture(Request $request) //This function is specifically for purchases that come along with transactions
@@ -60,10 +46,10 @@ class PurchaseController extends Controller
         {
             return view('errors.custom')->with('message', '你似乎来到了没有建筑存在的荒原');//使用知乎体是怎样一种体验？
         }
-        if (!(($this->canUserAcquireThisProduct($user, $item)) && ($item->type != 0))) { // 中间货币不能被直接购买
+        if (!(($this->canUserAcquireThisProduct($user, $resource)) && ($resource->type != 0))) { // 中间货币不能被直接购买
             return view('errors.custom')->with('message', '你不能建造这种建筑');
         }
-        $view = $this->TopUp($request);
+        $view = $this->doManufactureOrBuild($resource, $request->amount, $user);
         //Just a word of warning:
         //TopUp Event automatically resolves the equivalent_to field and gives corresponding resources
         //But this does NOT create a chain reaction as Transaction does
@@ -123,4 +109,24 @@ class PurchaseController extends Controller
 
 		return false;
 	}
+
+    protected function doManufactureOrBuild($item, $requested_amount, $user)
+    {
+        $requirement = ($item->requirement)[$user->techLevel($item->required_tech)];
+        $message = "";
+
+        if (!empty($requirement)) {
+            foreach ($requirement as $key => $value) {
+                if ($user->resources()->resid($key)->first()->amount < ($amount = $value * $requested_amount)) {
+                    $message .= ($user->resources()->resid($key)->first()->resource->name)." 不足，需要 {$amount} \n";
+                }
+            }
+        }
+
+        if ($message != "") return view('errors.custom')->with('message', $message);
+
+        event(new BuyStuff($user, $item, $requested_amount));
+
+        return view('success')->with('message', '建造完成');
+    }
 }

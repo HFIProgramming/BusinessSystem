@@ -87,15 +87,15 @@ class RegisterController extends Controller
             'amount' => Config::KeyValue('startup_fund_' . $data['type'])->value,
         ]);
         $user->resources()->create([
-            'resource_id' => 15, //chip materials
+            'resource_id' => 20, //chip materials
             'user_id' => $user->id,
-            'amount' => $data['type'] == 1 ? 0 : Config::KeyValue()->value,
+            'amount' => $data['type'] == 1 ? 0 : Config::KeyValue('infinity')->value,
         ]);
         foreach (Resources::all() as $resource) {
-            if ($resource->id != 1 && $resource->id != 15) {
+            if (!in_array($resource->id, [1, 7])) {
                 //excluding money and chip materials
                 $user->resources()->create([
-                    'resource_id' => $resource->id, //money
+                    'resource_id' => $resource->id,
                     'user_id' => $user->id,
                     'amount' => 0,
                 ]);
