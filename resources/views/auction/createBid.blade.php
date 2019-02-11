@@ -29,16 +29,16 @@
                     </div>
 
                     <div class="mdui-card-content mdui-typo">
-                        目前是第{{$year}}财年
+                        目前是第{{ $year }}财年
                         <br>
-                        目前供拍卖的一共有{{$auction_amount}}件
+                        目前供拍卖的一共有{{ $auction_amount }}件
                         <br>
-                        <form method="post" action="{{route('newBidding')}}">
+                        <form method="post" action="{{route('submitAuctionBid')}}">
                             {{ csrf_field() }}
                             <div class="mdui-textfield mdui-textfield-floating-label">
                                 <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
                                 <label class="mdui-textfield-label">我的出价</label>
-                                <input class="mdui-textfield-input" id="bidding_amount" name="bidding_amount" type="number" required/>
+                                <input class="mdui-textfield-input" id="price" name="price" type="number" required/>
                                 <div class="mdui-textfield-error">我的商品不能为空</div>
                             </div>
                             <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交

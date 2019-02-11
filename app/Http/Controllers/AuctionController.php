@@ -14,7 +14,7 @@ class AuctionController extends Controller
     {
         $user = $request->user();
         $year = Config::KeyValue('current_round')->value;
-        if(Config::KeyValue('auction_activated') == 1)
+        if(Config::KeyValue('auction_activated')->value == 1)
         {
             if(empty($user->auctions()->where('year', $year)->first()))
             {
