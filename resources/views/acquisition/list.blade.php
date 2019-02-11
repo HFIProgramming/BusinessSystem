@@ -36,6 +36,8 @@
                                 <thead>
                                 <tr>
                                     <th>财年</th>
+                                    <th>名称</th>
+                                    <th>数量</th>
                                     <th>出价</th>
                                     <th>状态</th>
                                 </tr>
@@ -44,6 +46,8 @@
                                 @foreach($bids as $bid)
                                     <tr>
                                         <td>{{$bid->year}}</td>
+                                        <td>{{App\Resources::find($bid->resource_id)->name}}</td>
+                                        <td>{{$bid->amount}}</td>
                                         <td>{{$bid->price}}</td>
                                         <td>{{$bid->status}}</td>
                                     </tr>
