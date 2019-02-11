@@ -20,6 +20,16 @@
                     </div>>
 
                     <div class="mdui-text-center">
+                        @if($status == 1)
+                            目前正在拍卖
+                            @endif
+                        @if($status == 0)
+                            目前不在拍卖哦~
+                            @endif
+
+                    </div>
+
+                    <div class="mdui-text-center">
                         <br><br>
                         <form method="post" action="{{ route('startend') }}">
                             {{ csrf_field() }}
