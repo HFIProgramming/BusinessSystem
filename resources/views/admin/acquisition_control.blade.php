@@ -1,21 +1,5 @@
 @extends('layouts.admin')
 
-@section('script')
-    <script type="text/javascript">
-        var arry = $("#robotBidding").serializeArray();
-
-        $.ajax({
-            url: "/Login/Index",
-            data: { jsondata: JSON.stringify(arry) },
-            type:"post",
-            success: function () {
-                alert("success");
-            }
-        });
-
-    </script>
-@endsection
-
 @section('body')
     <div class="mdui-container doc-container">
         <div class="mdui-row">
@@ -26,7 +10,7 @@
                     <br>
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                            幕后黑手
+                            控制收购状态
                         </div>
                     </div>
                     <div class="mdui-card-header-subtitle adjust_card_subtitle">
@@ -36,13 +20,16 @@
                     </div>>
 
                     <div class="mdui-text-center">
+                        现在是第{{$year}}财年
+                    </div>
+
+                    <div class="mdui-text-center">
                         @if($status == 1)
                             目前正在拍卖
-                            @endif
+                        @endif
                         @if($status == 0)
                             目前不在拍卖哦~
-                            @endif
-
+                        @endif
                     </div>
 
                     <div class="mdui-text-center">
@@ -63,21 +50,6 @@
                     </div>
                     <br><br>
 
-                    <br><br><br>
-                    <form method="post" action="{{ route('auctionAmount') }}">
-                        {{ csrf_field() }}
-                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-offset-xs-1">
-                            <label class="mdui-textfield-label">拍卖数量</label>
-                            <input class="mdui-textfield-input" name="auction_amount" type="number"/>
-                        </div>
-                        <div>
-                            <br><br>
-                            <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-col-offset-xs-1">
-                                确定
-                            </button>
-                        </div>
-                    </form>
-                    <br><br>
 
                     <div class="mdui-text-center">
                         <a class=" mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-xs-2 mdui-col-offset-xs-5" href="{{ route('submitYear') }}"> 财年清算 </a>
@@ -97,7 +69,7 @@
                     <br><br>
 
                     <div class="mdui-text-center">
-                       竞标情况
+                        收购状态
                     </div>
 
                     <br>
@@ -105,18 +77,35 @@
                         <table class="mdui-table">
                             <thead>
                             <tr>
-                                <th>财年</th>
-                                <th>出价</th>
-                                <th>状态</th>
+                                <th>item</th>
+                                <th>amount</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($bids as $bid)
-                                <tr>
-                                    <td>{{$bid->year}}</td>
-                                    <td>{{$bid->price}}</td>
-                                    <td>{{$bid->status}}</td>
-                                </tr>
+                            <form method="post" action="{{ route('呃不知道是啥') }}">
+                                {{ csrf_field() }}
+                            @foreach($aquisition_items_and_amount as $item_id => $amount)
+                                    <tr>
+                                        <td>{{$item}}</td>
+                                        <input type="hidden" id="itemId" name="itemId" value="{{$item}}">
+                                        <td>
+                                            <div class="mdui-textfield mdui-textfield-floating-label">
+                                                <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
+                                                <label class="mdui-textfield-label">id</label>
+                                                <input class="mdui-textfield-input" id="item_id" name="item_id" type="number"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mdui-textfield mdui-textfield-floating-label">
+                                                <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
+                                                <label class="mdui-textfield-label">amount</label>
+                                                <input class="mdui-textfield-input" id="amount" name="amount" type="number"/>
+                                            </div>
+                                            <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">
+                                                提交
+                                            </button>
+                                        </td>
+                                    </tr>
                             @endforeach
                             </tbody>
                         </table>
