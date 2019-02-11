@@ -1,5 +1,21 @@
 @extends('layouts.admin')
 
+@section('script')
+    <script type="text/javascript">
+        var arry = $("#robotBidding").serializeArray();
+
+        $.ajax({
+            url: "/Login/Index",
+            data: { jsondata: JSON.stringify(arry) },
+            type:"post",
+            success: function () {
+                alert("success");
+            }
+        });
+
+    </script>
+@endsection
+
 @section('body')
 <div class="mdui-container doc-container">
     <div class="mdui-row">
