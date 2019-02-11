@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Zone extends Model
 {
     //
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'name'];
 
     public function user()
     {

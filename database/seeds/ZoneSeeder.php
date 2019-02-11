@@ -31,7 +31,8 @@ class ZoneSeeder extends Seeder
                 ]);
             }
             Zone::create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'name' => $zone
             ]);
         }
     }

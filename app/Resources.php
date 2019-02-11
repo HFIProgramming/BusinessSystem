@@ -10,7 +10,7 @@ class Resources extends Model
 	protected $casts = [
 		'requirement'   => 'array',
 		'equivalent_to' => 'array',
-        'tax' => 'array'
+		'tax' => 'array'
 	];
 
 	protected $fillable = [
@@ -33,7 +33,7 @@ class Resources extends Model
 				return '建筑';
 				break;
 			case 3:
-				return '股票';
+				return '成品机器人';
 				break;
 			case 4:
 				return '建筑建造';
@@ -41,9 +41,12 @@ class Resources extends Model
 			case 5:
 				return '科技等级';
 				break;
-            case 6:
-                return '指数';
-                break;
+			case 6:
+				return '指数';
+				break;
+			case 7:
+				return '耗材';
+				break;
 			default:
 				return '这尼玛是什么玩意';
 		}
@@ -55,7 +58,7 @@ class Resources extends Model
 	}
 
 	public function stock()
-    {
-        return $this->hasOne(Stock::class, 'resource_id');
-    }
+	{
+		return $this->hasOne(Stock::class, 'resource_id');
+	}
 }

@@ -71,7 +71,11 @@
                     <div class="mdui-card">
                         <div class="mdui-card-header">
                             <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                                PACK：购买后获得
+                                @if($resource->type == 4)
+                                    购买后获项目
+                                @else
+                                    年收入内容
+                                @endif
                             </div>
                         </div>
 

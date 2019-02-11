@@ -87,7 +87,7 @@
             </li>
             <li class="mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
-                <a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Purchase</a>
+                <a href="{{route('purchaseForm')}}" class="mdui-list-item-content">Manufacture</a>
             </li>
             <li class="mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
