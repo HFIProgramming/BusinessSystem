@@ -153,7 +153,7 @@ class ResourceSeeder extends Seeder
             'code' => 'Mining',
             'name' => '采矿场',
             'description' => '采矿场',
-            'equivalent_to' => [2 => 300, 3 => 300, 4 => 300],
+            'equivalent_to' => [2 => 100, 3 => 100, 4 => 100],
             'type' => 2
         ]);
 

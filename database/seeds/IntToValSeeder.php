@@ -124,6 +124,18 @@ class IntToValSeeder extends Seeder
             'flag' => 'regionalMiningIndex_Mining',
             'value' => 1
         ]);
+        IntToVal::create([
+            'lower' => -10,
+            'upper' => 10,
+            'flag' => 'regionalMiningIndex_PowerStation',
+            'value' => 1
+        ]);
+        IntToVal::create([
+            'lower' => -10,
+            'upper' => 10,
+            'flag' => 'regionalMiningIndex_Disney',
+            'value' => 1
+        ]);
 
         IntToVal::create([
             'lower' => 2000000000,

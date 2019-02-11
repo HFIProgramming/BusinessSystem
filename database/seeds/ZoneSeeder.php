@@ -35,5 +35,7 @@ class ZoneSeeder extends Seeder
                 'name' => $zone
             ]);
         }
+        Zone::find(1)->user->resources()->resid(7)->update(['amount' => 1]);
+        Zone::find(2)->user->resources()->resid(7)->update(['amount' => 2]);
     }
 }

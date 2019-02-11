@@ -23,4 +23,9 @@ class Zone extends Model
     {
         return $this->user->resources()->resid(6)->first()->amount;
     }
+
+    public function regionalMiningIndex()
+    {
+        return $this->user->resources()->resid(7)->first()->amount;
+    }
 }

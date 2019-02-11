@@ -92,10 +92,10 @@ class RegisterController extends Controller
             'amount' => $data['type'] == 1 ? 0 : Config::KeyValue('infinity')->value,
         ]);
         foreach (Resources::all() as $resource) {
-            if ($resource->id != 1 && $resource->id != 15) {
+            if (!in_array($resource->id, [1, 7])) {
                 //excluding money and chip materials
                 $user->resources()->create([
-                    'resource_id' => $resource->id, //money
+                    'resource_id' => $resource->id,
                     'user_id' => $user->id,
                     'amount' => 0,
                 ]);

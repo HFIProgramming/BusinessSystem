@@ -51,9 +51,7 @@ class HomeController extends Controller
 
 	public function showBills(Request $request)
     {
-        $transactions = Transaction::where('buyer_id', $request->user()->id)->where(function ($query){
-            $query->where('type', 'yearly_yield')->orWhere('type', 'stock_dividend');
-        })->get();
+        $transactions = Transaction::where('buyer_id', $request->user()->id)->where('type', 'yearly_yield')->latest()->get();
         return view('bills.list')->with('transactions', $transactions);
     }
 
