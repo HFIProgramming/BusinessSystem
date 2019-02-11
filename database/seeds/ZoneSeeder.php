@@ -16,7 +16,7 @@ class ZoneSeeder extends Seeder
     {
         //
         $zones = ['南方', '北方'];
-        for ($zones as $zone) {
+        foreach ($zones as $zone) {
             $user = User::create([
                 'name' => $zone,
                 'email' => $zone . '@finance.club',

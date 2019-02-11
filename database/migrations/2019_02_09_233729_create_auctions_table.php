@@ -15,7 +15,7 @@ class CreateAuctionsTable extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id').
+            $table->integer('user_id');
             $table->integer('year');
             $table->integer('price');
             $table->string('status'); //submitted, unsuccessful, successful
