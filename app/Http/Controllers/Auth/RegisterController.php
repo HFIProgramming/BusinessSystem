@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'amount' => Config::KeyValue('startup_fund_' . $data['type'])->value,
         ]);
         $user->resources()->create([
-            'resource_id' => 15, //chip materials
+            'resource_id' => 20, //chip materials
             'user_id' => $user->id,
             'amount' => $data['type'] == 1 ? 0 : Config::KeyValue('infinity')->value,
         ]);

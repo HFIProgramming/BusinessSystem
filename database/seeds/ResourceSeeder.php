@@ -103,7 +103,8 @@ class ResourceSeeder extends Seeder
                 'name' => '智能芯片',
                 'description' => '智能芯片',
                 'type' => 1,
-                'requirement' => [1 => [2 => 1, 3 => 1, 4 => 1, 15 => 1]]
+                'required_tech' => 0,
+                'requirement' => [1 => [2 => 1, 3 => 1, 4 => 1, 15 => 1, 20 => 1]]
         ]);
 
         //id=9

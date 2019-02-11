@@ -170,14 +170,6 @@
                                                 @endif
                                             </li>
                                         @endif
-                                        @if(Auth::user()->type == 0)
-                                            <li class="mdui-list-item mdui-ripple">{{$resource->resource->name}}
-                                                : {{$resource->amount}}
-                                                @if($resource->resource->id == 1)
-                                                    ({{ round($resource->amount/100000000,2) }}亿)
-                                                @endif
-                                            </li>
-                                        @endif
                                     @endforeach
                                     <br/>
                                 </ul>
