@@ -60,7 +60,7 @@ class PurchaseController extends Controller
         {
             return view('errors.custom')->with('message', '你似乎来到了没有建筑存在的荒原');//使用知乎体是怎样一种体验？
         }
-        if (!(($this->canUserAcquireThisProduct($user, $item)) && ($item->type != 0))) { // 中间货币不能被直接购买
+        if (!(($this->canUserAcquireThisProduct($user, $resource)) && ($resource->type != 0))) { // 中间货币不能被直接购买
             return view('errors.custom')->with('message', '你不能建造这种建筑');
         }
         $view = $this->TopUp($request);

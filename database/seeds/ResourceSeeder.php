@@ -198,6 +198,7 @@ class ResourceSeeder extends Seeder
                 'name' => '战争机器人',
                 'description' => '西点军校研究院制造的迅猛凶残的战争机器人',
                 'type' => 3,
+                'required_tech' => 1,
                 'requirement' => [1 => [2 => 50, 3 => 20, 4 => 10, 8 => 20, 15 => 1]]
         ]);
 
@@ -207,6 +208,7 @@ class ResourceSeeder extends Seeder
                 'name' => '医疗机器人',
                 'description' => '出身哈佛医学院的大白',
                 'type' => 3,
+                'required_tech' => 1,
                 'requirement' => [1 => [2 => 10, 3 => 50, 4 => 20, 8 => 20, 15 => 1]]
         ]);
 
@@ -216,6 +218,7 @@ class ResourceSeeder extends Seeder
                 'name' => '工程机器人',
                 'description' => '牛津大学工程系一等毕业生',
                 'type' => 3,
+                'required_tech' => 1,
                 'requirement' => [1 => [2 => 20, 3 => 10, 4 => 50, 8 => 20, 15 => 1]]
         ]);
 

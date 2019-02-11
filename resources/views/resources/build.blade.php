@@ -38,12 +38,6 @@
                             <div class="mdui-textfield-error">建筑ID不能为空</div>
                         </div>
                         <div class="mdui-textfield mdui-textfield-floating-label ">
-                            <i class="mdui-icon material-icons adjust_mdui_icon">add</i>
-                            <label class="mdui-textfield-label">区域ID</label>
-                            <input class="mdui-textfield-input" id="zone_id" name="zone_id" type="text" required/>
-                            <div class="mdui-textfield-error">区域ID不能为空</div>
-                        </div>
-                        <div class="mdui-textfield mdui-textfield-floating-label ">
                             <i class="mdui-icon material-icons adjust_mdui_icon">account_circle</i>
                             <label class="mdui-textfield-label">数量</label>
                             <input class="mdui-textfield-input" id="amount" name="amount" type="number" required/>

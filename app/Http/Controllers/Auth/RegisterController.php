@@ -89,7 +89,7 @@ class RegisterController extends Controller
         $user->resources()->create([
             'resource_id' => 15, //chip materials
             'user_id' => $user->id,
-            'amount' => $data['type'] == 1 ? 0 : Config::KeyValue()->value,
+            'amount' => $data['type'] == 1 ? 0 : Config::KeyValue('infinity')->value,
         ]);
         foreach (Resources::all() as $resource) {
             if ($resource->id != 1 && $resource->id != 15) {
