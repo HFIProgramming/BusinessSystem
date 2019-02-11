@@ -34,14 +34,14 @@
 
                     <div class="mdui-text-center">
                         <br><br>
-                        <form method="post" action="{{ route('startend') }}">
+                        <form method="post" action="{{ route('setAcquisitionStatus') }}">
                             {{ csrf_field() }}
-                            <button type="submit" name="condition" value="1"
+                            <button type="submit" name="status" value="1"
                                     class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-offset-xs-1">
                                 <i class="mdui-icon material-icons">keyboard_arrow_right</i>
                                 开始
                             </button>
-                            <button type="submit" name="condition" value="0"
+                            <button type="submit" name="status" value="0"
                                     class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-offset-xs-1">
                                 <i class="mdui-icon material-icons">keyboard_arrow_right</i>
                                 结束
@@ -50,12 +50,8 @@
                     </div>
                     <br><br>
 
-
-                    <div class="mdui-text-center">
-                        <a class=" mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-xs-2 mdui-col-offset-xs-5" href="{{ route('submitYear') }}"> 财年清算 </a>
-                    </div>
                     <br><br><br>
-                    <form method="post" action="{{ route('claer') }}">
+                    <form method="post" action="{{ route('doAcquisitionTransactions') }}">
                         {{ csrf_field() }}
                         <div>
                             <br><br>
@@ -82,12 +78,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <form method="post" action="{{ route('呃不知道是啥') }}">
+                            <form method="post" action="{{ route('setAcquisitionAmount') }}">
                                 {{ csrf_field() }}
-                            @foreach($aquisition_items_and_amount as $item_id => $amount)
+                            @foreach($acquisition_items_and_amount as $item_id => $amount)
                                     <tr>
-                                        <td>{{$item}}</td>
-                                        <input type="hidden" id="itemId" name="itemId" value="{{$item}}">
+                                        <td>{{$item_id}}</td>
+                                        <input type="hidden" id="itemId" name="itemId" value="{{$item_id}}">
                                         <td>
                                             <div class="mdui-textfield mdui-textfield-floating-label">
                                                 <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>

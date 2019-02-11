@@ -14,7 +14,7 @@ class AcquisitionController extends Controller
     {
     	$year = Config::KeyValue('current_round')->value;
     	$status = Config::KeyValue('acquisition_activated')->value;
-    	$acquisition_item_and_amount = json_decode(Config::KeyValue('acquisition_items_and_amount')->value, true);
+    	$acquisition_items_and_amount = json_decode(Config::KeyValue('acquisition_items_and_amount')->value, true);
     	$bids = Acquisition::where('year', $year)->get();
     	return view('admin.acquisition_control')->with('bids', $bids)->with('year', $year)->with('status', $status)->with('acquisition_items_and_amount', $acquisition_items_and_amount);
     }
@@ -29,6 +29,7 @@ class AcquisitionController extends Controller
 
 	public function setAmount(Request $request)
 	{
+		return $request->input();
 		$acquisition_items_and_amount = Config::KeyValue('acquisition_items_and_amount');
 		$acquisition_items_and_amount->value = json_encode($request->input('acquisition_items_and_amount'));
 		$acquisition_items_and_amount->save();

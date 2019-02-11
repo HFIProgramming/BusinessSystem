@@ -14,11 +14,11 @@ class AcquisitionController extends Controller
 	{
 		$user = $request->user();
 		$year = Config::KeyValue('current_round')->value;
-		if(Config::KeyValue('acquisition_activated') == 1)
+		if(Config::KeyValue('acquisition_activated')->value == 1)
 		{
 			if(empty($user->acquisitions()->where('year', $year)->first()))
 			{
-				$acquisition_item_and_amount = json_decode(Config::KeyValue('acquisition_items_and_amount')->value, true);
+				$acquisition_items_and_amount = json_decode(Config::KeyValue('acquisition_items_and_amount')->value, true);
 				return view('acquisition.createBids')->with('year', $year)->with('acquisition_items_and_amount', $acquisition_items_and_amount);
 			}
 			return view('errors.custom')->with('message', '本财年已经提交过竞标啦');
@@ -38,6 +38,14 @@ class AcquisitionController extends Controller
 		$user = $request->user();
 		$bids = $request->input('bids');
 		$year = Config::KeyValue('current_round')->value;
+		if(Config::KeyValue('acquisition_activated')->value == 0)
+		{
+			return view('errors.custom')->with('message', '目前不能投标呢！');
+		}
+		if(!empty($user->acquisitions()->where('year', $year)->first()))
+		{
+			return view('errors.custom')->with('message', '本财年已经提交过竞标啦');
+		}
 		foreach($bids as $resource_id => $data)
 		{
 			if($user->resources()->resid($resource_id)->first()->amount < $data['amount'])

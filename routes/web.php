@@ -106,7 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
 		});
 		Route::group(['prefix' => 'acquisition'], function () {
 			Route::get('/showControl', 'AcquisitionController@showAcquisitionControlPanel')->name('AcquisitionControl');
-			Route::get('/setStatus', 'AcquisitionController@setStatus')->name('setAcquisitionStatus');
+			Route::post('/setStatus', 'AcquisitionController@setStatus')->name('setAcquisitionStatus');
 			Route::post('/setAmount', 'AcquisitionController@setAmount')->name('setAcquisitionAmount');
 			Route::get('/doTransactions', 'AcquisitionController@doTransactions')->name('doAcquisitionTransactions');
 		});
