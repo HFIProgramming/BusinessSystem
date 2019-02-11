@@ -17,7 +17,7 @@ class CreateAuctionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('year');
-            $table->integer('price');
+            $table->bigInteger('price');
             $table->string('status'); //submitted, unsuccessful, successful
             $table->timestamps();
         });

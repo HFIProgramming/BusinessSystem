@@ -18,8 +18,8 @@ class CreateAcquisitionsTable extends Migration
             $table->integer('user_id');
             $table->integer('year');
             $table->text('resource_id');// The item to be sold
-            $table->integer('price');
-            $table->integer('amount');
+            $table->bigInteger('price');
+            $table->bigInteger('amount');
             $table->string('status');// submitted, unsuccessful, partially successful ([amount sold]), successful
             $table->timestamps();
         });

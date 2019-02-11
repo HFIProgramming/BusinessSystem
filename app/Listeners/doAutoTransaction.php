@@ -39,7 +39,7 @@ class doAutoTransaction
 			$equivalence = $trans->sellerResource->resource->equivalent_to;
 			foreach ($equivalence as $resource_id => $quantity) {
 				$newTrans = $trans;
-				$newTrans->seller_resource_id = User::type(0)->first()->resources()->resid($resource_id)->first()->id;
+				$newTrans->sellerResource = User::type(0)->first()->resources()->resid($resource_id)->first();
 				$newTrans->seller_amount = $quantity;
 				$newTrans->buyer_amount = 0;
 				$newTrans->type = 'special';

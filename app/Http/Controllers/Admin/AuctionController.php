@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Config;
 use App\Auction;
+use App\User;
+use App\Events\NewTransaction;
 
 class AuctionController extends Controller
 {
@@ -37,7 +39,7 @@ class AuctionController extends Controller
 
 	public function doTransactions()
 	{
-		if(Config::KeyValue('auction_activated') == 1)
+		if(Config::KeyValue('auction_activated')->value == 1)
 		{
 			return view('errors.custom')->with('message', '先停止竞拍');
 		}

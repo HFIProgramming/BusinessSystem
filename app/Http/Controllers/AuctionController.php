@@ -39,7 +39,8 @@ class AuctionController extends Controller
     {
         $user = $request->user();
         $price = $request->price;
-        if(empty(IntToVal('acceptable_bid_range', $price)))
+        $year = Config::KeyValue('current_round')->value;
+        if(empty(IntToVal::IntervalValue('acceptable_bid_range', $price)->value))
         {
             //unacceptable price
             return view('errors.custom')->with('message', '竞拍价格不在可接受范围内');
@@ -49,9 +50,13 @@ class AuctionController extends Controller
             //not enough money
             return view('errors.custom')->with('message', '竞价可别放卫星呀！您没有这么多钱！');
         }
-        if(Config::KeyValue('auction_activated') == 0)
+        if(Config::KeyValue('auction_activated')->value == 0)
         {
             return view('errors.custom')->with('message', '目前不能竞拍呢！');
+        }
+        if(!empty($user->auctions()->where('year', $year)->first()))
+        {
+            return view('errors.custom')->with('message', '本财年已经提交过竞拍啦');
         }
         $user->auctions()->create([
             'price' => $price,

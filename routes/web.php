@@ -61,13 +61,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::group(['prefix' => 'auction'], function () {
 			Route::get('/create', 'AuctionController@showBidForm')->name('createAuctionBid');
 			Route::post('/create', 'AuctionController@submitBid')->name('submitAuctionBid');
-			Route::get('/list', 'AuctionController@listBids')->name('submitAuctionBid');
+			Route::get('/list', 'AuctionController@listBids')->name('listAuctionBid');
 		});
 
 		Route::group(['prefix' => 'acquisition'], function () {
 			Route::get('/create', 'AcquisitionController@showBidForm')->name('createAcquisitionBid');
 			Route::post('/create', 'AcquisitionController@submitBids')->name('submitAcquisitionBids');
-			Route::get('/list', 'AcquisitionController@listBids')->name('submitAcquisitionBids');
+			Route::get('/list', 'AcquisitionController@listBids')->name('listAcquisitionBids');
 		});
 	});
 
@@ -100,7 +100,7 @@ Route::group(['middleware' => 'auth'], function () {
 		});
 		Route::group(['prefix' => 'auction'], function () {
 			Route::get('/showControl', 'AuctionController@showAuctionControlPanel')->name('auctionControl');
-			Route::get('/setStatus', 'AuctionController@setStatus')->name('setAuctionStatus');
+			Route::post('/setStatus', 'AuctionController@setStatus')->name('setAuctionStatus');
 			Route::post('/setAmount', 'AuctionController@setAmount')->name('setAuctionAmount');
 			Route::get('/doTransactions', 'AuctionController@doTransactions')->name('doAuctionTransactions');
 		});
