@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bank;
 use App\Config;
 use App\Report;
+use App\Zone;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -25,13 +26,10 @@ class ReportController extends Controller
                 $array = [];
                 $array['name'] = $company->name;
                 $array['id'] = $company->id;
-                $array['total'] = $company->stock->total;
-                $array['price'] = $rawReport->stock_price;
                 $array['last_profit'] = $rawReport->profit;
                 $array['buildings'] = $rawReport->buildings;
-                $array['stock_shares'] = $rawReport->components;
-                $array['dividend'] = $rawReport->dividend;
                 $array['unredeemed_loan'] = $rawReport->unredeemed_loan;
+                $array['tax'] = Zone::find($company->user->type)->tax;
                 array_push($companyReport['info'], $array);
             }
             if(!empty($companyReport['info'])) {

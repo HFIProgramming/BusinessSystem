@@ -23,7 +23,7 @@ class CreateResourcesTable extends Migration
             //0=中间货币 1=原材料 2=建筑 3=成品机器人 4=兑换券 5=科技 6=指数 7=耗材
             $table->text('requirement')->nullable();
             $table->integer('pack')->default(1);
-            $table->integer('acquisition_price')->default(0);//政府收购价
+            $table->bigInteger('acquisition_price')->default(0);//政府收购价
             $table->integer('employment_price')->default(0);//雇佣价
             $table->text('equivalent_to')->nullable();//used for BOTH Transactions and TopUps
             $table->text('tax')->nullable();
