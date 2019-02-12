@@ -41,6 +41,7 @@
                     </div>
 
                     <div class="mdui-card-content mdui-typo">
+                        <form id="robotBidding" method="post" action="{{route('submitAcquisitionBids')}}">
                         <table class="mdui-table">
                             <thead>
                             <tr>
@@ -50,7 +51,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <form id="robotBidding" method="post" action="{{route('newBidding')}}">
                                 {{ csrf_field() }}
                                 @foreach($acquisition_items_and_amount as $item => $amount)
                                     <tr>
@@ -58,27 +58,26 @@
                                         <input type="hidden" id="itemId" name="itemId" value="{{$item}}">
                                         <td>
                                             <div class="mdui-textfield mdui-textfield-floating-label">
-                                                <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
-                                                <label class="mdui-textfield-label">主席团准备购入{{$item => $amount}}个</label>
+                                                <label class="mdui-textfield-label">主席团准备购入{{$amount}}个</label>
                                                 <input class="mdui-textfield-input" id="amount" name="amount" type="number"/>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="mdui-textfield mdui-textfield-floating-label">
-                                                <i class="mdui-icon material-icons adjust_mdui_icon">shopping_basket</i>
                                                 <label class="mdui-textfield-label">我的出价</label>
                                                 <input class="mdui-textfield-input" id="price" name="price" type="number"/>
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
-                                <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">
-                                    提交
-                                </button>
-                            </form>
+
 
                             </tbody>
                         </table>
+                        </form>
+                        <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">
+                            提交
+                        </button>
                     </div>
                 </div>
             </div>

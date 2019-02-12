@@ -19,14 +19,14 @@
                 <div class="mdui-card">
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                            拍卖历史
+                            acq历史
                         </div>
                     </div>
                     <div class="mdui-card-header-subtitle adjust_card_subtitle">
                         <div class="mdui-text-center">
                             便捷金融生活从此开启
                         </div>
-                    </div>>
+                    </div>
 
 
                     <div class="mdui-card-content mdui-typo">
@@ -60,6 +60,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <!--row-->
 
 @endsection
