@@ -141,6 +141,38 @@
                 </ul>
             </li>
 
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">child_friendly</i>
+                    <div class="mdui-list-item-content">收购</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    <li class="mdui-list-item mdui-ripple">
+                        <a a class="mdui-list-item-content" href="{{route('listAcquisitionBids')}}">收购列表</a>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <a a class="mdui-list-item-content" href="{{route('createAcquisitionBid')}}">新收购</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">business_center</i>
+                    <div class="mdui-list-item-content">拍卖</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    <li class="mdui-list-item mdui-ripple">
+                        <a a class="mdui-list-item-content" href="{{route('listAuctionBid')}}">拍卖列表</a>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <a a class="mdui-list-item-content" href="{{route('createAuctionBid')}}">新拍卖</a>
+                    </li>
+                </ul>
+            </li>
+
 
             <li class="mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">format_list_numbered</i>
