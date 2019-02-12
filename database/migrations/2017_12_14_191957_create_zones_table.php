@@ -17,6 +17,7 @@ class CreateZonesTable extends Migration
             $table->increments('id'); //Zone IDs will align with user types
             $table->string('name');
             $table->integer('user_id');
+            $table->float('tax');
             $table->timestamps();
         });
     }

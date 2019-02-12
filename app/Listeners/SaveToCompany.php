@@ -67,6 +67,13 @@ class SaveToCompany
                     }
                 }
             }
+            if(array_key_exists(1, $gains))
+            {
+                $company->last_year_profit = $gains[1];
+                $company->save();
+                $company_zone = Zone::find($company->user->type);
+                $gains[1] = round($gains[1] * (1 - $company_zone->tax));
+            }
             foreach($gains as $resource_id => $amount)
             {
                 $seller = User::type(0)->first();

@@ -62,6 +62,7 @@ class EventServiceProvider extends ServiceProvider
             // 'App\Listeners\DistributeDividends',
             'App\Listeners\SaveToCompany',
             // 'App\Listeners\GenerateReports'
+            'App\Listeners\CollectTax'
         ],
 
         'App\Events\NewResource' => [

@@ -32,7 +32,8 @@ class ZoneSeeder extends Seeder
             }
             Zone::create([
                 'user_id' => $user->id,
-                'name' => $zone
+                'name' => $zone,
+                'tax' => 0
             ]);
         }
         Zone::find(1)->user->resources()->resid(7)->update(['amount' => 1]);
