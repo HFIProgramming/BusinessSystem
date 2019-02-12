@@ -112,6 +112,8 @@ class IntToValSeeder extends Seeder
             'value' => 0.5
         ]);
 
+        //区域矿业指数
+        //lower: 奇数为南方，偶数为北方
         IntToVal::create([
             'lower' => 1,
             'upper' => 2,
@@ -124,6 +126,31 @@ class IntToValSeeder extends Seeder
             'flag' => 'regionalMiningIndex_Mining',
             'value' => 1
         ]);
+        IntToVal::create([
+            'lower' => 3,
+            'upper' => 4,
+            'flag' => 'regionalMiningIndex_Mining',
+            'value' => 3.6
+        ]);
+        IntToVal::create([
+            'lower' => 4,
+            'upper' => 5,
+            'flag' => 'regionalMiningIndex_Mining',
+            'value' => 1.4
+        ]);
+        IntToVal::create([
+            'lower' => 5,
+            'upper' => 2,
+            'flag' => 'regionalMiningIndex_Mining',
+            'value' => 4.32
+        ]);
+        IntToVal::create([
+            'lower' => 6,
+            'upper' => 3,
+            'flag' => 'regionalMiningIndex_Mining',
+            'value' => 4.2
+        ]);
+
         IntToVal::create([
             'lower' => -10,
             'upper' => 10,
