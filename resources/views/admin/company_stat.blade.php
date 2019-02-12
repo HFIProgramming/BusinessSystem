@@ -35,7 +35,6 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>股票总市值</th>
                                 <th>总资金</th>
                                 <th>建筑</th>
                                 <th>欠款</th>
@@ -49,7 +48,6 @@
                                         $sum = 0
                                     @endphp
                                     <td>{{$company->id}}({{$company->name}})</td>
-                                    <td>{{$market_value = $company->stock->current_price * $company->stock->total}}</td>
                                     <td>{{$money = $company->user->resources()->resid(1)->first()->amount}}</td>
                                     <td>
                                         <ul class="mdui-list">
@@ -57,17 +55,16 @@
                                                 @if($userResource->resource->type == 2)
                                                     <li class="mdui-list-item">{{ $userResource->resource->name }}
                                                         :{{ $userResource->amount }}
-                                                        * {{ $userResource->resource->acquisition_price }}00000000</li>
+                                                        * {{ $userResource->resource->acquisition_price }}</li>
                                                     @php
-                                                        $sum += $userResource->amount * $userResource->resource->acquisition_price * 100000000
+                                                        $sum += $userResource->amount * $userResource->resource->acquisition_price
                                                     @endphp
                                                 @endif
                                             @endforeach
-                                            <li class="mdui-list-item">总计: {{$sum}}</li>
                                         </ul>
                                     </td>
                                     <td>{{$unredeemed = \App\Loan::where('debtor_id', $company->user_id)->where('status', 'accepted')->get()->sum('amount')}}</td>
-                                    <td>{{ $total = $market_value + $money + $sum - $unredeemed }}({{round($total/100000000,2)}}亿)</td>
+                                    <td>{{ $total = $money + $sum - $unredeemed }}({{round($total/100000000,2)}}亿)</td>
                                 </tr>
                             @endforeach
                             </tbody>
