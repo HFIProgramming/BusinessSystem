@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Config;
 use App\Acquisition;
+use App\User;
+use App\Events\NewTransaction;
 
 class AcquisitionController extends Controller
 {
@@ -29,7 +31,6 @@ class AcquisitionController extends Controller
 
 	public function setAmount(Request $request)
 	{
-		return $request->input();
 		$acquisition_items_and_amount = Config::KeyValue('acquisition_items_and_amount');
 		$acquisition_items_and_amount->value = json_encode($request->input('acquisition_items_and_amount'));
 		$acquisition_items_and_amount->save();
@@ -38,7 +39,7 @@ class AcquisitionController extends Controller
 
 	public function doTransactions()
 	{
-		if(Config::KeyValue('acquisition_activated') == 1)
+		if(Config::KeyValue('acquisition_activated')->value == 1)
 		{
 			return view('errors.custom')->with('message', '先停止收购');
 		}
@@ -72,7 +73,7 @@ class AcquisitionController extends Controller
 				$sellerAmount = $transaction_amount;
 				$buyer = User::type(0)->first();
 				$buyerItem = $buyer->resources()->resid(1)->first();
-				$buyerAmount = $bid->price;
+				$buyerAmount = $bid->price * $transaction_amount;
 				event(new NewTransaction($buyer, $seller, $buyer, $sellerItem, $buyerItem, $sellerAmount, $buyerAmount, 'acquisition'));
 				if($amount_fulfilled == $amount_required)
 				{
