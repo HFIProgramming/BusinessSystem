@@ -34,11 +34,6 @@
                             收购机器人的投标
                         </div>
                     </div>
-                    <div class="mdui-card-header-subtitle adjust_card_subtitle">
-                        <div class="mdui-text-center">
-                            便捷金融生活从此开启
-                        </div>
-                    </div>
 
                     <div class="mdui-card-content mdui-typo">
                         <form enctype="application/json" method="post" action="{{route('submitAcquisitionBids')}}">

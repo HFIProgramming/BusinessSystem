@@ -222,6 +222,7 @@
             <div class="mdui-row">
                 <div class="mdui-row-lg-6">
                     <div class="footer mdui-typo-caption-opacity mdui-text-center">
+                        <br>
                         Designed By HFIProgramming Club，编程社出品
                     </div>
                 </div>
