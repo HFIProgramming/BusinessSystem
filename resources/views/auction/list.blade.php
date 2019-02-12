@@ -16,7 +16,7 @@
     <div class="mdui-container doc-container">
         <div class="mdui-row">
             <div class="mdui-col-xs-12">
-                <div class="mdui-card">
+
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
                             拍卖列表
@@ -48,7 +48,6 @@
                             </table>
                         </div>
                         <br>
-                    </div>
                 </div>
             </div>
         </div>

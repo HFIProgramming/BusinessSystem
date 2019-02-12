@@ -86,7 +86,7 @@
 
 </head>
 
-<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}}  mdui-drawer-body-left mdui-appbar-with-toolbar">
+<body class="mdui-theme-primary-{{\App\Config::KeyValue('primary_color')->value}} mdui-theme-accent-{{\App\Config::KeyValue('accent_color')->value}} mdui-drawer-body-left mdui-appbar-with-toolbar">
 <div id="app">
 
 

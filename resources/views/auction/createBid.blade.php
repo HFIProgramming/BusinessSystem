@@ -16,7 +16,7 @@
     <div class="mdui-container doc-container">
         <div class="mdui-row">
             <div class="mdui-col-xs-12">
-                <div class="mdui-card">
+
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
                             选手竞价表格
@@ -39,7 +39,6 @@
                             <button data-no-instant class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-center">提交
                             </button>
                         </form>
-                    </div>
                 </div>
             </div>
 
