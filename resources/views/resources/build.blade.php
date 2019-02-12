@@ -23,11 +23,7 @@
                     </div>
                 </div>
 
-                <div class="mdui-card-header-subtitle adjust_card_subtitle">
-                    <div class="mdui-text-center">
-                        便捷金融生活从此开启
-                    </div>
-                </div>
+
                 <div class="mdui-card-content mdui-typo">
                     <form method="post" action="{{route('build')}}">
                         {{ csrf_field() }}
