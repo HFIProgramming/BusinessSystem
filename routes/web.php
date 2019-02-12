@@ -83,6 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/', 'HomeController@showBills')->name('bills');
 	});
 
+    Route::get('/reports', 'ReportController@showCompanyReports')->name('companyReports');
+
 	Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
 		Route::get('/', 'AdminController@showDashboard')->name('adminDashboard');
 		Route::get('/announcement', 'AnnouncementController@showForm')->name('addAnnouncement');
