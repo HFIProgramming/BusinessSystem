@@ -199,6 +199,12 @@
                 <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
                 <a href="{{route('announcement')}}" class="mdui-list-item-content">公告</a>
             </li>
+
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
+                <a href="{{route('announcement')}}" class="mdui-list-item-content">公司报表</a>
+            </li>
+
             <li class="mdui-divider"></li>
             @if(Auth::user()->type == 0)
                 <li class="mdui-list-item mdui-ripple">
