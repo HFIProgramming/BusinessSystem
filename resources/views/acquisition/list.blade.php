@@ -16,15 +16,9 @@
     <div class="mdui-container doc-container">
         <div class="mdui-row">
             <div class="mdui-col-xs-12">
-                <div class="mdui-card">
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                            acq历史
-                        </div>
-                    </div>
-                    <div class="mdui-card-header-subtitle adjust_card_subtitle">
-                        <div class="mdui-text-center">
-                            便捷金融生活从此开启
+                            收购列表
                         </div>
                     </div>
 
@@ -59,7 +53,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
         <!--row-->
 
