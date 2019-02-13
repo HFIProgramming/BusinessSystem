@@ -136,7 +136,7 @@
                         <a a class="mdui-list-item-content" href="{{route('listLoans')}}">贷款列表</a>
                     </li>
                     <li class="mdui-list-item mdui-ripple">
-                        <a a class="mdui-list-item-content" href="{{route('loanForm')}}">新贷款</a>
+                        <a a class="mdui-list-item-content" href="{{route('loanForm')}}">放贷</a>
                     </li>
                 </ul>
             </li>
@@ -152,7 +152,7 @@
                         <a a class="mdui-list-item-content" href="{{route('listAcquisitionBids')}}">收购列表</a>
                     </li>
                     <li class="mdui-list-item mdui-ripple">
-                        <a a class="mdui-list-item-content" href="{{route('createAcquisitionBid')}}">新收购</a>
+                        <a a class="mdui-list-item-content" href="{{route('createAcquisitionBid')}}">投标</a>
                     </li>
                 </ul>
             </li>
@@ -168,7 +168,7 @@
                         <a a class="mdui-list-item-content" href="{{route('listAuctionBid')}}">拍卖列表</a>
                     </li>
                     <li class="mdui-list-item mdui-ripple">
-                        <a a class="mdui-list-item-content" href="{{route('createAuctionBid')}}">新拍卖</a>
+                        <a a class="mdui-list-item-content" href="{{route('createAuctionBid')}}">出价</a>
                     </li>
                 </ul>
             </li>
