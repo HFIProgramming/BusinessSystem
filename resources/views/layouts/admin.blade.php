@@ -64,6 +64,14 @@
             <a href="{{ route('showRound') }}" class="mdui-list-item-content">Fiscal Year</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>
+            <a href="{{ route('AcquisitionControl') }}" class="mdui-list-item-content">Acquisition Control</a>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>
+            <a href="{{ route('auctionControl') }}" class="mdui-list-item-content">Auction Control</a>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
         <i class="mdui-list-item-icon mdui-icon material-icons">library_books</i>
             <a href="{{ route('showLogs') }}" class="mdui-list-item-content">Logs</a>
         </li>
