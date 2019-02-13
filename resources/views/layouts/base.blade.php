@@ -202,7 +202,7 @@
 
             <li class="mdui-list-item mdui-ripple">
                 <i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
-                <a href="{{route('announcement')}}" class="mdui-list-item-content">公司报表</a>
+                <a href="{{route('companyReports')}}" class="mdui-list-item-content">公司报表</a>
             </li>
 
             <li class="mdui-divider"></li>
