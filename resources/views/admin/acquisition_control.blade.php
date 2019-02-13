@@ -22,37 +22,38 @@
                         @if($status == 0)
                             目前不在收购哦
                         @endif
+                    </h3>
 
 
-                        <div class="mdui-text-center">
-                            <br><br>
-                            <form method="post" action="{{ route('setAcquisitionStatus') }}">
-                                {{ csrf_field() }}
-                                <button type="submit" name="status" value="1"
-                                        class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple ">
-                                    <i class="mdui-icon material-icons">keyboard_arrow_right</i>
-                                    开始
-                                </button>
-                                <button type="submit" name="status" value="0"
-                                        class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple ">
-                                    <i class="mdui-icon material-icons">keyboard_arrow_right</i>
-                                    结束
-                                </button>
-                            </form>
-                        </div>
-
-                        <form method="post" action="{{ route('doAcquisitionTransactions') }}">
-                            {{ csrf_field() }}
-                            <div>
-                                <br><br>
-                                <button type="submit" name="clear" value="1"
-                                        class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple">
-                                    <i class="mdui-icon material-icons">exit_to_app</i>
-                                    清算
-                                </button>
-                            </div>
-                        </form>
+                    <div class="mdui-text-center">
                         <br><br>
+                        <form method="post" action="{{ route('setAcquisitionStatus') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" name="status" value="1"
+                                    class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple ">
+                                <i class="mdui-icon material-icons">keyboard_arrow_right</i>
+                                开始
+                            </button>
+                            <button type="submit" name="status" value="0"
+                                    class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple ">
+                                <i class="mdui-icon material-icons">keyboard_arrow_right</i>
+                                结束
+                            </button>
+                        </form>
+                    </div>
+
+                    <form method="post" action="{{ route('doAcquisitionTransactions') }}">
+                        {{ csrf_field() }}
+                        <div>
+                            <br><br>
+                            <button type="submit" name="clear" value="1"
+                                    class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple">
+                                <i class="mdui-icon material-icons">exit_to_app</i>
+                                清算
+                            </button>
+                        </div>
+                    </form>
+                    <br><br>
                 </div>
 
                 <div class="mdui-text-center mdui-typo-display-1">
@@ -95,8 +96,36 @@
                     </div>
                     <br>
                 </form>
+<br>
+                <div class="mdui-text-center mdui-typo-display-1">
+                    收购列表
+                </div>
+
+                <br><br>
+                    <div class="mdui-table-fluid">
+                        <table class="mdui-table">
+                            <thead>
+                            <tr>
+                                <th>item</th>
+                                <th>amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @foreach($acquisition_items_and_amount as $item_id => $amount)
+                                <tr>
+                                    <td>{{$item_id}}</td>
+                                    <td>
+                                        {{$amount}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
             </div>
         </div>
     </div>
-    </div>
+
 @endsection
