@@ -174,11 +174,7 @@
                                     <br/>
                                 </ul>
                             </div>
-                            <div class="mdui-card-actions">
-                                <button class="mdui-btn mdui-ripple"
-                                        onclick="window.location.href='{{route('purchaseForm')}}'">Top Up
-                                </button>
-                            </div>
+
                             <br/>
                         </div>
                     </div>
