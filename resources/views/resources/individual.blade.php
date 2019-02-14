@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    New Transaction
+    需求
 @endsection
 
 @section('script')
@@ -19,7 +19,7 @@
                 <div class="mdui-card">
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                            Requirement
+                            需求
                         </div>
                     </div>
 

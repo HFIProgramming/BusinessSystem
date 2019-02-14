@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    New Transaction
+    资源列表
 @endsection
 
 @section('script')
@@ -19,7 +19,7 @@
 
                 <div class="mdui-card-header">
                     <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                        Resource List
+                        资源列表
                     </div>
                 </div>
 

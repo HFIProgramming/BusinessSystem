@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    Auction History
+    收购列表
 @endsection
 
 @section('script')

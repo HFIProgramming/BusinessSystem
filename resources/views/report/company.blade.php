@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    Company Report
+    公司报表
 @endsection
 
 
