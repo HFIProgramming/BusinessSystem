@@ -58,7 +58,13 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::post('/redeem', 'LoanController@redeemLoan')->name('redeemLoan');
 		});
 
-		Route::group(['prefix' => 'auction'], function () {
+	});
+
+	Route::group(['prefix' => 'announcement'], function () {
+		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
+	});
+
+	Route::group(['prefix' => 'auction'], function () {
 			Route::get('/create', 'AuctionController@showBidForm')->name('createAuctionBid');
 			Route::post('/create', 'AuctionController@submitBid')->name('submitAuctionBid');
 			Route::get('/list', 'AuctionController@listBids')->name('listAuctionBid');
@@ -69,11 +75,6 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::post('/create', 'AcquisitionController@submitBids')->name('submitAcquisitionBids');
 			Route::get('/list', 'AcquisitionController@listBids')->name('listAcquisitionBids');
 		});
-	});
-
-	Route::group(['prefix' => 'announcement'], function () {
-		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
-	});
 
 	Route::group(['prefix' => 'zones'], function () {
 		Route::get('/', 'HomeController@showZones')->name('zones');
