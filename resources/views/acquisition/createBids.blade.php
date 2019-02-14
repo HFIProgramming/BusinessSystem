@@ -40,27 +40,27 @@
                         <table class="mdui-table">
                             <thead>
                             <tr>
-                                <th>id</th>
+                                <th>资源名称</th>
                                 <th>数量</th>
                                 <th>出价</th>
                             </tr>
                             </thead>
                             <tbody>
                             {{ csrf_field() }}
-                            @foreach($acquisition_items_and_amount as $item => $amount)
+                            @foreach($acquisition_items_and_amount as $item_id => $amount)
                                 <tr>
-                                    <td>{{$item}}</td>
+                                    <td>{{App\Resources::find($item_id)->name}}</td>
                                     <td>
                                         <div class="mdui-textfield mdui-textfield-floating-label">
                                             <label class="mdui-textfield-label">主席团准备购入{{$amount}}个</label>
-                                            <input class="mdui-textfield-input" name="bids[{{ $item }}][amount]"
+                                            <input class="mdui-textfield-input" name="bids[{{ $item_id }}][amount]"
                                                    type="number"/>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mdui-textfield mdui-textfield-floating-label">
                                             <label class="mdui-textfield-label">我的出价</label>
-                                            <input class="mdui-textfield-input" name="bids[{{ $item }}][price]"
+                                            <input class="mdui-textfield-input" name="bids[{{ $item_id }}][price]"
                                                    type="number"/>
                                         </div>
                                     </td>
