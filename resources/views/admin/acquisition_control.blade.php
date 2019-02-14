@@ -102,6 +102,7 @@
                         <thead>
                         <tr>
                             <th>财年</th>
+                            <th>用户ID</th>
                             <th>资源</th>
                             <th>数量</th>
                             <th>单价</th>
@@ -112,6 +113,7 @@
                         @foreach($bids as $bid)
                             <tr>
                                 <td>{{$bid->year}}</td>
+                                <td>{{$bid->user_id}}</td>
                                 <td>{{App\Resources::find($bid->resource_id)->name}}</td>
                                 <td>{{$bid->amount}}</td>
                                 <td>{{$bid->price}}</td>

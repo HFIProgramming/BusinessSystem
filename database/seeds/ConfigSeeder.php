@@ -30,7 +30,7 @@ class ConfigSeeder extends Seeder
             'auction_item_id' => 21,
             'auction_amount' => 10,
             'acquisition_activated' => 0,
-            'acquisition_items_and_amount' => json_encode([])
+            'acquisition_items_and_amount' => json_encode([17 => 10, 18 => 10, 19 => 10])
 		];
 		foreach ($config as $key => $value) {
 			\App\Config::query()->create([
