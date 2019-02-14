@@ -42,8 +42,6 @@ Route::group(['middleware' => 'auth'], function () {
 		});
 
 		Route::group(['prefix' => 'resource'], function () {
-			Route::get('/list', 'HomeController@showResource')->name('resource');
-			Route::get('/{id}', 'HomeController@showIndividualResource');
 			Route::get('/purchase', 'PurchaseController@showPurchaseForm')->name('purchaseForm');
 			Route::post('/purchase', 'PurchaseController@TopUp')->name('doPurchase');
 			Route::get('/build', 'PurchaseController@showBuildForm')->name('buildForm');
@@ -63,6 +61,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix' => 'announcement'], function () {
 		Route::get('/', 'HomeController@showAnnouncement')->name('announcement');
 	});
+
+	Route::group(['prefix' => 'resource'], function () {
+			Route::get('/list', 'HomeController@showResource')->name('resource');
+			Route::get('/{id}', 'HomeController@showIndividualResource');
+		});
 
 	Route::group(['prefix' => 'auction'], function () {
 			Route::get('/create', 'AuctionController@showBidForm')->name('createAuctionBid');
