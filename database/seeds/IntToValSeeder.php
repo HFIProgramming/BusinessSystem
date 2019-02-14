@@ -15,18 +15,18 @@ class IntToValSeeder extends Seeder
         //
         IntToVal::create([
             'lower' => -10000000000000,
-            'upper' => -30,
+            'upper' => -100,
             'flag' => 'powerIndex_PowerStation',
             'value' => 1.2
         ]);
         IntToVal::create([
-            'lower' => -30,
-            'upper' => 30,
+            'lower' => -100,
+            'upper' => 100,
             'flag' => 'powerIndex_PowerStation',
             'value' => 1
         ]);
         IntToVal::create([
-            'lower' => 30,
+            'lower' => 100,
             'upper' => 10000000000000,
             'flag' => 'powerIndex_PowerStation',
             'value' => 0.8
@@ -34,18 +34,18 @@ class IntToValSeeder extends Seeder
 
         IntToVal::create([
             'lower' => -10000000000000,
-            'upper' => -30,
+            'upper' => -100,
             'flag' => 'powerIndex_Disney',
             'value' => 0.8
         ]);
         IntToVal::create([
-            'lower' => -30,
-            'upper' => 30,
+            'lower' => -100,
+            'upper' => 100,
             'flag' => 'powerIndex_Disney',
             'value' => 1
         ]);
         IntToVal::create([
-            'lower' => 30,
+            'lower' => 100,
             'upper' => 10000000000000,
             'flag' => 'powerIndex_Disney',
             'value' => 1.2
@@ -53,18 +53,18 @@ class IntToValSeeder extends Seeder
 
         IntToVal::create([
             'lower' => -10000000000000,
-            'upper' => -30,
+            'upper' => -100,
             'flag' => 'powerIndex_Mining',
             'value' => 0.8
         ]);
         IntToVal::create([
-            'lower' => -30,
-            'upper' => 30,
+            'lower' => -100,
+            'upper' => 100,
             'flag' => 'powerIndex_Mining',
             'value' => 1
         ]);
         IntToVal::create([
-            'lower' => 30,
+            'lower' => 100,
             'upper' => 10000000000000,
             'flag' => 'powerIndex_Mining',
             'value' => 1.2

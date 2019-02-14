@@ -46,12 +46,10 @@
             {{ csrf_field() }}
             <div>
                 <br><br>
-                <button type="submit" name="clear" value="1"
-                class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple">
-                <i class="mdui-icon material-icons">exit_to_app</i>
-                清算
-            </button>
-        </div>
+                <a
+                class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-xs-2 mdui-col-offset-xs-5">
+                <i class="mdui-icon material-icons">exit_to_app</i>清算</a>
+            </div>
     </form>
     <br><br>
 </div>
