@@ -54,7 +54,7 @@
                                 结束
                             </button>
                         </form>
-                        <br><br><br>
+                        <br>
                         <a href="{{route('doAuctionTransactions')}}"
                                 class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple">
                             <i class="mdui-icon material-icons">exit_to_app</i>
