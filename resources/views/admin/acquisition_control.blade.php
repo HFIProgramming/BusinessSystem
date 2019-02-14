@@ -42,7 +42,7 @@
                         </div>
 
                         <br>
-                        <a href="{{route('doAuctionTransactions')}}"
+                        <a href="{{route('doAcquisitionTransactions')}}"
                            class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple">
                             <i class="mdui-icon material-icons">exit_to_app</i>
                             清算
