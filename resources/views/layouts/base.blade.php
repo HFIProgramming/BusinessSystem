@@ -92,7 +92,7 @@
 
     <div class="mdui-appbar mdui-appbar-fixed">
         <div class="mdui-toolbar mdui-color-white mdui-row">
-            <a class="mdui-btn mdui-btn-icon" onclick="inst.toggle()"><i class="mdui-icon material-icons">menu</i></a>
+<div></div>
             <a href="{{route('dashboard')}}" class="mdui-typo-title">Gamble For Crisis</a>
         </div>
     </div>
