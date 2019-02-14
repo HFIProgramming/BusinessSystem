@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    robots bidding
+    收购机器人的投标
 @endsection
 
 @section('script')

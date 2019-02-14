@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    Player Bidding
+    选手竞价表格
 @endsection
 
 @section('script')

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    Announcement
+    公告
 @endsection
 
 @section('script')

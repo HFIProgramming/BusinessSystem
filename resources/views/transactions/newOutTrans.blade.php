@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    New Out Transaction
+    新交易-卖方
 @endsection
 
 @section('script')
@@ -18,7 +18,7 @@
 
                     <div class="mdui-card-header">
                         <div class="mdui-typo-display-2 mdui-text-center mdui-text-color-theme">
-                            New Out Transaction
+                            新交易-卖方
                         </div>
                     </div>
 

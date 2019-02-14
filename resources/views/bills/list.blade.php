@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    Bills List
+    年终入账
 @endsection
 
 @section('script')
