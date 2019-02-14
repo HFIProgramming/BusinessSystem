@@ -95,6 +95,7 @@
                             <th>财年</th>
                             <th>用户ID</th>
                             <th>出价</th>
+                            <th>时间</th>
                             <th>状态</th>
                         </tr>
                         </thead>
@@ -104,6 +105,7 @@
                                 <td>{{$bid->year}}</td>
                                 <td>{{$bid->user_id}}</td>
                                 <td>{{$bid->price}}</td>
+                                <td>{{$bid->created_at}}</td>
                                 <td>{{$bid->status}}</td>
                             </tr>
                         @endforeach

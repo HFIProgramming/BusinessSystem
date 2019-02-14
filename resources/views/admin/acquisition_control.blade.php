@@ -106,6 +106,7 @@
                             <th>资源</th>
                             <th>数量</th>
                             <th>单价</th>
+                            <th>时间</th>
                             <th>状态</th>
                         </tr>
                         </thead>
@@ -117,6 +118,7 @@
                                 <td>{{App\Resources::find($bid->resource_id)->name}}</td>
                                 <td>{{$bid->amount}}</td>
                                 <td>{{$bid->price}}</td>
+                                <td>{{$bid->created_at}}</td>
                                 <td>{{$bid->status}}</td>
                             </tr>
                         @endforeach

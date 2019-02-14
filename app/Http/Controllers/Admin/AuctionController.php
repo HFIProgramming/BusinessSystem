@@ -18,7 +18,7 @@ class AuctionController extends Controller
     	$year = Config::KeyValue('current_round')->value;
     	$status = Config::KeyValue('auction_activated')->value;
     	$amount = Config::KeyValue('auction_amount')->value;
-    	$bids = Auction::where('year', $year)->orderBy('price', 'asc')->latest()->get();
+    	$bids = Auction::where('year', $year)->orderBy('price', 'asc')->oldest()->get();
     	return view('admin.auction_control')->with('bids', $bids)->with('year', $year)->with('status', $status)->with('amount', $amount);
 	}
 
