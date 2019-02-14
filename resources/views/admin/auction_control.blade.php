@@ -55,11 +55,8 @@
                 </button>
 
                 <br><br><br>
-                <button href="{{ route('doAuctionTransactions') }}"
-                class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple">
-                <i class="mdui-icon material-icons">exit_to_app</i>
-                清算
-            </button>
+                <a class=" mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-ripple mdui-col-xs-2 mdui-col-offset-xs-5"
+                <i class="mdui-icon material-icons">exit_to_app</i>清算</a>
 
         </form>
 
