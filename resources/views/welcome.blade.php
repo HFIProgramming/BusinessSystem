@@ -80,7 +80,7 @@
 <div id="title" class="">
     <h1 id="GFC">Gamble For Crisis</h1>
     <h2>The world is NOT what it Seems...</h2>
-    <h3>2017</h3>
+    <h3>2018</h3>
     <p>HFI Finance Club x HFI Programming Club</p>
 </div>
 
