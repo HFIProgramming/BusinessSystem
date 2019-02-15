@@ -51,7 +51,7 @@
                             </div>
                             <div class="mdui-card-content">
                                 <ul class="mdui-list">
-                                    <li class="mdui-list-item mdui-ripple">当年利润（税前）：{{$company['last_profit']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">当年建筑收入：{{$company['last_profit']}}</li>
                                     <li class="mdui-list-item mdui-ripple">
                                         公司持有的建筑：
                                         <ul class="mdui-list">

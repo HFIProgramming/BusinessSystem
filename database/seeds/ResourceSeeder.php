@@ -170,7 +170,7 @@ class ResourceSeeder extends Seeder
             'tax' => [5 => -10, 6 => -20]
         ]);
 
-        //id=15
+    //id=15
         Resources::create([
             'code' => 'Factory',
             'name' => '加工厂（耗材）',
