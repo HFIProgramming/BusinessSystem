@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/company_stat', 'AdminController@showCompanyStats')->name('companyStats');
 		Route::get('/bank_stat', 'AdminController@showBankStats')->name('bankStats');
 		Route::get('/godLogin', 'AdminController@godLogin');
+		Route::get('/setTax', 'AdminController@setTax');
 		Route::group(['prefix' => 'fiscal_year'], function () {
 			Route::get('/show', 'RoundController@show')->name('showRound');
 			Route::post('/change_total', 'RoundController@changeTotal')->name('changeTotalRound');
