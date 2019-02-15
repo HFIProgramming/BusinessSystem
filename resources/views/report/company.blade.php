@@ -31,12 +31,6 @@
                公司报表
             </div>
         </div>
-        <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
-            @foreach($companyReports as $companyReport)
-                <a class="mdui-ripple" onclick="display()"
-                   id="{{$companyReport['year']}}">{{$companyReport['year']}}</a>
-            @endforeach
-        </div>
         <br><br>
 
         {{--<canvas id="test"></canvas>--}}
@@ -51,6 +45,7 @@
                             </div>
                             <div class="mdui-card-content">
                                 <ul class="mdui-list">
+                                    <li class="mdui-list-item mdui-ripple">财年：{{$company['year']}}</li>
                                     <li class="mdui-list-item mdui-ripple">当年建筑收入：{{$company['last_profit']}}</li>
                                     <li class="mdui-list-item mdui-ripple">
                                         公司持有的建筑：
