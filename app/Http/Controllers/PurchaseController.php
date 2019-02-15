@@ -30,7 +30,11 @@ class PurchaseController extends Controller
 			return view('errors.custom')->with('message', '不允许你制造这种物品！');
 		}
 		
-        return $this->doManufactureOrBuild($item, $request->amount, $user);
+        $message = $this->doManufactureOrBuild($item, $request->amount, $user);
+        if($message == '建造完成')
+            return view('success')->with('message', $message);
+        else
+            return view('errors.custom')->with('message', $message);
 	}
 
 	public function buildArchitecture(Request $request) //This function is specifically for purchases that come along with transactions
@@ -49,7 +53,7 @@ class PurchaseController extends Controller
         if (!(($this->canUserAcquireThisProduct($user, $resource)) && ($resource->type != 0))) { // 中间货币不能被直接购买
             return view('errors.custom')->with('message', '你不能建造这种建筑');
         }
-        $view = $this->doManufactureOrBuild($resource, $request->amount, $user);
+        $message = $this->doManufactureOrBuild($resource, $request->amount, $user);
         //Just a word of warning:
         //TopUp Event automatically resolves the equivalent_to field and gives corresponding resources
         //But this does NOT create a chain reaction as Transaction does
@@ -59,9 +63,9 @@ class PurchaseController extends Controller
         //However, TopUp does not do this.
         //Contact msasysu.lzh@icloud.com or wechat 18124289726 if you do not understand.
         //Perhaps there is a better place to place this warning.
-        if($view != view('success')->with('message', '建造完成'))
+        if($message != '建造完成')
         {
-            return $view;
+            return view('errors.custom')->with('message', $message);
         }
 
         $purchased = $resource;
@@ -123,10 +127,10 @@ class PurchaseController extends Controller
             }
         }
 
-        if ($message != "") return view('errors.custom')->with('message', $message);
+        if ($message != "") return $message;
 
         event(new BuyStuff($user, $item, $requested_amount));
 
-        return view('success')->with('message', '建造完成');
+        return '建造完成';
     }
 }
