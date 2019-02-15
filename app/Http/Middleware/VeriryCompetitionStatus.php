@@ -18,7 +18,7 @@ class VeriryCompetitionStatus
     public function handle($request, Closure $next)
     {
     	if (Config::KeyValue('is_continued')->value != true){
-    		return Redirect('error')->with('message', '正在清算当前财年结果，比赛暂停中！');
+    		return Redirect('error.custom')->with('message', '财年暂停中，操作不能进行');
 	    }
         return $next($request);
     }
