@@ -45,7 +45,7 @@
                             </div>
                             <div class="mdui-card-content">
                                 <ul class="mdui-list">
-                                    <li class="mdui-list-item mdui-ripple">财年：{{$company['year']}}</li>
+                                    <li class="mdui-list-item mdui-ripple">财年：{{$companyReport['year']}}</li>
                                     <li class="mdui-list-item mdui-ripple">当年建筑收入：{{$company['last_profit']}}</li>
                                     <li class="mdui-list-item mdui-ripple">
                                         公司持有的建筑：
