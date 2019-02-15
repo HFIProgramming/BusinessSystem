@@ -7,6 +7,7 @@ use App\Loan;
 use App\Report;
 use App\User;
 use App\Company;
+use App\Zone;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -52,7 +53,8 @@ class GenerateReports
                 'profit' => $company->company->last_year_profit,
                 'components' => [],
                 'buildings' => $buildings,
-                'unredeemed_loan' => $unredeemed_loan
+                'unredeemed_loan' => $unredeemed_loan,
+                'tax' => Zone::find($company->type)->tax
             ]);
         }
     }

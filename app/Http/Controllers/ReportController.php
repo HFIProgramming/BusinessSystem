@@ -29,7 +29,7 @@ class ReportController extends Controller
                 $array['last_profit'] = $rawReport->profit;
                 $array['buildings'] = $rawReport->buildings;
                 $array['unredeemed_loan'] = $rawReport->unredeemed_loan;
-                $array['tax'] = Zone::find($company->user->type)->tax;
+                $array['tax'] = $rawReport->tax;
                 array_push($companyReport['info'], $array);
             }
             if(!empty($companyReport['info'])) {
