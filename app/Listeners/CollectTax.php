@@ -32,9 +32,9 @@ class CollectTax
         //
         foreach(Company::all() as $company)
         {
-            $profit_before_tax = $company->last_year_profit;
+            $property = $company->user->resources->resid(1)->first()->amount;
             $company_zone = Zone::find($company->user->type);
-            $tax = round($profit_before_tax * $company_zone->tax);
+            $tax = round($property * $company_zone->tax);
             $seller = $company->user;
             $sellerItem = $seller->resources()->resid(1)->first();
             $sellerAmount = $tax;
