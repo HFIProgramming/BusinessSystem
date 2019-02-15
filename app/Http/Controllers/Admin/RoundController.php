@@ -45,10 +45,10 @@ class RoundController extends Controller
     {
         if(Config::KeyValue('is_continued')->value == '0')
         {
-            // if(Report::where('year', Config::KeyValue('current_round')->value)->get()->isNotEmpty())
-            // {
-            //     return view('errors.custom')->with('message', '本财年似乎已结算过了');
-            // }
+            if(Report::where('year', Config::KeyValue('current_round')->value)->get()->isNotEmpty())
+            {
+                return view('errors.custom')->with('message', '本财年似乎已结算过了');
+            }
             event(new EndOfYear(Config::KeyValue('current_round')->value));
             return view('success')->with('message', '结算成功');
         }
